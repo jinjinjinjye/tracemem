@@ -61,7 +61,7 @@ The script lists one **event** per labelled turn. An event names the turn, its a
 script:
   - {turn: S1-T1, act: decide, item: model.sentiment, value: BERT}
   - {turn: S2-T3, act: suggest, item: model.sentiment, value: DistilBERT}
-  - {turn: S3-T2, act: revise, item: model.sentiment, value: DistilBERT, reason: "BERT exceeds the 25 ms latency budget"}
+  - {turn: S3-T2, act: accept, item: model.sentiment, accepts: S2-T3, reason: "BERT exceeds the 25 ms latency budget"}
   - {turn: S3-T6, act: mention, item: model.sentiment, value: BERT}
 ```
 
@@ -87,7 +87,7 @@ An item is one thing the team decides or tracks. Here is one from pilot-01:
 - **`kind`** is `decision` for a choice with a value, or `task` for a piece of work with a progress state.
 - **`description`** says in one line what the item is. Systems may see it, so it must not name any value. The validator warns (`W-description-leak`) when it does.
 - **`ask`** is the wording of the automatic checkpoint question for this item (section 6).
-- **`values`** lists every value the item takes in the scenario. Each entry is a **canonical value**, the name the script uses, followed by its **aliases**, other spellings that also count. An answer of "distilbert-base-uncased" therefore counts as DistilBERT. Spellings are compared after lower-casing, collapsing spaces and stripping surrounding punctuation, and two values of one item may not share a spelling.
+- **`values`** lists every value the item takes in the scenario. Each entry is a **canonical value**, the name the script uses, followed by its **aliases**, other spellings that also count. An answer of "distilbert-base-uncased" therefore counts as DistilBERT. Spellings are compared after lower-casing, collapsing spaces and stripping surrounding punctuation, and two values of one item may not share a spelling. Avoid dialogue that proposes a variant of a value, such as the cased build of the same model: a reader cannot tell whether it names a new value. If the variant matters, give it its own canonical value; if not, list it as an alias and keep the dialogue from proposing it.
 - **`confusable_with`** names other items that a reader could easily mix up with this one. In pilot-01, `model.sentiment` is linked to `model.ner`, the model that tags names of people and places (named-entity recognition, NER). List the link on both items, as the pilots do. A link listed on only one of the two items is an error (`E-confusable`).
 
 A task item has no `values`. Its value is always one of four progress words: `open`, `blocked`, `completed` or `cancelled`. Everyday words also count for them, such as "done" for `completed` and "stuck" for `blocked` (`PROGRESS_ALIASES` in [`schema.py`](../src/tracemem/schema.py)).
@@ -108,10 +108,10 @@ An **act** says what a turn does to one item. The replay turns each act into one
 | Act | What the turn does | Example | Operation |
 |---|---|---|---|
 | `decide` | makes the first settled choice for an item | S1-T1 "Let's go with BERT for the sentiment classifier." | ADD as active |
-| `revise` | settles on a new value in place of the current one | S3-T2 "Then we switch the sentiment classifier to DistilBERT..." | SUPERSEDE |
+| `revise` | settles on a new value that no open suggestion proposes, in place of the current one | pilot-03 S3-T1 "...We move the tagger to spaCy." | SUPERSEDE |
 | `restate` | repeats the current value | S4-T1 "For the write-up: we're on DistilBERT..." | KEEP |
 | `suggest` | puts a value forward without settling it | S2-T3 "Maybe we could try DistilBERT?" | ADD as proposed |
-| `accept` | settles an earlier suggestion | S3-T4 "Agreed, macro-F1 is the primary metric from now on." | ADD as active, or SUPERSEDE if a value is current |
+| `accept` | settles an earlier, open suggestion | S3-T4 "Agreed, macro-F1 is the primary metric from now on." | ADD as active, or SUPERSEDE if a value is current |
 | `contest` | claims the current value is a different one, without settling it | pilot-02 S2-T1 "Wait, I thought we agreed on SST-2 last time, not IMDB." | FLAG |
 | `mention` | names a value without proposing it | S3-T6 "Good. BERT was too slow anyway." | none |
 | `task_open` | creates a task | pilot-02 S1-T3 "Priya, can you audit 200 labels...?" | ADD as active, progress `open` |
@@ -134,30 +134,36 @@ A `mention` produces no operation, so it never changes the memory. Label mention
 
 A `value` is always a canonical value, never an alias. The replay also checks that the events make sense in order, and reports a break as `E-script`:
 
-- `decide` and `task_open` need an item with no active value. After that, use `revise` or `task_progress`.
-- `revise` and `task_progress` need an active value, and must change it.
+- `decide` and `task_open` need an item with no active value. After that, use `revise` or `task_progress`. A `decide` must not adopt the value of an open suggestion; label that turn `accept`.
+- `revise` and `task_progress` need an active value, and must change it. A `revise` must not adopt the value of an open suggestion; label that turn `accept`. A `task_progress` may (section 5).
 - `restate` must repeat the active value. A `suggest` of the active value is an error; label that turn `restate`.
 - `contest` needs an active value that differs from the claim.
 - `accept` must name a suggestion on the same item that has not already been adopted.
-- A turn may carry at most one event per item, not counting mentions. The validator reports this one as `E-same-item-turn`.
+- A turn may carry at most one event per item, not counting mentions, and a turn that acts on an item carries no mention of it (section 5). The validator reports this one as `E-same-item-turn`.
 
 No act turns a suggestion down. Leave a turn such as pilot-05 S1-T3 ("Let's keep it simple first.") without an event. The suggestion stays open and never becomes the answer, and the team can still accept it later.
 
 ## 5. Labelling conventions for hard cases
 
-An act describes what a turn does, not its grammar. Three conventions settle the cases on which authors and reviewers most often disagree. Each compared system gives a language model written instructions for answering questions, its answer prompt. Every answer prompt must state these same three rules, so that the systems and the benchmark work from one definition.
+An act describes what a turn does, not its grammar. The conventions below settle the cases on which authors and reviewers most often disagree. The first four also decide what the right answer is. Each compared system gives a language model written instructions for answering questions, its answer prompt, and every answer prompt must state those four, so that the systems and the benchmark work from one definition. The last two only keep labels consistent between authors; they never change an answer.
 
 **Function decides between a suggestion and a mention.** A turn that puts a value forward for the current plan is a `suggest`, even when it is phrased as a question. Pilot-05 S1-T2, "What if we used naive Bayes instead?", is a suggestion. A turn that names a value without proposing it is a `mention`. Mentions include:
 
 - a recollection: "BERT was too slow anyway" (pilot-01 S3-T6);
 - a question about the past: "Should we have tried bag of words instead of TF-IDF?" (pilot-05 S4-T1);
-- a report: "Logistic regression gets 0.91 macro-F1 on the dev split" (pilot-05 S2-T1).
+- a report: "DistilBERT runs at 18 ms and loses under a point of accuracy" (pilot-01 S3-T1), about a value that is only suggested.
 
 A quick test: if everyone answered "yes", would the plan change? If it would, the turn is a suggestion.
 
 **A dispute stays open until someone settles it.** After pilot-02 S2-T1 ("Wait, I thought we agreed on SST-2 last time, not IMDB."), the correct answer to "Which dataset are we training on?" is that the team disagrees. A dispute is settled when someone states a value as final, or when the other side agrees. Wei's reply in S2-T2 ("Hmm, I remember IMDB. Let's check the notes before Friday.") does not settle it, because he repeats his memory and puts off the decision. The turn is not a `restate`. At most it is a `mention`, and a mention never settles anything, so the dispute is still open at the end of session 2. Wei settles it in S3-T1 ("I checked the notes: it was IMDB. We stay with IMDB."), which is a `restate`. If the team had agreed on SST-2 instead, that turn would be a `revise`. Once the dispute is settled, the item has one answer again, and the disputed claim is closed.
 
-**An acceptance names the suggestion it accepts, and may come sessions later.** The `accepts` field holds the suggestion's turn id. Pilot-01 S3-T4 ("Agreed, macro-F1 is the primary metric from now on.") has `accepts: S3-T3`, the turn "Should we use macro-F1?". The suggestion may come from any earlier session, as long as it has not already been adopted. A turn that makes the change for its own reasons is a `revise` instead. Pilot-01 S3-T2 ("Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.") is labelled this way. Both labels make the value current, but only `accept` also cites the suggestion's turn as evidence for the answer.
+**An acceptance names the suggestion it accepts, and may come sessions later.** The `accepts` field holds the suggestion's turn id. Pilot-01 S3-T4 ("Agreed, macro-F1 is the primary metric from now on.") has `accepts: S3-T3`, the turn "Should we use macro-F1?". The suggestion may come from any earlier session, as long as it has not already been adopted. **On a decision, a turn that adopts the value of an open suggestion is always an `accept`, even when it gives reasons of its own.** Pilot-01 S3-T2 ("Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.") accepts S2-T3 ("Maybe we could try DistilBERT?"), and its reason goes into the event's `reason` field. Use `revise` only for a value that no open suggestion proposes, as in pilot-03 S3-T1 ("...We move the tagger to spaCy."). Both labels make the value current, but only `accept` also cites the suggestion's turn as evidence for the answer. The replay refuses a `decide` or `revise` that adopts an open suggestion's value (`E-script`). Tasks are the exception: a task has only four progress words, so a report such as "The audit is blocked: the annotation tool crashed." is a `task_progress` even if someone once suggested pausing the audit. Use `accept` on a task only when the turn agrees to the suggestion.
+
+**Announced progress counts when it changes the progress.** A task's progress changes when someone announces the change: "I'll restart the audit today" (pilot-02 S3-T2) sets the blocked audit back to `open`. Taking on a task that is already open ("Will do, I'll start this week.", pilot-02 S1-T4) changes nothing and gets no label.
+
+**Label a mention only when it could mislead.** Label a `mention` when it names a value other than the item's current one, and only on an item the turn does not otherwise act on. During a dispute no value is current, so a mention of either side is labelled, as in pilot-02 S2-T2 ("Hmm, I remember IMDB..."). The old value named inside pilot-01 S3-T2 ("...since BERT misses the latency limit") gets no separate mention, because the turn already acts on the sentiment model. "Colab keeps timing out" in pilot-04 S2-T1 gets none either, because Colab is still the current value. Such a mention can never make an answer wrong, so labelling it only adds disagreement between authors. The validator warns about both kinds (`W-mention-redundant`).
+
+**Agreeing to a settled value is a restatement only when it names the value.** "OK, IMDB then." (pilot-02 S3-T2) is a `restate`. A bare "Yes, no change there." (pilot-03 S3-T3) gets no label.
 
 ## 6. Checkpoint questions
 
@@ -176,14 +182,16 @@ A system may also decline to answer.
 ```yaml
 questions:
   - {id: model.sentiment@S3-previous, after: S3, kind: previous, item: model.sentiment,
-     text: "Which model did we use before the current one, and why did we change?"}
+     text: "Which model, if any, did we use for the sentiment classifier before the current one?"}
   - {id: metric.primary@S4-asof-S1, after: S4, kind: as_of, session: S1, item: metric.primary,
-     text: "What was our primary metric at the end of the first meeting?"}
+     text: "What was the state of the primary-metric choice at the end of the first meeting?"}
 ```
 
 A hand-written question with the same id as an automatic one replaces it.
 
 **A question's text must not name the answer.** "Did we use BERT before DistilBERT?" hands the system both values. Write each question as a teammate would ask it without knowing the answer. The validator warns (`W-leak`) when a question's text names any value the question could be answered with, right or wrong: an accepted spelling, a replaced value, a suggested or disputed value, a similar item's value, or, on a question about the past, today's value.
+
+**A question asks only for what the scorer reads.** Every correct answer is a value, *none* or *conflict*, so write questions that each of those can answer. Do not presuppose that something was settled: "Which dataset had we settled on at the end of the second meeting?" has no right answer if a dispute was open, so ask "What was the state of the dataset choice at the end of the second meeting?". Do not ask a yes/no question: ask "Which dataset, if any, did we train on before the current one?", not "Did we train on a different dataset before?". Do not ask why: the scorer reads only the value, and a question that asks for a reason invites the reason into the value field. Name the item, because a scenario can hold two items of the same kind. Give every history question the same wording, whatever its answer: "Which <thing>, if any, did we use before the current one?" for `previous`, and "What was the state of <the choice> at the end of the <n>th meeting?" for `as_of`. A hedge such as "if any" used only where the answer is *none* would give that answer away.
 
 ## 7. The eight categories
 
@@ -287,6 +295,7 @@ The code backs these rules up in three places:
 | `W-leak` | a question's text names a value it could be answered with, right or wrong (section 6) |
 | `W-session-length` | a session has fewer than 3 or more than 12 turns |
 | `W-alias-shared` | two confusable items share a spelling of a value |
+| `W-mention-redundant` | a mention names the item's current, undisputed value, or sits in a turn that already acts on the item (section 5) |
 | `W-description-leak` | an item's description, which systems see, names one of the item's values |
 
 The replay rules behind `E-script` run only once a file has no other errors, so fix the other errors first.

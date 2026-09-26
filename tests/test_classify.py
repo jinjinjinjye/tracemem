@@ -138,7 +138,7 @@ def test_conflict_on_a_settled_item_is_false_conflict():
 
 
 def test_previous_question_with_no_earlier_value():
-    """pilot-02 'did we use a different dataset before?': nothing was replaced, so 'none' is right."""
+    """pilot-02 'which dataset, if any, did we train on before?': nothing was replaced, so 'none' is right."""
     gold = pilot_timeline("pilot-02").expected["dataset.train@S4-previous"]
     assert classify(NONE, gold) == "correct"
     assert classify(says("IMDB"), gold) == "current_as_historical"

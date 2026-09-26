@@ -33,7 +33,7 @@ Nobody writes the expected answer by hand. `tracemem replay` computes it from th
 | `unconfirmed_values` | open suggestions, open disputes, and disputes the team set aside | (none) |
 | `confusable_values` | values of a similar item, here the NER model | spacy, spacy model, spacy ner |
 | `current_values` | questions about the past only: today's value | (none) |
-| `required_support` | turns that established the answer | S3-T2 ("Then we switch the sentiment classifier to DistilBERT...") |
+| `required_support` | turns that established the answer | S2-T3 ("Maybe we could try DistilBERT?") and S3-T2 ("Then we switch the sentiment classifier to DistilBERT..."), which accepts it |
 | `additional_support` | turns that later restated it | S4-T1 ("For the write-up: we're on DistilBERT...") |
 | trap flags, `episode` | see sections 4 and 6 | newer-mention trap; the item's third episode |
 
@@ -44,7 +44,7 @@ A question id such as `model.sentiment@S4` names the automatic question about on
 | Status | What the system claims | A pilot question where it is correct |
 |---|---|---|
 | `answer` | "The value is X." | pilot-01 `model.sentiment@S1`: BERT, from Mei's S1-T1 ("Let's go with BERT for the sentiment classifier.") |
-| `none` | "Nothing is settled", or for `previous`, "it never changed" | pilot-02 `dataset.train@S4-previous` ("Did we train on a different dataset before the current one?"): it never changed |
+| `none` | "Nothing is settled", or for `previous`, "it never changed" | pilot-02 `dataset.train@S4-previous` ("Which dataset, if any, did we train on before the current one?"): it never changed |
 | `conflict` | "The team disagrees and has not settled it." | pilot-02 after S2: Priya's S2-T1 ("Wait, I thought we agreed on SST-2 last time, not IMDB.") disputes Wei's IMDB |
 | `abstain` | "I cannot tell." | never; every expected answer has one of the other three statuses |
 
@@ -60,7 +60,7 @@ Most examples below name the probe that makes the mistake. Probes are simple rul
 - **`stale`**: a replaced value, given as current. *Example:* always-oldest answers BERT for pilot-01 `model.sentiment@S3`, although Mei's S3-T2 switched the model to DistilBERT.
 - **`unconfirmed_as_current`**: a suggestion, an open dispute or a set-aside dispute, given as the settled value. *Example:* latest-candidate answers DistilBERT for pilot-01 `model.sentiment@S2`, taken from Arun's S2-T3 ("Maybe we could try DistilBERT?").
 - **`confusable_as_current`**: another item's value. *Example:* BERT as the answer to pilot-03 `model.sentiment@S2` ("Which model are we using for sentiment?"). BERT belongs to the product-name tagger, from Lin's S2-T1 ("For the product-name tagger, we'll fine-tune BERT.").
-- **`current_as_historical`**: asked about the past, gave today's value. *Example:* latest-candidate answers spaCy for pilot-03 `model.ner@S4-previous` ("What did we use for tagging product names before the current model?"). The correct answer is BERT.
+- **`current_as_historical`**: asked about the past, gave today's value. *Example:* latest-candidate answers spaCy for pilot-03 `model.ner@S4-previous` ("Which model, if any, did we use for tagging product names before the current one?"). The correct answer is BERT.
 - **`false_certainty`**: the team disagrees, and the system picked a side. *Example:* for pilot-02 `dataset.train@S2`, always-oldest answers IMDB and latest-candidate answers SST-2. The correct status is `conflict`.
 - **`false_conflict`**: the matter is settled, or nothing is settled yet, and the system reported a conflict. *Example:* always-conflict on pilot-01 `model.sentiment@S1`, right after Mei's S1-T1 chose BERT.
 - **`missed`**: something is settled or disputed, and the system said nothing is. *Example:* always-none on the same question.

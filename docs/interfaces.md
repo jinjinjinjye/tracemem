@@ -251,7 +251,7 @@ Two pilots show all four operations in the gold: pilot-01 (a classifier choice w
 |---|---|---|
 | pilot-01, S1-T1 | Mei: "Let's go with BERT for the sentiment classifier." | ADD as active: `model.sentiment = BERT`, record `model.sentiment@S1-T1` |
 | pilot-01, S2-T3 | Arun: "Maybe we could try DistilBERT?" | ADD as proposed: `DistilBERT` |
-| pilot-01, S3-T2 | Mei: "Then we switch the sentiment classifier to DistilBERT, ..." | SUPERSEDE: `DistilBERT`, targeting the BERT record and the DistilBERT proposal |
+| pilot-01, S3-T2 | Mei: "Then we switch the sentiment classifier to DistilBERT, ..." | SUPERSEDE: `DistilBERT`, targeting the BERT record and the DistilBERT proposal; the turn accepts S2-T3, so both turns are cited |
 | pilot-01, S3-T6 | Mei: "Good. BERT was too slow anyway." | none: a passing mention produces no candidate |
 | pilot-02, S2-T1 | Priya: "Wait, I thought we agreed on SST-2 last time, not IMDB." | FLAG: `dataset.train = SST-2`, against the IMDB record |
 | pilot-02, S3-T1 | Wei: "I checked the notes: it was IMDB. We stay with IMDB." | KEEP: `IMDB`; the SST-2 claim becomes declined |

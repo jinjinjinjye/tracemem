@@ -67,5 +67,5 @@ script:
   - {turn: S4-T2, act: mention, item: dataset.train, value: SST-2}
 
 questions:
-  - {id: dataset.train@S4-previous, after: S4, kind: previous, item: dataset.train, text: "Did we train on a different dataset before the current one?"}
-  - {id: dataset.train@S4-asof-S2, after: S4, kind: as_of, session: S2, item: dataset.train, text: "At the end of the second meeting, which dataset had we settled on?"}
+  - {id: dataset.train@S4-previous, after: S4, kind: previous, item: dataset.train, text: "Which dataset, if any, did we train on before the current one?"}
+  - {id: dataset.train@S4-asof-S2, after: S4, kind: as_of, session: S2, item: dataset.train, text: "What was the state of the dataset choice at the end of the second meeting?"}

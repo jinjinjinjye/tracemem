@@ -16,9 +16,9 @@ import yaml
 from pydantic import ValidationError
 
 from tracemem.bench.load import candidate_bearing
-from tracemem.bench.replay import ScriptError, accepted_forms, replay
+from tracemem.bench.replay import GoldDeriver, ScriptError, accepted_forms, replay
 from tracemem.ops import InvalidOperation
-from tracemem.schema import ACTS_BY_KIND, CONTROL_CATEGORIES, PROGRESS_VALUES, Scenario, normalise, session_of
+from tracemem.schema import ACTS_BY_KIND, CONTROL_CATEGORIES, PROGRESS_VALUES, Scenario, normalise, session_of, turn_time
 
 ISSUE_CODES: dict[str, str] = {
     "E-schema": "the file does not match the scenario format",
@@ -39,6 +39,7 @@ ISSUE_CODES: dict[str, str] = {
     "E-split-folder": "the split field does not match the folder the file is in",
     "W-no-trap": "a non-control scenario has no trap question",
     "W-leak": "a question's text names a value it could be answered with",
+    "W-mention-redundant": "a mention names the item's current value, or sits in a turn that already acts on the item",
     "W-session-length": "a session has fewer than 3 or more than 12 turns",
     "W-alias-shared": "confusable items share a spelling of a value",
     "W-description-leak": "an item description, which systems see, names one of its values",
@@ -230,10 +231,32 @@ def check_scenario(s: Scenario, folder_split: str | None = None) -> tuple[list[I
         named = [v for v in tempting if _names(q.text, v)]
         if named:
             issues.append(_issue("warning", "W-leak", s.scenario_id, f"question {q.question_id} names {named}"))
+    issues += _redundant_mentions(s)
     any_trap = stats.trap_candidate + stats.trap_mention + stats.trap_confusable
     if s.category not in CONTROL_CATEGORIES and any_trap == 0:
         issues.append(_issue("warning", "W-no-trap", s.scenario_id, f"category {s.category} has no trap question"))
     return issues, stats
+
+
+def _redundant_mentions(s: Scenario) -> list[Issue]:
+    """Mentions that can never mislead: of the current, undisputed value, or in a turn that acts on the item."""
+    out: list[Issue] = []
+    acting = {(e.turn, e.item) for e in s.script if e.act != "mention"}
+    deriver = GoldDeriver(s)
+    for number, session in enumerate(s.sessions, start=1):
+        for index, turn in enumerate(session.turns):
+            for e in s.script:
+                if e.turn != turn.id or e.act != "mention":
+                    continue
+                state = deriver.log.item_state(e.item)
+                if (turn.id, e.item) in acting:
+                    out.append(_issue("warning", "W-mention-redundant", s.scenario_id,
+                                      f"{turn.id}: mention of {e.item} in a turn that already acts on it"))
+                elif state.active is not None and not state.flagged and state.active.value == e.value:
+                    out.append(_issue("warning", "W-mention-redundant", s.scenario_id,
+                                      f"{turn.id}: mention of {e.value}, the current value of {e.item}"))
+            deriver.observe(turn.id, turn_time(session.date, index, number))
+    return out
 
 
 def check_file(path: str | Path) -> tuple[list[Issue], TrapStats | None]:

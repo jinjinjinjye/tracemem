@@ -33,7 +33,7 @@ sessions:
   - id: S1
     date: 2026-10-05
     turns:
-      - {id: S1-T1, speaker: Kai, text: "Baseline: logistic regression on TF-IDF features."}
+      - {id: S1-T1, speaker: Kai, text: "Let's make the baseline logistic regression on TF-IDF features."}
       - {id: S1-T2, speaker: Rosa, text: "What if we used naive Bayes instead? It's the classic for spam."}
       - {id: S1-T3, speaker: Kai, text: "Let's keep it simple first."}
   - id: S2
@@ -59,7 +59,6 @@ script:
   - {turn: S1-T1, act: decide, item: model.baseline, value: logistic regression}
   - {turn: S1-T1, act: decide, item: features.text, value: TF-IDF}
   - {turn: S1-T2, act: suggest, item: model.baseline, value: naive Bayes}
-  - {turn: S2-T1, act: mention, item: model.baseline, value: logistic regression}
   - {turn: S2-T2, act: mention, item: model.baseline, value: linear SVM}
   - {turn: S3-T1, act: revise, item: model.baseline, value: linear SVM, reason: "the SVM beats logistic regression by two points"}
   - {turn: S3-T2, act: restate, item: model.baseline, value: linear SVM}
@@ -67,4 +66,4 @@ script:
   - {turn: S4-T1, act: mention, item: features.text, value: bag of words}
 
 questions:
-  - {id: model.baseline@S3-previous, after: S3, kind: previous, item: model.baseline, text: "Which baseline did we use before the current one?"}
+  - {id: model.baseline@S3-previous, after: S3, kind: previous, item: model.baseline, text: "Which baseline classifier, if any, did we use before the current one?"}

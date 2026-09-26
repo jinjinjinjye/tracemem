@@ -175,6 +175,14 @@ def confusable_items_share_a_spelling(d):
     _item(d, "model.tagger")["values"]["spaCy"].append("bert-base")
 
 
+def mention_of_the_current_value(d):
+    d["script"].append({"turn": "S1-T3", "act": "mention", "item": "model.main", "value": "BERT"})
+
+
+def mention_in_a_turn_that_acts_on_the_item(d):
+    d["script"].append({"turn": "S2-T1", "act": "mention", "item": "model.main", "value": "DistilBERT"})
+
+
 CASES = {
     # code: [edits that must produce exactly that code]
     "E-duplicate-id": [duplicate_question_id, duplicate_item_key],
@@ -194,6 +202,7 @@ CASES = {
     "E-confusable": [confusable_with_itself, confusable_with_unknown, confusable_listed_on_one_side_only],
     "W-no-trap": [non_control_without_trap],
     "W-leak": [question_names_its_answer, question_names_a_stale_value, history_question_names_todays_value],
+    "W-mention-redundant": [mention_of_the_current_value, mention_in_a_turn_that_acts_on_the_item],
     "W-session-length": [short_session, long_session],
     "W-alias-shared": [confusable_items_share_a_spelling],
     "W-description-leak": [description_names_a_value],
@@ -352,3 +361,12 @@ def test_leak_is_found_when_punctuation_follows_the_value():
     data["questions"].append({"id": "leak", "after": "S2", "kind": "current", "item": "model.main",
                               "text": "Is it DistilBERT, or something else?"})
     assert "W-leak" in codes(check_scenario(Scenario.model_validate(data))[0])
+
+
+def test_a_mention_during_a_dispute_is_not_redundant():
+    """In a dispute no value is current, so recalling either side is a real mention: pilot-02 S2-T2
+    ("Hmm, I remember IMDB. Let's check the notes before Friday.") must not be warned about."""
+    issues, _ = check_file(pilot_path("pilot-02"))
+    assert "W-mention-redundant" not in codes(issues)
+    assert any(e.turn == "S2-T2" and e.act == "mention" for e in Scenario.model_validate(
+        yaml.safe_load(pilot_path("pilot-02").read_text(encoding="utf-8"))).script)

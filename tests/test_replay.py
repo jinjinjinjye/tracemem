@@ -28,7 +28,7 @@ from tracemem.schema import Scenario
 
 EXPECTED = {
     "pilot-01": {
-        # model.sentiment: decided BERT (S1-T1); DistilBERT only suggested (S2-T3); revised to DistilBERT (S3-T2).
+        # model.sentiment: decided BERT (S1-T1); DistilBERT only suggested (S2-T3); the suggestion accepted (S3-T2).
         "model.sentiment@S1": ("answer", "BERT"),
         "model.sentiment@S2": ("answer", "BERT"),  # the S2-T3 suggestion does not change the decision
         "model.sentiment@S3": ("answer", "DistilBERT"),
@@ -110,8 +110,8 @@ SUPPORT = {
     "pilot-01": {
         "model.sentiment@S1": (["S1-T1"], []),
         "model.sentiment@S2": (["S1-T1"], []),
-        "model.sentiment@S3": (["S3-T2"], []),
-        "model.sentiment@S4": (["S3-T2"], ["S4-T1"]),  # S4-T1 restates DistilBERT
+        "model.sentiment@S3": (["S2-T3", "S3-T2"], []),  # the acceptance cites the suggestion it accepts
+        "model.sentiment@S4": (["S2-T3", "S3-T2"], ["S4-T1"]),  # S4-T1 restates DistilBERT
         "model.sentiment@S3-previous": (["S1-T1", "S3-T2"], []),  # where BERT was set, and where it was replaced
         "metric.primary@S1": (["S1-T2", "S1-T3"], []),  # the acceptance cites the suggestion it accepts
         "metric.primary@S3": (["S3-T3", "S3-T4"], []),
@@ -274,7 +274,7 @@ def test_pilot_01_trap_checkpoints_in_detail():
     # S2: the newest record is the S2-T3 DistilBERT suggestion (candidate trap); and spaCy was decided for the
     # similar NER item at S2-T5, after the sentiment item's last statement (confusable trap).
     assert (s2.trap_candidate, s2.trap_mention, s2.trap_confusable) == (True, False, True)
-    # S3: the newest record (S3-T2 revise) is right, but S3-T6 mentions BERT afterwards (mention trap only).
+    # S3: the newest record (S3-T2 accept) is right, but S3-T6 mentions BERT afterwards (mention trap only).
     assert (s3.trap_candidate, s3.trap_mention, s3.trap_confusable) == (False, True, False)
 
 
@@ -333,8 +333,8 @@ def test_mention_trap_never_overlaps_candidate_trap(scenario_id):
 
 
 def test_pilot_01_gold_operations():
-    """Acts become operations: suggest -> ADD proposed, revise -> SUPERSEDE closing the same-value proposal,
-    accept -> SUPERSEDE citing the suggestion, restate -> KEEP, mention -> nothing."""
+    """Acts become operations: suggest -> ADD proposed, accept -> ADD active when nothing is settled or SUPERSEDE
+    when a value is, closing the suggestion and citing it, restate -> KEEP, mention -> nothing."""
     timeline = pilot_timeline("pilot-01")
     ops = {turn: [(o.op, o.add_as, o.item, o.value, o.targets, o.source_turn_ids) for o in timeline.ops_by_turn[turn]]
            for turn in timeline.turn_order}
@@ -346,7 +346,7 @@ def test_pilot_01_gold_operations():
     assert ops["S2-T5"] == [("ADD", "active", n, "spaCy", [], ["S2-T5"])]
     assert ops["S3-T1"] == []  # a mention
     assert ops["S3-T2"] == [("SUPERSEDE", None, s, "DistilBERT", [record_id(s, "S1-T1"), record_id(s, "S2-T3")],
-                             ["S3-T2"])]
+                             ["S3-T2", "S2-T3"])]
     assert ops["S3-T3"] == [("ADD", "proposed", m, "macro-F1", [], ["S3-T3"])]
     assert ops["S3-T4"] == [("SUPERSEDE", None, m, "macro-F1", [record_id(m, "S1-T3"), record_id(m, "S3-T3")],
                              ["S3-T4", "S3-T3"])]
@@ -420,6 +420,27 @@ def _scenario(script: list[dict], questions: list[dict] | None = None, items: li
     })
 
 
+def test_revise_to_a_value_that_was_only_contested_is_allowed():
+    """The adoption rule covers open suggestions only: settling a dispute on the contested value is a revise."""
+    timeline = replay(_scenario([{"turn": "S1-T1", "act": "decide", "item": "model.x", "value": "A"},
+                                 {"turn": "S1-T2", "act": "contest", "item": "model.x", "value": "B"},
+                                 {"turn": "S1-T3", "act": "revise", "item": "model.x", "value": "B"}]))
+    e = timeline.expected["model.x@S1"]
+    assert (e.expected_status, e.expected_value) == ("answer", "B")
+
+
+def test_task_progress_matching_an_open_suggestion_is_allowed():
+    """Tasks are exempt from the adoption rule: a progress report may match a suggestion nobody took up."""
+    task = [{"key": "task.audit", "kind": "task", "description": "d", "ask": "Audit status?"}]
+    timeline = replay(_scenario([{"turn": "S1-T1", "act": "task_open", "item": "task.audit"},
+                                 {"turn": "S1-T2", "act": "suggest", "item": "task.audit", "value": "blocked"},
+                                 {"turn": "S1-T4", "act": "task_progress", "item": "task.audit", "progress": "blocked"}],
+                                items=task))
+    e = timeline.expected["task.audit@S1"]
+    assert (e.expected_status, e.expected_value) == ("answer", "blocked")
+    assert e.required_support == ["S1-T4"]  # the report, not the suggestion nobody took up
+
+
 def test_suggestion_alone_gives_none_with_the_suggestion_unconfirmed():
     """Only a suggestion so far: the expected answer is 'none', the proposal is unconfirmed, and it is a candidate trap."""
     timeline = replay(_scenario([{"turn": "S1-T1", "act": "suggest", "item": "model.x", "value": "A"}]))
@@ -483,6 +504,11 @@ def test_revert_gives_the_middle_value_as_previous():
     ([{"turn": "S1-T1", "act": "suggest", "item": "model.x", "value": "A"},
       {"turn": "S1-T2", "act": "accept", "item": "model.x", "accepts": "S1-T1"},
       {"turn": "S1-T3", "act": "accept", "item": "model.x", "accepts": "S1-T1"}], "not an open suggestion"),
+    ([{"turn": "S1-T1", "act": "decide", "item": "model.x", "value": "A"},
+      {"turn": "S1-T2", "act": "suggest", "item": "model.x", "value": "B"},
+      {"turn": "S1-T3", "act": "revise", "item": "model.x", "value": "B"}], "label it accept"),
+    ([{"turn": "S1-T1", "act": "suggest", "item": "model.x", "value": "A"},
+      {"turn": "S1-T2", "act": "decide", "item": "model.x", "value": "A"}], "label it accept"),
 ])
 def test_scripts_that_break_an_act_rule_are_refused(script, message):
     """The replay refuses a script whose acts do not fit the state they are applied to."""

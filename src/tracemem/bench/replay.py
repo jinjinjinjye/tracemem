@@ -125,6 +125,12 @@ class GoldDeriver:
             reason=event.reason,
         )
         act = event.act
+        # Adopting an open suggestion's value is an acceptance. Tasks are exempt: with only four progress
+        # words, a later progress report often matches a suggestion nobody took up.
+        adopted = [r.created_turn for r in state.proposed if r.value == value]
+        if act in ("decide", "revise") and adopted:
+            raise ScriptError(f"{event.turn}: {act} adopts the value of the open suggestion at {adopted[0]}; "
+                              f"label it accept (accepts: {adopted[0]})")
         if act in ("decide", "task_open"):
             if active is not None:
                 raise ScriptError(f"{event.turn}: {act} on {event.item}, which already has an active value")

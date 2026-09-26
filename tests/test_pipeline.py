@@ -128,7 +128,7 @@ def test_rejections_that_cascade_are_all_kept():
     assert len(rows) == len(timeline.questions)
     rejected_turns = [op.turn_id for op, _ in system.rejected_operations()]
     assert rejected_turns[0] == "S2-T3"
-    assert "S3-T2" in rejected_turns  # the revision named the missing proposal as a target
+    assert "S3-T2" in rejected_turns  # the acceptance named the missing proposal as a target
     assert system.log.item_state("model.sentiment").active.value == "BERT"
 
 

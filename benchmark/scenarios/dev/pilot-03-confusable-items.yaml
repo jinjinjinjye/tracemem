@@ -41,8 +41,8 @@ sessions:
     date: 2026-10-08
     turns:
       - {id: S2-T1, speaker: Lin, text: "For the product-name tagger, we'll fine-tune BERT."}
-      - {id: S2-T2, speaker: Sam, text: "The cased version, since product names are capitalised?"}
-      - {id: S2-T3, speaker: Lin, text: "Yes, cased."}
+      - {id: S2-T2, speaker: Sam, text: "Do we have enough labelled product names for that?"}
+      - {id: S2-T3, speaker: Lin, text: "About 3,000. Enough to start."}
       - {id: S2-T4, speaker: Sam, text: "I'll prepare the annotated examples."}
   - id: S3
     date: 2026-10-12
@@ -66,4 +66,4 @@ script:
   - {turn: S4-T1, act: suggest, item: model.ner, value: Flair}
 
 questions:
-  - {id: model.ner@S4-previous, after: S4, kind: previous, item: model.ner, text: "What did we use for tagging product names before the current model?"}
+  - {id: model.ner@S4-previous, after: S4, kind: previous, item: model.ner, text: "Which model, if any, did we use for tagging product names before the current one?"}
