@@ -149,8 +149,8 @@ Coding assistants are useful here, and they also produce plausible code that nob
 
 ## 10. How the team runs
 
-- **One weekly check-in** of 30 minutes on a fixed day. The notes go into a dated issue. The team compares progress with the plan's milestones, which live as GitHub milestones.
-- **A rotating scribe** turns decisions made in the check-in or in chat into decision records within 24 hours.
+- **One weekly check-in** of 30 minutes on a fixed day. The scribe keeps the notes and posts the week's action list (each item, its owner and its due date) to the team's chat group; anyone who spots a mistake replies within 24 hours. The notes stay out of this repository: it is public, and the notes say who is blocked or late. The team compares progress with the plan's milestones, which live as GitHub milestones.
+- **A rotating scribe** turns decisions made in the check-in or in chat into decision records within 24 hours. A record that moves work from one person to another gives a neutral reason, such as balancing the load.
 - **Approvals do not stall.** An affected owner answers a contract or metric change within 48 hours; after one reminder, silence counts as consent. Team-level decisions go by majority after discussion, and the record notes any dissent. A disagreement the team cannot settle goes to the teaching assistant.
 - **Missed deadlines are announced, not discovered.** An owner who will miss a deadline says so at least 24 hours ahead. Downstream work continues on the gold stand-ins meanwhile. A critical-path task that slips twice is reassigned or split at the next check-in.
 - **The agreement itself is reviewed** at the week-4 check-in, and any change goes through a decision record.
