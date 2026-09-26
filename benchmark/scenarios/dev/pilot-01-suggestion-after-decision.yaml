@@ -1,0 +1,90 @@
+# Example scenario that shows the format. Not yet reviewed by the team.
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: a suggestion arrives after a decision (session S2), and the
+# decision is revised only later (session S3). This is the proposal's own demo.
+scenario_id: pilot-01
+title: Classifier choice with a late suggestion
+category: suggestion_after_decision
+split: dev
+author: pilot
+review: {status: unreviewed}
+project_id: sentiment-project
+
+items:
+  - key: model.sentiment
+    kind: decision
+    description: classification model for the sentiment task
+    ask: Which model are we using for the sentiment classifier?
+    values:
+      BERT: [bert-base, bert-base-uncased]
+      DistilBERT: [distilbert-base-uncased, distil-bert]
+      RoBERTa: [roberta-large, roberta]
+    confusable_with: [model.ner]
+  - key: metric.primary
+    kind: decision
+    description: primary evaluation metric for the sentiment classifier
+    ask: What is our primary evaluation metric?
+    values:
+      accuracy: [acc]
+      macro-F1: [macro f1, macro-averaged F1]
+  - key: model.ner
+    kind: decision
+    description: model for the named-entity recognition part of the project
+    ask: Which model are we using for NER?
+    values:
+      spaCy: [spacy model, spacy ner]
+    confusable_with: [model.sentiment]
+
+sessions:
+  - id: S1
+    date: 2026-10-05
+    turns:
+      - {id: S1-T1, speaker: Mei, text: "Let's go with BERT for the sentiment classifier. It's the safe choice."}
+      - {id: S1-T2, speaker: Arun, text: "Sounds good. What do we report, plain accuracy?"}
+      - {id: S1-T3, speaker: Mei, text: "Yes, accuracy as the main metric for now."}
+      - {id: S1-T4, speaker: Arun, text: "I'll set up the data loader tonight."}
+      - {id: S1-T5, speaker: Mei, text: "Great. Let's meet again on Thursday."}
+  - id: S2
+    date: 2026-10-08
+    turns:
+      - {id: S2-T1, speaker: Arun, text: "The first run finished, but inference takes about 40 ms per review."}
+      - {id: S2-T2, speaker: Mei, text: "That's over our 25 ms latency budget."}
+      - {id: S2-T3, speaker: Arun, text: "Maybe we could try DistilBERT? It might be faster."}
+      - {id: S2-T4, speaker: Mei, text: "Possibly. I'd rather see numbers first."}
+      - {id: S2-T5, speaker: Mei, text: "Separately, for the NER part we'll use a spaCy model."}
+      - {id: S2-T6, speaker: Arun, text: "Also, the classes are really imbalanced, about 80/20."}
+  - id: S3
+    date: 2026-10-12
+    turns:
+      - {id: S3-T1, speaker: Arun, text: "DistilBERT runs at 18 ms and loses under a point of accuracy."}
+      - {id: S3-T2, speaker: Mei, text: "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit."}
+      - {id: S3-T3, speaker: Arun, text: "With an 80/20 split, accuracy will flatter us. Should we use macro-F1?"}
+      - {id: S3-T4, speaker: Mei, text: "Agreed, macro-F1 is the primary metric from now on."}
+      - {id: S3-T5, speaker: Arun, text: "I'll rerun the baseline tables tonight."}
+      - {id: S3-T6, speaker: Mei, text: "Good. BERT was too slow anyway."}
+  - id: S4
+    date: 2026-10-15
+    turns:
+      - {id: S4-T1, speaker: Mei, text: "For the write-up: we're on DistilBERT, scored with macro-F1."}
+      - {id: S4-T2, speaker: Arun, text: "Out of curiosity, how would RoBERTa-large have done on this?"}
+      - {id: S4-T3, speaker: Mei, text: "Probably a bit better, but the latency budget rules it out anyway."}
+      - {id: S4-T4, speaker: Arun, text: "Fair. Can you prepare the current experiment configuration?"}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.sentiment, value: BERT}
+  - {turn: S1-T2, act: suggest, item: metric.primary, value: accuracy}
+  - {turn: S1-T3, act: accept, item: metric.primary, accepts: S1-T2}
+  - {turn: S2-T3, act: suggest, item: model.sentiment, value: DistilBERT}
+  - {turn: S2-T5, act: decide, item: model.ner, value: spaCy}
+  - {turn: S3-T1, act: mention, item: model.sentiment, value: DistilBERT}
+  - {turn: S3-T2, act: revise, item: model.sentiment, value: DistilBERT, reason: "BERT exceeds the 25 ms latency budget"}
+  - {turn: S3-T3, act: suggest, item: metric.primary, value: macro-F1}
+  - {turn: S3-T4, act: accept, item: metric.primary, accepts: S3-T3, reason: "the classes are imbalanced (80/20)"}
+  - {turn: S3-T6, act: mention, item: model.sentiment, value: BERT}
+  - {turn: S4-T1, act: restate, item: model.sentiment, value: DistilBERT}
+  - {turn: S4-T1, act: restate, item: metric.primary, value: macro-F1}
+  - {turn: S4-T2, act: mention, item: model.sentiment, value: RoBERTa}
+
+questions:
+  - {id: model.sentiment@S3-previous, after: S3, kind: previous, item: model.sentiment, text: "Which model did we use before the current one, and why did we change?"}
+  - {id: metric.primary@S4-asof-S1, after: S4, kind: as_of, session: S1, item: metric.primary, text: "What was our primary metric at the end of the first meeting?"}

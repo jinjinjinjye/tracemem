@@ -1,0 +1,54 @@
+# A small, valid scenario used by the tests (synthetic, like every scenario).
+# test_validate.py copies it and breaks one thing at a time, so it must stay
+# free of errors and warnings: tests/test_validate.py checks that it does.
+scenario_id: fixture-minimal
+title: Minimal valid scenario for the tests
+category: explicit_revision
+split: dev
+author: tests
+project_id: fixture-project
+
+items:
+  - key: model.main
+    kind: decision
+    description: the classifier the team trains
+    ask: Which classifier are we training?
+    values:
+      BERT: [bert-base]
+      DistilBERT: [distilbert-base-uncased, distil-bert]
+    confusable_with: [model.tagger]
+  - key: model.tagger
+    kind: decision
+    description: the tagger for product names
+    ask: Which tagger are we using?
+    values:
+      spaCy: [spacy ner]
+      Flair: [flair ner]
+    confusable_with: [model.main]
+  - key: task.loader
+    kind: task
+    description: write the data loader
+    ask: What is the status of the data loader?
+
+sessions:
+  - id: S1
+    date: 2026-01-05
+    turns:
+      - {id: S1-T1, speaker: Ana, text: "We train BERT."}
+      - {id: S1-T2, speaker: Ben, text: "I will write the data loader."}
+      - {id: S1-T3, speaker: Ana, text: "Thanks."}
+  - id: S2
+    date: 2026-01-08
+    turns:
+      - {id: S2-T1, speaker: Ana, text: "BERT is too slow, so we switch to DistilBERT."}
+      - {id: S2-T2, speaker: Ben, text: "The data loader is finished."}
+      - {id: S2-T3, speaker: Ana, text: "Great."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.main, value: BERT}
+  - {turn: S1-T2, act: task_open, item: task.loader}
+  - {turn: S2-T1, act: revise, item: model.main, value: DistilBERT, reason: "BERT is too slow"}
+  - {turn: S2-T2, act: task_progress, item: task.loader, progress: completed}
+
+questions:
+  - {id: model.main@S2-previous, after: S2, kind: previous, item: model.main, text: "Which classifier did we train before the current one?"}

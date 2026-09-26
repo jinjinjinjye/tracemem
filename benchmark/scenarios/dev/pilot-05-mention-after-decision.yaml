@@ -1,0 +1,70 @@
+# Example scenario that shows the format. Not yet reviewed by the team.
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: after a decision, turns name other values without proposing
+# them (a question about results, a recollection, a counterfactual). None of
+# them changes the memory, but each is the newest mention of the item when the
+# checkpoint question is asked. One early turn is a real suggestion (S1-T2).
+scenario_id: pilot-05
+title: Hypotheticals and recollections around a baseline
+category: mention_after_decision
+split: dev
+author: pilot
+review: {status: unreviewed}
+project_id: spam-filter
+
+items:
+  - key: model.baseline
+    kind: decision
+    description: the non-neural baseline classifier
+    ask: Which baseline classifier are we using?
+    values:
+      logistic regression: [logreg, lr]
+      linear SVM: [svm, linear svc]
+      naive Bayes: [nb, multinomial nb]
+  - key: features.text
+    kind: decision
+    description: text features for the baseline
+    ask: What text features does the baseline use?
+    values:
+      TF-IDF: [tfidf, tf idf]
+      bag of words: [bow, counts]
+
+sessions:
+  - id: S1
+    date: 2026-10-05
+    turns:
+      - {id: S1-T1, speaker: Kai, text: "Baseline: logistic regression on TF-IDF features."}
+      - {id: S1-T2, speaker: Rosa, text: "What if we used naive Bayes instead? It's the classic for spam."}
+      - {id: S1-T3, speaker: Kai, text: "Let's keep it simple first."}
+  - id: S2
+    date: 2026-10-08
+    turns:
+      - {id: S2-T1, speaker: Rosa, text: "Logistic regression gets 0.91 macro-F1 on the dev split."}
+      - {id: S2-T2, speaker: Kai, text: "Out of interest, has anyone benchmarked a linear SVM on data like this?"}
+      - {id: S2-T3, speaker: Rosa, text: "No idea. I haven't tried it."}
+  - id: S3
+    date: 2026-10-12
+    turns:
+      - {id: S3-T1, speaker: Kai, text: "I ran it: the linear SVM beats logistic regression by two points. Let's make the SVM our baseline."}
+      - {id: S3-T2, speaker: Rosa, text: "OK, SVM it is."}
+      - {id: S3-T3, speaker: Kai, text: "Logistic regression was fine, to be fair."}
+  - id: S4
+    date: 2026-10-15
+    turns:
+      - {id: S4-T1, speaker: Rosa, text: "Should we have tried bag of words instead of TF-IDF?"}
+      - {id: S4-T2, speaker: Kai, text: "Maybe for the appendix. Not a priority."}
+      - {id: S4-T3, speaker: Rosa, text: "Fine. I'll start on the error analysis then."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.baseline, value: logistic regression}
+  - {turn: S1-T1, act: decide, item: features.text, value: TF-IDF}
+  - {turn: S1-T2, act: suggest, item: model.baseline, value: naive Bayes}
+  - {turn: S2-T1, act: mention, item: model.baseline, value: logistic regression}
+  - {turn: S2-T2, act: mention, item: model.baseline, value: linear SVM}
+  - {turn: S3-T1, act: revise, item: model.baseline, value: linear SVM, reason: "the SVM beats logistic regression by two points"}
+  - {turn: S3-T2, act: restate, item: model.baseline, value: linear SVM}
+  - {turn: S3-T3, act: mention, item: model.baseline, value: logistic regression}
+  - {turn: S4-T1, act: mention, item: features.text, value: bag of words}
+
+questions:
+  - {id: model.baseline@S3-previous, after: S3, kind: previous, item: model.baseline, text: "Which baseline did we use before the current one?"}

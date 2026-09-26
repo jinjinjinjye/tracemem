@@ -1,0 +1,67 @@
+# Example scenario that shows the format. Not yet reviewed by the team.
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: one task goes open -> blocked -> open -> completed; another is
+# cancelled and later suggested for reopening, which leaves it cancelled.
+scenario_id: pilot-04
+title: Two tasks with changing progress
+category: task_lifecycle
+split: dev
+author: pilot
+review: {status: unreviewed}
+project_id: churn-prediction
+
+items:
+  - key: task.baseline_runs
+    kind: task
+    description: run the logistic-regression and gradient-boosting baselines
+    ask: What is the status of the baseline runs?
+  - key: task.error_analysis
+    kind: task
+    description: manual error analysis of 100 misclassified customers
+    ask: What is the status of the error analysis?
+  - key: compute.gpu
+    kind: decision
+    description: where the team runs its experiments
+    ask: Where are we running our experiments?
+    values:
+      Colab: [google colab, colab pro]
+      lab server: [the lab machine, department server]
+
+sessions:
+  - id: S1
+    date: 2026-10-05
+    turns:
+      - {id: S1-T1, speaker: Ana, text: "Let's run everything on Colab for now."}
+      - {id: S1-T2, speaker: Ben, text: "I'll take the baseline runs: logistic regression and gradient boosting."}
+      - {id: S1-T3, speaker: Ana, text: "And I'll do an error analysis on 100 misclassified customers once we have predictions."}
+  - id: S2
+    date: 2026-10-08
+    turns:
+      - {id: S2-T1, speaker: Ben, text: "The baseline runs are blocked: Colab keeps timing out on the full dataset."}
+      - {id: S2-T2, speaker: Ana, text: "Then let's move experiments to the lab server."}
+      - {id: S2-T3, speaker: Ben, text: "I'll request an account today."}
+  - id: S3
+    date: 2026-10-12
+    turns:
+      - {id: S3-T1, speaker: Ben, text: "Got the lab server account, so the baseline runs are back on."}
+      - {id: S3-T2, speaker: Ana, text: "Good. We're dropping the error analysis; the report deadline moved up."}
+      - {id: S3-T3, speaker: Ben, text: "Understood."}
+  - id: S4
+    date: 2026-10-15
+    turns:
+      - {id: S4-T1, speaker: Ben, text: "Baseline runs are done, results are in the shared folder."}
+      - {id: S4-T2, speaker: Ana, text: "Should we reopen the error analysis now that there's slack?"}
+      - {id: S4-T3, speaker: Ben, text: "Let's talk about it next week."}
+
+script:
+  - {turn: S1-T1, act: decide, item: compute.gpu, value: Colab}
+  - {turn: S1-T2, act: task_open, item: task.baseline_runs}
+  - {turn: S1-T3, act: task_open, item: task.error_analysis}
+  - {turn: S2-T1, act: task_progress, item: task.baseline_runs, progress: blocked}
+  - {turn: S2-T2, act: revise, item: compute.gpu, value: lab server, reason: "Colab times out on the full dataset"}
+  - {turn: S3-T1, act: task_progress, item: task.baseline_runs, progress: open}
+  - {turn: S3-T2, act: task_progress, item: task.error_analysis, progress: cancelled}
+  - {turn: S4-T1, act: task_progress, item: task.baseline_runs, progress: completed}
+  - {turn: S4-T2, act: suggest, item: task.error_analysis, value: open}
+
+questions: []
