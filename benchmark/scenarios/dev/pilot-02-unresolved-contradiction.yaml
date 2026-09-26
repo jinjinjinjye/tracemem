@@ -1,0 +1,71 @@
+# Example scenario that shows the format. Not yet reviewed by the team.
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: a second speaker contests the dataset decision (S2) and the
+# conflict stays open until the first speaker restates the original choice (S3).
+scenario_id: pilot-02
+title: A contested dataset choice
+category: unresolved_contradiction
+split: dev
+author: pilot
+review: {status: unreviewed}
+project_id: review-sentiment
+
+items:
+  - key: dataset.train
+    kind: decision
+    description: training dataset for the sentiment classifier
+    ask: Which dataset are we training on?
+    values:
+      IMDB: [imdb reviews, imdb dataset]
+      SST-2: [sst2, stanford sentiment treebank]
+      Yelp: [yelp reviews, yelp polarity]
+  - key: task.label_audit
+    kind: task
+    description: audit 200 training labels for noise
+    ask: What is the status of the label audit?
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Wei, text: "We'll train on the IMDB reviews."}
+      - {id: S1-T2, speaker: Priya, text: "Makes sense, it's the standard benchmark."}
+      - {id: S1-T3, speaker: Wei, text: "Priya, can you audit 200 labels from the training set?"}
+      - {id: S1-T4, speaker: Priya, text: "Will do, I'll start this week."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Priya, text: "Wait, I thought we agreed on SST-2 last time, not IMDB."}
+      - {id: S2-T2, speaker: Wei, text: "Hmm, I remember IMDB. Let's check the notes before Friday."}
+      - {id: S2-T3, speaker: Priya, text: "The label audit is blocked until we know which dataset it is."}
+      - {id: S2-T4, speaker: Wei, text: "Fair. I'll dig out the notes."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Wei, text: "I checked the notes: it was IMDB. We stay with IMDB."}
+      - {id: S3-T2, speaker: Priya, text: "OK, IMDB then. I'll restart the audit today."}
+      - {id: S3-T3, speaker: Priya, text: "Should we switch to Yelp instead, since it's much bigger?"}
+      - {id: S3-T4, speaker: Wei, text: "Not now. Let's finish the first round of experiments."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Priya, text: "The label audit is done: about 3% of labels look wrong."}
+      - {id: S4-T2, speaker: Wei, text: "Nice. SST-2 would have been easier to audit, honestly."}
+      - {id: S4-T3, speaker: Priya, text: "True, but the notes are clear. Moving on."}
+
+script:
+  - {turn: S1-T1, act: decide, item: dataset.train, value: IMDB}
+  - {turn: S1-T3, act: task_open, item: task.label_audit}
+  - {turn: S2-T1, act: contest, item: dataset.train, value: SST-2}
+  - {turn: S2-T2, act: mention, item: dataset.train, value: IMDB}
+  - {turn: S2-T3, act: task_progress, item: task.label_audit, progress: blocked}
+  - {turn: S3-T1, act: restate, item: dataset.train, value: IMDB}
+  - {turn: S3-T2, act: restate, item: dataset.train, value: IMDB}
+  - {turn: S3-T2, act: task_progress, item: task.label_audit, progress: open}
+  - {turn: S3-T3, act: suggest, item: dataset.train, value: Yelp}
+  - {turn: S4-T1, act: task_progress, item: task.label_audit, progress: completed}
+  - {turn: S4-T2, act: mention, item: dataset.train, value: SST-2}
+
+questions:
+  - {id: dataset.train@S4-previous, after: S4, kind: previous, item: dataset.train, text: "Which dataset, if any, did we train on before the current one?"}
+  - {id: dataset.train@S4-asof-S2, after: S4, kind: as_of, session: S2, item: dataset.train, text: "What was the state of the dataset choice at the end of the second meeting?"}

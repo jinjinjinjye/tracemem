@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+build/
+dist/
+
+# Secrets: API keys live in a local .env (docs/working-agreement.md, section 6)
+.env
+.env.*
+!.env.example
+
+# Run outputs and model-call caches (docs/working-agreement.md, section 4)
+runs/
+cache/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+
+# Documents: the proposal lists student IDs; keep PDF and Office files out (scripts/check_public.py)
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+
+# OS clutter
+Thumbs.db
+desktop.ini
+*:Zone.Identifier

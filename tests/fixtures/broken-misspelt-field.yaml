@@ -1,0 +1,20 @@
+# Deliberately broken: "titel" is a misspelling of "title". The scenario format
+# forbids unknown fields, so this file must fail to load (tests/test_schema.py)
+# and the validator must report E-schema (tests/test_validate.py).
+scenario_id: fixture-misspelt
+titel: A misspelt field
+category: explicit_revision
+split: dev
+author: tests
+project_id: fixture-project
+items:
+  - {key: model.main, kind: decision, description: the classifier, values: {BERT: []}}
+sessions:
+  - id: S1
+    date: 2026-01-05
+    turns:
+      - {id: S1-T1, speaker: Ana, text: "We train BERT."}
+      - {id: S1-T2, speaker: Ben, text: "OK."}
+      - {id: S1-T3, speaker: Ana, text: "Thanks."}
+script:
+  - {turn: S1-T1, act: decide, item: model.main, value: BERT}

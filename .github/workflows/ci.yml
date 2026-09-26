@@ -1,0 +1,33 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+# The job only reads the repository, so its token gets read access and nothing else.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Unit tests, including scorer self-tests
+        run: pytest
+      - name: Validate the development scenarios
+        run: tracemem validate benchmark/scenarios/dev
+      - name: Check decision records
+        run: python scripts/check_decisions.py
+      - name: Check public files for personal data and local paths
+        run: python scripts/check_public.py

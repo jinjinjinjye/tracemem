@@ -1,0 +1,69 @@
+# Example scenario that shows the format. Not yet reviewed by the team.
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: two same-kind items in one project (the sentiment model and the
+# NER model) are decided in interleaved turns, so the newest "model" decision is
+# often about the other item.
+scenario_id: pilot-03
+title: Two models in one project
+category: confusable_items
+split: dev
+author: pilot
+review: {status: unreviewed}
+project_id: product-reviews
+
+items:
+  - key: model.sentiment
+    kind: decision
+    description: classification model for review sentiment
+    ask: Which model are we using for sentiment?
+    values:
+      DistilBERT: [distilbert-base-uncased]
+      RoBERTa: [roberta-base]
+    confusable_with: [model.ner]
+  - key: model.ner
+    kind: decision
+    description: model for tagging product names in reviews
+    ask: Which model are we using to tag product names?
+    values:
+      BERT: [bert-base-cased, bert ner]
+      spaCy: [spacy model, spacy ner]
+      Flair: [flair ner]
+    confusable_with: [model.sentiment]
+
+sessions:
+  - id: S1
+    date: 2026-10-05
+    turns:
+      - {id: S1-T1, speaker: Sam, text: "For sentiment, DistilBERT is fast enough. Let's use it."}
+      - {id: S1-T2, speaker: Lin, text: "Agreed. Next week we look at tagging product names."}
+      - {id: S1-T3, speaker: Sam, text: "I'll write the preprocessing script."}
+  - id: S2
+    date: 2026-10-08
+    turns:
+      - {id: S2-T1, speaker: Lin, text: "For the product-name tagger, we'll fine-tune BERT."}
+      - {id: S2-T2, speaker: Sam, text: "Do we have enough labelled product names for that?"}
+      - {id: S2-T3, speaker: Lin, text: "About 3,000. Enough to start."}
+      - {id: S2-T4, speaker: Sam, text: "I'll prepare the annotated examples."}
+  - id: S3
+    date: 2026-10-12
+    turns:
+      - {id: S3-T1, speaker: Lin, text: "Fine-tuning BERT for tagging is too slow on our GPU. We move the tagger to spaCy."}
+      - {id: S3-T2, speaker: Sam, text: "Makes sense. The sentiment side stays on DistilBERT."}
+      - {id: S3-T3, speaker: Lin, text: "Yes, no change there."}
+      - {id: S3-T4, speaker: Sam, text: "I'll convert the annotations to spaCy's format."}
+  - id: S4
+    date: 2026-10-15
+    turns:
+      - {id: S4-T1, speaker: Sam, text: "spaCy misses some brand names. Maybe try Flair for the tagger?"}
+      - {id: S4-T2, speaker: Lin, text: "Could be worth a look after the deadline."}
+      - {id: S4-T3, speaker: Sam, text: "I'll note it in the backlog."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.sentiment, value: DistilBERT}
+  - {turn: S2-T1, act: decide, item: model.ner, value: BERT}
+  - {turn: S3-T1, act: revise, item: model.ner, value: spaCy, reason: "fine-tuning BERT is too slow on the team's GPU"}
+  - {turn: S3-T2, act: restate, item: model.sentiment, value: DistilBERT}
+  - {turn: S4-T1, act: suggest, item: model.ner, value: Flair}
+
+questions:
+  - {id: model.ner@S4-previous, after: S4, kind: previous, item: model.ner, text: "Which model, if any, did we use for tagging product names before the current one?"}
