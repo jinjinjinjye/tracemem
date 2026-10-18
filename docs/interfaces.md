@@ -164,6 +164,8 @@ A system may also provide these optional methods, called hooks. The harness uses
 | `rejected_operations() -> list[tuple[Operation, str]]` | Saves the operations the store refused, each with its reason, to `rejected_ops.jsonl`. |
 | `candidates() -> list[Candidate]` | Saves the candidates to `candidates.jsonl`. |
 | `describe() -> dict` | Saves the system's settings in the manifest as `system_config`. |
+| `resolver_events() -> list[dict]` | Optional pipeline diagnostics saved to `resolver_events.jsonl`; generation failures/aborts also go to `resolver_errors.jsonl`. |
+| `resolver_usage() -> Usage \| None` | Optional resolver write-path totals, saved by scenario and summed in `usage.json`. None means uninstrumented. |
 | `accepts_gold_candidates = True` | Allows the system to run in the `gold_candidates` condition. |
 
 A system joins the registry in [`systems/__init__.py`](../src/tracemem/systems/__init__.py) as a `SystemSpec`. The spec holds a name, a factory, a `uses_gold` flag and a description. The factory is a function that takes `(ScenarioMeta, GoldTimeline | None)` and returns a new system; `GoldTimeline` is everything the replay computed from the script. `tracemem systems` lists the registered systems.
@@ -208,11 +210,12 @@ The matcher and the retriever read the store through `StoreView`, which declares
 
 ## Building on the stand-ins, one replacement at a time
 
-The standalone [`LLMResolver`](resolver.md) now implements the resolver interface
-with an injectable model client, explicit configuration and offline tests. The
-registered pipeline below still uses the gold stand-ins; registration and pipeline
-failure logging are separate integration steps. See the resolver guide for input
-assumptions, operation rules and exceptions before swapping it into a pipeline.
+The [`LLMResolver`](resolver.md) implements the resolver interface with an injectable
+model client, explicit configuration and offline tests. `pipeline-resolver-dev`
+registers it with gold extraction/matching/retrieval and the rule answerer. It keeps
+`uses_gold=True`; its outputs are component diagnostics, not baseline results.
+The original `pipeline-gold` remains available. See the resolver guide for input
+assumptions, model settings, candidate failure handling and exported logs.
 
 The registered system `pipeline-gold` is the pipeline built entirely from stand-ins. After the setup in [CONTRIBUTING.md](../CONTRIBUTING.md), run it from the repository root:
 
@@ -320,3 +323,10 @@ All record-based systems use the same extracted candidates, the same renderer (`
 ## When the store rejects an operation
 
 `OpLog.apply` checks an operation before changing anything. If the operation breaks a rule, it raises `InvalidOperation` and leaves the log exactly as it was. `TraceMemPipeline` catches that error, keeps the operation together with the reason, and moves on to the next candidate. A bad operation from the resolver therefore never crashes a run. It simply changes nothing, and the answers show the effect. The pipeline returns the kept operations from `rejected_operations()`, and `operations()` lists only the operations that were applied. The harness saves the rejected operations in `rejected_ops.jsonl` in the run folder, one per line, each with a `rejection` field that holds the reason.
+
+If the real resolver exhausts its attempts without producing an operation, the
+pipeline records `ResolverError` as `generation_failed` and skips that candidate's
+write. It never manufactures KEEP. Setup, input-contract and fatal provider errors
+abort the run instead; the CLI saves partial diagnostics marked `status="failed"`
+and returns 2. Reports reject failed runs. See [the resolver guide](resolver.md#failures-and-reproducibility)
+for the event fields, usage accounting and the difference between these two errors.

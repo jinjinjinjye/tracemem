@@ -12,7 +12,7 @@ from pathlib import Path
 from tracemem.bench.load import load_scenario, scenario_paths
 from tracemem.bench.replay import replay
 from tracemem.bench.validate import check_file
-from tracemem.eval.harness import CONDITIONS, run, write_run
+from tracemem.eval.harness import CONDITIONS, RunAborted, RunResult, run, write_run
 from tracemem.eval.metrics import SUBSETS, compute_all, outcome_counts
 from tracemem.eval.report import comparison_table
 from tracemem.systems import REGISTRY
@@ -84,6 +84,25 @@ def _test_split_allowed(args) -> tuple[bool, str]:
     return False, "no freeze-* tag is reachable from HEAD (see docs/working-agreement.md, section 4)"
 
 
+def _log_test_run(args, result: RunResult, folder: Path, freeze: str | None,
+                  current_accuracy: float | None = None) -> None:
+    """Audit completed and aborted test attempts, including their saved configuration."""
+    if args.split != "test":
+        return
+    TEST_LOG.parent.mkdir(parents=True, exist_ok=True)
+    with open(TEST_LOG, "a", encoding="utf-8") as handle:
+        handle.write(json.dumps({
+            "run": folder.name, "commit": _git("rev-parse", "HEAD"), "freeze": freeze,
+            "system": result.system, "condition": result.condition,
+            "utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "status": result.status, "failure": result.failure,
+            "system_config": result.system_config,
+            "item_vocabulary_given_to_systems": result.vocabulary,
+            "current_accuracy": current_accuracy,
+        }) + "\n")
+    print(f"logged in {TEST_LOG}; commit this file together with the run's summary")
+
+
 def cmd_run(args) -> int:
     if args.system not in REGISTRY:
         print(f"unknown system {args.system!r}; known: {', '.join(REGISTRY)}")
@@ -112,6 +131,11 @@ def cmd_run(args) -> int:
     spec = REGISTRY[args.system]
     try:
         result = run(spec, scenarios, args.split, condition=args.condition, files=files, vocabulary=args.vocabulary)
+    except RunAborted as error:
+        folder = write_run(error.result, args.out, extra_manifest={"freeze": freeze}, weighting=args.weighting)
+        _log_test_run(args, error.result, folder, freeze)
+        print(f"run failed: {error.result.failure['error_type']}: {error}\npartial diagnostics saved to {folder}")
+        return 2
     except ValueError as error:
         print(f"cannot run: {error}")
         return 2
@@ -125,16 +149,11 @@ def cmd_run(args) -> int:
     for name, by_subset in metrics.items():
         print(f"| {name} | " + " | ".join(f"{by_subset[s].fmt()} (n={by_subset[s].n})" for s in subsets) + " |")
     print(f"\noutcomes: {json.dumps(outcome_counts(result.rows))}\nsaved to {folder}")
-    if args.split == "test":
-        TEST_LOG.parent.mkdir(parents=True, exist_ok=True)
-        with open(TEST_LOG, "a", encoding="utf-8") as handle:
-            handle.write(json.dumps({
-                "run": folder.name, "commit": _git("rev-parse", "HEAD"), "freeze": freeze,
-                "system": spec.name, "condition": args.condition,
-                "utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                "current_accuracy": metrics["current_accuracy"]["all"].value,
-            }) + "\n")
-        print(f"logged in {TEST_LOG}; commit this file together with the run's summary")
+    if result.resolver_events:
+        counts = {status: sum(event["status"] == status for events in result.resolver_events.values() for event in events)
+                  for status in ("applied", "rejected", "generation_failed", "aborted")}
+        print(f"resolver outcomes: {json.dumps(counts)}")
+    _log_test_run(args, result, folder, freeze, metrics["current_accuracy"]["all"].value)
     return 0
 
 

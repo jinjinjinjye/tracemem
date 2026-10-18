@@ -27,6 +27,8 @@ HEADLINE = [
 def load_run(folder: str | Path) -> tuple[dict, list[ScoredAnswer]]:
     folder = Path(folder)
     manifest = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
+    if manifest.get("status", "completed") != "completed":
+        raise ValueError("cannot compare a failed or incomplete run; inspect its manifest and diagnostics")
     rows = []
     with open(folder / "answers.jsonl", encoding="utf-8") as handle:
         for line in handle:

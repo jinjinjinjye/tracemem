@@ -6,9 +6,11 @@ a settled decision, a suggestion, a reaffirmation, a revision and an unresolved
 dispute. It never reads benchmark scripts or gold labels, applies operations, or
 sets record statuses. `OpLog` remains the authority for storage semantics.
 
-This component is implemented independently of the runnable systems. The registry
-still uses the gold stand-ins. Pipeline failure logging, CLI registration, resolver
-metrics, Mem0 integration and the end-to-end comparison belong to subsequent work.
+The registered `pipeline-resolver-dev` system runs this resolver with gold extraction,
+matching and retrieval, plus the rule answerer. It is marked `uses_gold=True`: a
+component diagnostic, not an end-to-end baseline. Pipeline failure logging and
+configuration/usage export are implemented. Resolver metrics, Mem0 integration and
+the end-to-end comparison belong to subsequent work.
 Offline tests verify parsing, validation and state effects; they do not establish
 the model's accuracy or an advantage over Mem0.
 
@@ -54,7 +56,7 @@ The core package and its offline tests do not require the provider SDK:
 
 ```bash
 pip install -e ".[dev]"
-pytest tests/test_resolver.py tests/test_resolver_client.py
+pytest tests/test_resolver.py tests/test_resolver_client.py tests/test_resolver_pipeline.py tests/test_resolver_run.py
 ```
 
 For the OpenAI adapter, install `pip install -e ".[dev,llm]"`. Supply these settings
@@ -89,6 +91,20 @@ Other providers can implement `CompletionClient.complete(config=..., messages=..
 response_format=...) -> ModelReply` and be injected into `LLMResolver(config, client)`.
 There is no provider-specific code in the decision validation path.
 
+Once the chosen model and credentials are configured, run the development diagnostic:
+
+```bash
+tracemem systems
+tracemem run --system pipeline-resolver-dev --split dev --condition gold_candidates
+```
+
+Listing systems never constructs a client. Running this system constructs a fresh
+resolver for every scenario and makes model calls. The gold timeline is used only
+by the stand-ins; `LLMResolver` sees the candidate and matched records. The default
+`end_to_end` condition also uses `GoldExtractor` in this diagnostic, so it remains
+a gold-assisted mock in either condition. Use the real extractor/matcher/retriever
+before making end-to-end claims.
+
 ## Failures and reproducibility
 
 - `ResolverInputError`: malformed input or inconsistent matched state; no request is made.
@@ -105,16 +121,50 @@ Retries also cover invalid model decisions and include validation feedback when
 available. Programming errors are not caught as model failures.
 
 `KEEP` is a real confirmation that resolves disputes. It is never an error fallback.
-The existing pipeline only catches storage `InvalidOperation`; it does not yet catch
-these resolver exceptions. Until pipeline integration lands, callers must handle
-them explicitly. The intended later recovery is to record a candidate failure and
-leave the stored memory unchanged, with setup errors terminating the run.
+The pipeline catches `ResolverError`, records a `generation_failed` event, skips the
+write and continues with the next candidate. Incoming turns and candidates are still
+recorded; existing memory records and operations are unchanged. Storage rejections
+remain `InvalidOperation` events and are kept separately in `rejected_ops.jsonl`.
+
+Input, configuration and fatal provider errors stop the run. A failure during
+resolution produces an `aborted` event; a failure during factory construction has
+no candidate event. The harness preserves completed questions, applied/rejected
+operations, candidate events and reported usage in `RunAborted.result`. The CLI
+saves these diagnostics with `manifest.status="failed"`, prints a clear error and
+returns exit code 2. Failed runs cannot be loaded by `tracemem report`, even with
+`--allow-mixed`. Earlier manifests without a status retain their completed meaning.
+Aborted test-split attempts still append to `results/test-runs.jsonl`, with failed
+status, configuration and failure details; their accuracy is null.
+Unexpected programming errors still propagate normally; this is not a catch-all
+recovery or resume mechanism.
 
 `describe()` returns model settings, client class, system-prompt SHA-256 and output
 schema SHA-256. `usage()` counts all attempted calls and reported tokens, including
 invalid completions and retries, across this resolver instance. Tokens from a failed
 request without a provider usage response are unknown, not a complete billing total.
-Writing these fields to the run manifest/log is part of pipeline integration.
+The pipeline exposes this configuration under `system_config.resolver_config` in
+the manifest. It measures usage deltas around each candidate, so retry calls are
+counted once, then the harness sums final scenario totals without summing cumulative
+snapshots repeatedly.
+
+| Artifact | Contents |
+|---|---|
+| `manifest.json` | Model/settings, prompt/schema hashes, `status` and optional failure type/message/scenario. |
+| `resolver_events.jsonl` | One row per processed candidate: scenario, turn, candidate, item, status, operation ID, attempts, usage and optional error type/detail. |
+| `resolver_errors.jsonl` | Generation failures and aborts from those events; not storage rejections. An instrumented successful run has an empty error file. |
+| `usage.json` | Resolver write-path calls and provider-reported tokens, by scenario and in total. It does not include answer-model usage or convert tokens into currency. |
+| `ops.jsonl`, `rejected_ops.jsonl`, `candidates.jsonl` | Existing operation/candidate artifacts, preserving their earlier formats. |
+
+Event statuses are `applied`, `rejected`, `generation_failed` and `aborted`. Missing
+usage instrumentation is represented as null in an event, never invented zero
+counts; the usage file is emitted only when the system reports usage. Successful
+legacy gold runs retain their earlier artifact set. Logs contain validated operation
+data and sanitized exception details, not raw provider error bodies or credentials.
+The CLI also prints resolver outcome counts for completed instrumented runs, so a
+run with many skipped candidates is visible even though it completed normally.
+
+The proposed cross-component conventions are recorded in
+[decision 0002](decisions/0002-record-resolver-failures.md).
 
 ## Boundaries to keep visible in experiments
 

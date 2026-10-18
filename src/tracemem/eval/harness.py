@@ -25,7 +25,8 @@ from tracemem import __version__
 from tracemem.bench.replay import GoldTimeline, replay
 from tracemem.eval.classify import classify
 from tracemem.eval.metrics import ScoredAnswer, compute_all, outcome_counts
-from tracemem.schema import Candidate, Operation, Scenario, turn_time
+from tracemem.resolver import FatalModelError, ResolverConfigError, ResolverInputError
+from tracemem.schema import Candidate, Operation, Scenario, Usage, turn_time
 from tracemem.systems.base import (
     SystemSpec,
     optional_candidates,
@@ -35,6 +36,7 @@ from tracemem.systems.base import (
 )
 
 CONDITIONS = ("end_to_end", "gold_candidates")
+RESOLVER_ABORTS = (ResolverConfigError, ResolverInputError, FatalModelError)
 
 
 class AnswerMutatedState(RuntimeError):
@@ -54,6 +56,26 @@ class RunResult:
     rejected: dict[str, list] = field(default_factory=dict)
     candidates: dict[str, list[Candidate]] = field(default_factory=dict)
     scenario_files: dict[str, str] = field(default_factory=dict)
+    resolver_events: dict[str, list[dict]] = field(default_factory=dict)
+    resolver_usage: dict[str, Usage] = field(default_factory=dict)
+    status: str = "completed"
+    failure: dict | None = None
+
+
+class ScenarioRunAborted(RuntimeError):
+    """Known setup/input/provider failure, retaining observations completed before it."""
+
+    def __init__(self, error: Exception, rows: list[ScoredAnswer], system: object | None):
+        self.error, self.rows, self.system = error, rows, system
+        super().__init__(str(error))
+
+
+class RunAborted(RuntimeError):
+    """A failed run that the caller can persist, but must not report as a completed evaluation."""
+
+    def __init__(self, result: RunResult):
+        self.result = result
+        super().__init__(result.failure["message"] if result.failure else "run aborted")
 
 
 def run_scenario(spec: SystemSpec, scenario: Scenario, timeline: GoldTimeline | None = None,
@@ -61,7 +83,10 @@ def run_scenario(spec: SystemSpec, scenario: Scenario, timeline: GoldTimeline | 
     if condition not in CONDITIONS:
         raise ValueError(f"unknown condition {condition!r}; use one of {CONDITIONS}")
     timeline = timeline or replay(scenario)
-    system = spec.factory(scenario.meta(vocabulary), timeline if spec.uses_gold else None)
+    try:
+        system = spec.factory(scenario.meta(vocabulary), timeline if spec.uses_gold else None)
+    except RESOLVER_ABORTS as error:
+        raise ScenarioRunAborted(error, [], None) from None
     if condition == "gold_candidates" and not getattr(system, "accepts_gold_candidates", False):
         raise ValueError(f"{spec.name} cannot run in the gold-candidate condition")
 
@@ -71,23 +96,58 @@ def run_scenario(spec: SystemSpec, scenario: Scenario, timeline: GoldTimeline | 
 
     rows: list[ScoredAnswer] = []
     visible: set[str] = set()
-    for number, session in enumerate(scenario.sessions, start=1):
-        for index, turn in enumerate(session.turns):
-            when = turn_time(session.date, index, number)
-            if condition == "gold_candidates":
-                system.observe(turn, when, gold_candidates=timeline.candidates_by_turn.get(turn.id, []))
-            else:
-                system.observe(turn, when)
-            visible.add(turn.id)
-        for question in by_session.get(session.id, []):
-            before = optional_fingerprint(system)
-            answer = system.answer(question.for_system(timeline.salt))
-            if before is not None and optional_fingerprint(system) != before:
-                raise AnswerMutatedState(f"{spec.name} changed its memory while answering {question.question_id}")
-            expected = timeline.expected[question.question_id]
-            rows.append(ScoredAnswer(question, expected, answer, classify(answer, expected), frozenset(visible),
-                                     scenario.category))
+    try:
+        for number, session in enumerate(scenario.sessions, start=1):
+            for index, turn in enumerate(session.turns):
+                when = turn_time(session.date, index, number)
+                if condition == "gold_candidates":
+                    system.observe(turn, when, gold_candidates=timeline.candidates_by_turn.get(turn.id, []))
+                else:
+                    system.observe(turn, when)
+                visible.add(turn.id)
+            for question in by_session.get(session.id, []):
+                before = optional_fingerprint(system)
+                answer = system.answer(question.for_system(timeline.salt))
+                if before is not None and optional_fingerprint(system) != before:
+                    raise AnswerMutatedState(f"{spec.name} changed its memory while answering {question.question_id}")
+                expected = timeline.expected[question.question_id]
+                rows.append(ScoredAnswer(question, expected, answer, classify(answer, expected), frozenset(visible),
+                                        scenario.category))
+    except RESOLVER_ABORTS as error:
+        raise ScenarioRunAborted(error, rows, system) from None
     return rows, system
+
+
+def _collect_scenario(result: RunResult, scenario: Scenario, rows: list[ScoredAnswer],
+                      system: object | None, files: dict[str, Path] | None) -> None:
+    result.rows.extend(rows)
+    if files and scenario.scenario_id in files:
+        data = Path(files[scenario.scenario_id]).read_bytes()
+        result.scenario_files[scenario.scenario_id] = hashlib.sha256(data).hexdigest()[:16]
+    if system is None:
+        return
+    describe = getattr(system, "describe", None)
+    if callable(describe) and not result.system_config:
+        result.system_config = describe()
+    ops = optional_operations(system)
+    if ops is not None:
+        result.operations[scenario.scenario_id] = ops
+    rejected = optional_rejected(system)
+    if rejected:
+        result.rejected[scenario.scenario_id] = rejected
+    cands = optional_candidates(system)
+    if cands is not None:
+        result.candidates[scenario.scenario_id] = cands
+    events = getattr(system, "resolver_events", None)
+    if callable(events):
+        event_rows = events()
+        if event_rows:
+            result.resolver_events[scenario.scenario_id] = event_rows
+    usage = getattr(system, "resolver_usage", None)
+    if callable(usage):
+        value = usage()
+        if value is not None:
+            result.resolver_usage[scenario.scenario_id] = value
 
 
 def run(spec: SystemSpec, scenarios: list[Scenario], split: str, condition: str = "end_to_end",
@@ -98,23 +158,15 @@ def run(spec: SystemSpec, scenarios: list[Scenario], split: str, condition: str 
     result = RunResult(system=spec.name, uses_gold=spec.uses_gold, split=split, condition=condition, rows=[],
                        vocabulary=vocabulary)
     for scenario in scenarios:
-        rows, system = run_scenario(spec, scenario, condition=condition, vocabulary=vocabulary)
-        describe = getattr(system, "describe", None)
-        if callable(describe) and not result.system_config:
-            result.system_config = describe()
-        result.rows.extend(rows)
-        ops = optional_operations(system)
-        if ops is not None:
-            result.operations[scenario.scenario_id] = ops
-        rejected = optional_rejected(system)
-        if rejected:
-            result.rejected[scenario.scenario_id] = rejected
-        cands = optional_candidates(system)
-        if cands is not None:
-            result.candidates[scenario.scenario_id] = cands
-        if files and scenario.scenario_id in files:
-            data = Path(files[scenario.scenario_id]).read_bytes()
-            result.scenario_files[scenario.scenario_id] = hashlib.sha256(data).hexdigest()[:16]
+        try:
+            rows, system = run_scenario(spec, scenario, condition=condition, vocabulary=vocabulary)
+        except ScenarioRunAborted as aborted:
+            _collect_scenario(result, scenario, aborted.rows, aborted.system, files)
+            result.status = "failed"
+            result.failure = {"scenario_id": scenario.scenario_id, "error_type": type(aborted.error).__name__,
+                              "message": str(aborted.error)}
+            raise RunAborted(result) from None
+        _collect_scenario(result, scenario, rows, system, files)
     return result
 
 
@@ -141,6 +193,8 @@ def manifest(result: RunResult, stamp: str) -> dict:
         "condition": result.condition,
         "item_vocabulary_given_to_systems": result.vocabulary,
         "system_config": result.system_config,
+        "status": result.status,
+        "failure": result.failure,
         "git_commit": _git("rev-parse", "HEAD") or "unknown",
         "git_dirty": bool(status) if status is not None else None,
         "freeze_tag": _git("describe", "--tags", "--match", "freeze-*", "--abbrev=0"),
@@ -165,6 +219,8 @@ def write_run(result: RunResult, out_root: str | Path, extra_manifest: dict | No
             folder = base.with_name(f"{base.name}-{attempt}")
     info = manifest(result, stamp)
     info.update(extra_manifest or {})
+    # Extra metadata cannot make an aborted evaluation look completed.
+    info.update(status=result.status, failure=result.failure)
     (folder / "manifest.json").write_text(json.dumps(info, indent=2), encoding="utf-8")
     with open(folder / "answers.jsonl", "w", encoding="utf-8") as handle:
         for row in result.rows:
@@ -192,6 +248,22 @@ def write_run(result: RunResult, out_root: str | Path, extra_manifest: dict | No
             for sid, cands in result.candidates.items():
                 for cand in cands:
                     handle.write(json.dumps({"scenario_id": sid, **cand.model_dump()}) + "\n")
+    if result.resolver_events:
+        with open(folder / "resolver_events.jsonl", "w", encoding="utf-8") as events_handle, \
+                open(folder / "resolver_errors.jsonl", "w", encoding="utf-8") as errors_handle:
+            for sid, events in result.resolver_events.items():
+                for event in events:
+                    line = json.dumps({**event, "scenario_id": sid}) + "\n"
+                    events_handle.write(line)
+                    if event["status"] in ("generation_failed", "aborted"):
+                        errors_handle.write(line)
+    if result.resolver_usage:
+        by_scenario = {sid: value.model_dump() for sid, value in result.resolver_usage.items()}
+        total = {key: sum(value[key] for value in by_scenario.values())
+                 for key in ("calls", "input_tokens", "output_tokens")}
+        (folder / "usage.json").write_text(json.dumps({"resolver": {
+            "total": total, "by_scenario": by_scenario, "tokens_are_provider_reported": True,
+        }}, indent=2), encoding="utf-8")
     metrics = {
         name: {subset: {"value": v.value, "n": v.n} for subset, v in by_subset.items()}
         for name, by_subset in compute_all(result.rows, weighting=weighting).items()
