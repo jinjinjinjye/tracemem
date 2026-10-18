@@ -25,6 +25,7 @@ from tracemem import __version__
 from tracemem.bench.replay import GoldTimeline, replay
 from tracemem.eval.classify import classify
 from tracemem.eval.metrics import ScoredAnswer, compute_all, outcome_counts
+from tracemem.eval.resolver_metrics import score_scenario, summarize
 from tracemem.resolver import FatalModelError, ResolverConfigError, ResolverInputError
 from tracemem.schema import Candidate, Operation, Scenario, Usage, turn_time
 from tracemem.systems.base import (
@@ -58,6 +59,7 @@ class RunResult:
     scenario_files: dict[str, str] = field(default_factory=dict)
     resolver_events: dict[str, list[dict]] = field(default_factory=dict)
     resolver_usage: dict[str, Usage] = field(default_factory=dict)
+    resolver_scores: list[dict] | None = None
     status: str = "completed"
     failure: dict | None = None
 
@@ -119,13 +121,14 @@ def run_scenario(spec: SystemSpec, scenario: Scenario, timeline: GoldTimeline | 
 
 
 def _collect_scenario(result: RunResult, scenario: Scenario, rows: list[ScoredAnswer],
-                      system: object | None, files: dict[str, Path] | None) -> None:
+                      system: object | None, files: dict[str, Path] | None,
+                      timeline: GoldTimeline | None = None) -> bool:
     result.rows.extend(rows)
     if files and scenario.scenario_id in files:
         data = Path(files[scenario.scenario_id]).read_bytes()
         result.scenario_files[scenario.scenario_id] = hashlib.sha256(data).hexdigest()[:16]
     if system is None:
-        return
+        return False
     describe = getattr(system, "describe", None)
     if callable(describe) and not result.system_config:
         result.system_config = describe()
@@ -148,6 +151,15 @@ def _collect_scenario(result: RunResult, scenario: Scenario, rows: list[ScoredAn
         value = usage()
         if value is not None:
             result.resolver_usage[scenario.scenario_id] = value
+    # Evaluate only after observation has finished. Gold stays on the scorer side.
+    if result.condition == "gold_candidates" and timeline is not None and ops is not None:
+        scores = score_scenario(timeline, ops, rejected or [],
+                                result.resolver_events.get(scenario.scenario_id))
+        if result.resolver_scores is None:
+            result.resolver_scores = []
+        result.resolver_scores.extend(scores)
+        return True
+    return False
 
 
 def run(spec: SystemSpec, scenarios: list[Scenario], split: str, condition: str = "end_to_end",
@@ -157,16 +169,20 @@ def run(spec: SystemSpec, scenarios: list[Scenario], split: str, condition: str 
         raise ValueError(f"duplicate scenario_id among {sorted(i for i in set(ids) if ids.count(i) > 1)}")
     result = RunResult(system=spec.name, uses_gold=spec.uses_gold, split=split, condition=condition, rows=[],
                        vocabulary=vocabulary)
+    scored_scenarios = 0
     for scenario in scenarios:
+        timeline = replay(scenario)
         try:
-            rows, system = run_scenario(spec, scenario, condition=condition, vocabulary=vocabulary)
+            rows, system = run_scenario(spec, scenario, timeline, condition=condition, vocabulary=vocabulary)
         except ScenarioRunAborted as aborted:
             _collect_scenario(result, scenario, aborted.rows, aborted.system, files)
             result.status = "failed"
             result.failure = {"scenario_id": scenario.scenario_id, "error_type": type(aborted.error).__name__,
                               "message": str(aborted.error)}
             raise RunAborted(result) from None
-        _collect_scenario(result, scenario, rows, system, files)
+        scored_scenarios += _collect_scenario(result, scenario, rows, system, files, timeline)
+    if scored_scenarios != len(scenarios):
+        result.resolver_scores = None  # a partial set of instrumented scenarios is not a full evaluation
     return result
 
 
@@ -271,4 +287,14 @@ def write_run(result: RunResult, out_root: str | Path, extra_manifest: dict | No
     metrics["weighting"] = weighting
     metrics["outcome_counts"] = outcome_counts(result.rows)
     (folder / "metrics.json").write_text(json.dumps(metrics, indent=2), encoding="utf-8")
+    if result.status == "completed" and result.condition == "gold_candidates" and result.resolver_scores is not None:
+        resolver_metrics = {"schema_version": 1, "condition": result.condition, **summarize(result.resolver_scores)}
+        (folder / "resolver_metrics.json").write_text(json.dumps(resolver_metrics, indent=2), encoding="utf-8")
+        with open(folder / "resolver_scores.jsonl", "w", encoding="utf-8") as scores_handle, \
+                open(folder / "resolver_analysis.jsonl", "w", encoding="utf-8") as errors_handle:
+            for row in result.resolver_scores:
+                line = json.dumps(row) + "\n"
+                scores_handle.write(line)
+                if row["errors"]:
+                    errors_handle.write(line)
     return folder

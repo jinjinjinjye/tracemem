@@ -29,6 +29,7 @@ still use stand-ins; end-to-end experiments remain to be implemented.
 | Rule-based check systems ("probes") that test the scorer and the benchmark | done | [`src/tracemem/systems/probes.py`](src/tracemem/systems/probes.py) |
 | TraceMem's pipeline, wired end to end with stand-in components | done | [`src/tracemem/pipeline.py`](src/tracemem/pipeline.py), [`components.py`](src/tracemem/components.py) |
 | Model-backed Resolver, development registration, failure/usage logs | implemented; offline tested | [`docs/resolver.md`](docs/resolver.md) |
+| Resolver operation metrics and error analysis | implemented; gold-candidate condition | [`docs/metrics.md`](docs/metrics.md#9-resolver-operation-metrics-and-error-analysis) |
 | Real extraction, matching, retrieval and answering components | planned | interfaces in [`docs/interfaces.md`](docs/interfaces.md) |
 | Comparison systems: similarity, similarity + recency, Timeline, full history | planned | [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) |
 | The team's benchmark scenarios | planned | [`docs/benchmark.md`](docs/benchmark.md) |
@@ -41,6 +42,9 @@ After installing `pip install -e ".[dev,llm]"` and supplying the settings in
 `tracemem run --system pipeline-resolver-dev --split dev --condition gold_candidates`.
 This command makes model calls and is explicitly labelled as a gold-assisted mock.
 Offline coverage needs only `.[dev]`; run `pytest` without API credentials.
+Completed gold-candidate runs also save Resolver operation metrics and error cases.
+Inspect them with `tracemem resolver-report runs/<saved-run-folder>`. For an offline
+scorer check, run `pipeline-gold` with `--condition gold_candidates`.
 
 ## Quick start
 

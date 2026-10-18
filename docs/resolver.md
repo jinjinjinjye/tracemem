@@ -9,8 +9,8 @@ sets record statuses. `OpLog` remains the authority for storage semantics.
 The registered `pipeline-resolver-dev` system runs this resolver with gold extraction,
 matching and retrieval, plus the rule answerer. It is marked `uses_gold=True`: a
 component diagnostic, not an end-to-end baseline. Pipeline failure logging and
-configuration/usage export are implemented. Resolver metrics, Mem0 integration and
-the end-to-end comparison belong to subsequent work.
+configuration/usage export and operation-level evaluation are implemented. Mem0
+integration and the end-to-end comparison belong to subsequent work.
 Offline tests verify parsing, validation and state effects; they do not establish
 the model's accuracy or an advantage over Mem0.
 
@@ -165,6 +165,17 @@ run with many skipped candidates is visible even though it completed normally.
 
 The proposed cross-component conventions are recorded in
 [decision 0002](decisions/0002-record-resolver-failures.md).
+
+## Operation evaluation
+
+Completed `gold_candidates` runs now add `resolver_metrics.json`,
+`resolver_scores.jsonl` and `resolver_analysis.jsonl`. Use
+`tracemem resolver-report runs/<saved-run-folder>` to inspect five-label F1,
+act/operation confusion, cumulative state accuracy, target/source errors and failures.
+Missing candidates remain in denominators; rejected operations keep their emitted
+label but cannot earn applied exact-operation credit. The complete definitions and
+offline check command are in [the metrics guide](metrics.md#9-resolver-operation-metrics-and-error-analysis).
+The scorer uses gold after a scenario completes and never feeds it back into the resolver.
 
 ## Boundaries to keep visible in experiments
 

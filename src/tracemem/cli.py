@@ -15,6 +15,7 @@ from tracemem.bench.validate import check_file
 from tracemem.eval.harness import CONDITIONS, RunAborted, RunResult, run, write_run
 from tracemem.eval.metrics import SUBSETS, compute_all, outcome_counts
 from tracemem.eval.report import comparison_table
+from tracemem.eval.resolver_report import resolver_report
 from tracemem.systems import REGISTRY
 
 TEST_LOG = Path("results/test-runs.jsonl")
@@ -167,6 +168,15 @@ def cmd_report(args) -> int:
     return 0
 
 
+def cmd_resolver_report(args) -> int:
+    try:
+        print(resolver_report(args.run, max_errors=args.max_errors))
+    except (ValueError, OSError) as error:
+        print(f"cannot score resolver: {error}")
+        return 2
+    return 0
+
+
 def cmd_blind(args) -> int:
     """Print a scenario's dialogue and questions without its script, for blind review."""
     scenario = load_scenario(args.scenario)
@@ -221,6 +231,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--weighting", default="question", choices=["question", "episode"])
     p.add_argument("--allow-mixed", action="store_true", help="compare runs with different settings anyway")
     p.set_defaults(func=cmd_report)
+
+    p = sub.add_parser("resolver-report", help="inspect saved gold-candidate resolver scores and error analysis")
+    p.add_argument("run", help="saved run folder")
+    p.add_argument("--max-errors", type=int, default=10, help="maximum error examples to print (default: 10)")
+    p.set_defaults(func=cmd_resolver_report)
 
     p = sub.add_parser("blind", help="print a scenario's dialogue without its script, for blind review")
     p.add_argument("scenario")

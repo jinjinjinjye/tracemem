@@ -179,6 +179,12 @@ The harness applies four rules to every system:
 
 Each run goes to a new folder under `runs/`, named by time, system, split (`dev` or `test` scenarios) and condition. It holds `manifest.json` (the settings, code version and scenario file hashes), `answers.jsonl` (each question, its gold answer, the system's answer and the outcome) and `metrics.json`. It also holds `ops.jsonl` and `candidates.jsonl` when the system has those hooks, and `rejected_ops.jsonl` when the store rejected at least one operation.
 
+Completed `gold_candidates` runs with an operations hook in every scenario also
+save `resolver_scores.jsonl`, `resolver_metrics.json` and `resolver_analysis.jsonl`.
+These are scorer-side artifacts: gold operations, script acts and state comparisons
+never enter a real Resolver. `tracemem resolver-report <run>` reads the saved analysis;
+see [operation metric definitions](metrics.md#9-resolver-operation-metrics-and-error-analysis).
+
 ## The five components
 
 Each component is also a protocol, so any class with the right method fits.
