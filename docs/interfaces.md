@@ -208,6 +208,12 @@ The matcher and the retriever read the store through `StoreView`, which declares
 
 ## Building on the stand-ins, one replacement at a time
 
+The standalone [`LLMResolver`](resolver.md) now implements the resolver interface
+with an injectable model client, explicit configuration and offline tests. The
+registered pipeline below still uses the gold stand-ins; registration and pipeline
+failure logging are separate integration steps. See the resolver guide for input
+assumptions, operation rules and exceptions before swapping it into a pipeline.
+
 The registered system `pipeline-gold` is the pipeline built entirely from stand-ins. After the setup in [CONTRIBUTING.md](../CONTRIBUTING.md), run it from the repository root:
 
 ```bash
