@@ -1,0 +1,460 @@
+{
+  "cases": [
+    {
+      "id": "tracemem-controlled_active_overrides_dispute",
+      "scenario_id": "pilot-02",
+      "project_id": "review-sentiment",
+      "question_id": "dataset.train@S2",
+      "after": "S2",
+      "provenance": {
+        "split": "dev",
+        "run": "20261019T033733Z-evidence-precision-rerun",
+        "system": "tracemem-controlled",
+        "model": "openai/gpt-4.1-mini",
+        "sequence": 32,
+        "request_hash": "e21cc0e946c289d07d866dbdbf2b7309adf14a6f23f691b3a5e6c549d441a6a2",
+        "scope": "Saved real request/reply and operations through the checkpoint. Only the supplied rendered context reaches the answerer. Scripted correction is an offline test, not a live-model prediction."
+      },
+      "glosses": {
+        "S1-T1": "We'll train on the IMDB reviews.",
+        "S1-T2": "Makes sense, it's the standard benchmark.",
+        "S1-T3": "Priya, can you audit 200 labels from the training set?",
+        "S1-T4": "Will do, I'll start this week.",
+        "S2-T1": "Wait, I thought we agreed on SST-2 last time, not IMDB.",
+        "S2-T2": "Hmm, I remember IMDB. Let's check the notes before Friday.",
+        "S2-T3": "The label audit is blocked until we know which dataset it is.",
+        "S2-T4": "Fair. I'll dig out the notes."
+      },
+      "observations": [
+        {
+          "turn_id": "S1-T1",
+          "when": "2026-10-06T10:00:00",
+          "speaker": "Wei"
+        },
+        {
+          "turn_id": "S1-T2",
+          "when": "2026-10-06T10:01:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S1-T3",
+          "when": "2026-10-06T10:02:00",
+          "speaker": "Wei"
+        },
+        {
+          "turn_id": "S1-T4",
+          "when": "2026-10-06T10:03:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S2-T1",
+          "when": "2026-10-09T11:00:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S2-T2",
+          "when": "2026-10-09T11:01:00",
+          "speaker": "Wei"
+        },
+        {
+          "turn_id": "S2-T3",
+          "when": "2026-10-09T11:02:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S2-T4",
+          "when": "2026-10-09T11:03:00",
+          "speaker": "Wei"
+        }
+      ],
+      "prefix_operations": [
+        {
+          "op_id": "op:dataset.train@S1-T1",
+          "op": "ADD",
+          "turn_id": "S1-T1",
+          "item": "dataset.train",
+          "value": "IMDB",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "reason": null,
+          "rationale": "The speaker commits to training on the IMDB reviews, indicating a settled choice for dataset.train as IMDB with no active record present.",
+          "candidate_id": "dataset.train@S1-T1"
+        },
+        {
+          "op_id": "op:task.label_audit@S1-T3",
+          "op": "ADD",
+          "turn_id": "S1-T3",
+          "item": "task.label_audit",
+          "value": "open",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "reason": "Direct assignment to audit 200 labels indicates a settled task opening.",
+          "rationale": "Wei's request 'Priya, can you audit 200 labels from the training set?' is a direct assignment, establishing an open task.",
+          "candidate_id": "task.label_audit@S1-T3"
+        },
+        {
+          "op_id": "op:dataset.train@S2-T1",
+          "op": "FLAG",
+          "turn_id": "S2-T1",
+          "item": "dataset.train",
+          "value": "SST-2",
+          "add_as": null,
+          "targets": [
+            "dataset.train@S1-T1"
+          ],
+          "source_turn_ids": [
+            "S2-T1"
+          ],
+          "reason": null,
+          "rationale": "Priya challenges the current active choice of IMDB by stating 'I thought we agreed on SST-2 last time, not IMDB.' This disputes the settled value without confirming a new one.",
+          "candidate_id": "dataset.train@S2-T1"
+        },
+        {
+          "op_id": "op:task.label_audit@S2-T3",
+          "op": "SUPERSEDE",
+          "turn_id": "S2-T3",
+          "item": "task.label_audit",
+          "value": "blocked",
+          "add_as": null,
+          "targets": [
+            "task.label_audit@S1-T3"
+          ],
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "reason": "Priya states 'The label audit is blocked until we know which dataset it is,' indicating a settled update to the task status as blocked.",
+          "rationale": "The speaker commits to the task.label_audit status being blocked, replacing the previous active open status.",
+          "candidate_id": "task.label_audit@S2-T3"
+        }
+      ],
+      "records": [
+        {
+          "record_id": "dataset.train@S1-T1",
+          "project_id": "review-sentiment",
+          "item": "dataset.train",
+          "value": "IMDB",
+          "status": "active",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "created_turn": "S1-T1",
+          "created_at": "2026-10-06T10:00:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "task.label_audit@S1-T3",
+          "project_id": "review-sentiment",
+          "item": "task.label_audit",
+          "value": "open",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "created_turn": "S1-T3",
+          "created_at": "2026-10-06T10:02:00",
+          "supersedes": [],
+          "reason": "Direct assignment to audit 200 labels indicates a settled task opening."
+        },
+        {
+          "record_id": "dataset.train@S2-T1",
+          "project_id": "review-sentiment",
+          "item": "dataset.train",
+          "value": "SST-2",
+          "status": "contested",
+          "source_turn_ids": [
+            "S2-T1"
+          ],
+          "speakers": [
+            "Priya"
+          ],
+          "created_turn": "S2-T1",
+          "created_at": "2026-10-09T11:00:00",
+          "supersedes": [
+            "dataset.train@S1-T1"
+          ],
+          "reason": null
+        },
+        {
+          "record_id": "task.label_audit@S2-T3",
+          "project_id": "review-sentiment",
+          "item": "task.label_audit",
+          "value": "blocked",
+          "status": "active",
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "speakers": [
+            "Priya"
+          ],
+          "created_turn": "S2-T3",
+          "created_at": "2026-10-09T11:02:00",
+          "supersedes": [
+            "task.label_audit@S1-T3"
+          ],
+          "reason": "Priya states 'The label audit is blocked until we know which dataset it is,' indicating a settled update to the task status as blocked."
+        }
+      ],
+      "request": {
+        "question": {
+          "text": "Which dataset are we training on?",
+          "kind": "current",
+          "session": null
+        },
+        "context": "S1-T1 Wei: dataset.train = IMDB [active] | sources=S1-T1\nS1-T3 Wei: task.label_audit = open [superseded] | sources=S1-T3\nS2-T1 Priya: dataset.train = SST-2 [contested] | sources=S2-T1\nS2-T3 Priya: task.label_audit = blocked [active] | sources=S2-T3",
+        "allowed_source_turn_ids": [
+          "S1-T1",
+          "S1-T3",
+          "S2-T1",
+          "S2-T3"
+        ]
+      },
+      "observed_decision": {
+        "status": "answer",
+        "value": "IMDB",
+        "cited_turn_ids": [
+          "S1-T1"
+        ],
+        "text": "The current settled training dataset is IMDB, as indicated by Wei's statement at S1-T1 with status [active]. Priya's claim of SST-2 at S2-T1 is contested and not settled."
+      },
+      "corrected_decision": {
+        "status": "conflict",
+        "value": null,
+        "cited_turn_ids": [
+          "S1-T1",
+          "S2-T1"
+        ],
+        "text": "The training dataset is disputed: the stored IMDB decision and unresolved SST-2 claim conflict."
+      }
+    },
+    {
+      "id": "tracemem-no-versions_active_overrides_dispute",
+      "scenario_id": "pilot-02",
+      "project_id": "review-sentiment",
+      "question_id": "dataset.train@S2",
+      "after": "S2",
+      "provenance": {
+        "split": "dev",
+        "run": "20261019T033733Z-evidence-precision-rerun",
+        "system": "tracemem-no-versions",
+        "model": "openai/gpt-4.1-mini",
+        "sequence": 32,
+        "request_hash": "974608b9c962717b2d4095b98b70ba49806de0574c9e16712d36eed955c736b1",
+        "scope": "Saved real request/reply and operations through the checkpoint. Only the supplied rendered context reaches the answerer. Scripted correction is an offline test, not a live-model prediction."
+      },
+      "glosses": {
+        "S1-T1": "We'll train on the IMDB reviews.",
+        "S1-T2": "Makes sense, it's the standard benchmark.",
+        "S1-T3": "Priya, can you audit 200 labels from the training set?",
+        "S1-T4": "Will do, I'll start this week.",
+        "S2-T1": "Wait, I thought we agreed on SST-2 last time, not IMDB.",
+        "S2-T2": "Hmm, I remember IMDB. Let's check the notes before Friday.",
+        "S2-T3": "The label audit is blocked until we know which dataset it is.",
+        "S2-T4": "Fair. I'll dig out the notes."
+      },
+      "observations": [
+        {
+          "turn_id": "S1-T1",
+          "when": "2026-10-06T10:00:00",
+          "speaker": "Wei"
+        },
+        {
+          "turn_id": "S1-T2",
+          "when": "2026-10-06T10:01:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S1-T3",
+          "when": "2026-10-06T10:02:00",
+          "speaker": "Wei"
+        },
+        {
+          "turn_id": "S1-T4",
+          "when": "2026-10-06T10:03:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S2-T1",
+          "when": "2026-10-09T11:00:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S2-T2",
+          "when": "2026-10-09T11:01:00",
+          "speaker": "Wei"
+        },
+        {
+          "turn_id": "S2-T3",
+          "when": "2026-10-09T11:02:00",
+          "speaker": "Priya"
+        },
+        {
+          "turn_id": "S2-T4",
+          "when": "2026-10-09T11:03:00",
+          "speaker": "Wei"
+        }
+      ],
+      "prefix_operations": [
+        {
+          "op_id": "op:dataset.train@S1-T1",
+          "op": "ADD",
+          "turn_id": "S1-T1",
+          "item": "dataset.train",
+          "value": "IMDB",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "reason": null,
+          "rationale": "Wei commits to training on the IMDB reviews, establishing a settled choice for dataset.train as IMDB.",
+          "candidate_id": "dataset.train@S1-T1"
+        },
+        {
+          "op_id": "op:task.label_audit@S1-T3",
+          "op": "ADD",
+          "turn_id": "S1-T3",
+          "item": "task.label_audit",
+          "value": "open",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "reason": null,
+          "rationale": "Wei directly requests Priya to audit 200 labels, committing to opening the task.",
+          "candidate_id": "task.label_audit@S1-T3"
+        },
+        {
+          "op_id": "op:dataset.train@S2-T1",
+          "op": "FLAG",
+          "turn_id": "S2-T1",
+          "item": "dataset.train",
+          "value": "SST-2",
+          "add_as": null,
+          "targets": [
+            "dataset.train@S1-T1"
+          ],
+          "source_turn_ids": [
+            "S2-T1"
+          ],
+          "reason": null,
+          "rationale": "Priya challenges the current active value 'IMDB' by stating 'I thought we agreed on SST-2 last time, not IMDB.' This disputes the settled choice without confirming a new one.",
+          "candidate_id": "dataset.train@S2-T1"
+        },
+        {
+          "op_id": "op:task.label_audit@S2-T3",
+          "op": "SUPERSEDE",
+          "turn_id": "S2-T3",
+          "item": "task.label_audit",
+          "value": "blocked",
+          "add_as": null,
+          "targets": [
+            "task.label_audit@S1-T3"
+          ],
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "reason": null,
+          "rationale": "Priya states 'The label audit is blocked until we know which dataset it is,' indicating a settled update to the task status as blocked, replacing the previous active status open.",
+          "candidate_id": "task.label_audit@S2-T3"
+        }
+      ],
+      "records": [
+        {
+          "record_id": "dataset.train@S1-T1",
+          "project_id": "review-sentiment",
+          "item": "dataset.train",
+          "value": "IMDB",
+          "status": "active",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "created_turn": "S1-T1",
+          "created_at": "2026-10-06T10:00:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "dataset.train@S2-T1",
+          "project_id": "review-sentiment",
+          "item": "dataset.train",
+          "value": "SST-2",
+          "status": "contested",
+          "source_turn_ids": [
+            "S2-T1"
+          ],
+          "speakers": [
+            "Priya"
+          ],
+          "created_turn": "S2-T1",
+          "created_at": "2026-10-09T11:00:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "task.label_audit@S2-T3",
+          "project_id": "review-sentiment",
+          "item": "task.label_audit",
+          "value": "blocked",
+          "status": "active",
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "speakers": [
+            "Priya"
+          ],
+          "created_turn": "S2-T3",
+          "created_at": "2026-10-09T11:02:00",
+          "supersedes": [],
+          "reason": null
+        }
+      ],
+      "request": {
+        "question": {
+          "text": "Which dataset are we training on?",
+          "kind": "current",
+          "session": null
+        },
+        "context": "S1-T1 Wei: dataset.train = IMDB [active] | sources=S1-T1\nS2-T1 Priya: dataset.train = SST-2 [contested] | sources=S2-T1\nS2-T3 Priya: task.label_audit = blocked [active] | sources=S2-T3",
+        "allowed_source_turn_ids": [
+          "S1-T1",
+          "S2-T1",
+          "S2-T3"
+        ]
+      },
+      "observed_decision": {
+        "status": "answer",
+        "value": "IMDB",
+        "cited_turn_ids": [
+          "S1-T1"
+        ],
+        "text": "The current settled training dataset is IMDB, as indicated by Wei's statement at S1-T1. Priya's suggestion of SST-2 is contested and not settled."
+      },
+      "corrected_decision": {
+        "status": "conflict",
+        "value": null,
+        "cited_turn_ids": [
+          "S1-T1",
+          "S2-T1"
+        ],
+        "text": "The training dataset is disputed: the stored IMDB decision and unresolved SST-2 claim conflict."
+      }
+    }
+  ]
+}

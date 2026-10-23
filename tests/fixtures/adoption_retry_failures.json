@@ -1,0 +1,1077 @@
+{
+  "provenance": {
+    "split": "dev",
+    "run_id": "20261019T033733Z-evidence-precision-rerun",
+    "model": "openai/gpt-4.1-mini",
+    "description": "Four synthetic development sequences captured from real model requests and applied operations. Each first response selected an adoption but over-cited sources; its retry dropped the proposal target and origin and left the proposal open. Exact original feedback and both replies are retained. Corrections are computed from development replay in tests, not asserted to be live model predictions."
+  },
+  "resolver_captures": [
+    {
+      "case_id": "tracemem-controlled:model.sentiment@S3-T2",
+      "kind": "source_retry_drops_selected_adoption",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-01",
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T1": "Let's go with BERT for the sentiment classifier. It's the safe choice.",
+        "S2-T3": "Maybe we could try DistilBERT? It might be faster.",
+        "S3-T2": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:model.sentiment@S1-T1",
+          "op": "ADD",
+          "turn_id": "S1-T1",
+          "item": "model.sentiment",
+          "value": "BERT",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "reason": null,
+          "rationale": "The speaker commits to using BERT as the sentiment classifier, stating 'Let's go with BERT for the sentiment classifier. It's the safe choice.', which is a settled choice with no active record present.",
+          "candidate_id": "model.sentiment@S1-T1"
+        },
+        {
+          "op_id": "op:model.sentiment@S2-T3",
+          "op": "ADD",
+          "turn_id": "S2-T3",
+          "item": "model.sentiment",
+          "value": "DistilBERT",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "reason": null,
+          "rationale": "Arun suggests trying DistilBERT as a possible alternative, indicating a proposal rather than a settled decision.",
+          "candidate_id": "model.sentiment@S2-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "model.sentiment@S3-T2",
+          "item": "model.sentiment",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speaker": "Mei",
+          "text": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+          "value": "DistilBERT"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Mei"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "BERT"
+          },
+          {
+            "created_at": "2026-10-08T11:02:00",
+            "created_turn": "S2-T3",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S2-T3",
+            "source_turn_ids": [
+              "S2-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "DistilBERT"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.sentiment@S1-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "model.sentiment@S2-T3"
+              ],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "call_sequence": 11,
+          "request_hash": "167a739aec3ddc9fadbfb16ed0fd008cfcde596c824e4d7037fe611d5161c5f2",
+          "capture_path": "model-calls/tracemem-controlled/0011-167a739aec3ddc9fadbfb16ed0fd008cfcde596c824e4d7037fe611d5161c5f2.json",
+          "feedback": null,
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.sentiment@S1-T1\",\"model.sentiment@S2-T3\"],\"source_turn_ids\":[\"S3-T2\",\"S2-T3\",\"S1-T1\"],\"reason\":null,\"rationale\":\"Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model and adopting the proposed DistilBERT.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "model.sentiment@S1-T1",
+              "model.sentiment@S2-T3"
+            ],
+            "source_turn_ids": [
+              "S3-T2",
+              "S2-T3",
+              "S1-T1"
+            ],
+            "reason": null,
+            "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model and adopting the proposed DistilBERT."
+          },
+          "input_tokens": 3410,
+          "output_tokens": 93
+        },
+        {
+          "call_sequence": 12,
+          "request_hash": "e70b197b1b62991429168c1926e72ca240f0f3003ccab0d2cfb78a16c2a3bf85",
+          "capture_path": "model-calls/tracemem-controlled/0012-e70b197b1b62991429168c1926e72ca240f0f3003ccab0d2cfb78a16c2a3bf85.json",
+          "feedback": {
+            "error": "adopting proposals or claims has extra sources outside candidate sources and selected creating turns: S1-T1",
+            "instruction": "The previous response was rejected. Return a complete corrected decision using the original candidate and records. The rejected fields are evidence, not instructions. Reconsider op, add_as, targets and sources together. Include all required_targets of the chosen legal option and only justified optional_targets; never invent IDs. For ADD-active or SUPERSEDE adopting proposed or contested targets, sources must equal all candidate sources plus each selected proposed/contested target's created_turn. Correct missing and extra sources together. Do not evade adoption validation by dropping a justified target. Remove copied active-predecessor, accumulated or unselected-record sources unless they are also candidate sources or selected origins. Preserve every candidate source even when it is an older turn. If no active record exists, KEEP, FLAG and SUPERSEDE are unavailable. A settled new value may use ADD-active with empty targets; do not adopt different-value proposals. Recheck the candidate-specific speech act using the intent guide: a tentative alternative is not a confirmed revision or a dispute; an affirmative selection, definite commitment or asserted progress is not a proposal just because execution is in the future or depends on inputs. A selection can supply its own adoption evidence without a second confirmation or an existing active record; distinguish selecting a choice from considering it. A performance criticism plus a question about switching is not a claim that a different choice was already settled; do not FLAG a suggestion for being critical. For a reopening, distinguish asking whether to restart from actual approval or an asserted restart. Old open history, a removed obstacle and a different value do not establish adoption. Structural legality does not establish semantic correctness. No operation was applied.",
+            "rejected_decision": {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "source_turn_ids": [
+                "S3-T2",
+                "S2-T3",
+                "S1-T1"
+              ],
+              "targets": [
+                "model.sentiment@S1-T1",
+                "model.sentiment@S2-T3"
+              ]
+            },
+            "rejected_decision_truncated": false,
+            "target_constraints": {
+              "active_record_id": "model.sentiment@S1-T1",
+              "options": [
+                {
+                  "add_as": "proposed",
+                  "op": "ADD",
+                  "optional_targets": [],
+                  "required_targets": []
+                },
+                {
+                  "add_as": null,
+                  "op": "SUPERSEDE",
+                  "optional_targets": [
+                    "model.sentiment@S2-T3"
+                  ],
+                  "required_targets": [
+                    "model.sentiment@S1-T1"
+                  ]
+                },
+                {
+                  "add_as": null,
+                  "op": "FLAG",
+                  "optional_targets": [],
+                  "required_targets": [
+                    "model.sentiment@S1-T1"
+                  ]
+                }
+              ]
+            },
+            "type": "resolver_validation_feedback"
+          },
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.sentiment@S1-T1\"],\"source_turn_ids\":[\"S3-T2\"] ,\"reason\":null,\"rationale\":\"Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model without adopting the proposed DistilBERT record by Arun.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "model.sentiment@S1-T1"
+            ],
+            "source_turn_ids": [
+              "S3-T2"
+            ],
+            "reason": null,
+            "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model without adopting the proposed DistilBERT record by Arun."
+          },
+          "input_tokens": 3979,
+          "output_tokens": 77
+        }
+      ],
+      "observed_applied_operation": {
+        "op_id": "op:model.sentiment@S3-T2",
+        "op": "SUPERSEDE",
+        "turn_id": "S3-T2",
+        "item": "model.sentiment",
+        "value": "DistilBERT",
+        "add_as": null,
+        "targets": [
+          "model.sentiment@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model without adopting the proposed DistilBERT record by Arun.",
+        "candidate_id": "model.sentiment@S3-T2"
+      },
+      "observed_errors": [
+        "wrong_targets",
+        "wrong_sources",
+        "wrong_state"
+      ],
+      "observed_state": [
+        "DistilBERT",
+        false,
+        [
+          "DistilBERT"
+        ],
+        []
+      ]
+    },
+    {
+      "case_id": "tracemem-controlled:metric.primary@S3-T4",
+      "kind": "source_retry_drops_selected_adoption",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-01",
+      "observation": {
+        "turn_id": "S3-T4",
+        "when": "2026-10-12T12:03:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T2": "Sounds good. What do we report, plain accuracy?",
+        "S1-T3": "Yes, accuracy as the main metric for now.",
+        "S3-T3": "With an 80/20 split, accuracy will flatter us. Should we use macro-F1?",
+        "S3-T4": "Agreed, macro-F1 is the primary metric from now on."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:metric.primary@S1-T2",
+          "op": "ADD",
+          "turn_id": "S1-T2",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "The speaker is suggesting 'accuracy' as the primary metric and asking for confirmation, indicating a proposal rather than a settled decision.",
+          "candidate_id": "metric.primary@S1-T2"
+        },
+        {
+          "op_id": "op:metric.primary@S1-T3",
+          "op": "ADD",
+          "turn_id": "S1-T3",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "active",
+          "targets": [
+            "metric.primary@S1-T2"
+          ],
+          "source_turn_ids": [
+            "S1-T3",
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "Mei explicitly commits to using accuracy as the main metric now, confirming the earlier proposal by Arun.",
+          "candidate_id": "metric.primary@S1-T3"
+        },
+        {
+          "op_id": "op:metric.primary@S3-T3",
+          "op": "ADD",
+          "turn_id": "S3-T3",
+          "item": "metric.primary",
+          "value": "macro-F1",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S3-T3"
+          ],
+          "reason": null,
+          "rationale": "The speaker suggests considering macro-F1 instead of accuracy, phrased as a question 'Should we use macro-F1?', indicating a proposal rather than a settled decision.",
+          "candidate_id": "metric.primary@S3-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "metric.primary@S3-T4",
+          "item": "metric.primary",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T4"
+          ],
+          "speaker": "Mei",
+          "text": "Agreed, macro-F1 is the primary metric from now on.",
+          "value": "macro-F1"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:01:00",
+            "created_turn": "S1-T2",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S1-T2",
+            "source_turn_ids": [
+              "S1-T2"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "superseded",
+            "supersedes": [],
+            "value": "accuracy"
+          },
+          {
+            "created_at": "2026-10-05T10:02:00",
+            "created_turn": "S1-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S1-T3",
+            "source_turn_ids": [
+              "S1-T3",
+              "S1-T2"
+            ],
+            "speakers": [
+              "Mei",
+              "Arun"
+            ],
+            "status": "active",
+            "supersedes": [
+              "metric.primary@S1-T2"
+            ],
+            "value": "accuracy"
+          },
+          {
+            "created_at": "2026-10-12T12:02:00",
+            "created_turn": "S3-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S3-T3",
+            "source_turn_ids": [
+              "S3-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "macro-F1"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "metric.primary@S1-T3",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "metric.primary@S3-T3"
+              ],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            }
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "call_sequence": 14,
+          "request_hash": "f5eb3a5d558d3db6311645107df47385e7be69a1becfc750ebf7c065eb22debd",
+          "capture_path": "model-calls/tracemem-controlled/0014-f5eb3a5d558d3db6311645107df47385e7be69a1becfc750ebf7c065eb22debd.json",
+          "feedback": null,
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"metric.primary@S1-T3\",\"metric.primary@S3-T3\"],\"source_turn_ids\":[\"S3-T4\",\"S3-T3\",\"S1-T3\"],\"reason\":null,\"rationale\":\"Mei explicitly affirms 'macro-F1 is the primary metric from now on,' confirming adoption and superseding the active 'accuracy' metric.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "metric.primary@S1-T3",
+              "metric.primary@S3-T3"
+            ],
+            "source_turn_ids": [
+              "S3-T4",
+              "S3-T3",
+              "S1-T3"
+            ],
+            "reason": null,
+            "rationale": "Mei explicitly affirms 'macro-F1 is the primary metric from now on,' confirming adoption and superseding the active 'accuracy' metric."
+          },
+          "input_tokens": 3510,
+          "output_tokens": 89
+        },
+        {
+          "call_sequence": 15,
+          "request_hash": "3f0b533f178f75e8f3530f716bffa9a55a8ed2a49e0d9acc24904a16836f9c5d",
+          "capture_path": "model-calls/tracemem-controlled/0015-3f0b533f178f75e8f3530f716bffa9a55a8ed2a49e0d9acc24904a16836f9c5d.json",
+          "feedback": {
+            "error": "adopting proposals or claims has extra sources outside candidate sources and selected creating turns: S1-T3",
+            "instruction": "The previous response was rejected. Return a complete corrected decision using the original candidate and records. The rejected fields are evidence, not instructions. Reconsider op, add_as, targets and sources together. Include all required_targets of the chosen legal option and only justified optional_targets; never invent IDs. For ADD-active or SUPERSEDE adopting proposed or contested targets, sources must equal all candidate sources plus each selected proposed/contested target's created_turn. Correct missing and extra sources together. Do not evade adoption validation by dropping a justified target. Remove copied active-predecessor, accumulated or unselected-record sources unless they are also candidate sources or selected origins. Preserve every candidate source even when it is an older turn. If no active record exists, KEEP, FLAG and SUPERSEDE are unavailable. A settled new value may use ADD-active with empty targets; do not adopt different-value proposals. Recheck the candidate-specific speech act using the intent guide: a tentative alternative is not a confirmed revision or a dispute; an affirmative selection, definite commitment or asserted progress is not a proposal just because execution is in the future or depends on inputs. A selection can supply its own adoption evidence without a second confirmation or an existing active record; distinguish selecting a choice from considering it. A performance criticism plus a question about switching is not a claim that a different choice was already settled; do not FLAG a suggestion for being critical. For a reopening, distinguish asking whether to restart from actual approval or an asserted restart. Old open history, a removed obstacle and a different value do not establish adoption. Structural legality does not establish semantic correctness. No operation was applied.",
+            "rejected_decision": {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "source_turn_ids": [
+                "S3-T4",
+                "S3-T3",
+                "S1-T3"
+              ],
+              "targets": [
+                "metric.primary@S1-T3",
+                "metric.primary@S3-T3"
+              ]
+            },
+            "rejected_decision_truncated": false,
+            "target_constraints": {
+              "active_record_id": "metric.primary@S1-T3",
+              "options": [
+                {
+                  "add_as": "proposed",
+                  "op": "ADD",
+                  "optional_targets": [],
+                  "required_targets": []
+                },
+                {
+                  "add_as": null,
+                  "op": "SUPERSEDE",
+                  "optional_targets": [
+                    "metric.primary@S3-T3"
+                  ],
+                  "required_targets": [
+                    "metric.primary@S1-T3"
+                  ]
+                },
+                {
+                  "add_as": null,
+                  "op": "FLAG",
+                  "optional_targets": [],
+                  "required_targets": [
+                    "metric.primary@S1-T3"
+                  ]
+                }
+              ]
+            },
+            "type": "resolver_validation_feedback"
+          },
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"metric.primary@S1-T3\"],\"source_turn_ids\":[\"S3-T4\",\"S1-T3\"],\"reason\":null,\"rationale\":\"Mei's statement 'Agreed, macro-F1 is the primary metric from now on.' is an affirmative selection adopting macro-F1 as the primary metric, superseding the current active record metric.primary@S1-T3 with value accuracy. The proposal metric.primary@S3-T3 is not adopted, so it is not targeted, and its source turn S3-T3 is excluded from source_turn_ids.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "metric.primary@S1-T3"
+            ],
+            "source_turn_ids": [
+              "S3-T4",
+              "S1-T3"
+            ],
+            "reason": null,
+            "rationale": "Mei's statement 'Agreed, macro-F1 is the primary metric from now on.' is an affirmative selection adopting macro-F1 as the primary metric, superseding the current active record metric.primary@S1-T3 with value accuracy. The proposal metric.primary@S3-T3 is not adopted, so it is not targeted, and its source turn S3-T3 is excluded from source_turn_ids."
+          },
+          "input_tokens": 4073,
+          "output_tokens": 130
+        }
+      ],
+      "observed_applied_operation": {
+        "op_id": "op:metric.primary@S3-T4",
+        "op": "SUPERSEDE",
+        "turn_id": "S3-T4",
+        "item": "metric.primary",
+        "value": "macro-F1",
+        "add_as": null,
+        "targets": [
+          "metric.primary@S1-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T4",
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "Mei's statement 'Agreed, macro-F1 is the primary metric from now on.' is an affirmative selection adopting macro-F1 as the primary metric, superseding the current active record metric.primary@S1-T3 with value accuracy. The proposal metric.primary@S3-T3 is not adopted, so it is not targeted, and its source turn S3-T3 is excluded from source_turn_ids.",
+        "candidate_id": "metric.primary@S3-T4"
+      },
+      "observed_errors": [
+        "wrong_targets",
+        "wrong_sources",
+        "wrong_state"
+      ],
+      "observed_state": [
+        "macro-F1",
+        false,
+        [
+          "macro-F1"
+        ],
+        []
+      ]
+    },
+    {
+      "case_id": "tracemem-no-versions:model.sentiment@S3-T2",
+      "kind": "source_retry_drops_selected_adoption",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-01",
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T1": "Let's go with BERT for the sentiment classifier. It's the safe choice.",
+        "S2-T3": "Maybe we could try DistilBERT? It might be faster.",
+        "S3-T2": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:model.sentiment@S1-T1",
+          "op": "ADD",
+          "turn_id": "S1-T1",
+          "item": "model.sentiment",
+          "value": "BERT",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "reason": null,
+          "rationale": "The speaker commits to using BERT as the sentiment classifier with 'Let's go with BERT for the sentiment classifier. It's the safe choice.', indicating a settled choice without any active record present.",
+          "candidate_id": "model.sentiment@S1-T1"
+        },
+        {
+          "op_id": "op:model.sentiment@S2-T3",
+          "op": "ADD",
+          "turn_id": "S2-T3",
+          "item": "model.sentiment",
+          "value": "DistilBERT",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "reason": null,
+          "rationale": "Arun suggests trying DistilBERT as a possible alternative, indicating a proposal rather than a settled decision.",
+          "candidate_id": "model.sentiment@S2-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "model.sentiment@S3-T2",
+          "item": "model.sentiment",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speaker": "Mei",
+          "text": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+          "value": "DistilBERT"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Mei"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "BERT"
+          },
+          {
+            "created_at": "2026-10-08T11:02:00",
+            "created_turn": "S2-T3",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S2-T3",
+            "source_turn_ids": [
+              "S2-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "DistilBERT"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.sentiment@S1-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "model.sentiment@S2-T3"
+              ],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "call_sequence": 11,
+          "request_hash": "167a739aec3ddc9fadbfb16ed0fd008cfcde596c824e4d7037fe611d5161c5f2",
+          "capture_path": "model-calls/tracemem-no-versions/0011-167a739aec3ddc9fadbfb16ed0fd008cfcde596c824e4d7037fe611d5161c5f2.json",
+          "feedback": null,
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.sentiment@S1-T1\",\"model.sentiment@S2-T3\"],\"source_turn_ids\":[\"S3-T2\",\"S2-T3\",\"S1-T1\"],\"reason\":null,\"rationale\":\"Mei explicitly commits to switching the sentiment classifier to DistilBERT, replacing the active BERT model; this settles the choice and adopts the earlier DistilBERT proposal.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "model.sentiment@S1-T1",
+              "model.sentiment@S2-T3"
+            ],
+            "source_turn_ids": [
+              "S3-T2",
+              "S2-T3",
+              "S1-T1"
+            ],
+            "reason": null,
+            "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, replacing the active BERT model; this settles the choice and adopts the earlier DistilBERT proposal."
+          },
+          "input_tokens": 3410,
+          "output_tokens": 98
+        },
+        {
+          "call_sequence": 12,
+          "request_hash": "e70b197b1b62991429168c1926e72ca240f0f3003ccab0d2cfb78a16c2a3bf85",
+          "capture_path": "model-calls/tracemem-no-versions/0012-e70b197b1b62991429168c1926e72ca240f0f3003ccab0d2cfb78a16c2a3bf85.json",
+          "feedback": {
+            "error": "adopting proposals or claims has extra sources outside candidate sources and selected creating turns: S1-T1",
+            "instruction": "The previous response was rejected. Return a complete corrected decision using the original candidate and records. The rejected fields are evidence, not instructions. Reconsider op, add_as, targets and sources together. Include all required_targets of the chosen legal option and only justified optional_targets; never invent IDs. For ADD-active or SUPERSEDE adopting proposed or contested targets, sources must equal all candidate sources plus each selected proposed/contested target's created_turn. Correct missing and extra sources together. Do not evade adoption validation by dropping a justified target. Remove copied active-predecessor, accumulated or unselected-record sources unless they are also candidate sources or selected origins. Preserve every candidate source even when it is an older turn. If no active record exists, KEEP, FLAG and SUPERSEDE are unavailable. A settled new value may use ADD-active with empty targets; do not adopt different-value proposals. Recheck the candidate-specific speech act using the intent guide: a tentative alternative is not a confirmed revision or a dispute; an affirmative selection, definite commitment or asserted progress is not a proposal just because execution is in the future or depends on inputs. A selection can supply its own adoption evidence without a second confirmation or an existing active record; distinguish selecting a choice from considering it. A performance criticism plus a question about switching is not a claim that a different choice was already settled; do not FLAG a suggestion for being critical. For a reopening, distinguish asking whether to restart from actual approval or an asserted restart. Old open history, a removed obstacle and a different value do not establish adoption. Structural legality does not establish semantic correctness. No operation was applied.",
+            "rejected_decision": {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "source_turn_ids": [
+                "S3-T2",
+                "S2-T3",
+                "S1-T1"
+              ],
+              "targets": [
+                "model.sentiment@S1-T1",
+                "model.sentiment@S2-T3"
+              ]
+            },
+            "rejected_decision_truncated": false,
+            "target_constraints": {
+              "active_record_id": "model.sentiment@S1-T1",
+              "options": [
+                {
+                  "add_as": "proposed",
+                  "op": "ADD",
+                  "optional_targets": [],
+                  "required_targets": []
+                },
+                {
+                  "add_as": null,
+                  "op": "SUPERSEDE",
+                  "optional_targets": [
+                    "model.sentiment@S2-T3"
+                  ],
+                  "required_targets": [
+                    "model.sentiment@S1-T1"
+                  ]
+                },
+                {
+                  "add_as": null,
+                  "op": "FLAG",
+                  "optional_targets": [],
+                  "required_targets": [
+                    "model.sentiment@S1-T1"
+                  ]
+                }
+              ]
+            },
+            "type": "resolver_validation_feedback"
+          },
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.sentiment@S1-T1\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":null,\"rationale\":\"Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model without adopting the proposed DistilBERT record.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "model.sentiment@S1-T1"
+            ],
+            "source_turn_ids": [
+              "S3-T2"
+            ],
+            "reason": null,
+            "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model without adopting the proposed DistilBERT record."
+          },
+          "input_tokens": 3979,
+          "output_tokens": 75
+        }
+      ],
+      "observed_applied_operation": {
+        "op_id": "op:model.sentiment@S3-T2",
+        "op": "SUPERSEDE",
+        "turn_id": "S3-T2",
+        "item": "model.sentiment",
+        "value": "DistilBERT",
+        "add_as": null,
+        "targets": [
+          "model.sentiment@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, superseding the active BERT model without adopting the proposed DistilBERT record.",
+        "candidate_id": "model.sentiment@S3-T2"
+      },
+      "observed_errors": [
+        "wrong_targets",
+        "wrong_sources",
+        "wrong_state"
+      ],
+      "observed_state": [
+        "DistilBERT",
+        false,
+        [
+          "DistilBERT"
+        ],
+        []
+      ]
+    },
+    {
+      "case_id": "tracemem-no-versions:metric.primary@S3-T4",
+      "kind": "source_retry_drops_selected_adoption",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-01",
+      "observation": {
+        "turn_id": "S3-T4",
+        "when": "2026-10-12T12:03:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T2": "Sounds good. What do we report, plain accuracy?",
+        "S1-T3": "Yes, accuracy as the main metric for now.",
+        "S3-T3": "With an 80/20 split, accuracy will flatter us. Should we use macro-F1?",
+        "S3-T4": "Agreed, macro-F1 is the primary metric from now on."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:metric.primary@S1-T2",
+          "op": "ADD",
+          "turn_id": "S1-T2",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "The speaker is suggesting 'accuracy' as the primary metric and asking for confirmation, indicating a proposal rather than a settled decision.",
+          "candidate_id": "metric.primary@S1-T2"
+        },
+        {
+          "op_id": "op:metric.primary@S1-T3",
+          "op": "ADD",
+          "turn_id": "S1-T3",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "active",
+          "targets": [
+            "metric.primary@S1-T2"
+          ],
+          "source_turn_ids": [
+            "S1-T3",
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "Mei explicitly commits to using accuracy as the main metric now, confirming the earlier proposal by Arun.",
+          "candidate_id": "metric.primary@S1-T3"
+        },
+        {
+          "op_id": "op:metric.primary@S3-T3",
+          "op": "ADD",
+          "turn_id": "S3-T3",
+          "item": "metric.primary",
+          "value": "macro-F1",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S3-T3"
+          ],
+          "reason": "Arun suggests considering macro-F1 instead of accuracy due to data split, posing it as a question.",
+          "rationale": "The candidate proposes using macro-F1, asking 'Should we use macro-F1?', indicating a suggestion rather than a settled decision.",
+          "candidate_id": "metric.primary@S3-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "metric.primary@S3-T4",
+          "item": "metric.primary",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T4"
+          ],
+          "speaker": "Mei",
+          "text": "Agreed, macro-F1 is the primary metric from now on.",
+          "value": "macro-F1"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:02:00",
+            "created_turn": "S1-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S1-T3",
+            "source_turn_ids": [
+              "S1-T3",
+              "S1-T2"
+            ],
+            "speakers": [
+              "Mei",
+              "Arun"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "accuracy"
+          },
+          {
+            "created_at": "2026-10-12T12:02:00",
+            "created_turn": "S3-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": "Arun suggests considering macro-F1 instead of accuracy due to data split, posing it as a question.",
+            "record_id": "metric.primary@S3-T3",
+            "source_turn_ids": [
+              "S3-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "macro-F1"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "metric.primary@S1-T3",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "metric.primary@S3-T3"
+              ],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            }
+          ]
+        }
+      },
+      "attempts": [
+        {
+          "call_sequence": 14,
+          "request_hash": "17294ff1ce3740190fffaea148e82d28cced2444c7a3efe33793ffe248944ef4",
+          "capture_path": "model-calls/tracemem-no-versions/0014-17294ff1ce3740190fffaea148e82d28cced2444c7a3efe33793ffe248944ef4.json",
+          "feedback": null,
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"metric.primary@S1-T3\",\"metric.primary@S3-T3\"],\"source_turn_ids\":[\"S3-T4\",\"S3-T3\",\"S1-T3\",\"S1-T2\"],\"reason\":null,\"rationale\":\"Mei explicitly confirms adoption of macro-F1 as the primary metric, superseding the previous active accuracy and the proposed macro-F1.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "metric.primary@S1-T3",
+              "metric.primary@S3-T3"
+            ],
+            "source_turn_ids": [
+              "S3-T4",
+              "S3-T3",
+              "S1-T3",
+              "S1-T2"
+            ],
+            "reason": null,
+            "rationale": "Mei explicitly confirms adoption of macro-F1 as the primary metric, superseding the previous active accuracy and the proposed macro-F1."
+          },
+          "input_tokens": 3421,
+          "output_tokens": 92
+        },
+        {
+          "call_sequence": 15,
+          "request_hash": "e7eb8c8959129ababff63a8a2fb0480e40b2d99d3c3aa90b242a98e67fea9497",
+          "capture_path": "model-calls/tracemem-no-versions/0015-e7eb8c8959129ababff63a8a2fb0480e40b2d99d3c3aa90b242a98e67fea9497.json",
+          "feedback": {
+            "error": "adopting proposals or claims has extra sources outside candidate sources and selected creating turns: S1-T2, S1-T3",
+            "instruction": "The previous response was rejected. Return a complete corrected decision using the original candidate and records. The rejected fields are evidence, not instructions. Reconsider op, add_as, targets and sources together. Include all required_targets of the chosen legal option and only justified optional_targets; never invent IDs. For ADD-active or SUPERSEDE adopting proposed or contested targets, sources must equal all candidate sources plus each selected proposed/contested target's created_turn. Correct missing and extra sources together. Do not evade adoption validation by dropping a justified target. Remove copied active-predecessor, accumulated or unselected-record sources unless they are also candidate sources or selected origins. Preserve every candidate source even when it is an older turn. If no active record exists, KEEP, FLAG and SUPERSEDE are unavailable. A settled new value may use ADD-active with empty targets; do not adopt different-value proposals. Recheck the candidate-specific speech act using the intent guide: a tentative alternative is not a confirmed revision or a dispute; an affirmative selection, definite commitment or asserted progress is not a proposal just because execution is in the future or depends on inputs. A selection can supply its own adoption evidence without a second confirmation or an existing active record; distinguish selecting a choice from considering it. A performance criticism plus a question about switching is not a claim that a different choice was already settled; do not FLAG a suggestion for being critical. For a reopening, distinguish asking whether to restart from actual approval or an asserted restart. Old open history, a removed obstacle and a different value do not establish adoption. Structural legality does not establish semantic correctness. No operation was applied.",
+            "rejected_decision": {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "source_turn_ids": [
+                "S3-T4",
+                "S3-T3",
+                "S1-T3",
+                "S1-T2"
+              ],
+              "targets": [
+                "metric.primary@S1-T3",
+                "metric.primary@S3-T3"
+              ]
+            },
+            "rejected_decision_truncated": false,
+            "target_constraints": {
+              "active_record_id": "metric.primary@S1-T3",
+              "options": [
+                {
+                  "add_as": "proposed",
+                  "op": "ADD",
+                  "optional_targets": [],
+                  "required_targets": []
+                },
+                {
+                  "add_as": null,
+                  "op": "SUPERSEDE",
+                  "optional_targets": [
+                    "metric.primary@S3-T3"
+                  ],
+                  "required_targets": [
+                    "metric.primary@S1-T3"
+                  ]
+                },
+                {
+                  "add_as": null,
+                  "op": "FLAG",
+                  "optional_targets": [],
+                  "required_targets": [
+                    "metric.primary@S1-T3"
+                  ]
+                }
+              ]
+            },
+            "type": "resolver_validation_feedback"
+          },
+          "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"metric.primary@S1-T3\"],\"source_turn_ids\":[\"S3-T4\",\"S1-T3\"],\"reason\":null,\"rationale\":\"The speaker Mei explicitly commits to adopting 'macro-F1' as the primary metric, superseding the previous active value 'accuracy'. The proposal 'macro-F1' from S3-T3 is not adopted as a target because the candidate's commitment is direct and does not rely on the proposal. Only the active record is targeted for supersession, and source turns include the candidate's turn and the active record's creation turn, excluding unrelated sources.\"}",
+          "observed_decision": {
+            "op": "SUPERSEDE",
+            "add_as": null,
+            "targets": [
+              "metric.primary@S1-T3"
+            ],
+            "source_turn_ids": [
+              "S3-T4",
+              "S1-T3"
+            ],
+            "reason": null,
+            "rationale": "The speaker Mei explicitly commits to adopting 'macro-F1' as the primary metric, superseding the previous active value 'accuracy'. The proposal 'macro-F1' from S3-T3 is not adopted as a target because the candidate's commitment is direct and does not rely on the proposal. Only the active record is targeted for supersession, and source turns include the candidate's turn and the active record's creation turn, excluding unrelated sources."
+          },
+          "input_tokens": 3995,
+          "output_tokens": 136
+        }
+      ],
+      "observed_applied_operation": {
+        "op_id": "op:metric.primary@S3-T4",
+        "op": "SUPERSEDE",
+        "turn_id": "S3-T4",
+        "item": "metric.primary",
+        "value": "macro-F1",
+        "add_as": null,
+        "targets": [
+          "metric.primary@S1-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T4",
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "The speaker Mei explicitly commits to adopting 'macro-F1' as the primary metric, superseding the previous active value 'accuracy'. The proposal 'macro-F1' from S3-T3 is not adopted as a target because the candidate's commitment is direct and does not rely on the proposal. Only the active record is targeted for supersession, and source turns include the candidate's turn and the active record's creation turn, excluding unrelated sources.",
+        "candidate_id": "metric.primary@S3-T4"
+      },
+      "observed_errors": [
+        "wrong_targets",
+        "wrong_sources",
+        "wrong_state"
+      ],
+      "observed_state": [
+        "macro-F1",
+        false,
+        [
+          "macro-F1"
+        ],
+        []
+      ]
+    }
+  ]
+}

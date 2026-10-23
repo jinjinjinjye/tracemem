@@ -209,6 +209,13 @@ The random seed is fixed, so the same runs always give the same intervals. `trac
 
 `tracemem report` compares only like with like. It refuses to compare runs whose split, condition, item vocabulary setting or scenario files differ, as recorded in each run's `manifest.json`. A changed scenario file counts as different, because the manifest stores a hash of each file. `--allow-mixed` overrides the check.
 
+For the [controlled memory comparison](memory-comparison.md), the manifest also
+stores shared model/reader/prompt settings and candidate hashes. Those must match
+even with `--allow-mixed`; mixing a controlled run with an unmarked legacy run is
+also refused. The report uses the same question-level metrics for all three arms.
+Mem0's native actions are exported separately and are not assigned TraceMem's
+five-label operation F1. Write and answer costs appear separately in `usage.json`.
+
 ## 8. Probe systems
 
 Probes are rule-based systems that read the scenario's gold labels instead of understanding the dialogue ([`systems/probes.py`](../src/tracemem/systems/probes.py)). They cost nothing to run and are never baselines; every report marks them "uses gold labels". They answer two questions before anyone spends money on a language model. Does the scorer work? Can the benchmark tell TraceMem from a recency rule at all?

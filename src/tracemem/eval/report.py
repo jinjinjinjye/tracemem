@@ -66,7 +66,10 @@ def _metric(name: str, weighting: str):
 def comparison_table(folders: list[str | Path], stratify: bool = True, n: int = 2000,
                      weighting: str = "question", allow_mixed: bool = False) -> str:
     runs = [load_run(folder) for folder in folders]
-    keys = ("split", "condition", "item_vocabulary_given_to_systems", "scenarios")
+    for manifest, _ in runs[1:]:
+        if manifest.get("comparison") != runs[0][0].get("comparison"):
+            raise ValueError("controlled comparison settings or candidate hashes differ; shared inputs and models are required")
+    keys = ("split", "condition", "item_vocabulary_given_to_systems", "scenarios", "comparison")
     if not allow_mixed:
         for manifest, _ in runs[1:]:
             differing = [k for k in keys if manifest.get(k) != runs[0][0].get(k)]

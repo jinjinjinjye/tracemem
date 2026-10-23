@@ -14,9 +14,10 @@ The research question is whether this explicit bookkeeping gives fewer outdated 
 
 ## What exists today
 
-The repository contains the **evaluation scaffold** and a model-backed Resolver
-development system. Extraction, matching, retrieval and answering in that system
-still use stand-ins; end-to-end experiments remain to be implemented.
+The repository contains the **evaluation scaffold**, a model-backed Resolver
+development system and a controlled comparison with classic Mem0 and a current-only
+TraceMem ablation. The comparison shares candidates, model settings and answering;
+production extraction and retrieval remain to be implemented.
 
 | Part | Status | Where |
 |---|---|---|
@@ -30,12 +31,17 @@ still use stand-ins; end-to-end experiments remain to be implemented.
 | TraceMem's pipeline, wired end to end with stand-in components | done | [`src/tracemem/pipeline.py`](src/tracemem/pipeline.py), [`components.py`](src/tracemem/components.py) |
 | Model-backed Resolver, development registration, failure/usage logs | implemented; offline tested | [`docs/resolver.md`](docs/resolver.md) |
 | Resolver operation metrics and error analysis | implemented; gold-candidate condition | [`docs/metrics.md`](docs/metrics.md#9-resolver-operation-metrics-and-error-analysis) |
+| Controlled TraceMem / no versions / Mem0 classic comparison | implemented; offline tested, gold-candidate only | [`docs/memory-comparison.md`](docs/memory-comparison.md) |
 | Real extraction, matching, retrieval and answering components | planned | interfaces in [`docs/interfaces.md`](docs/interfaces.md) |
 | Comparison systems: similarity, similarity + recency, Timeline, full history | planned | [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) |
 | The team's benchmark scenarios | planned | [`docs/benchmark.md`](docs/benchmark.md) |
 | Demo interface | planned | |
 
 The five example scenarios in `benchmark/scenarios/dev/` show the format. They are drafts for the team to review, not part of any result.
+
+For the Resolver review, start with the [integration quickstart](docs/resolver-handoff.md).
+It includes an offline DistilBERT adoption demo, full check commands, the model-client
+boundary and the remaining team integration decisions.
 
 After installing `pip install -e ".[dev,llm]"` and supplying the settings in
 [`.env.example`](.env.example), run the model-backed component diagnostic with
@@ -45,6 +51,13 @@ Offline coverage needs only `.[dev]`; run `pytest` without API credentials.
 Completed gold-candidate runs also save Resolver operation metrics and error cases.
 Inspect them with `tracemem resolver-report runs/<saved-run-folder>`. For an offline
 scorer check, run `pipeline-gold` with `--condition gold_candidates`.
+
+The controlled systems are `tracemem-controlled`, `tracemem-no-versions` and
+`mem0-classic`. Install `.[dev,mem0]` to include the pinned Mem0 1.0.11 SDK, then
+follow [the comparison guide](docs/memory-comparison.md). They use real model
+clients during normal runs; offline tests inject replies and make no provider calls.
+Mem0 native history is included, and reports reject mismatched candidates or model
+settings. These are component experiments, not end-to-end product results.
 
 ## Quick start
 

@@ -16,6 +16,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 llm = ["openai>=1.54,<3"]
+mem0 = ["mem0ai==1.0.11", "openai>=1.54,<3"]
 
 [project.scripts]
 tracemem = "tracemem.cli:main"

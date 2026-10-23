@@ -23,3 +23,12 @@ Never rewrite the substance of an accepted record. In one pull request:
 | Id | Title | Status |
 |---|---|---|
 | 0001 | [Adopt the working agreement](0001-adopt-the-working-agreement.md) | proposed |
+| 0002 | [Record resolver failures](0002-record-resolver-failures.md) | proposed |
+| 0003 | [Score resolver operations against all gold candidates](0003-score-resolver-operations.md) | proposed |
+| 0004 | [Compare controlled TraceMem, current-only memory and classic Mem0](0004-compare-controlled-memory.md) | proposed |
+| 0005 | [Distinguish reopening proposals from settled task transitions](0005-interpret-task-reopening.md) | proposed |
+| 0006 | [Recognize affirmative selections without extra confirmation](0006-recognize-affirmative-selections.md) | proposed |
+| 0007 | [Preserve adoption sources and complete historical answer evidence](0007-preserve-adoption-and-history-evidence.md) | proposed |
+| 0008 | [Constrain adoption sources and check answer evidence roles](0008-constrain-adoption-and-answer-evidence.md) | proposed |
+| 0009 | [Preserve adoption during source retries and prioritise unresolved disputes](0009-preserve-adoption-during-source-retries.md) | proposed |
+| 0010 | [Validate visible answer evidence and restore historical state](0010-validate-reader-evidence-and-historical-state.md) | proposed |

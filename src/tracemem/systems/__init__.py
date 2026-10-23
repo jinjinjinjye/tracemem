@@ -4,6 +4,7 @@ from tracemem.components import GoldExtractor, GoldMatcher, GoldResolver, GoldRe
 from tracemem.pipeline import TraceMemPipeline
 from tracemem.resolver import LLMResolver
 from tracemem.systems.base import MemorySystem, SystemSpec
+from tracemem.systems.comparison import NAMES as COMPARISON_SYSTEMS, factory as comparison_factory
 from tracemem.systems.probes import (
     AlwaysConflictProbe,
     AlwaysNoneProbe,
@@ -43,6 +44,9 @@ REGISTRY: dict[str, SystemSpec] = {
         SystemSpec("pipeline-resolver-dev", _resolver_dev_pipeline, True,
                    "mock: real resolver with gold extraction, matching and retrieval; development diagnostic"),
         SystemSpec("always-none", AlwaysNoneProbe, True, "probe: always says nothing is settled (refusal bound)"),
+        *[SystemSpec(name, comparison_factory(name), False,
+                     "controlled baseline/ablation: shared gold candidates and model; requires gold_candidates")
+          for name in COMPARISON_SYSTEMS],
     ]
 }
 

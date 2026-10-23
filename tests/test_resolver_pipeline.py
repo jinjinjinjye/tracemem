@@ -176,6 +176,43 @@ def test_failed_candidate_does_not_prevent_later_candidate_in_same_turn():
     assert client.calls == 3
 
 
+def test_exhausted_adoption_overcitation_preserves_versions_and_later_acceptance_can_succeed():
+    initial, proposal = f"{ITEM}@S1-T1", f"{ITEM}@S1-T2"
+    bad = reply("S1-T3", op="SUPERSEDE", add_as=None, targets=[initial, proposal],
+                sources=["S1-T3", "S1-T2", "S1-T1"], input_tokens=11, output_tokens=3)
+    system, client = real_pipeline(
+        reply(), reply("S1-T2", add_as="proposed"), bad, bad,
+        reply("S1-T4", op="SUPERSEDE", add_as=None, targets=[initial, proposal],
+              sources=["S1-T4", "S1-T2"]),
+    )
+    observe(system, candidate())
+    observe(system, candidate("S1-T2", "DistilBERT"))
+    before = memory_snapshot(system)
+    failed = candidate("S1-T3", "DistilBERT")
+
+    observe(system, failed)
+
+    assert memory_snapshot(system) == before
+    assert system.log.item_state(ITEM).summary() == ("BERT", False, ("DistilBERT",), ())
+    assert system.candidates()[-1] == failed and system.rejected_operations() == []
+    event = system.resolver_events()[-1]
+    assert (event["status"], event["attempts"], event["operation_id"]) == ("generation_failed", 2, None)
+    assert event["error_type"] == "ResolverError" and "extra sources" in event["error_detail"]
+    assert event["usage"] == {"calls": 2, "input_tokens": 22, "output_tokens": 6}
+
+    observe(system, candidate("S1-T4", "DistilBERT"))
+
+    state = system.log.item_state(ITEM)
+    assert state.active.value == "DistilBERT" and state.previous_active.value == "BERT"
+    assert state.active.source_turn_ids == ["S1-T4", "S1-T2"]
+    assert state.active.supersedes == [initial, proposal] and not state.proposed
+    assert [event["status"] for event in system.resolver_events()] == [
+        "applied", "applied", "generation_failed", "applied"]
+    assert [op.op for op in system.operations()] == ["ADD", "ADD", "SUPERSEDE"]
+    assert system.resolver_usage() == Usage(calls=5, input_tokens=22, output_tokens=6)
+    assert client.calls == 5
+
+
 def test_retry_usage_is_per_candidate_and_cumulative_usage_counts_every_call():
     system, _ = real_pipeline(
         ModelReply(content="broken", input_tokens=10, output_tokens=2),

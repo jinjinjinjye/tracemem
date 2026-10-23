@@ -130,9 +130,24 @@ def test_recoverable_model_failure_and_wrong_labels_remain_in_scoring_denominato
     assert rows[0]["errors"]
     assert json_lines(folder / "resolver_analysis.jsonl") == [row for row in rows if row["errors"]]
     assert 0 < len(json_lines(folder / "resolver_analysis.jsonl")) <= count
-    # Scoring is post-run: model input still contains only candidates and visible records.
+    # Scoring is post-run: only visible evidence and its structural target choices
+    # enter the model request; no gold act or expected answer is exposed.
     assert len(clients) == 1 and clients[0].calls == count + 1
-    assert all(set(payload) == {"candidate", "related"} for payload in clients[0].payloads)
+    assert all(set(payload) == {"candidate", "related", "target_constraints"} for payload in clients[0].payloads)
+    for payload in clients[0].payloads:
+        constraints = payload["target_constraints"]
+        assert set(constraints) == {"active_record_id", "options"}
+        # This deliberately bad client only proposes, so it never creates an active
+        # record, even where the benchmark's true act is a confirmed decision.
+        assert constraints["active_record_id"] is None
+        assert {(option["op"], option["add_as"]) for option in constraints["options"]} == {
+            ("ADD", "active"), ("ADD", "proposed"),
+        }
+        visible_ids = {record["record_id"] for record in payload["related"]}
+        for option in constraints["options"]:
+            assert set(option) == {"op", "add_as", "required_targets", "optional_targets"}
+            assert option["required_targets"] == []
+            assert set(option["optional_targets"]) <= visible_ids
     assert all("act" not in payload["candidate"] and "expected" not in payload for payload in clients[0].payloads)
 
 

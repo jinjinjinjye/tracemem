@@ -244,6 +244,16 @@ Run it the same way and compare the two saved runs with `tracemem report runs/<f
 
 ## The two conditions
 
+`tracemem-controlled`, `tracemem-no-versions` and `mem0-classic` are registered
+with `uses_gold=False`: their factories receive only `ScenarioMeta`, while the
+harness supplies candidates in the `gold_candidates` condition. They reject
+`end_to_end` rather than silently using an extractor. All three use the same model
+configuration, answerer and memory-context budget; none uses the gold question-item
+lookup. The current-only store deliberately lacks historical reconstruction, so
+it is paired with the all-memory reader instead of `GoldRetriever`. Native Mem0
+actions/history and its exact pinned adapter are described in
+[the controlled comparison guide](memory-comparison.md).
+
 The harness runs a system in one of two conditions, chosen with `--condition`:
 
 - **`end_to_end`** (the default): the system reads the raw turns and runs its own extractor. This measures the whole system.
