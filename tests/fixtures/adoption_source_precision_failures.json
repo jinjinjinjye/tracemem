@@ -1,0 +1,663 @@
+{
+  "provenance": {
+    "split": "dev",
+    "run_id": "20261019T024350Z-resolver-provenance-rerun",
+    "description": "Synthetic development captures copied from saved real model calls and actual applied operations. Prefixes preserve the originally visible state, including old source accumulation. Corrected replies are derived from development replay only inside tests and are not live model predictions."
+  },
+  "resolver_captures": [
+    {
+      "case_id": "tracemem-controlled:model.sentiment@S3-T2",
+      "kind": "copied_predecessor_sources_during_adoption",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-01",
+      "request_hash": "537c1ab1db7effe355bfa9ec1ac2144a95360cdcb0bd91a5dd90ce3e65b78fa0",
+      "call_sequence": 11,
+      "capture_path": "model-calls/tracemem-controlled/0011-537c1ab1db7effe355bfa9ec1ac2144a95360cdcb0bd91a5dd90ce3e65b78fa0.json",
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T1": "Let's go with BERT for the sentiment classifier. It's the safe choice.",
+        "S2-T3": "Maybe we could try DistilBERT? It might be faster.",
+        "S3-T2": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:model.sentiment@S1-T1",
+          "op": "ADD",
+          "turn_id": "S1-T1",
+          "item": "model.sentiment",
+          "value": "BERT",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "reason": null,
+          "rationale": "Speaker Mei commits to using BERT as the sentiment classifier, stating 'Let's go with BERT... It's the safe choice.' This is a settled choice with no active record, so ADD-active is appropriate.",
+          "candidate_id": "model.sentiment@S1-T1"
+        },
+        {
+          "op_id": "op:model.sentiment@S2-T3",
+          "op": "ADD",
+          "turn_id": "S2-T3",
+          "item": "model.sentiment",
+          "value": "DistilBERT",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "reason": null,
+          "rationale": "Arun suggests trying DistilBERT as a possible alternative, indicating a proposal rather than a settled choice.",
+          "candidate_id": "model.sentiment@S2-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "model.sentiment@S3-T2",
+          "item": "model.sentiment",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speaker": "Mei",
+          "text": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+          "value": "DistilBERT"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Mei"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "BERT"
+          },
+          {
+            "created_at": "2026-10-08T11:02:00",
+            "created_turn": "S2-T3",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S2-T3",
+            "source_turn_ids": [
+              "S2-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "DistilBERT"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.sentiment@S1-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "model.sentiment@S2-T3"
+              ],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.sentiment@S1-T1\",\"model.sentiment@S2-T3\"],\"source_turn_ids\":[\"S3-T2\",\"S2-T3\",\"S1-T1\"],\"reason\":null,\"rationale\":\"Mei explicitly commits to switching the sentiment classifier to DistilBERT, adopting the proposed DistilBERT record and superseding the active BERT record.\"}",
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "model.sentiment@S1-T1",
+          "model.sentiment@S2-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T2",
+          "S2-T3",
+          "S1-T1"
+        ],
+        "reason": null,
+        "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, adopting the proposed DistilBERT record and superseding the active BERT record."
+      },
+      "observed_errors": [
+        "wrong_sources"
+      ]
+    },
+    {
+      "case_id": "tracemem-controlled:metric.primary@S3-T4",
+      "kind": "copied_predecessor_sources_during_adoption",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-01",
+      "request_hash": "c0f4a030b4a33828f7a04277b31f2bb370bb4ee3e329d41daf854bf10e57c8f4",
+      "call_sequence": 13,
+      "capture_path": "model-calls/tracemem-controlled/0013-c0f4a030b4a33828f7a04277b31f2bb370bb4ee3e329d41daf854bf10e57c8f4.json",
+      "observation": {
+        "turn_id": "S3-T4",
+        "when": "2026-10-12T12:03:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T2": "Sounds good. What do we report, plain accuracy?",
+        "S1-T3": "Yes, accuracy as the main metric for now.",
+        "S3-T3": "With an 80/20 split, accuracy will flatter us. Should we use macro-F1?",
+        "S3-T4": "Agreed, macro-F1 is the primary metric from now on."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:metric.primary@S1-T2",
+          "op": "ADD",
+          "turn_id": "S1-T2",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "The speaker is suggesting 'accuracy' as the primary metric and asking for confirmation, indicating a proposal rather than a settled decision.",
+          "candidate_id": "metric.primary@S1-T2"
+        },
+        {
+          "op_id": "op:metric.primary@S1-T3",
+          "op": "ADD",
+          "turn_id": "S1-T3",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "active",
+          "targets": [
+            "metric.primary@S1-T2"
+          ],
+          "source_turn_ids": [
+            "S1-T3",
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "Mei explicitly commits to using accuracy as the main metric now, confirming and adopting the earlier proposed record from S1-T2.",
+          "candidate_id": "metric.primary@S1-T3"
+        },
+        {
+          "op_id": "op:metric.primary@S3-T3",
+          "op": "ADD",
+          "turn_id": "S3-T3",
+          "item": "metric.primary",
+          "value": "macro-F1",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S3-T3"
+          ],
+          "reason": null,
+          "rationale": "The speaker suggests considering macro-F1 instead of the current active metric accuracy, phrased as a question 'Should we use macro-F1?', indicating a proposal rather than a settled decision.",
+          "candidate_id": "metric.primary@S3-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "metric.primary@S3-T4",
+          "item": "metric.primary",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T4"
+          ],
+          "speaker": "Mei",
+          "text": "Agreed, macro-F1 is the primary metric from now on.",
+          "value": "macro-F1"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:01:00",
+            "created_turn": "S1-T2",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S1-T2",
+            "source_turn_ids": [
+              "S1-T2"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "superseded",
+            "supersedes": [],
+            "value": "accuracy"
+          },
+          {
+            "created_at": "2026-10-05T10:02:00",
+            "created_turn": "S1-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S1-T3",
+            "source_turn_ids": [
+              "S1-T3",
+              "S1-T2"
+            ],
+            "speakers": [
+              "Mei",
+              "Arun"
+            ],
+            "status": "active",
+            "supersedes": [
+              "metric.primary@S1-T2"
+            ],
+            "value": "accuracy"
+          },
+          {
+            "created_at": "2026-10-12T12:02:00",
+            "created_turn": "S3-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S3-T3",
+            "source_turn_ids": [
+              "S3-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "macro-F1"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "metric.primary@S1-T3",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "metric.primary@S3-T3"
+              ],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            }
+          ]
+        }
+      },
+      "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"metric.primary@S1-T3\",\"metric.primary@S3-T3\"],\"source_turn_ids\":[\"S3-T4\",\"S3-T3\",\"S1-T3\"],\"reason\":null,\"rationale\":\"Mei explicitly affirms 'macro-F1 is the primary metric from now on,' confirming adoption and superseding the active 'accuracy' metric.\"}",
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "metric.primary@S1-T3",
+          "metric.primary@S3-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T4",
+          "S3-T3",
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "Mei explicitly affirms 'macro-F1 is the primary metric from now on,' confirming adoption and superseding the active 'accuracy' metric."
+      },
+      "observed_errors": [
+        "wrong_sources"
+      ]
+    },
+    {
+      "case_id": "tracemem-no-versions:model.sentiment@S3-T2",
+      "kind": "copied_predecessor_sources_during_adoption",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-01",
+      "request_hash": "537c1ab1db7effe355bfa9ec1ac2144a95360cdcb0bd91a5dd90ce3e65b78fa0",
+      "call_sequence": 11,
+      "capture_path": "model-calls/tracemem-no-versions/0011-537c1ab1db7effe355bfa9ec1ac2144a95360cdcb0bd91a5dd90ce3e65b78fa0.json",
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T1": "Let's go with BERT for the sentiment classifier. It's the safe choice.",
+        "S2-T3": "Maybe we could try DistilBERT? It might be faster.",
+        "S3-T2": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:model.sentiment@S1-T1",
+          "op": "ADD",
+          "turn_id": "S1-T1",
+          "item": "model.sentiment",
+          "value": "BERT",
+          "add_as": "active",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "reason": null,
+          "rationale": "Mei commits to using BERT as the sentiment classifier, stating 'Let's go with BERT' as a settled choice.",
+          "candidate_id": "model.sentiment@S1-T1"
+        },
+        {
+          "op_id": "op:model.sentiment@S2-T3",
+          "op": "ADD",
+          "turn_id": "S2-T3",
+          "item": "model.sentiment",
+          "value": "DistilBERT",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "reason": null,
+          "rationale": "Arun suggests trying DistilBERT as a possible alternative, indicating a proposal rather than a settled choice.",
+          "candidate_id": "model.sentiment@S2-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "model.sentiment@S3-T2",
+          "item": "model.sentiment",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speaker": "Mei",
+          "text": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+          "value": "DistilBERT"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Mei"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "BERT"
+          },
+          {
+            "created_at": "2026-10-08T11:02:00",
+            "created_turn": "S2-T3",
+            "item": "model.sentiment",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "model.sentiment@S2-T3",
+            "source_turn_ids": [
+              "S2-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "DistilBERT"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.sentiment@S1-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "model.sentiment@S2-T3"
+              ],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "model.sentiment@S1-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.sentiment@S1-T1\",\"model.sentiment@S2-T3\"],\"source_turn_ids\":[\"S3-T2\",\"S2-T3\",\"S1-T1\"],\"reason\":null,\"rationale\":\"Mei explicitly commits to switching the sentiment classifier to DistilBERT, adopting the proposed DistilBERT and replacing the active BERT model.\"}",
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "model.sentiment@S1-T1",
+          "model.sentiment@S2-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T2",
+          "S2-T3",
+          "S1-T1"
+        ],
+        "reason": null,
+        "rationale": "Mei explicitly commits to switching the sentiment classifier to DistilBERT, adopting the proposed DistilBERT and replacing the active BERT model."
+      },
+      "observed_errors": [
+        "wrong_sources"
+      ]
+    },
+    {
+      "case_id": "tracemem-no-versions:metric.primary@S3-T4",
+      "kind": "copied_predecessor_sources_during_adoption",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-01",
+      "request_hash": "df631782a6e786a9d52512eb5394c4c4d357db3a8579bf2e5b6a2bd0d7798fa4",
+      "call_sequence": 13,
+      "capture_path": "model-calls/tracemem-no-versions/0013-df631782a6e786a9d52512eb5394c4c4d357db3a8579bf2e5b6a2bd0d7798fa4.json",
+      "observation": {
+        "turn_id": "S3-T4",
+        "when": "2026-10-12T12:03:00",
+        "speaker": "Mei"
+      },
+      "turn_glosses": {
+        "S1-T2": "Sounds good. What do we report, plain accuracy?",
+        "S1-T3": "Yes, accuracy as the main metric for now.",
+        "S3-T3": "With an 80/20 split, accuracy will flatter us. Should we use macro-F1?",
+        "S3-T4": "Agreed, macro-F1 is the primary metric from now on."
+      },
+      "prefix_operations": [
+        {
+          "op_id": "op:metric.primary@S1-T2",
+          "op": "ADD",
+          "turn_id": "S1-T2",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "The speaker is suggesting 'accuracy' as the primary metric and asking for confirmation, indicating a proposal rather than a settled decision.",
+          "candidate_id": "metric.primary@S1-T2"
+        },
+        {
+          "op_id": "op:metric.primary@S1-T3",
+          "op": "ADD",
+          "turn_id": "S1-T3",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "add_as": "active",
+          "targets": [
+            "metric.primary@S1-T2"
+          ],
+          "source_turn_ids": [
+            "S1-T3",
+            "S1-T2"
+          ],
+          "reason": null,
+          "rationale": "Mei explicitly commits to using accuracy as the main metric now, confirming and adopting the earlier proposed record from S1-T2.",
+          "candidate_id": "metric.primary@S1-T3"
+        },
+        {
+          "op_id": "op:metric.primary@S3-T3",
+          "op": "ADD",
+          "turn_id": "S3-T3",
+          "item": "metric.primary",
+          "value": "macro-F1",
+          "add_as": "proposed",
+          "targets": [],
+          "source_turn_ids": [
+            "S3-T3"
+          ],
+          "reason": null,
+          "rationale": "The speaker suggests considering macro-F1 instead of accuracy, asking 'Should we use macro-F1?', which is a proposal, not a settled decision.",
+          "candidate_id": "metric.primary@S3-T3"
+        }
+      ],
+      "request": {
+        "candidate": {
+          "candidate_id": "metric.primary@S3-T4",
+          "item": "metric.primary",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S3-T4"
+          ],
+          "speaker": "Mei",
+          "text": "Agreed, macro-F1 is the primary metric from now on.",
+          "value": "macro-F1"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:02:00",
+            "created_turn": "S1-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S1-T3",
+            "source_turn_ids": [
+              "S1-T3",
+              "S1-T2"
+            ],
+            "speakers": [
+              "Mei",
+              "Arun"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "accuracy"
+          },
+          {
+            "created_at": "2026-10-12T12:02:00",
+            "created_turn": "S3-T3",
+            "item": "metric.primary",
+            "project_id": "sentiment-project",
+            "reason": null,
+            "record_id": "metric.primary@S3-T3",
+            "source_turn_ids": [
+              "S3-T3"
+            ],
+            "speakers": [
+              "Arun"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "macro-F1"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "metric.primary@S1-T3",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [
+                "metric.primary@S3-T3"
+              ],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "metric.primary@S1-T3"
+              ]
+            }
+          ]
+        }
+      },
+      "raw_reply": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"metric.primary@S1-T3\",\"metric.primary@S3-T3\"],\"source_turn_ids\":[\"S3-T4\",\"S3-T3\",\"S1-T3\",\"S1-T2\"],\"reason\":null,\"rationale\":\"Mei explicitly affirms 'macro-F1 is the primary metric from now on,' confirming adoption and superseding the previous active metric 'accuracy'.\"}",
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "metric.primary@S1-T3",
+          "metric.primary@S3-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T4",
+          "S3-T3",
+          "S1-T3",
+          "S1-T2"
+        ],
+        "reason": null,
+        "rationale": "Mei explicitly affirms 'macro-F1 is the primary metric from now on,' confirming adoption and superseding the previous active metric 'accuracy'."
+      },
+      "observed_errors": [
+        "wrong_sources"
+      ]
+    }
+  ]
+}

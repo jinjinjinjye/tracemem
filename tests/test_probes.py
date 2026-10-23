@@ -8,12 +8,83 @@ gold-stand-in pipeline) is checked on every pilot and every cut point.
 
 from __future__ import annotations
 
+import ast
+from importlib.metadata import PackageNotFoundError, version
+import json
+import tempfile
+
 import pytest
 
 from support import PILOT_IDS, pilot
 from tracemem.eval.harness import run_scenario
+from tracemem.resolver import LLMResolver, ModelReply, ResolverConfig
 from tracemem.schema import Scenario
 from tracemem.systems import REGISTRY
+from tracemem.systems import comparison
+
+
+class VisibleStateClient:
+    """Deterministic completions based only on the candidate and matched records.
+
+    This deliberately simple policy makes the first value active, confirms equal
+    values, and supersedes different ones. It tests temporal isolation through the
+    real Resolver without reading gold operations or claiming semantic accuracy.
+    """
+
+    def __init__(self):
+        self.calls = 0
+
+    def complete(self, *, config, messages, response_format):
+        self.calls += 1
+        if response_format["type"] == "json_object":
+            # The native Mem0 updater receives the same visible candidates. Its
+            # stock prompt embeds them in its final new-facts fenced block.
+            prompt = messages[-1]["content"]
+            suffix = prompt.rsplit("The new retrieved facts are mentioned in the triple backticks.", 1)[1]
+            facts = ast.literal_eval(suffix.split("```")[1].strip())
+            return ModelReply(json.dumps({"memory": [
+                {"id": str(index), "text": fact, "event": "ADD"} for index, fact in enumerate(facts)
+            ]}))
+        if response_format["json_schema"]["name"] == "memory_answer":
+            return ModelReply(json.dumps({"status": "abstain", "value": None, "cited_turn_ids": [], "text": ""}))
+        evidence = json.loads(messages[1]["content"])
+        candidate = evidence["candidate"]
+        active = next((r for r in evidence["related"] if r["status"] == "active"), None)
+        op = "ADD" if active is None else "KEEP" if active["value"] == candidate["value"] else "SUPERSEDE"
+        return ModelReply(content=json.dumps({
+            "op": op, "add_as": "active" if op == "ADD" else None,
+            "targets": [] if active is None else [active["record_id"]],
+            "source_turn_ids": candidate["source_turn_ids"], "reason": None,
+            "rationale": "Offline temporal-isolation policy using only currently visible state.",
+        }))
+
+
+@pytest.fixture
+def offline_resolver(monkeypatch, tmp_path):
+    """Keep the registered real pipeline runnable with no credentials or network."""
+    clients = []
+    monkeypatch.setattr(tempfile, "tempdir", str(tmp_path))
+
+    def from_env(cls):
+        client = VisibleStateClient()
+        clients.append(client)
+        return cls(ResolverConfig(model="offline-model"), client)
+
+    def forbid_provider(*args, **kwargs):
+        pytest.fail("Temporal-isolation tests must not construct a live provider client")
+
+    monkeypatch.setattr(LLMResolver, "from_env", classmethod(from_env))
+    monkeypatch.setattr("tracemem.resolver.OpenAICompletionClient", forbid_provider)
+    monkeypatch.setattr(ResolverConfig, "from_env", classmethod(lambda cls: ResolverConfig(model="offline-model")))
+
+    def make_comparison_client():
+        client = VisibleStateClient()
+        clients.append(client)
+        return client
+
+    monkeypatch.setattr(comparison, "make_client", make_comparison_client)
+    monkeypatch.delenv("TRACEMEM_CONTEXT_BUDGET_BYTES", raising=False)
+    return clients
 
 
 def truncate(scenario: Scenario, k: int) -> Scenario:
@@ -29,8 +100,14 @@ def truncate(scenario: Scenario, k: int) -> Scenario:
 
 
 def answers(spec, scenario: Scenario) -> dict:
-    rows, _ = run_scenario(spec, scenario)
-    return {r.question.question_id: (r.question.after, r.answer) for r in rows}
+    condition = "gold_candidates" if spec.name in comparison.NAMES else "end_to_end"
+    rows, system = run_scenario(spec, scenario, condition=condition)
+    try:
+        return {r.question.question_id: (r.question.after, r.answer) for r in rows}
+    finally:
+        cleanup = getattr(system, "close", None)
+        if callable(cleanup):
+            cleanup()
 
 
 def test_truncate_keeps_only_the_first_sessions():
@@ -42,7 +119,12 @@ def test_truncate_keeps_only_the_first_sessions():
 
 @pytest.mark.parametrize("name", list(REGISTRY))
 @pytest.mark.parametrize("scenario_id", PILOT_IDS)
-def test_answers_do_not_depend_on_later_sessions(scenario_id, name):
+def test_answers_do_not_depend_on_later_sessions(scenario_id, name, offline_resolver):
+    if name == "mem0-classic":
+        try:
+            version("mem0ai")
+        except PackageNotFoundError:
+            pytest.skip("install the optional mem0 extra to run the native SDK")
     spec = REGISTRY[name]
     full_scenario = pilot(scenario_id)
     full = answers(spec, full_scenario)
@@ -53,3 +135,6 @@ def test_answers_do_not_depend_on_later_sessions(scenario_id, name):
         assert set(cut) == expected_ids, f"cut after S{k}"
         for qid in expected_ids:
             assert cut[qid][1] == full[qid][1], f"{name} changed its answer to {qid} when cut after S{k}"
+    if name == "pipeline-resolver-dev" or name in comparison.NAMES:
+        assert len(offline_resolver) == len(full_scenario.sessions)
+        assert all(client.calls > 0 for client in offline_resolver)

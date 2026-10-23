@@ -209,6 +209,13 @@ The random seed is fixed, so the same runs always give the same intervals. `trac
 
 `tracemem report` compares only like with like. It refuses to compare runs whose split, condition, item vocabulary setting or scenario files differ, as recorded in each run's `manifest.json`. A changed scenario file counts as different, because the manifest stores a hash of each file. `--allow-mixed` overrides the check.
 
+For the [controlled memory comparison](memory-comparison.md), the manifest also
+stores shared model/reader/prompt settings and candidate hashes. Those must match
+even with `--allow-mixed`; mixing a controlled run with an unmarked legacy run is
+also refused. The report uses the same question-level metrics for all three arms.
+Mem0's native actions are exported separately and are not assigned TraceMem's
+five-label operation F1. Write and answer costs appear separately in `usage.json`.
+
 ## 8. Probe systems
 
 Probes are rule-based systems that read the scenario's gold labels instead of understanding the dialogue ([`systems/probes.py`](../src/tracemem/systems/probes.py)). They cost nothing to run and are never baselines; every report marks them "uses gold labels". They answer two questions before anyone spends money on a language model. Does the scorer work? Can the benchmark tell TraceMem from a recency rule at all?
@@ -234,12 +241,106 @@ Probes are rule-based systems that read the scenario's gold labels instead of un
 
 latest-candidate gets 8 of the 46 current questions wrong, exactly the `trap_candidate` ones. That is the room TraceMem has over record-level recency on these five scenarios. The refusal probes, always-conflict and always-none, score zero on the stale, incorrect-replacement, presented-as-current and false-certainty rates. Their non-answer rates show why that is not success: 0.978 for always-conflict, which is right only on the one open dispute, and 1.000 for always-none. always-conflict also scores 1.000 on the false-conflict rate.
 
-## 9. Planned: resolver and extraction metrics
+## 9. Resolver operation metrics and error analysis
 
-The scaffold does not compute these metrics yet. The harness already saves what they need, for any system that exposes it. `ops.jsonl` holds every operation the system applied, `rejected_ops.jsonl` every operation the store rejected (with the reason in its `rejection` field), and `candidates.jsonl` every candidate the system extracted. A *candidate* is a statement from a turn, reduced to an item and a value, and *extraction* is the step that produces candidates from turns. Resolver metrics are meant for the gold-candidate condition (`tracemem run --condition gold_candidates`). There every system receives the correct candidates, so resolver errors are not mixed with extraction errors.
+[`eval/resolver_metrics.py`](../src/tracemem/eval/resolver_metrics.py) evaluates the
+write path separately from question answering. Metrics are emitted only for
+completed `gold_candidates` runs where every scenario exposes an operations hook.
+There every system receives the same correct candidates, so extraction errors are
+not mixed into the resolver score. This is a sequential rollout: each prediction
+sees the system's own earlier memory, which may already be wrong. It is not a
+teacher-forced experiment with correct memory restored before every candidate.
 
-- **Operation F1 over five labels.** For each label, F1 combines precision (the share of the system's operations with that label that were right) and recall (the share of the correct ones the system found). The labels are ADD-as-active, ADD-as-proposed, KEEP, SUPERSEDE and FLAG. ADD counts as two labels, because storing a suggestion as a decision is exactly the mistake this project studies.
-- **Confusion by act.** A table of each statement's act, the author's label such as `suggest` or `contest`, against the operation the resolver issued. It answers RQ3 directly, for example by showing whether suggestions get stored as decisions.
-- **Resulting-state accuracy.** After each operation, whether the item's state (active value, open suggestions, open disputes) matches the gold state. It catches a correct label aimed at the wrong record. `ItemState.summary()` in [`ops.py`](../src/tracemem/ops.py) gives the comparison key.
-- **Invalid-operation rate.** The share of operations the store rejects under the rules in [`ops.py`](../src/tracemem/ops.py), counted from `rejected_ops.jsonl`.
-- **Extraction precision and recall.** Candidates are matched one to one: each gold candidate can match at most one extracted candidate, so repeating a statement does not raise recall.
+An entirely offline check uses the gold stand-in, which must score perfectly:
+
+```bash
+tracemem run --system pipeline-gold --split dev --condition gold_candidates
+tracemem resolver-report runs/<saved-run-folder>
+```
+
+Use `pipeline-resolver-dev` with the same condition for the real model-backed
+resolver; that run makes provider calls. The offline unit tests inject scripted
+model replies to test deliberately incorrect decisions without calling a provider.
+Neither a gold stand-in score nor scripted replies establish model accuracy.
+
+### Alignment and classification
+
+Gold operations and acts come from the scenario replay, on the scorer side only.
+Predictions match by `(scenario_id, candidate_id)`, never by matching the value or
+choosing whichever prediction gives a better score. Each gold candidate has one
+primary prediction. Extra predictions, including duplicates for a candidate, add
+false positives and cannot raise recall. An absent operation stays in the gold
+denominator and is shown in a `MISSING` column; event logs distinguish known
+generation failures from missing output without an explanation.
+Malformed emitted labels (such as ADD without `add_as`) appear as `INVALID`,
+not as missing output, and add a false positive to micro F1.
+
+There are five labels: `ADD-active`, `ADD-proposed`, `KEEP`, `SUPERSEDE`, `FLAG`.
+The scorer counts an emitted label even if storage rejected its operation: choosing
+the right class and executing a valid change are distinct questions. Always read
+label F1 alongside exact-operation accuracy, state accuracy and rejection rate.
+
+For each label, precision is `TP / (TP + FP)`, recall is `TP / (TP + FN)`, and F1 is
+`2TP / (2TP + FP + FN)`. Missing predictions contribute false negatives. Micro F1
+sums TP, FP and FN across labels first; macro F1 averages labels with a defined F1,
+listing which labels contributed. A completely absent label has undefined F1, not
+zero. Confusion tables show both gold operation versus prediction and script act
+(for example `suggest`, `accept`, `contest`) versus prediction.
+
+### Metrics and denominators
+
+Every rate includes `value`, `numerator` and `n` (its denominator). Empty denominators
+produce JSON null and display as `n/a`. F1's `n` is `2TP + FP + FN`, not a candidate
+count; macro F1's `n` counts included labels. Classification support and the overall
+candidate/operation counts are reported separately. Question/episode weighting
+does not apply: each candidate checkpoint contributes once.
+
+| Metric | Numerator | Denominator |
+|---|---|---|
+| `label_accuracy` | Primary emitted label equals gold | All gold candidates |
+| `exact_operation_accuracy` | Operation applied and label, turn, item, value, target set and source set equal gold | All gold candidates |
+| `state_accuracy` | Resulting item state equals the gold state at this checkpoint | All gold candidates, including those with missing/rejected operations |
+| `targets_accuracy` | Primary operation has exactly the gold target set | All gold candidates |
+| `targeted_targets_accuracy` | Same target check | Gold candidates whose operation has targets |
+| `sources_accuracy` | Primary operation has exactly the gold source-turn set | All gold candidates |
+| `generation_failure_rate` | Candidates with a recorded exhausted generation failure | All gold candidates |
+| `missing_operation_rate` | Candidates with no emitted operation | All gold candidates |
+| `invalid_operation_rate` | Storage-rejected operations | All emitted operations: applied plus rejected, including extras |
+
+Target/source order does not matter; duplicate IDs fail the exact-set check.
+Missing output never earns target/source credit, even when gold has no targets.
+Exact-operation accuracy ignores `op_id`, free-text `reason` and `rationale`.
+Values are compared as contract values, without answer aliases. Exact source equality
+is a strict diagnostic: additional citations are not automatically unsupported just
+because the gold operation did not cite them.
+
+State accuracy replays **only applied operations** into a separate `OpLog`; missing
+and rejected operations leave that memory unchanged. The gold log advances independently.
+After every gold candidate, `ItemState.summary()` compares active value, dispute flag,
+and the sorted multisets of proposed and contested values. Earlier errors persist
+and may cause later state errors. A missing reaffirmation can leave state correct
+while still failing operation recall. State accuracy does not test historical links
+or citation provenance; exact target/source diagnostics complement it.
+
+### Saved analysis
+
+The existing operation/candidate/event artifacts retain their formats. Eligible
+runs additionally save:
+
+- `resolver_scores.jsonl`: all aligned candidates and unmatched extra predictions,
+  with source text, act, expected/predicted operations, state snapshots and mismatch flags.
+- `resolver_metrics.json`: versioned summary, per-label precision/recall/F1,
+  confusion tables, counts and metric denominators.
+- `resolver_analysis.jsonl`: rows with at least one error flag. Flags may overlap,
+  so their counts need not sum to the number of candidates.
+
+`tracemem resolver-report <run> --max-errors 10` recomputes the summary from saved
+scorer rows and prints metrics, confusion tables and error examples. It does not
+reload scenarios, call a model, or change the run. It refuses failed runs, other
+conditions, legacy runs without scorer rows and inconsistent saved summaries.
+Failed runs retain their existing partial diagnostics but get no complete resolver
+evaluation artifacts. Existing end-to-end answer reports remain unchanged.
+
+These conventions are proposed in [decision 0003](decisions/0003-score-resolver-operations.md).
+Extraction precision/recall, teacher-forced resolver evaluation and operation-level
+uncertainty intervals remain separate work.

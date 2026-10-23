@@ -164,6 +164,8 @@ A system may also provide these optional methods, called hooks. The harness uses
 | `rejected_operations() -> list[tuple[Operation, str]]` | Saves the operations the store refused, each with its reason, to `rejected_ops.jsonl`. |
 | `candidates() -> list[Candidate]` | Saves the candidates to `candidates.jsonl`. |
 | `describe() -> dict` | Saves the system's settings in the manifest as `system_config`. |
+| `resolver_events() -> list[dict]` | Optional pipeline diagnostics saved to `resolver_events.jsonl`; generation failures/aborts also go to `resolver_errors.jsonl`. |
+| `resolver_usage() -> Usage \| None` | Optional resolver write-path totals, saved by scenario and summed in `usage.json`. None means uninstrumented. |
 | `accepts_gold_candidates = True` | Allows the system to run in the `gold_candidates` condition. |
 
 A system joins the registry in [`systems/__init__.py`](../src/tracemem/systems/__init__.py) as a `SystemSpec`. The spec holds a name, a factory, a `uses_gold` flag and a description. The factory is a function that takes `(ScenarioMeta, GoldTimeline | None)` and returns a new system; `GoldTimeline` is everything the replay computed from the script. `tracemem systems` lists the registered systems.
@@ -176,6 +178,12 @@ The harness applies four rules to every system:
 4. **Gold only where allowed.** The harness passes gold candidates only in the `gold_candidates` condition. It passes the gold timeline only to systems registered with `uses_gold=True`. Those are the probes and the `pipeline-gold` mock. A probe is a simple rule that reads the gold labels to test the scorer and the benchmark; for example, `oracle` must score perfectly, and `always-oldest` must be stale exactly where its first value was replaced and not later restored. Every report labels them as probes or mocks, never as baselines.
 
 Each run goes to a new folder under `runs/`, named by time, system, split (`dev` or `test` scenarios) and condition. It holds `manifest.json` (the settings, code version and scenario file hashes), `answers.jsonl` (each question, its gold answer, the system's answer and the outcome) and `metrics.json`. It also holds `ops.jsonl` and `candidates.jsonl` when the system has those hooks, and `rejected_ops.jsonl` when the store rejected at least one operation.
+
+Completed `gold_candidates` runs with an operations hook in every scenario also
+save `resolver_scores.jsonl`, `resolver_metrics.json` and `resolver_analysis.jsonl`.
+These are scorer-side artifacts: gold operations, script acts and state comparisons
+never enter a real Resolver. `tracemem resolver-report <run>` reads the saved analysis;
+see [operation metric definitions](metrics.md#9-resolver-operation-metrics-and-error-analysis).
 
 ## The five components
 
@@ -208,6 +216,13 @@ The matcher and the retriever read the store through `StoreView`, which declares
 
 ## Building on the stand-ins, one replacement at a time
 
+The [`LLMResolver`](resolver.md) implements the resolver interface with an injectable
+model client, explicit configuration and offline tests. `pipeline-resolver-dev`
+registers it with gold extraction/matching/retrieval and the rule answerer. It keeps
+`uses_gold=True`; its outputs are component diagnostics, not baseline results.
+The original `pipeline-gold` remains available. See the resolver guide for input
+assumptions, model settings, candidate failure handling and exported logs.
+
 The registered system `pipeline-gold` is the pipeline built entirely from stand-ins. After the setup in [CONTRIBUTING.md](../CONTRIBUTING.md), run it from the repository root:
 
 ```bash
@@ -228,6 +243,16 @@ SystemSpec("pipeline-my-resolver", _pipeline_my_resolver, True, "mock: stand-ins
 Run it the same way and compare the two saved runs with `tracemem report runs/<first> runs/<second>`. Because only one component changed, any change in score comes from that component. Replace one stand-in per step. While any stand-in remains, the spec keeps `uses_gold=True`, because the stand-ins need the gold timeline and the harness passes it only then.
 
 ## The two conditions
+
+`tracemem-controlled`, `tracemem-no-versions` and `mem0-classic` are registered
+with `uses_gold=False`: their factories receive only `ScenarioMeta`, while the
+harness supplies candidates in the `gold_candidates` condition. They reject
+`end_to_end` rather than silently using an extractor. All three use the same model
+configuration, answerer and memory-context budget; none uses the gold question-item
+lookup. The current-only store deliberately lacks historical reconstruction, so
+it is paired with the all-memory reader instead of `GoldRetriever`. Native Mem0
+actions/history and its exact pinned adapter are described in
+[the controlled comparison guide](memory-comparison.md).
 
 The harness runs a system in one of two conditions, chosen with `--condition`:
 
@@ -314,3 +339,10 @@ All record-based systems use the same extracted candidates, the same renderer (`
 ## When the store rejects an operation
 
 `OpLog.apply` checks an operation before changing anything. If the operation breaks a rule, it raises `InvalidOperation` and leaves the log exactly as it was. `TraceMemPipeline` catches that error, keeps the operation together with the reason, and moves on to the next candidate. A bad operation from the resolver therefore never crashes a run. It simply changes nothing, and the answers show the effect. The pipeline returns the kept operations from `rejected_operations()`, and `operations()` lists only the operations that were applied. The harness saves the rejected operations in `rejected_ops.jsonl` in the run folder, one per line, each with a `rejection` field that holds the reason.
+
+If the real resolver exhausts its attempts without producing an operation, the
+pipeline records `ResolverError` as `generation_failed` and skips that candidate's
+write. It never manufactures KEEP. Setup, input-contract and fatal provider errors
+abort the run instead; the CLI saves partial diagnostics marked `status="failed"`
+and returns 2. Reports reject failed runs. See [the resolver guide](resolver.md#failures-and-reproducibility)
+for the event fields, usage accounting and the difference between these two errors.

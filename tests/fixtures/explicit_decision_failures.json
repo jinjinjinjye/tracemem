@@ -1,0 +1,812 @@
+{
+  "provenance": {
+    "split": "dev",
+    "run_id": "20261018T230235Z-resolver-reopening-rerun",
+    "description": "Synthetic development captures from the reopening rerun. Requests and replies are copied from saved model calls. Corrected operations in tests are scripted from development replay, not produced by a live model."
+  },
+  "resolver_captures": [
+    {
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-01",
+      "request_hash": "98a85902bc79d007ca221223f01692c230672f450a3d25f1498c5e3205df91ab",
+      "call_sequence": 7,
+      "observation": {
+        "turn_id": "S2-T5",
+        "when": "2026-10-08T11:04:00",
+        "speaker": "Mei"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.ner@S2-T5",
+          "item": "model.ner",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S2-T5"
+          ],
+          "speaker": "Mei",
+          "text": "Separately, for the NER part we'll use a spaCy model.",
+          "value": "spaCy"
+        },
+        "related": [],
+        "target_constraints": {
+          "active_record_id": null,
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": "active",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T5"
+        ],
+        "reason": null,
+        "rationale": "The speaker suggests using a spaCy model for NER, which is a proposal rather than a confirmed decision."
+      }
+    },
+    {
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-05",
+      "request_hash": "a5af6fb425de442291426a426f5fd517b501ed68523ab359334df4c76712046e",
+      "call_sequence": 77,
+      "observation": {
+        "turn_id": "S1-T1",
+        "when": "2026-10-05T10:00:00",
+        "speaker": "Kai"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S1-T1",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speaker": "Kai",
+          "text": "Let's make the baseline logistic regression on TF-IDF features.",
+          "value": "logistic regression"
+        },
+        "related": [],
+        "target_constraints": {
+          "active_record_id": null,
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": "active",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T1"
+        ],
+        "reason": null,
+        "rationale": "The speaker suggests 'Let's make the baseline logistic regression on TF-IDF features,' which is a proposal, not a settled decision."
+      }
+    },
+    {
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-05",
+      "request_hash": "ac632dca7f30d85d39a424c01c804af1e42f1bd226d3e606ed41bd09a6217560",
+      "call_sequence": 79,
+      "observation": {
+        "turn_id": "S1-T2",
+        "when": "2026-10-05T10:01:00",
+        "speaker": "Rosa"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S1-T2",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "speaker": "Rosa",
+          "text": "What if we used naive Bayes instead? It's the classic for spam.",
+          "value": "naive Bayes"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "logistic regression"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": null,
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": "active",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T2"
+        ],
+        "reason": null,
+        "rationale": "Rosa suggests using naive Bayes as an alternative model, proposing it rather than confirming it as the baseline."
+      }
+    },
+    {
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-05",
+      "request_hash": "5d91115b55f0efc3c09c05a1cfe8cdd1a0cd30bf52c8e5e84f6aada1c13ce9fd",
+      "call_sequence": 84,
+      "observation": {
+        "turn_id": "S3-T1",
+        "when": "2026-10-12T12:00:00",
+        "speaker": "Kai"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S3-T1",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S3-T1"
+          ],
+          "speaker": "Kai",
+          "text": "I ran it: the linear SVM beats logistic regression by two points. Let's make the SVM our baseline.",
+          "value": "linear SVM"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "logistic regression"
+          },
+          {
+            "created_at": "2026-10-05T10:01:00",
+            "created_turn": "S1-T2",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T2",
+            "source_turn_ids": [
+              "S1-T2"
+            ],
+            "speakers": [
+              "Rosa"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "naive Bayes"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": null,
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": "active",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S3-T1"
+        ],
+        "reason": null,
+        "rationale": "Kai commits to making linear SVM the baseline, establishing a settled choice for model.baseline."
+      }
+    },
+    {
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-05",
+      "request_hash": "43b594565404c6ba5bb53d30f1626ecd7ed5c36a0eb13c7deb7953541d411434",
+      "call_sequence": 85,
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Rosa"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S3-T2",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speaker": "Rosa",
+          "text": "OK, SVM it is.",
+          "value": "linear SVM"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "logistic regression"
+          },
+          {
+            "created_at": "2026-10-05T10:01:00",
+            "created_turn": "S1-T2",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T2",
+            "source_turn_ids": [
+              "S1-T2"
+            ],
+            "speakers": [
+              "Rosa"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "naive Bayes"
+          },
+          {
+            "created_at": "2026-10-12T12:00:00",
+            "created_turn": "S3-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S3-T1",
+            "source_turn_ids": [
+              "S3-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "linear SVM"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.baseline@S3-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "KEEP",
+              "optional_targets": [],
+              "required_targets": [
+                "model.baseline@S3-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "KEEP",
+        "add_as": null,
+        "targets": [
+          "model.baseline@S3-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Rosa's statement 'OK, SVM it is.' confirms the active value 'linear SVM'."
+      }
+    },
+    {
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-01",
+      "request_hash": "98a85902bc79d007ca221223f01692c230672f450a3d25f1498c5e3205df91ab",
+      "call_sequence": 7,
+      "observation": {
+        "turn_id": "S2-T5",
+        "when": "2026-10-08T11:04:00",
+        "speaker": "Mei"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.ner@S2-T5",
+          "item": "model.ner",
+          "project_id": "sentiment-project",
+          "source_turn_ids": [
+            "S2-T5"
+          ],
+          "speaker": "Mei",
+          "text": "Separately, for the NER part we'll use a spaCy model.",
+          "value": "spaCy"
+        },
+        "related": [],
+        "target_constraints": {
+          "active_record_id": null,
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": "active",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T5"
+        ],
+        "reason": null,
+        "rationale": "The speaker suggests using a spaCy model for NER, which is a proposal rather than a confirmed decision."
+      }
+    },
+    {
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-05",
+      "request_hash": "a5af6fb425de442291426a426f5fd517b501ed68523ab359334df4c76712046e",
+      "call_sequence": 77,
+      "observation": {
+        "turn_id": "S1-T1",
+        "when": "2026-10-05T10:00:00",
+        "speaker": "Kai"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S1-T1",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speaker": "Kai",
+          "text": "Let's make the baseline logistic regression on TF-IDF features.",
+          "value": "logistic regression"
+        },
+        "related": [],
+        "target_constraints": {
+          "active_record_id": null,
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": "active",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T1"
+        ],
+        "reason": null,
+        "rationale": "Kai commits to making logistic regression the baseline model on TF-IDF features, establishing a settled choice with no prior active record."
+      }
+    },
+    {
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-05",
+      "request_hash": "04d8e1ce70a5a342dffddf74324d70f15984f734237fe204a915157003a7fb7a",
+      "call_sequence": 79,
+      "observation": {
+        "turn_id": "S1-T2",
+        "when": "2026-10-05T10:01:00",
+        "speaker": "Rosa"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S1-T2",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "speaker": "Rosa",
+          "text": "What if we used naive Bayes instead? It's the classic for spam.",
+          "value": "naive Bayes"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "logistic regression"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.baseline@S1-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [],
+              "required_targets": [
+                "model.baseline@S1-T1"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "model.baseline@S1-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T2"
+        ],
+        "reason": null,
+        "rationale": "Rosa suggests 'naive Bayes' as an alternative baseline model, proposing it rather than confirming a switch from the active 'logistic regression'."
+      }
+    },
+    {
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-05",
+      "request_hash": "cafdbe566d7fd8f8e5b4ef1e1899811b322ed11beb3624c60e06b864940feabf",
+      "call_sequence": 84,
+      "observation": {
+        "turn_id": "S3-T1",
+        "when": "2026-10-12T12:00:00",
+        "speaker": "Kai"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S3-T1",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S3-T1"
+          ],
+          "speaker": "Kai",
+          "text": "I ran it: the linear SVM beats logistic regression by two points. Let's make the SVM our baseline.",
+          "value": "linear SVM"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:00:00",
+            "created_turn": "S1-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T1",
+            "source_turn_ids": [
+              "S1-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "logistic regression"
+          },
+          {
+            "created_at": "2026-10-05T10:01:00",
+            "created_turn": "S1-T2",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T2",
+            "source_turn_ids": [
+              "S1-T2"
+            ],
+            "speakers": [
+              "Rosa"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "naive Bayes"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.baseline@S1-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "SUPERSEDE",
+              "optional_targets": [],
+              "required_targets": [
+                "model.baseline@S1-T1"
+              ]
+            },
+            {
+              "add_as": null,
+              "op": "FLAG",
+              "optional_targets": [],
+              "required_targets": [
+                "model.baseline@S1-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "model.baseline@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T1"
+        ],
+        "reason": null,
+        "rationale": "Kai explicitly commits to making the linear SVM the new baseline, replacing the previous logistic regression baseline."
+      }
+    },
+    {
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-05",
+      "request_hash": "9d5ffd5d86e76d3f20ee0bd1c2e0259ca71f51fc1a0a846c1861c3c6abf29479",
+      "call_sequence": 85,
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Rosa"
+      },
+      "request": {
+        "candidate": {
+          "candidate_id": "model.baseline@S3-T2",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speaker": "Rosa",
+          "text": "OK, SVM it is.",
+          "value": "linear SVM"
+        },
+        "related": [
+          {
+            "created_at": "2026-10-05T10:01:00",
+            "created_turn": "S1-T2",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S1-T2",
+            "source_turn_ids": [
+              "S1-T2"
+            ],
+            "speakers": [
+              "Rosa"
+            ],
+            "status": "proposed",
+            "supersedes": [],
+            "value": "naive Bayes"
+          },
+          {
+            "created_at": "2026-10-12T12:00:00",
+            "created_turn": "S3-T1",
+            "item": "model.baseline",
+            "project_id": "spam-filter",
+            "reason": null,
+            "record_id": "model.baseline@S3-T1",
+            "source_turn_ids": [
+              "S3-T1"
+            ],
+            "speakers": [
+              "Kai"
+            ],
+            "status": "active",
+            "supersedes": [],
+            "value": "linear SVM"
+          }
+        ],
+        "target_constraints": {
+          "active_record_id": "model.baseline@S3-T1",
+          "options": [
+            {
+              "add_as": "proposed",
+              "op": "ADD",
+              "optional_targets": [],
+              "required_targets": []
+            },
+            {
+              "add_as": null,
+              "op": "KEEP",
+              "optional_targets": [],
+              "required_targets": [
+                "model.baseline@S3-T1"
+              ]
+            }
+          ]
+        }
+      },
+      "observed_decision": {
+        "op": "KEEP",
+        "add_as": null,
+        "targets": [
+          "model.baseline@S3-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Rosa's statement 'OK, SVM it is.' confirms the active value 'linear SVM'."
+      }
+    }
+  ],
+  "reader_captures": [
+    {
+      "scenario_id": "pilot-01",
+      "question_id": "model.ner@S2",
+      "request_hash": "87e2453fab6e36c7263177111c48a128f1f9d1af82f2fd6f0af8d897f33c2629",
+      "call_sequence": 9,
+      "request": {
+        "question": {
+          "text": "Which model are we using for NER?",
+          "kind": "current",
+          "session": null
+        },
+        "context": "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [active] | sources=S1-T3\nS2-T3 Arun: model.sentiment = DistilBERT [proposed] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [proposed] | sources=S2-T5",
+        "allowed_source_turn_ids": [
+          "S1-T1",
+          "S1-T2",
+          "S1-T3",
+          "S2-T3",
+          "S2-T5"
+        ]
+      },
+      "observed_answer": {
+        "status": "none",
+        "value": null,
+        "cited_turn_ids": [
+          "S2-T5"
+        ],
+        "text": "The only mention of a model for NER is a proposal to use spaCy (S2-T5), but it is not marked as active. There is no settled active model for NER in the context."
+      }
+    },
+    {
+      "scenario_id": "pilot-05",
+      "question_id": "model.baseline@S3-previous",
+      "request_hash": "d374f2691bdb01a2923708c961cca33eb5aec60cda0578deb4e2a5de10174258",
+      "call_sequence": 88,
+      "request": {
+        "question": {
+          "text": "Which baseline classifier, if any, did we use before the current one?",
+          "kind": "previous",
+          "session": null
+        },
+        "context": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [proposed] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2",
+        "allowed_source_turn_ids": [
+          "S1-T1",
+          "S1-T2",
+          "S3-T1",
+          "S3-T2"
+        ]
+      },
+      "observed_answer": {
+        "status": "answer",
+        "value": "naive Bayes",
+        "cited_turn_ids": [
+          "S1-T2",
+          "S3-T1"
+        ],
+        "text": "The current baseline classifier is linear SVM as per S3-T1 (active). Before that, the baseline classifier was naive Bayes as proposed in S1-T2, which is the last settled classifier before the current one."
+      }
+    }
+  ]
+}

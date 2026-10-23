@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "split": "dev",
+    "content": "Synthetic candidates, visible records and accepted structured replies captured from two real development runs. Credentials, provider metadata and machine paths are excluded.",
+    "corrections": "Corrections are scripted unit-test expectations, not model rerun predictions or benchmark gold. Original earlier bad state is preserved. Eight structurally legal semantic failures and one correctly handled dispute control are included.",
+    "limitation": "A scripted client verifies the intent instructions received by the model and the state effects of the supplied decision. It cannot establish that a live model will infer the intended meaning."
+  },
+  "cases": [
+    {
+      "case_id": "flair_suggestion_must_not_replace",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-controlled",
+      "description": "A criticism followed by Maybe try Flair is an alternative proposal, not a decision to replace spaCy.",
+      "expected_intent": "suggestion",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "model.ner@S4-T1",
+        "item": "model.ner",
+        "project_id": "product-reviews",
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "speaker": "Sam",
+        "text": "spaCy misses some brand names. Maybe try Flair for the tagger?",
+        "value": "Flair"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-08T11:00:00",
+          "created_turn": "S2-T1",
+          "item": "model.ner",
+          "project_id": "product-reviews",
+          "reason": null,
+          "record_id": "model.ner@S2-T1",
+          "source_turn_ids": [
+            "S2-T1"
+          ],
+          "speakers": [
+            "Lin"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "BERT"
+        },
+        {
+          "created_at": "2026-10-12T12:00:00",
+          "created_turn": "S3-T1",
+          "item": "model.ner",
+          "project_id": "product-reviews",
+          "reason": null,
+          "record_id": "model.ner@S3-T1",
+          "source_turn_ids": [
+            "S3-T1"
+          ],
+          "speakers": [
+            "Lin"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "spaCy"
+        }
+      ],
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "model.ner@S3-T1"
+        ],
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "reason": null,
+        "rationale": "The user suggests switching from the currently active model 'spaCy' to 'Flair', which is a different value, so the appropriate operation is to supersede the active record with the new value."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "reason": null,
+        "rationale": "A criticism followed by Maybe try Flair is an alternative proposal, not a decision to replace spaCy."
+      },
+      "expected_active_id": "model.ner@S3-T1",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "model.ner@S2-T1": "proposed",
+        "model.ner@S3-T1": "active",
+        "model.ner@S4-T1": "proposed"
+      },
+      "observed_active_id": "model.ner@S4-T1",
+      "observed_flagged": false,
+      "observed_record_statuses": {
+        "model.ner@S2-T1": "proposed",
+        "model.ner@S3-T1": "superseded",
+        "model.ner@S4-T1": "active"
+      }
+    },
+    {
+      "case_id": "flair_suggestion_must_not_dispute",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-no-versions",
+      "description": "Trying a possible alternative does not assert that the stored current choice is false.",
+      "expected_intent": "suggestion",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "model.ner@S4-T1",
+        "item": "model.ner",
+        "project_id": "product-reviews",
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "speaker": "Sam",
+        "text": "spaCy misses some brand names. Maybe try Flair for the tagger?",
+        "value": "Flair"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-12T12:00:00",
+          "created_turn": "S3-T1",
+          "item": "model.ner",
+          "project_id": "product-reviews",
+          "reason": "Fine-tuning BERT for tagging is too slow on our GPU. We move the tagger to spaCy.",
+          "record_id": "model.ner@S3-T1",
+          "source_turn_ids": [
+            "S3-T1"
+          ],
+          "speakers": [
+            "Lin"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "spaCy"
+        }
+      ],
+      "observed_decision": {
+        "op": "FLAG",
+        "add_as": null,
+        "targets": [
+          "model.ner@S3-T1"
+        ],
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "reason": null,
+        "rationale": "The user suggests trying Flair instead of the current active model spaCy, indicating a dispute with the active record but not confirming a change."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "reason": null,
+        "rationale": "Trying a possible alternative does not assert that the stored current choice is false."
+      },
+      "expected_active_id": "model.ner@S3-T1",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "model.ner@S3-T1": "active",
+        "model.ner@S4-T1": "proposed"
+      },
+      "observed_active_id": "model.ner@S3-T1",
+      "observed_flagged": true,
+      "observed_record_statuses": {
+        "model.ner@S3-T1": "active",
+        "model.ner@S4-T1": "contested"
+      }
+    },
+    {
+      "case_id": "bert_future_commitment_is_settled",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-controlled",
+      "description": "We will fine-tune BERT commits to the model even though the work will happen later.",
+      "expected_intent": "settled",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "model.ner@S2-T1",
+        "item": "model.ner",
+        "project_id": "product-reviews",
+        "source_turn_ids": [
+          "S2-T1"
+        ],
+        "speaker": "Lin",
+        "text": "For the product-name tagger, we'll fine-tune BERT.",
+        "value": "BERT"
+      },
+      "related": [],
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T1"
+        ],
+        "reason": null,
+        "rationale": "No active record exists; the statement proposes fine-tuning BERT for the product-name tagger, so adding as a proposed record is appropriate."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T1"
+        ],
+        "reason": null,
+        "rationale": "We will fine-tune BERT commits to the model even though the work will happen later."
+      },
+      "expected_active_id": "model.ner@S2-T1",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "model.ner@S2-T1": "active"
+      },
+      "observed_active_id": null,
+      "observed_flagged": false,
+      "observed_record_statuses": {
+        "model.ner@S2-T1": "proposed"
+      }
+    },
+    {
+      "case_id": "conditional_execution_is_task_commitment",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-controlled",
+      "description": "I will do the error analysis commits to a task; waiting for predictions is an execution dependency, not conditional consent.",
+      "expected_intent": "settled",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "task.error_analysis@S1-T3",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "speaker": "Ana",
+        "text": "And I'll do an error analysis on 100 misclassified customers once we have predictions.",
+        "value": "open"
+      },
+      "related": [],
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "No active record exists; the statement proposes to do error analysis, so add as a proposed task."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "I will do the error analysis commits to a task; waiting for predictions is an execution dependency, not conditional consent."
+      },
+      "expected_active_id": "task.error_analysis@S1-T3",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "task.error_analysis@S1-T3": "active"
+      },
+      "observed_active_id": null,
+      "observed_flagged": false,
+      "observed_record_statuses": {
+        "task.error_analysis@S1-T3": "proposed"
+      }
+    },
+    {
+      "case_id": "reopening_question_is_unconfirmed",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-controlled",
+      "description": "Should we reopen asks for a decision; the task remains cancelled until the proposal is accepted.",
+      "expected_intent": "suggestion",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "task.error_analysis@S4-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S4-T2"
+        ],
+        "speaker": "Ana",
+        "text": "Should we reopen the error analysis now that there's slack?",
+        "value": "open"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-05T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.error_analysis",
+          "project_id": "churn-prediction",
+          "reason": null,
+          "record_id": "task.error_analysis@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Ana"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        },
+        {
+          "created_at": "2026-10-12T12:01:00",
+          "created_turn": "S3-T2",
+          "item": "task.error_analysis",
+          "project_id": "churn-prediction",
+          "reason": null,
+          "record_id": "task.error_analysis@S3-T2",
+          "source_turn_ids": [
+            "S3-T2"
+          ],
+          "speakers": [
+            "Ana"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "cancelled"
+        }
+      ],
+      "observed_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "task.error_analysis@S3-T2",
+          "task.error_analysis@S1-T3"
+        ],
+        "source_turn_ids": [
+          "S4-T2"
+        ],
+        "reason": null,
+        "rationale": "The user suggests reopening the error analysis, which means changing the status from the current active 'cancelled' to 'open'. This is a settled change, so SUPERSEDE is appropriate. The proposal from S1-T3 also has the value 'open', so it is included as an optional target to be superseded."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S4-T2"
+        ],
+        "reason": null,
+        "rationale": "Should we reopen asks for a decision; the task remains cancelled until the proposal is accepted."
+      },
+      "expected_active_id": "task.error_analysis@S3-T2",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "task.error_analysis@S1-T3": "proposed",
+        "task.error_analysis@S3-T2": "active",
+        "task.error_analysis@S4-T2": "proposed"
+      },
+      "observed_active_id": "task.error_analysis@S4-T2",
+      "observed_flagged": false,
+      "observed_record_statuses": {
+        "task.error_analysis@S1-T3": "superseded",
+        "task.error_analysis@S3-T2": "superseded",
+        "task.error_analysis@S4-T2": "active"
+      }
+    },
+    {
+      "case_id": "direct_task_assignment_is_settled",
+      "source_run": "20261018T124711Z-real-model-comparison",
+      "system": "tracemem-controlled",
+      "description": "A direct request to a named teammate to perform a specific task opens that task; a question mark alone does not make it a proposal.",
+      "expected_intent": "settled",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "task.label_audit@S1-T3",
+        "item": "task.label_audit",
+        "project_id": "review-sentiment",
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "speaker": "Wei",
+        "text": "Priya, can you audit 200 labels from the training set?",
+        "value": "open"
+      },
+      "related": [],
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "No existing active or proposed record for task.label_audit; this is a new request to open the audit task."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "A direct request to a named teammate to perform a specific task opens that task; a question mark alone does not make it a proposal."
+      },
+      "expected_active_id": "task.label_audit@S1-T3",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "task.label_audit@S1-T3": "active"
+      },
+      "observed_active_id": null,
+      "observed_flagged": false,
+      "observed_record_statuses": {
+        "task.label_audit@S1-T3": "proposed"
+      }
+    },
+    {
+      "case_id": "blocked_report_without_active_is_settled",
+      "source_run": "20261018T124711Z-real-model-comparison",
+      "system": "tracemem-controlled",
+      "description": "The task is blocked is a present status report even when earlier state was wrongly stored as a proposal. Do not adopt the different-value proposal.",
+      "expected_intent": "settled",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "task.label_audit@S2-T3",
+        "item": "task.label_audit",
+        "project_id": "review-sentiment",
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "speaker": "Priya",
+        "text": "The label audit is blocked until we know which dataset it is.",
+        "value": "blocked"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-06T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.label_audit",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "task.label_audit@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        }
+      ],
+      "observed_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "reason": null,
+        "rationale": "There is no active record for task.label_audit; the existing record is proposed with value 'open'. The candidate suggests 'blocked', so it should be added as a new proposed record."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "reason": null,
+        "rationale": "The task is blocked is a present status report even when earlier state was wrongly stored as a proposal. Do not adopt the different-value proposal."
+      },
+      "expected_active_id": "task.label_audit@S2-T3",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "task.label_audit@S1-T3": "proposed",
+        "task.label_audit@S2-T3": "active"
+      },
+      "observed_active_id": null,
+      "observed_flagged": false,
+      "observed_record_statuses": {
+        "task.label_audit@S1-T3": "proposed",
+        "task.label_audit@S2-T3": "proposed"
+      }
+    },
+    {
+      "case_id": "distilbert_possibility_is_unconfirmed",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-controlled",
+      "description": "Maybe we could try a faster alternative does not dispute or replace the current BERT decision.",
+      "expected_intent": "suggestion",
+      "observed_is_semantic_failure": true,
+      "candidate": {
+        "candidate_id": "model.sentiment@S2-T3",
+        "item": "model.sentiment",
+        "project_id": "sentiment-project",
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "speaker": "Arun",
+        "text": "Maybe we could try DistilBERT? It might be faster.",
+        "value": "DistilBERT"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-05T10:00:00",
+          "created_turn": "S1-T1",
+          "item": "model.sentiment",
+          "project_id": "sentiment-project",
+          "reason": null,
+          "record_id": "model.sentiment@S1-T1",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Mei"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "BERT"
+        }
+      ],
+      "observed_decision": {
+        "op": "FLAG",
+        "add_as": null,
+        "targets": [
+          "model.sentiment@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "reason": null,
+        "rationale": "The user suggests trying DistilBERT, which differs from the active model BERT, indicating a dispute rather than confirmation or replacement."
+      },
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "reason": null,
+        "rationale": "Maybe we could try a faster alternative does not dispute or replace the current BERT decision."
+      },
+      "expected_active_id": "model.sentiment@S1-T1",
+      "expected_flagged": false,
+      "expected_record_statuses": {
+        "model.sentiment@S1-T1": "active",
+        "model.sentiment@S2-T3": "proposed"
+      },
+      "observed_active_id": "model.sentiment@S1-T1",
+      "observed_flagged": true,
+      "observed_record_statuses": {
+        "model.sentiment@S1-T1": "active",
+        "model.sentiment@S2-T3": "contested"
+      }
+    },
+    {
+      "case_id": "competing_recollection_remains_dispute",
+      "source_run": "20261018T131331Z-resolver-targets-rerun",
+      "system": "tracemem-controlled",
+      "description": "The speaker asserts a different earlier agreement and denies IMDB; this is an unresolved competing claim, not a prospective suggestion.",
+      "expected_intent": "dispute",
+      "observed_is_semantic_failure": false,
+      "candidate": {
+        "candidate_id": "dataset.train@S2-T1",
+        "item": "dataset.train",
+        "project_id": "review-sentiment",
+        "source_turn_ids": [
+          "S2-T1"
+        ],
+        "speaker": "Priya",
+        "text": "Wait, I thought we agreed on SST-2 last time, not IMDB.",
+        "value": "SST-2"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-06T10:00:00",
+          "created_turn": "S1-T1",
+          "item": "dataset.train",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "dataset.train@S1-T1",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "IMDB"
+        }
+      ],
+      "observed_decision": {
+        "op": "FLAG",
+        "add_as": null,
+        "targets": [
+          "dataset.train@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S2-T1"
+        ],
+        "reason": null,
+        "rationale": "The user disputes the current active value 'IMDB' by asserting that the agreed dataset was 'SST-2', which conflicts with the active record. Therefore, a FLAG operation is appropriate to mark this dispute without settling it."
+      },
+      "corrected_decision": {
+        "op": "FLAG",
+        "add_as": null,
+        "targets": [
+          "dataset.train@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S2-T1"
+        ],
+        "reason": null,
+        "rationale": "The user disputes the current active value 'IMDB' by asserting that the agreed dataset was 'SST-2', which conflicts with the active record. Therefore, a FLAG operation is appropriate to mark this dispute without settling it."
+      },
+      "expected_active_id": "dataset.train@S1-T1",
+      "expected_flagged": true,
+      "expected_record_statuses": {
+        "dataset.train@S1-T1": "active",
+        "dataset.train@S2-T1": "contested"
+      },
+      "observed_active_id": "dataset.train@S1-T1",
+      "observed_flagged": true,
+      "observed_record_statuses": {
+        "dataset.train@S1-T1": "active",
+        "dataset.train@S2-T1": "contested"
+      }
+    }
+  ],
+  "task_lifecycle": {
+    "description": "A scripted repair of the initial commitment is followed by cancellation and an unaccepted reopening proposal. Later related states are derived through OpLog, not copied from the previously erroneous run.",
+    "commitment_case_id": "conditional_execution_is_task_commitment",
+    "cancellation": {
+      "candidate": {
+        "candidate_id": "task.error_analysis@S3-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speaker": "Ana",
+        "text": "Good. We're dropping the error analysis; the report deadline moved up.",
+        "value": "cancelled"
+      },
+      "corrected_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "task.error_analysis@S1-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": "the report deadline moved up",
+        "rationale": "Dropping the committed task changes its active status to cancelled."
+      }
+    },
+    "reopening_case_id": "reopening_question_is_unconfirmed"
+  }
+}
