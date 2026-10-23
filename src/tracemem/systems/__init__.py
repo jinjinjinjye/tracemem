@@ -3,6 +3,7 @@
 from tracemem.components import GoldExtractor, GoldMatcher, GoldResolver, GoldRetriever, RuleAnswerer
 from tracemem.pipeline import TraceMemPipeline
 from tracemem.systems.base import MemorySystem, SystemSpec
+from tracemem.systems.mem0 import make_mem0
 from tracemem.systems.probes import (
     AlwaysConflictProbe,
     AlwaysNoneProbe,
@@ -30,6 +31,7 @@ REGISTRY: dict[str, SystemSpec] = {
         SystemSpec("always-conflict", AlwaysConflictProbe, True, "probe: always reports a conflict (refusal bound)"),
         SystemSpec("pipeline-gold", _gold_pipeline, True, "mock: TraceMem's pipeline wired from gold stand-ins"),
         SystemSpec("always-none", AlwaysNoneProbe, True, "probe: always says nothing is settled (refusal bound)"),
+        SystemSpec("mem0", make_mem0, False, "baseline: Mem0 OSS inferred memory, search and model-based answering"),
     ]
 }
 

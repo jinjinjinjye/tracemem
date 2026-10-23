@@ -33,6 +33,21 @@ The repository currently contains the **evaluation scaffold**: everything needed
 
 The five example scenarios in `benchmark/scenarios/dev/` show the format. They are drafts for the team to review, not part of any result.
 
+## Compare with Mem0 (open-source baseline)
+
+A real Mem0 memory system is available as the optional `mem0` benchmark system.
+It uses Mem0's own extraction and memory updates (`infer=True`), not gold labels.
+Requires `OPENAI_API_KEY` and runs only in the end-to-end condition:
+
+```bash
+pip install -e '.[dev,mem0]'
+tracemem run --system mem0 --split dev --condition end_to_end
+```
+
+See [Mem0 comparison methodology](docs/mem0-comparison.md) for model settings,
+source-citation caveats, and how to compare against a *real* TraceMem agent.
+The current gold-stand-in pipeline is a probe, not a valid comparison result.
+
 ## Quick start
 
 You need Python 3.11 or newer. Run every command from the repository root, the `tracemem` folder that `git clone` creates.
