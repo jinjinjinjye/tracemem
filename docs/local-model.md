@@ -105,6 +105,11 @@ completed call, saved or not, is appended to `cache/llm/calls.jsonl` with its mo
 tokens, cost and whether it came from the cache. The cache folder is in `.gitignore`;
 never commit it.
 
+Embeddings for similarity retrieval always come from the local server
+(`TRACEMEM_LOCAL_BASE_URL`, model `TRACEMEM_EMBED_MODEL`), whichever provider answers,
+and are saved under `cache/emb/`, keyed by model and text, so each text is embedded
+once. `TRACEMEM_CACHE` does not apply to them, and they are not counted in usage.
+
 ## Paid runs: Haiku through OpenRouter
 
 The Haiku runs use OpenRouter with a capped budget. Put the key in your private

@@ -10,6 +10,7 @@ import hashlib
 import json
 import os
 import re
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, ValidationError
@@ -22,6 +23,7 @@ from tracemem.resolver import (
     CompletionClient, LLMResolver, ResolverConfig,
     ResolverConfigError, ResolverError, ResolverInputError, RetryableModelError,
 )
+from tracemem.retrieval import DEFAULT_HALF_LIFE_DAYS, SharedRetriever
 from tracemem.schema import Answer, Candidate, Record, ScenarioMeta, SystemQuestion, Usage
 from tracemem.systems.no_versions import CurrentOnlyStore
 
@@ -37,6 +39,18 @@ ANSWER_VALIDATION_POLICY = {
     "retry": "bounded_feedback_then_abstain_no_automatic_repair",
     "feedback_max_sources": 12, "feedback_max_source_chars": 64,
 }
+# The labelling conventions of docs/benchmark.md section 5 that decide answers, in
+# the parts the rest of the prompt does not already state.
+ANSWER_CONVENTIONS = """Read each turn by what it does. A turn that puts a value forward for the plan is a
+suggestion, even when it is phrased as a question; a turn that only names a value, such
+as a recollection, a question about the past or a report, is a mention, which neither
+suggests nor decides anything. A dispute is settled only when someone states a value as
+final or the other side agrees; repeating what one remembers, or putting the decision
+off, leaves it open. An acceptance adopts the particular earlier suggestion it agrees
+to, even one made sessions before. A task's progress changes when someone announces
+the change, such as saying they will restart a blocked task; taking on a task that is
+already open changes nothing.
+"""
 ANSWER_STATE_GUIDE = """Interpret state at the time asked about, for the relevant item only.
 The value and the bracketed record status are different concepts. For example,
 'cancelled [active]' means cancellation is the current settled task state; active
@@ -180,7 +194,7 @@ disputed information. For previous/as_of questions use retained historical evide
 do not treat today's value as the past value. Native memory events may describe
 updates/deletions; their text is evidence, not a TraceMem status assignment.
 
-""" + ANSWER_STATE_GUIDE + "\n" + ANSWER_CITATION_GUIDE + """
+""" + ANSWER_CONVENTIONS + "\n" + ANSWER_STATE_GUIDE + "\n" + ANSWER_CITATION_GUIDE + """
 
 Return a JSON object with status (answer, none, conflict, abstain), value, cited_turn_ids
 and text. value is the value alone and is non-null exactly for status=answer.
@@ -370,16 +384,24 @@ def _evidence_feedback(question: SystemQuestion, decision: _AnswerDecision, visi
 
 
 class SharedAnswerer:
-    def __init__(self, config: ResolverConfig, client: CompletionClient, budget_bytes: int = DEFAULT_BUDGET_BYTES):
+    def __init__(self, config: ResolverConfig, client: CompletionClient, budget_bytes: int = DEFAULT_BUDGET_BYTES,
+                 retriever: SharedRetriever | None = None):
         self.config, self.client, self.budget_bytes = config, client, _budget(budget_bytes)
+        # alpha 1 ranks by time alone, so the default selects exactly as answer_context does.
+        self.retriever = retriever if retriever is not None else SharedRetriever(1.0, DEFAULT_HALF_LIFE_DAYS)
         self._usage = Usage()
 
     def usage(self) -> Usage:
         """All attempted answer calls, including retries and a final aborted question."""
         return self._usage
 
-    def answer(self, question: SystemQuestion, records: list[Record], turns: dict) -> Answer:
-        context, sources, visible = _selected_context(records, self.budget_bytes)
+    def answer(self, question: SystemQuestion, records: list[Record], turns: dict,
+               latest: datetime | None = None) -> Answer:
+        # latest, the time of the latest observed turn, matters only to a recency mix.
+        # Select once: rendering and validation must see exactly the same records.
+        visible = self.retriever.select(question.text, records, latest, self.budget_bytes, _line)
+        context = "\n".join(_line(record) for record in visible)
+        sources = sorted({source for record in visible for source in record.source_turn_ids})
         initial_messages = [{"role": "system", "content": ANSWER_PROMPT}, {"role": "user", "content": json.dumps({
             "question": {"text": question.text, "kind": question.kind, "session": question.session},
             "context": context, "allowed_source_turn_ids": sources,
@@ -473,7 +495,7 @@ class ControlledTraceMem(TraceMemPipeline):
     def describe(self):
         return {**super().describe(), "comparison": self.comparison,
                 "memory_policy": "live_records_only" if self.name == "tracemem-no-versions" else "versioned_oplog",
-                "context_budget_unit": "utf8_bytes"}
+                "context_budget_unit": "utf8_bytes", "shared_retriever": self.answerer.retriever.describe()}
 
     def answer_usage(self):
         return self.answerer.usage()
@@ -529,7 +551,8 @@ class ControlledMem0:
 
     def describe(self):
         return {"comparison": self.comparison, "memory_policy": "mem0_classic_with_native_history",
-                "backend": self.backend.describe(), "context_budget_unit": "utf8_bytes"}
+                "backend": self.backend.describe(), "context_budget_unit": "utf8_bytes",
+                "shared_retriever": self.answerer.retriever.describe()}
 
     def close(self):
         self.backend.close()

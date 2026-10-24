@@ -75,10 +75,11 @@ previous questions continue to use all retained records. The no-version ablation
 does not replay its scoring audit; Mem0 continues to supply its native retained
 memories and history.
 
-The same selection code then chooses newest entries first, includes only complete
-entries within
-`TRACEMEM_CONTEXT_BUDGET_BYTES` (default 12,000 UTF-8 bytes), and renders selected
-entries chronologically using the same record renderer. This is a byte budget,
+Every arm then selects entries with the same shared retriever (see
+[below](#shared-retriever-and-answer-conventions)). These three arms rank by recency
+alone, so the retriever chooses newest entries first, includes only complete entries
+within `TRACEMEM_CONTEXT_BUDGET_BYTES` (default 12,000 UTF-8 bytes), and renders
+selected entries chronologically using the same record renderer. This is a byte budget,
 not the pipeline's `budget_tokens` estimate or a guarantee of equal token counts.
 Native Mem0 history is rendered as before/after events without inventing TraceMem
 statuses. All arms use the identical answer prompt, output schema and citation
@@ -90,6 +91,42 @@ The shared renderer shows values, statuses, creation turns, speakers and sources
 it does not serialize raw record IDs or supersession edge IDs. TraceMem's edges
 remain available to its resolver, while answering uses the retained versions and
 their chronology/statuses.
+
+### Shared retriever and answer conventions
+
+Every system that answers through `SharedAnswerer` selects its context with one
+retriever, `SharedRetriever` in [`retrieval.py`](../src/tracemem/retrieval.py), so
+their context selection can differ only in its two settings. Each entry scores
+`(1 - alpha) * cosine(question, entry) + alpha * recency`, where
+`recency = 0.5 ** (age_days / half_life_days)` and the age runs from the entry's
+`created_at` to the latest observed turn. An entry's text is its context line, exactly
+as the answer model reads it. Entries are taken in descending score, newest first
+among equal scores, while they fit the byte budget; each costs its line's UTF-8 bytes
+plus one for the newline before it, and a line that does not fit is skipped whole. The
+selection is shown in time order. Embeddings come from the local server's
+OpenAI-compatible `/v1/embeddings` endpoint (`TRACEMEM_LOCAL_BASE_URL`, model
+`TRACEMEM_EMBED_MODEL`, default `nomic-embed-text` with its `search_query: ` and
+`search_document: ` prefixes) and are saved under `cache/emb/`, keyed by model and
+text, so each text is embedded once.
+
+The three arms above use `alpha=1`. Recency then falls strictly with age, so the
+ranking is the time order itself: the retriever makes no embedding call and selects
+exactly the entries the earlier newest-first code chose, ties included (newest first
+by creation time, creating turn, item, value and record ID). Offline tests check this
+on every record set in the saved fixtures and on each pilot's gold store, at several
+budgets. Each manifest records the retriever's settings under
+`system_config.shared_retriever`, outside `comparison`: systems are meant to differ
+in them, and `tracemem report` requires the `comparison` settings to be equal.
+
+The shared answer prompt also states, in one paragraph (`ANSWER_CONVENTIONS`), the
+labelling conventions of [benchmark section 5](benchmark.md#5-labelling-conventions-for-hard-cases)
+that decide answers, in the parts the prompt did not already say: function decides
+between a suggestion and a mention; a dispute stays open until someone settles it;
+an acceptance names the suggestion it accepts and may come sessions later; announced
+progress counts when it changes the progress. All arms receive it. This changes
+`answer_prompt_hash`, so `tracemem report` refuses to compare runs made before and
+after it; rerun every arm. The output schema, renderer, validator, model settings
+and Resolver fingerprints are unchanged.
 
 ### Current validation and historical reads
 
@@ -319,6 +356,7 @@ These `run` commands make real provider calls. For offline verification, use:
 ```bash
 pytest tests/test_mem0_baseline.py tests/test_no_versions.py tests/test_memory_comparison.py tests/test_comparison_failures.py tests/test_probes.py
 pytest tests/test_reader_evidence_validation.py tests/test_reader_provenance_temporal_regressions.py tests/test_reader_temporal_retrieval.py
+pytest tests/test_retrieval.py
 ```
 
 The tests inject scripted provider replies while retaining the real Mem0 SDK.
