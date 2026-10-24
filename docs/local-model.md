@@ -1,7 +1,8 @@
 # Running the comparison on a local model
 
-The controlled comparison systems (`tracemem-controlled`, `tracemem-no-versions` and
-`mem0-classic`, see [the comparison guide](memory-comparison.md)) can call a model on
+The controlled comparison systems (`similarity`, `similarity-recency`, `mem0-classic`,
+`mem0-instructions`, `tracemem-controlled` and the `tracemem-no-versions` diagnostic,
+see [the comparison guide](memory-comparison.md)) can call a model on
 your own machine through [Ollama](https://ollama.com) instead of a paid API. Local runs
 cost nothing and are meant for development. The Haiku runs use OpenRouter with a
 capped budget; see [Paid runs](#paid-runs-haiku-through-openrouter) below.
@@ -43,10 +44,33 @@ ollama pull qwen3.5:4b          # the chat model, about 3.3 GB
 ollama pull nomic-embed-text    # the embedding model for similarity retrieval, about 0.3 GB
 ```
 
-## 3. Run a pilot
+## 3. Give the model a long enough context
+
+The shared answer prompt alone is about 2,700 tokens, and a full context budget adds
+several thousand more. Ollama gives each model a fixed context, for example 4,096
+tokens, and does not refuse a longer request: it cuts the request down from the
+front, dropping the instructions, reports only the tokens it kept, and the model
+answers anyway. With a 4,096-token context such a request is cut to about 2,050
+tokens. Start the server with a 16,384-token context instead:
+
+- **Linux or macOS, server started by hand**: `OLLAMA_CONTEXT_LENGTH=16384 ollama serve`.
+- **Linux service**: run `sudo systemctl edit ollama.service`, add the two lines
+  `[Service]` and `Environment="OLLAMA_CONTEXT_LENGTH=16384"`, then run
+  `sudo systemctl daemon-reload` and `sudo systemctl restart ollama`.
+- **macOS app**: run `launchctl setenv OLLAMA_CONTEXT_LENGTH 16384`, then quit and
+  reopen Ollama.
+- **Windows**: add a user environment variable `OLLAMA_CONTEXT_LENGTH` with the value
+  `16384`, then quit Ollama from the taskbar and start it again.
+
+After the first request, `ollama ps` shows the loaded model's context in its
+`CONTEXT` column. In `cache/llm/calls.jsonl`, an `input_tokens` value well below what
+the request should take, such as 2,050, means a request was cut; delete the cache
+folder before running again, because the cut replies were saved.
+
+## 4. Run a pilot
 
 Install the package with the model SDK from the repository root
-(`pip install -e ".[dev,llm]"`, or `".[dev,mem0]"` for `mem0-classic`). Then select
+(`pip install -e ".[dev,llm]"`, or `".[dev,mem0]"` for the two Mem0 systems). Then select
 the local server and the model:
 
 ```bash

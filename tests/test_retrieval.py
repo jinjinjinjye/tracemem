@@ -14,6 +14,7 @@ import math
 import random
 import sys
 from datetime import datetime, timedelta
+from importlib.metadata import PackageNotFoundError, version
 from types import ModuleType, SimpleNamespace
 from unittest.mock import Mock
 
@@ -532,18 +533,37 @@ def test_the_shared_answerer_reads_what_its_retriever_selects():
 
 
 def test_every_controlled_arm_records_what_it_shares_and_what_it_may_vary():
-    for name in comparison.NAMES:
+    try:
+        version("mem0ai")
+        names = comparison.NAMES
+    except PackageNotFoundError:
+        names = [name for name in comparison.NAMES if name not in comparison.MEM0_NAMES]
+    settings = []
+    for name in names:
         system = comparison.make_system(name, pilot("pilot-01").meta(), config=CONFIG, client=ScriptedClient(ABSTAIN))
         try:
             description = system.describe()
         finally:
             getattr(system, "close", lambda: None)()
-        assert description["shared_retriever"] == SharedRetriever(1, 7).describe()
+        # Each arm records its own retriever: the similarity arms their planned mix, every
+        # other arm recency alone, which needs no embedder.
+        alpha, half_life_days = comparison.SIMILARITY_RETRIEVERS.get(name, (1.0, 7.0))
+        retriever = description["shared_retriever"]
+        assert (retriever["alpha"], retriever["half_life_days"]) == (alpha, half_life_days)
+        assert retriever["ranking"] == SharedRetriever(alpha, half_life_days, embedder=NoEmbedder()).describe()["ranking"]
         # The report requires equal comparison settings: they hold what every arm shares,
-        # and not the settings later arms differ in.
+        # and not the settings arms differ in.
         shared = description["comparison"]["retriever"]
         assert shared == SharedRetriever(1, 7).shared_settings()
         assert not {"ranking", "alpha", "half_life_days"} & set(shared)
+        if alpha == 1:
+            assert retriever == SharedRetriever(1, 7).describe()
+        else:
+            # The embedder an arm calls embeds with the model every arm records.
+            assert {key: value for key, value in retriever["embedder"].items() if key != "base_url"} \
+                == shared["embedding"]
+        settings.append(description["comparison"])
+    assert all(setting == settings[0] for setting in settings)
 
 
 def test_the_report_refuses_runs_whose_embedding_models_differ(tmp_path, monkeypatch):

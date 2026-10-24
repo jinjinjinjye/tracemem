@@ -30,6 +30,31 @@ from tracemem.schema import Candidate, Record, ScenarioMeta, TURN_ID, Usage
 MEM0_VERSION = "1.0.11"
 MEM0_COMMIT = "144627c4ce5bc4db6acac17cbd158065f2b27a8d"
 EXTRACTION_PROMPT = "Return the supplied TraceMem candidate unchanged as a JSON fact."
+# Instructions for mem0-instructions, put after the SDK's default update prompt. After
+# the first line, every line is copied from the Resolver's INTENT_GUIDE: a suggestion
+# is not a decision (items 1 and 2), disputes stay open (item 4), a different item is
+# never replaced (item 1 and the tagging example) and a replaced decision is kept (the
+# first example). Nothing in code enforces them; the update model alone applies them.
+PROJECT_RULES = """Project rules. They were written for a memory whose operations are ADD-proposed, ADD-active, FLAG, KEEP and SUPERSEDE; apply their intent using ADD, UPDATE, DELETE and NONE.
+1. Locate the clause about THIS candidate's item and value. Decide whether the speaker
+   commits to it, merely proposes it, or challenges what is already settled. Do not
+   transfer a commitment about another item/value to this candidate. Candidate.value
+   is an extracted value, not proof that anyone accepted it.
+2. A suggestion asks for consideration, a trial or approval without adopting the
+   candidate value. Use ADD-proposed, even if it criticizes the current choice or
+   gives a strong reason for an alternative. A performance complaint is not itself
+   a disagreement about which value is currently settled. Neither FLAG nor SUPERSEDE
+   is justified by a tentative alternative alone.
+4. A dispute asserts a competing claim about the existing decision without resolving
+   it. For a different candidate value and an active record use FLAG. A recollection
+   that the team had agreed otherwise is not a new decision to switch. Explicit
+   resolution in favour of the active value is KEEP; adoption of a different value
+   is SUPERSEDE. Before any active value, a settled commitment uses ADD-active.
+- Active X, proposed Z: 'Let's make Y our choice from now on.' -> SUPERSEDE Y,
+  targeting X; retain X as the previous active version, and do not adopt proposed Z.
+- 'We chose X for classification. Maybe Y for tagging?' -> the Y/tagging candidate
+  is a proposal; the X/classification decision does not confirm it.
+"""
 _SDK_LOCK = RLock()
 
 
@@ -48,7 +73,7 @@ def _load_sdk(directory: str):
         try:
             from mem0.memory import main
             from mem0.configs.base import MemoryConfig
-            from mem0.configs.prompts import get_update_memory_messages
+            from mem0.configs.prompts import DEFAULT_UPDATE_MEMORY_PROMPT, get_update_memory_messages
             from mem0.memory.storage import SQLiteManager
         finally:
             for key, value in previous.items():
@@ -56,7 +81,14 @@ def _load_sdk(directory: str):
                     os.environ.pop(key, None)
                 else:
                     os.environ[key] = value
-    return main, MemoryConfig, SQLiteManager, get_update_memory_messages
+    return main, MemoryConfig, SQLiteManager, get_update_memory_messages, DEFAULT_UPDATE_MEMORY_PROMPT
+
+
+def _update_prompt(default: str, instructions: str | None) -> str | None:
+    """The SDK's own default update prompt, a blank line, then the instructions."""
+    if instructions is None:
+        return None
+    return default + ("\n" if default.endswith("\n") else "\n\n") + instructions
 
 
 @contextmanager
@@ -204,21 +236,30 @@ class Mem0Backend:
     Construction intentionally injects dependencies instead of Memory.__init__:
     no unused default providers are instantiated. SDK methods themselves are not
     copied, and an exact package pin plus offline tests guard this internal seam.
+
+    instructions, when given, follow the SDK's default update prompt, which the SDK
+    then uses in place of its default; otherwise the default is used alone.
     """
 
-    def __init__(self, meta: ScenarioMeta, config: ResolverConfig, client: CompletionClient):
-        self.meta, self.config, self.client = meta, config, client
+    def __init__(self, meta: ScenarioMeta, config: ResolverConfig, client: CompletionClient,
+                 instructions: str | None = None):
+        if instructions is not None and (not isinstance(instructions, str) or not instructions.strip()):
+            raise ResolverConfigError("Mem0 update instructions must be nonempty text")
+        self.meta, self.config, self.client, self.instructions = meta, config, client, instructions
         self._temp = TemporaryDirectory(prefix="tracemem-mem0-")
         try:
-            self._sdk, MemoryConfig, SQLiteManager, update_prompt = _load_sdk(self._temp.name)
+            self._sdk, MemoryConfig, SQLiteManager, update_prompt, default_prompt = _load_sdk(self._temp.name)
+            custom_prompt = _update_prompt(default_prompt, instructions)
             self._store = _AllItemStore()
             self._usage = Usage()
             self._bridge = _UpdateBridge(self)
             self._memory = self._sdk.Memory.__new__(self._sdk.Memory)
+            # The SDK's update stage reads the custom prompt from the config, not the attribute.
             self._memory.config = MemoryConfig(history_db_path=":memory:", custom_fact_extraction_prompt=EXTRACTION_PROMPT,
+                                               custom_update_memory_prompt=custom_prompt,
                                                llm={"provider": "openai", "config": {"model": config.model}})
             self._memory.custom_fact_extraction_prompt = EXTRACTION_PROMPT
-            self._memory.custom_update_memory_prompt = None
+            self._memory.custom_update_memory_prompt = custom_prompt
             self._memory.embedding_model = _UnusedEmbedding()
             self._memory.vector_store = self._store
             self._memory.llm = self._bridge
@@ -226,7 +267,7 @@ class Mem0Backend:
             self._memory.collection_name = "controlled-candidate-memory"
             self._memory.api_version = self._memory.config.version
             self._memory.reranker, self._memory.graph, self._memory.enable_graph = None, None, False
-            self._update_hash = hashlib.sha256(update_prompt([], []).encode()).hexdigest()
+            self._update_hash = hashlib.sha256(update_prompt([], [], custom_prompt).encode()).hexdigest()
         except Exception:
             self._temp.cleanup()
             raise
@@ -377,6 +418,9 @@ class Mem0Backend:
         return {"backend": "Mem0 classic OSS", "sdk_version": MEM0_VERSION, "sdk_commit": MEM0_COMMIT,
                 "model_config": self.config.model_dump(), "client": type(self.client).__name__,
                 "update_prompt_hash": self._update_hash,
+                "update_prompt": "sdk_default" if self.instructions is None else "sdk_default_then_instructions",
+                "instructions_hash": None if self.instructions is None
+                else hashlib.sha256(self.instructions.encode()).hexdigest(),
                 "extraction_prompt_hash": hashlib.sha256(EXTRACTION_PROMPT.encode()).hexdigest(),
                 "infer": True, "extraction": "identity over supplied candidates; no extraction model call",
                 "matching": "all current memories of same item; SDK top-five/vector ranking bypassed",

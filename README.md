@@ -31,9 +31,9 @@ production extraction and retrieval remain to be implemented.
 | TraceMem's pipeline, wired end to end with stand-in components | done | [`src/tracemem/pipeline.py`](src/tracemem/pipeline.py), [`components.py`](src/tracemem/components.py) |
 | Model-backed Resolver, development registration, failure/usage logs | implemented; offline tested | [`docs/resolver.md`](docs/resolver.md) |
 | Resolver operation metrics and error analysis | implemented; gold-candidate condition | [`docs/metrics.md`](docs/metrics.md#9-resolver-operation-metrics-and-error-analysis) |
-| Controlled TraceMem / no versions / Mem0 classic comparison | implemented; offline tested, gold-candidate only | [`docs/memory-comparison.md`](docs/memory-comparison.md) |
+| Controlled comparison: similarity, similarity + recency, Mem0 classic, Mem0 with project instructions, TraceMem (and TraceMem without versions) | implemented; offline tested, gold-candidate only | [`docs/memory-comparison.md`](docs/memory-comparison.md) |
 | Real extraction, matching, retrieval and answering components | planned | interfaces in [`docs/interfaces.md`](docs/interfaces.md) |
-| Comparison systems: similarity, similarity + recency, Timeline, full history | planned | [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) |
+| Comparison systems: Timeline, full history, and the similarity systems end to end | planned | [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) |
 | The team's benchmark scenarios | planned | [`docs/benchmark.md`](docs/benchmark.md) |
 | Demo interface | planned | |
 
@@ -52,8 +52,9 @@ Completed gold-candidate runs also save Resolver operation metrics and error cas
 Inspect them with `tracemem resolver-report runs/<saved-run-folder>`. For an offline
 scorer check, run `pipeline-gold` with `--condition gold_candidates`.
 
-The controlled systems are `tracemem-controlled`, `tracemem-no-versions` and
-`mem0-classic`. Install `.[dev,mem0]` to include the pinned Mem0 1.0.11 SDK, then
+The controlled systems are `similarity`, `similarity-recency`, `mem0-classic`,
+`mem0-instructions`, `tracemem-controlled` and the `tracemem-no-versions` diagnostic.
+Install `.[dev,mem0]` to include the pinned Mem0 1.0.11 SDK, then
 follow [the comparison guide](docs/memory-comparison.md). They use real model
 clients during normal runs; offline tests inject replies and make no provider calls.
 Mem0 native history is included, and reports reject mismatched candidates or model

@@ -1,15 +1,19 @@
 # Controlled memory comparison
 
-Three registered systems compare memory management after extraction. They accept
+Five registered systems compare memory management after extraction, and a sixth,
+`tracemem-no-versions`, remains registered as a diagnostic ablation. They accept
 only `--condition gold_candidates`; they never receive the gold timeline, expected
 answers, script acts or question-to-item mapping. This is a component experiment,
 not an end-to-end comparison of the products.
 
-| System | Write path | Retained memory |
-|---|---|---|
-| `tracemem-controlled` | `LLMResolver` and `OpLog` | Current records, closed records, statuses, sources and supersession links |
-| `tracemem-no-versions` | Same resolver, prompt and operation validation | Active, proposed and contested records with sources; closed records and supersession links discarded |
-| `mem0-classic` | Pinned native Mem0 ADD/UPDATE/DELETE/NONE engine | Current native memories and all native history events, including updates and deletes |
+| System | Write path | Retained memory | Retriever |
+|---|---|---|---|
+| `similarity` | None | Every candidate as one record without a status | Similarity to the question (`alpha=0`) |
+| `similarity-recency` | None | The same | Similarity and recency (`alpha=0.3`, 7-day half-life, provisional) |
+| `mem0-classic` | Pinned native Mem0 ADD/UPDATE/DELETE/NONE engine | Current native memories and all native history events, including updates and deletes | Recency alone (`alpha=1`) |
+| `mem0-instructions` | The same engine, with the project rules after Mem0's default update prompt | The same | Recency alone |
+| `tracemem-controlled` | `LLMResolver` and `OpLog` | Current records, closed records, statuses, sources and supersession links | Recency alone |
+| `tracemem-no-versions` (diagnostic) | Same resolver, prompt and operation validation | Active, proposed and contested records with sources; closed records and supersession links discarded | Recency alone |
 
 The ablation removes retained versions, not the resolver, proposal/conflict handling
 or provenance. Its operation audit exists for offline scoring only: neither matching
@@ -51,9 +55,68 @@ Initialization injects dependencies through a pinned internal SDK seam. Offline
 tests exercise the actual installed SDK, including update/delete history and
 partial-write rollback; an SDK upgrade requires reviewing that seam and repinning.
 
+## Mem0 with project instructions
+
+`mem0-instructions` is `mem0-classic` with one change. Its update prompt is the SDK's
+own default update prompt, read from the installed package, followed by a blank line
+and `PROJECT_RULES` from [`mem0_baseline.py`](../src/tracemem/systems/mem0_baseline.py).
+The SDK's `get_update_memory_messages` puts a custom update prompt where its default
+would stand, at the head of the update request; the memories, the new facts and the
+required output format follow unchanged. Mem0 1.0.11 reads that prompt from its
+`MemoryConfig` (`custom_update_memory_prompt`), not from the attribute of the same
+name, so the adapter sets both. An offline test checks that the request is exactly
+the classic request with the rules after the default prompt, and that `mem0-classic`
+still sends the default alone.
+
+After a first line saying how to apply them with Mem0's four operations, the rules are
+passages copied from the Resolver's `INTENT_GUIDE`:
+
+- a suggestion is not a decision (items 1 and 2);
+- a dispute stays open until someone settles it (item 4);
+- a statement about another item never replaces this one (item 1's "Do not transfer…"
+  and the tagging example);
+- a replaced decision is kept as the previous version (the example that retains X as
+  the previous active version).
+
+No code enforces them. The update model alone applies them, with ADD, UPDATE, DELETE
+and NONE, and the adapter validates and applies its actions exactly as for
+`mem0-classic`. `system_config.backend` records `update_prompt_hash`, the hash of the
+whole update request with no memories and no facts, which therefore differs between
+the two Mem0 systems, and `instructions_hash`, the hash of the rules (`null` for
+`mem0-classic`).
+
+## Similarity systems without a write path
+
+`similarity` and `similarity-recency` make no model call while observing. Each keeps
+every candidate it receives and, for each question, builds its store with
+`ops.flat_records`: one record per candidate, with the candidate's item, value,
+speaker and source turn, and no status. Nothing is merged, replaced or discarded, so
+`usage.json` reports no write calls and there are no operations to score. For an
+as-of question they read all retained records, as Mem0 does; only TraceMem projects
+its operation log to the requested session.
+
+Their store is the candidate text itself, so each context line is the shared line
+plus the quoted text of the record's first source turn, exactly as `render_records`
+writes it when given the turns. For pilot-01's S2-T3 ('Maybe we could try DistilBERT?'):
+
+```text
+S2-T3 Arun: model.sentiment = DistilBERT "Maybe we could try DistilBERT? It might be faster." | sources=S2-T3
+```
+
+The quote is part of the line that the retriever embeds and the byte budget counts.
+The other arms keep the line without it (see below). Each manifest records which
+form a system uses as `system_config.quote_source_turns`. The shared `context_format`,
+now `shared_record_renderer_with_sources_v2`, no longer states that no arm sees
+dialogue; runs made before this change cannot be reported with runs made after it.
+
+The two systems differ only in their retriever. `similarity` ranks records by
+similarity to the question alone; `similarity-recency` mixes in recency, with the
+age measured to the latest observed turn, including turns without candidates. Its
+weight and half-life are provisional.
+
 ## Shared inputs and answering
 
-All three arms use the same candidate list, explicit model, optional temperature,
+All arms use the same candidate list, explicit model, optional temperature,
 output limit, timeout and retry limit. They share one model client, chosen by
 `TRACEMEM_PROVIDER`: the built-in OpenAI transport and fixed endpoint by default, or
 OpenRouter or a local Ollama server ([local model guide](local-model.md)), always with
@@ -76,17 +139,20 @@ does not replay its scoring audit; Mem0 continues to supply its native retained
 memories and history.
 
 Every arm then selects entries with the same shared retriever (see
-[below](#shared-retriever-and-answer-conventions)). These three arms rank by recency
-alone, so the retriever chooses newest entries first, includes only complete entries
-within `TRACEMEM_CONTEXT_BUDGET_BYTES` (default 12,000 UTF-8 bytes), and renders
-selected entries chronologically using the same record renderer. This is a byte budget,
+[below](#shared-retriever-and-answer-conventions)). The TraceMem and Mem0 arms rank by
+recency alone, so the retriever chooses newest entries first. For every arm it includes
+only complete entries within `TRACEMEM_CONTEXT_BUDGET_BYTES` (default 12,000 UTF-8
+bytes) and renders the selected entries chronologically using the same record renderer. This is a byte budget,
 not the pipeline's `budget_tokens` estimate or a guarantee of equal token counts.
 Native Mem0 history is rendered as before/after events without inventing TraceMem
 statuses. All arms use the identical answer prompt, output schema and citation
-validation. Only retained memory and source IDs reach the answer model; raw
-dialogue is not appended, because it could restore discarded versions.
-Mem0 may retain candidate quotes inside its native memory text; those remain
-legitimate stored evidence, rather than an extra transcript supplied at read time.
+validation. For the TraceMem and Mem0 arms, only retained memory and source IDs
+reach the answer model; raw dialogue is not appended, because it could restore
+discarded versions. Mem0 may retain candidate quotes inside its native memory text;
+those remain legitimate stored evidence, rather than an extra transcript supplied at
+read time. The similarity arms discard nothing and store the candidate text itself,
+so their lines quote each record's own source turn (see
+[above](#similarity-systems-without-a-write-path)).
 The shared renderer shows values, statuses, creation turns, speakers and sources;
 it does not serialize raw record IDs or supersession edge IDs. TraceMem's edges
 remain available to its resolver, while answering uses the retained versions and
@@ -109,8 +175,9 @@ from the local server's OpenAI-compatible `/v1/embeddings` endpoint
 with its `search_query: ` and `search_document: ` prefixes) and are saved under
 `cache/emb/`, keyed by model and text, so each text is embedded once.
 
-The three arms above use `alpha=1`. Recency then falls strictly with age, so the
-ranking is the time order itself: the retriever makes no embedding call and selects
+`similarity` uses `alpha=0` and `similarity-recency` uses `alpha=0.3` with
+`half_life_days=7`. The TraceMem and Mem0 arms use `alpha=1`. Recency then falls
+strictly with age, so the ranking is the time order itself: the retriever makes no embedding call and selects
 exactly the entries the earlier newest-first code chose, ties included (newest first
 by creation time, creating turn, item, value and record ID). Offline tests check this
 on every record set in the saved fixtures and on each pilot's gold store, at several
@@ -175,7 +242,7 @@ must emit a complete replacement reply. Code does not add citations, replace the
 answer with a computed value, or force a conflict reply. Exhaustion returns
 `abstain`; all attempted calls and reported tokens remain in answer usage.
 
-All three arms share this validator, prompt, schema, model configuration, context
+All arms share this validator, prompt, schema, model configuration, context
 budget and retry limit. Native Mem0 has no explicit TraceMem statuses, so the new
 status-based guards do not fabricate them from native UPDATE/DELETE events.
 Interpreting native evidence remains the shared model's responsibility. Additional
@@ -353,21 +420,26 @@ Install the optional SDK, configure the existing `TRACEMEM_RESOLVER_*` settings 
 ```bash
 pip install -e ".[dev,mem0]"
 tracemem systems
-tracemem run --system tracemem-controlled --split dev --condition gold_candidates
-tracemem run --system tracemem-no-versions --split dev --condition gold_candidates
-tracemem run --system mem0-classic --split dev --condition gold_candidates
-tracemem report runs/<tracemem-run> runs/<ablation-run> runs/<mem0-run>
+for system in similarity similarity-recency mem0-classic mem0-instructions tracemem-controlled; do
+  tracemem run --system "$system" --split dev --condition gold_candidates
+done
+tracemem report runs/<similarity-run> runs/<similarity-recency-run> runs/<mem0-run> \
+  runs/<mem0-instructions-run> runs/<tracemem-run>
 ```
 
-These `run` commands make real provider calls. For offline verification, use:
+These `run` commands make real provider calls, and the two similarity systems call
+the embedding server ([local model guide](local-model.md)). The diagnostic runs the
+same way with `--system tracemem-no-versions`. For offline verification, use:
 
 ```bash
 pytest tests/test_mem0_baseline.py tests/test_no_versions.py tests/test_memory_comparison.py tests/test_comparison_failures.py tests/test_probes.py
 pytest tests/test_reader_evidence_validation.py tests/test_reader_provenance_temporal_regressions.py tests/test_reader_temporal_retrieval.py
-pytest tests/test_retrieval.py
+pytest tests/test_retrieval.py tests/test_five_systems.py
 ```
 
 The tests inject scripted provider replies while retaining the real Mem0 SDK.
+Embeddings come from a deterministic offline embedder that `tests/conftest.py` gives
+every test, so no test reaches an embedding server.
 They cover all five development pilots and causal truncation, shared inputs and
 model settings, native mutations/history, current-only storage, context budgets,
 failure recovery and usage accounting. They establish integration correctness,
