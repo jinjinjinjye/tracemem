@@ -255,8 +255,9 @@ def _budget(value: int | None) -> int:
 
 
 def _client_settings(client: CompletionClient) -> object:
-    # Provider, endpoint, thinking switch and token field change replies, so arms
-    # must share them. The reply cache's folder and switch do not; no key is recorded.
+    # Provider, endpoint, thinking switch, token field and a local server's context
+    # change replies, so arms must share them. The reply cache's folder and switch
+    # do not; no key is recorded.
     inner = client.inner if isinstance(client, model_client.CachedClient) else client
     describe = getattr(inner, "describe", None)
     return describe() if callable(describe) else type(inner).__name__

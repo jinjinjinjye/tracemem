@@ -14,6 +14,14 @@ reported cost, else the price table below. Any other call, including every call
 through the default openai provider, is logged as unpriced at zero, so the cap does
 not limit its spending. The log covers this machine only, and local calls are never
 capped.
+
+A local server that gives the model a shorter context than a request needs does not
+refuse it: Ollama cuts the request from the front and answers anyway. The local
+client therefore records the context the server must give the model
+(TRACEMEM_LOCAL_CONTEXT_TOKENS, default 16,384), and after every reply checks it
+against the length the server reports in /api/ps, and the tokens the server read
+against the size of the request. Either mismatch stops the run before the reply can
+be saved.
 """
 
 from __future__ import annotations
@@ -25,6 +33,7 @@ import os
 import re
 import tempfile
 import time
+import urllib.request
 from pathlib import Path
 from typing import Mapping
 
@@ -38,6 +47,11 @@ LOCAL_BASE_URL = "http://127.0.0.1:11434/v1"  # Ollama's default port
 DEFAULT_CACHE_DIR = "cache/llm"
 DEFAULT_BUDGET_USD = 12.0
 PROVIDERS = ("openai", "openrouter", "local")
+DEFAULT_LOCAL_CONTEXT_TOKENS = 16384
+# Text and JSON take about four UTF-8 bytes per token: 4.0 to 4.6 in the pilot-01
+# requests of 25 Oct 2026. A server that read fewer tokens than one per six bytes
+# sent has cut the request.
+MAX_BYTES_PER_TOKEN = 6
 # US dollars per million input / output tokens, used only when the provider reports
 # no cost. Checked on OpenRouter's model list on 23 and 24 Oct 2026.
 PRICES_PER_MILLION = {
@@ -73,6 +87,30 @@ def read_dotenv(path: str | os.PathLike) -> dict[str, str]:
     return values
 
 
+def server_context_length(base_url: str, model: str, timeout_seconds: float = 10.0) -> int | None:
+    """The context length an Ollama server reports in /api/ps for a loaded model.
+
+    None when the model is not loaded or no length is reported. An unreachable
+    server, or one without Ollama's /api/ps, stops the run with FatalModelError.
+    """
+    root = base_url.rstrip("/").removesuffix("/v1")
+    if not root.startswith(("http://", "https://")):
+        raise FatalModelError("the local server address must start with http:// or https://")
+    try:
+        with urllib.request.urlopen(root + "/api/ps", timeout=timeout_seconds) as response:
+            listing = json.load(response)
+    except (OSError, ValueError):
+        raise FatalModelError("could not read the loaded models from the local server's /api/ps; "
+                              "the local provider needs an Ollama server") from None
+    names = {model} if ":" in model else {model, model + ":latest"}
+    entries = listing.get("models") if isinstance(listing, dict) else None
+    for entry in entries if isinstance(entries, list) else []:
+        if isinstance(entry, dict) and (entry.get("name") in names or entry.get("model") in names):
+            length = entry.get("context_length")
+            return length if isinstance(length, int) and not isinstance(length, bool) else None
+    return None
+
+
 def _switch(env: Mapping[str, str], name: str, default: str) -> bool:
     value = env.get(name, default).strip().lower()
     if value not in ("on", "off"):
@@ -85,7 +123,7 @@ class OpenAICompatibleClient:
 
     def __init__(self, *, base_url: str, api_key: str, extra_body: dict | None = None,
                  headers: dict[str, str] | None = None, label: str = "openai-compatible",
-                 token_field: str = "max_completion_tokens"):
+                 token_field: str = "max_completion_tokens", context_tokens: int | None = None):
         try:
             import openai
         except ImportError:
@@ -100,12 +138,34 @@ class OpenAICompatibleClient:
         self.label = label
         # Ollama reads max_tokens and ignores max_completion_tokens.
         self.token_field = token_field
+        # When set, the context the server must give the model, checked after every reply.
+        self.context_tokens = context_tokens
         self.last_cost: float | None = None
 
     def describe(self) -> dict:
         """Settings that change replies; part of the cache key, never the key itself."""
-        return {"label": self.label, "base_url": self.base_url, "extra_body": self.extra_body,
-                "token_field": self.token_field}
+        settings = {"label": self.label, "base_url": self.base_url, "extra_body": self.extra_body,
+                    "token_field": self.token_field}
+        if self.context_tokens is not None:
+            # A shorter context cuts long requests, so it changes replies.
+            settings["context_tokens"] = self.context_tokens
+        return settings
+
+    def _check_context(self, model: str, messages: list[dict[str, str]], usage) -> None:
+        """Stop the run unless the server gave the model the recorded context and read the whole request."""
+        served = server_context_length(self.base_url, model)
+        if served is None:
+            raise FatalModelError(f"the local server reports no context length for {model} in /api/ps, "
+                                  "so a cut request could not be detected")
+        if served != self.context_tokens:
+            raise FatalModelError(f"the local server gives {model} a {served}-token context, but "
+                                  f"TRACEMEM_LOCAL_CONTEXT_TOKENS is {self.context_tokens}; start the server "
+                                  "with OLLAMA_CONTEXT_LENGTH set to the same number (docs/local-model.md)")
+        sent = sum(len(str(message.get("content") or "").encode("utf-8")) for message in messages)
+        read = getattr(usage, "prompt_tokens", None)
+        if isinstance(read, int) and read * MAX_BYTES_PER_TOKEN < sent:
+            raise FatalModelError(f"the local server read {read} tokens of a {sent}-byte request, so it cut "
+                                  "the request; give the model a longer context (docs/local-model.md)")
 
     def complete(self, *, config: ResolverConfig, messages: list[dict[str, str]],
                  response_format: dict) -> ModelReply:
@@ -130,6 +190,8 @@ class OpenAICompatibleClient:
             raise RetryableModelError("provider returned no completion")
         choice = result.choices[0]
         usage = result.usage
+        if self.context_tokens is not None:
+            self._check_context(config.model, messages, usage)
         cost = getattr(usage, "cost", None) if usage else None
         self.last_cost = float(cost) if isinstance(cost, (int, float)) and not isinstance(cost, bool) else None
         return ModelReply(
@@ -142,16 +204,26 @@ class OpenAICompatibleClient:
 
 
 def local_client(environ: Mapping[str, str] | None = None) -> OpenAICompatibleClient:
-    """An Ollama server; thinking is off unless TRACEMEM_LOCAL_THINKING=on."""
+    """An Ollama server; thinking is off unless TRACEMEM_LOCAL_THINKING=on.
+
+    The server must give the model the context of TRACEMEM_LOCAL_CONTEXT_TOKENS.
+    """
     env = os.environ if environ is None else environ
     thinking = _switch(env, "TRACEMEM_LOCAL_THINKING", "off")
+    raw = env.get("TRACEMEM_LOCAL_CONTEXT_TOKENS", "").strip()
+    try:
+        context = int(raw) if raw else DEFAULT_LOCAL_CONTEXT_TOKENS
+        if context < 1:
+            raise ValueError
+    except ValueError:
+        raise ResolverConfigError("TRACEMEM_LOCAL_CONTEXT_TOKENS must be a positive whole number of tokens") from None
     # reasoning_effort "none" is how Ollama's OpenAI endpoint turns thinking off.
     extra = {} if thinking else {"reasoning_effort": "none"}
     return OpenAICompatibleClient(
         base_url=env.get("TRACEMEM_LOCAL_BASE_URL", "").strip() or LOCAL_BASE_URL,
         # Ollama ignores the key; a server that checks one can be given it here.
         api_key=env.get("TRACEMEM_LOCAL_API_KEY", "").strip() or "local",
-        extra_body=extra, label="local", token_field="max_tokens")
+        extra_body=extra, label="local", token_field="max_tokens", context_tokens=context)
 
 
 def openrouter_client(environ: Mapping[str, str] | None = None,

@@ -8,9 +8,11 @@ also run the minimal scenario offline through the harness and the report.
 
 from __future__ import annotations
 
+import io
 import json
 import sys
 import traceback
+import urllib.request
 from types import ModuleType, SimpleNamespace
 from unittest.mock import Mock
 
@@ -28,6 +30,7 @@ from tracemem.model_client import (
     local_client,
     openrouter_client,
     read_dotenv,
+    server_context_length,
 )
 from tracemem.resolver import (
     FatalModelError,
@@ -45,12 +48,13 @@ MESSAGES = [{"role": "user", "content": "synthetic evidence"}]
 FORMAT = {"type": "json_schema", "json_schema": {"name": "test"}}
 CONFIG = ResolverConfig(model="test-model", timeout_seconds=4.5, max_completion_tokens=73)
 SETTINGS = ("OPENAI_API_KEY", "OPENROUTER_API_KEY", "TRACEMEM_PROVIDER", "TRACEMEM_LOCAL_BASE_URL",
-            "TRACEMEM_LOCAL_THINKING", "TRACEMEM_LOCAL_API_KEY", "TRACEMEM_CACHE", "TRACEMEM_CACHE_DIR",
-            "TRACEMEM_BUDGET_USD")
+            "TRACEMEM_LOCAL_THINKING", "TRACEMEM_LOCAL_API_KEY", "TRACEMEM_LOCAL_CONTEXT_TOKENS", "TRACEMEM_CACHE",
+            "TRACEMEM_CACHE_DIR", "TRACEMEM_BUDGET_USD")
 
 
-def completion(*, content='{"op": "ADD"}', finish_reason="stop", cost=None, refusal=None, usage=True):
-    usage = SimpleNamespace(prompt_tokens=17, completion_tokens=9) if usage else None
+def completion(*, content='{"op": "ADD"}', finish_reason="stop", cost=None, refusal=None, usage=True,
+               prompt_tokens=17):
+    usage = SimpleNamespace(prompt_tokens=prompt_tokens, completion_tokens=9) if usage else None
     if cost is not None:
         usage.cost = cost
     return SimpleNamespace(
@@ -84,6 +88,15 @@ def sdk(monkeypatch, tmp_path):
         chat=SimpleNamespace(completions=SimpleNamespace(create=module.create)),
     ))
     monkeypatch.setitem(sys.modules, "openai", module)
+    # The local server's context, as its /api/ps reports it after each reply.
+    module.served_context = 16384
+    module.context_checks = []
+
+    def served(base_url, model, timeout_seconds=10.0):
+        module.context_checks.append((base_url, model))
+        return module.served_context
+
+    monkeypatch.setattr(model_client, "server_context_length", served)
     for name in SETTINGS:
         monkeypatch.delenv(name, raising=False)
     monkeypatch.chdir(tmp_path)
@@ -271,6 +284,110 @@ def test_empty_choices_are_retryable(sdk):
     sdk.create.return_value = SimpleNamespace(choices=[], usage=None)
     with pytest.raises(RetryableModelError, match="no completion"):
         request(local_client({}))
+
+
+# The local server's context
+
+
+def test_local_client_records_the_context_the_server_must_give_the_model(sdk):
+    assert local_client({}).describe()["context_tokens"] == 16384
+    assert local_client({"TRACEMEM_LOCAL_CONTEXT_TOKENS": " 8192 "}).describe()["context_tokens"] == 8192
+    assert local_client({"TRACEMEM_LOCAL_CONTEXT_TOKENS": " "}).describe()["context_tokens"] == 16384
+    # Only the local server is checked; OpenRouter refuses a request that does not fit.
+    router = openrouter_client({"OPENROUTER_API_KEY": "synthetic-router-key"})
+    assert "context_tokens" not in router.describe()
+    request(router)
+    assert sdk.context_checks == []
+
+
+@pytest.mark.parametrize("value", ["0", "-4096", "lots", "16384.5"])
+def test_local_client_rejects_a_context_that_is_not_a_positive_whole_number(sdk, value):
+    with pytest.raises(ResolverConfigError, match="TRACEMEM_LOCAL_CONTEXT_TOKENS"):
+        from_env({"TRACEMEM_PROVIDER": "local", "TRACEMEM_LOCAL_CONTEXT_TOKENS": value})
+    sdk.OpenAI.assert_not_called()
+
+
+def test_every_local_reply_checks_the_context_the_server_reports(sdk):
+    client = local_client({"TRACEMEM_LOCAL_BASE_URL": "http://192.0.2.10:11434/v1"})
+    request(client)
+    request(client, config=ResolverConfig(model="other-model"))
+    assert sdk.context_checks == [("http://192.0.2.10:11434/v1", "test-model"),
+                                  ("http://192.0.2.10:11434/v1", "other-model")]
+
+
+@pytest.mark.parametrize("served", [4096, 32768, None])
+def test_a_server_with_another_context_stops_the_run_and_nothing_is_saved(sdk, tmp_path, served):
+    sdk.served_context = served
+    client = CachedClient(local_client({}), tmp_path)
+    with pytest.raises(FatalModelError, match="context") as caught:
+        request(client)
+    assert not isinstance(caught.value, RetryableModelError)
+    assert saved_replies(tmp_path) == [] and log_entries(tmp_path) == []
+    sdk.served_context = 16384
+    assert request(client) == ModelReply('{"op": "ADD"}', input_tokens=17, output_tokens=9)
+    assert len(saved_replies(tmp_path)) == 1
+
+
+def test_a_reply_that_read_fewer_tokens_than_the_request_holds_stops_the_run_unsaved(sdk, tmp_path):
+    # A 4,414-token request cut to 2,050 tokens by a 4,096-token context, at four bytes a token.
+    cut = [{"role": "system", "content": "x" * 17000}, {"role": "user", "content": "y" * 656}]
+    sdk.create.return_value = completion(prompt_tokens=2050)
+    client = CachedClient(local_client({}), tmp_path)
+    with pytest.raises(FatalModelError, match="read 2050 tokens of a 17656-byte request") as caught:
+        request(client, messages=cut)
+    assert not isinstance(caught.value, RetryableModelError)
+    assert saved_replies(tmp_path) == [] and log_entries(tmp_path) == []
+    # Six bytes a token is the most a whole request takes; the pilot's took 4.0 to 4.6.
+    whole = [{"role": "user", "content": "z" * (2050 * 6)}]
+    assert request(client, messages=whole).input_tokens == 2050
+    sdk.create.return_value = completion(usage=False)
+    assert request(client, messages=cut).input_tokens == 0  # nothing reported, nothing to compare
+
+
+class ServerListing:
+    def __init__(self, body):
+        self.body = body
+        self.opened = []
+
+    def __call__(self, url, timeout):
+        self.opened.append((url, timeout))
+        if isinstance(self.body, Exception):
+            raise self.body
+        return io.BytesIO(self.body.encode("utf-8"))
+
+
+def test_server_context_length_reads_the_loaded_model_from_ollama_ps(monkeypatch):
+    listing = ServerListing(json.dumps({"models": [
+        {"name": "nomic-embed-text:latest", "model": "nomic-embed-text:latest", "context_length": 2048},
+        {"name": "qwen3.5:4b", "model": "qwen3.5:4b", "context_length": 16384},
+        {"name": "unreported:1b", "model": "unreported:1b"},
+    ]}))
+    monkeypatch.setattr(urllib.request, "urlopen", listing)
+    assert server_context_length("http://127.0.0.1:11434/v1", "qwen3.5:4b") == 16384
+    assert server_context_length("http://192.0.2.10:11434/", "nomic-embed-text") == 2048
+    assert server_context_length("http://127.0.0.1:11434/v1/", "qwen3.5:9b") is None
+    assert server_context_length("http://127.0.0.1:11434/v1", "unreported:1b") is None
+    assert [url for url, _ in listing.opened] == ["http://127.0.0.1:11434/api/ps", "http://192.0.2.10:11434/api/ps",
+                                                 "http://127.0.0.1:11434/api/ps", "http://127.0.0.1:11434/api/ps"]
+    assert all(timeout == 10.0 for _, timeout in listing.opened)
+
+
+@pytest.mark.parametrize("body", [OSError("synthetic refusal"), "not json", '["models"]', '{"models": 7}'])
+def test_a_server_without_a_readable_listing_stops_the_run_or_lists_nothing(monkeypatch, body):
+    monkeypatch.setattr(urllib.request, "urlopen", ServerListing(body))
+    if isinstance(body, Exception) or body == "not json":
+        with pytest.raises(FatalModelError, match="api/ps"):
+            server_context_length("http://127.0.0.1:11434/v1", "qwen3.5:4b")
+    else:
+        assert server_context_length("http://127.0.0.1:11434/v1", "qwen3.5:4b") is None
+
+
+def test_server_context_length_reads_only_http_addresses(monkeypatch):
+    listing = ServerListing("{}")
+    monkeypatch.setattr(urllib.request, "urlopen", listing)
+    with pytest.raises(FatalModelError, match="http"):
+        server_context_length("file:///synthetic/v1", "qwen3.5:4b")
+    assert listing.opened == []
 
 
 # .env parsing
@@ -586,7 +703,10 @@ def test_comparison_settings_record_the_provider_settings_but_not_the_cache_or_t
 
     base = settings(TRACEMEM_PROVIDER="local")
     assert base["model_client"] == {"label": "local", "base_url": "http://127.0.0.1:11434/v1",
-                                    "extra_body": {"reasoning_effort": "none"}, "token_field": "max_tokens"}
+                                    "extra_body": {"reasoning_effort": "none"}, "token_field": "max_tokens",
+                                    "context_tokens": 16384}
+    # Runs made with different local contexts are never reported together.
+    assert settings(TRACEMEM_PROVIDER="local", TRACEMEM_LOCAL_CONTEXT_TOKENS="8192") != base
     assert settings(TRACEMEM_PROVIDER="local", TRACEMEM_CACHE="off", TRACEMEM_CACHE_DIR=str(tmp_path)) == base
     assert settings(TRACEMEM_PROVIDER="local", TRACEMEM_LOCAL_THINKING="on") != base
     assert settings(TRACEMEM_PROVIDER="local", TRACEMEM_LOCAL_BASE_URL="http://192.0.2.7:11434/v1") != base

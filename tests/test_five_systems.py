@@ -291,6 +291,28 @@ def test_recency_is_measured_to_the_latest_observed_turn(offline_embedders):
     assert system.answerer.retriever.embedder is offline_embedders[-1]
 
 
+@pytest.mark.parametrize("name", SIMILARITY)
+def test_similarity_systems_read_every_retained_record_for_an_as_of_question(name):
+    # Only TraceMem projects its log to the asked session; the other stores are read whole.
+    contexts = {}
+    for system_name in (name, "tracemem-controlled"):
+        client = OfflineComparisonClient()
+        system = comparison.make_system(system_name, pilot("pilot-01").meta(), config=CONFIG, client=client)
+        try:
+            observe_candidate(system, "S1-T1", "BERT")
+            observe_candidate(system, "S2-T2", "DistilBERT")
+            system.answer(question("as_of", "S1"))
+        finally:
+            close(system)
+        contexts[system_name] = json.loads(client.answer_calls()[-1]["messages"][1]["content"])
+    later = contexts[name]
+    assert later["allowed_source_turn_ids"] == ["S1-T1", "S2-T2"]
+    assert [line.split(" ", 1)[0] for line in later["context"].splitlines()] == ["S1-T1", "S2-T2"]
+    assert "model.sentiment = DistilBERT" in later["context"]
+    assert contexts["tracemem-controlled"]["allowed_source_turn_ids"] == ["S1-T1"]
+    assert "DistilBERT" not in contexts["tracemem-controlled"]["context"]
+
+
 def test_answering_leaves_the_similarity_store_unchanged():
     system = comparison.make_system("similarity", pilot("pilot-01").meta(), config=CONFIG,
                                     client=OfflineComparisonClient())
@@ -321,6 +343,30 @@ def test_similarity_systems_embed_through_the_local_server_by_default(monkeypatc
 
 # Mem0 with project instructions
 
+# The rules exactly, so that no edit to them, or to their order, goes unnoticed.
+EXPECTED_PROJECT_RULES = """\
+Project rules. They were written for a memory whose operations are ADD-proposed, ADD-active, FLAG, KEEP and SUPERSEDE; apply their intent using ADD, UPDATE, DELETE and NONE.
+1. Locate the clause about THIS candidate's item and value. Decide whether the speaker
+   commits to it, merely proposes it, or challenges what is already settled. Do not
+   transfer a commitment about another item/value to this candidate. Candidate.value
+   is an extracted value, not proof that anyone accepted it.
+2. A suggestion asks for consideration, a trial or approval without adopting the
+   candidate value. Use ADD-proposed, even if it criticizes the current choice or
+   gives a strong reason for an alternative. A performance complaint is not itself
+   a disagreement about which value is currently settled. Neither FLAG nor SUPERSEDE
+   is justified by a tentative alternative alone.
+4. A dispute asserts a competing claim about the existing decision without resolving
+   it. For a different candidate value and an active record use FLAG. A recollection
+   that the team had agreed otherwise is not a new decision to switch. Explicit
+   resolution in favour of the active value is KEEP; adoption of a different value
+   is SUPERSEDE. Before any active value, a settled commitment uses ADD-active.
+- Active X, proposed Z: 'Let's make Y our choice from now on.' -> SUPERSEDE Y,
+  targeting X; retain X as the previous active version, and do not adopt proposed Z.
+- 'We chose X for classification. Maybe Y for tagging?' -> the Y/tagging candidate
+  is a proposal; the X/classification decision does not confirm it.
+"""
+
+
 def test_the_project_rules_are_passages_of_the_resolver_intent_guide():
     header, *rules = PROJECT_RULES.splitlines()
     assert header == ("Project rules. They were written for a memory whose operations are ADD-proposed, "
@@ -329,6 +375,21 @@ def test_the_project_rules_are_passages_of_the_resolver_intent_guide():
     # Each rule line is a whole guide line, or its start where item 2 stops after a sentence.
     assert all(any(line == source or source.startswith(line + " ") for source in guide) for line in rules)
     assert len(rules) == 18 and PROJECT_RULES.endswith("does not confirm it.\n")
+    assert PROJECT_RULES == EXPECTED_PROJECT_RULES
+    # The lines keep the guide's order.
+    positions = [next(index for index, source in enumerate(guide) if line == source or source.startswith(line + " "))
+                 for line in rules]
+    assert positions == sorted(set(positions))
+    # The four rules: a suggestion is not a decision, disputes stay open, another item
+    # is never replaced, and a replaced decision is kept.
+    flat = " ".join(line.strip() for line in rules)
+    for passage in ("1. Locate the clause about THIS candidate's item and value.",
+                    "2. A suggestion asks for consideration, a trial or approval without adopting the candidate value.",
+                    "4. A dispute asserts a competing claim about the existing decision without resolving it.",
+                    "Do not transfer a commitment about another item/value to this candidate.",
+                    "the Y/tagging candidate is a proposal; the X/classification decision does not confirm it.",
+                    "retain X as the previous active version, and do not adopt proposed Z."):
+        assert passage in flat
 
 
 @needs_mem0

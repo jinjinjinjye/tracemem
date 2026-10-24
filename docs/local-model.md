@@ -63,9 +63,21 @@ tokens. Start the server with a 16,384-token context instead:
   `16384`, then quit Ollama from the taskbar and start it again.
 
 After the first request, `ollama ps` shows the loaded model's context in its
-`CONTEXT` column. In `cache/llm/calls.jsonl`, an `input_tokens` value well below what
-the request should take, such as 2,050, means a request was cut; delete the cache
-folder before running again, because the cut replies were saved.
+`CONTEXT` column. The local client checks it for you: after every reply it reads the
+model's context from the server's `/api/ps` and stops the run, saving nothing, unless
+it equals `TRACEMEM_LOCAL_CONTEXT_TOKENS` (16,384 by default). It also stops the run
+when the server reports reading fewer tokens than one for every six bytes of the
+request, which means the request was cut even at that context; requests take about
+four bytes a token. The server must therefore be Ollama. If your computer cannot hold
+a 16,384-token context, start the server with a smaller one and set
+`TRACEMEM_LOCAL_CONTEXT_TOKENS` to the same number: a request too long for it then
+stops the run instead of being answered in part.
+
+The context is part of the recorded model settings, so `tracemem report` refuses to
+compare runs made with different contexts, and a reply saved under one context is
+never replayed under another. Runs and saved replies made before this check existed
+do not record a context: they cannot be reported beside newer runs, and a newer run
+asks the model again.
 
 ## 4. Run a pilot
 
@@ -166,6 +178,7 @@ runs paid commands, and with which budget, before starting them.
 | `OPENROUTER_API_KEY` | none | Read from the environment, else from `.env` |
 | `TRACEMEM_LOCAL_BASE_URL` | `http://127.0.0.1:11434/v1` | The local server's OpenAI-compatible address |
 | `TRACEMEM_LOCAL_THINKING` | `off` | `on` lets the local model think before answering |
+| `TRACEMEM_LOCAL_CONTEXT_TOKENS` | `16384` | The context the local server must give the model (`OLLAMA_CONTEXT_LENGTH`); checked after every reply |
 | `TRACEMEM_CACHE` | `on` | `off` neither reads nor saves replies; calls are still logged and capped |
 | `TRACEMEM_CACHE_DIR` | `cache/llm` | Saved replies and the cost log `calls.jsonl` |
 | `TRACEMEM_BUDGET_USD` | `12` | Spending cap over the whole cost log; counts only priced calls, so not the default `openai` provider |
