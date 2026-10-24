@@ -78,6 +78,7 @@ EXPECTED = {
         "compute.gpu@S2": ("answer", "lab server"),
         "compute.gpu@S3": ("answer", "lab server"),
         "compute.gpu@S4": ("answer", "lab server"),
+        "compute.gpu@S2-previous": ("answer", "Colab"),  # S2-T2 replaced Colab, so Colab is the earlier value
         # task.baseline_runs: open (S1-T2) -> blocked (S2-T1) -> open (S3-T1) -> completed (S4-T1).
         "task.baseline_runs@S1": ("answer", "open"),
         "task.baseline_runs@S2": ("answer", "blocked"),
@@ -134,6 +135,7 @@ SUPPORT = {
     },
     "pilot-04": {
         "compute.gpu@S2": (["S2-T2"], []),
+        "compute.gpu@S2-previous": (["S1-T1", "S2-T2"], []),  # where Colab was set, and where it was replaced
         "task.baseline_runs@S3": (["S3-T1"], []),
         "task.error_analysis@S4": (["S3-T2"], []),
     },
@@ -225,6 +227,7 @@ CURRENT_FORMS = {
     ("pilot-02", "dataset.train@S4-previous"): IMDB,
     ("pilot-02", "dataset.train@S4-asof-S2"): IMDB,
     ("pilot-03", "model.ner@S4-previous"): {"spacy", "spacy model", "spacy ner"},
+    ("pilot-04", "compute.gpu@S2-previous"): {"lab server", "the lab machine", "department server"},
     ("pilot-05", "model.baseline@S3-previous"): {"linear svm", "svm", "linear svc"},
 }
 
