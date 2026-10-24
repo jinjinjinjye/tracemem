@@ -19,13 +19,17 @@ from unittest.mock import Mock
 
 import pytest
 
-from support import FIXTURES, PILOT_IDS, pilot, pilot_timeline
+from support import FIXTURES, PILOT_IDS, minimal_dict, pilot, pilot_timeline
+from test_model_client import VisibleStateClient
+from tracemem.eval import harness
+from tracemem.eval.report import comparison_table
 from tracemem.model_client import LOCAL_BASE_URL
 from tracemem.ops import flat_records
 from tracemem.resolver import FatalModelError, ModelReply, ResolverConfig
 from tracemem.retrieval import OllamaEmbeddings, SharedRetriever, cosine, recency
-from tracemem.schema import Record, SystemQuestion
+from tracemem.schema import Record, Scenario, SystemQuestion
 from tracemem.systems import comparison
+from tracemem.systems.base import SystemSpec
 
 START = datetime(2026, 3, 2, 10, 0)
 LINE = comparison._line
@@ -175,30 +179,43 @@ def test_recency_halves_at_each_half_life():
     assert recency(latest - timedelta(hours=12), latest, 0.5) == pytest.approx(0.5)
 
 
-@pytest.mark.parametrize("newer_similarity,winner", [(0.6, "newer"), (0.4, "older")])
-def test_score_mixes_similarity_and_recency_by_alpha(newer_similarity, winner):
-    # alpha 0.5, half-life 7: the older record (similarity 1, age 7 days) scores 0.75;
-    # the newer one (age 0) scores 0.5 * similarity + 0.5.
-    latest = START + timedelta(days=7)
+def winner(alpha, half_life, newer_similarity, latest=START + timedelta(days=7)):
+    """Which of two records fills a one-line budget: "older" (similarity 1, made at START)
+    or "newer" (made 7 days later, with the given similarity to the question)."""
     records = [record("S1-T1", "model.sentiment", "older", at=START),
-               record("S2-T1", "model.sentiment", "newer", at=latest)]
+               record("S2-T1", "model.sentiment", "newer", at=START + timedelta(days=7))]
     other = math.sqrt(1 - newer_similarity ** 2)
     embedder = TableEmbedder({"older": [1.0, 0.0], "newer": [newer_similarity, other]})
     budget = max(len(LINE(r).encode()) for r in records)
-    selected = SharedRetriever(0.5, 7, embedder=embedder).select("q", records, latest, budget, LINE)
-    assert [r.value for r in selected] == [winner]
+    selected = SharedRetriever(alpha, half_life, embedder=embedder).select("q", records, latest, budget, LINE)
+    assert len(selected) == 1
+    return selected[0].value
+
+
+@pytest.mark.parametrize("alpha,newer_similarity,expected", [(0.5, 0.6, "newer"), (0.5, 0.4, "older"),
+                                                             (0.3, 0.8, "newer"), (0.3, 0.75, "older")])
+def test_score_mixes_similarity_and_recency_by_alpha(alpha, newer_similarity, expected):
+    # Half-life 7: the older record (age 7 days) scores (1 - alpha) + alpha / 2 and the
+    # newer one (age 0) scores (1 - alpha) * similarity + alpha. At alpha 0.3 that is
+    # 0.85 against 0.7 * similarity + 0.3, so the older one wins below similarity 0.786.
+    # With the two weights swapped, the newer one would win at any similarity.
+    assert winner(alpha, 7, newer_similarity) == expected
+
+
+@pytest.mark.parametrize("half_life,newer_similarity,expected", [(7, 0.6, "newer"), (14, 0.6, "older"),
+                                                                 (7, 0.4, "older"), (3, 0.4, "newer")])
+def test_the_score_uses_the_retrievers_own_half_life(half_life, newer_similarity, expected):
+    # alpha 0.5: the older record scores 0.5 + 0.5 * 0.5 ** (7 / half_life) and the newer
+    # one 0.5 * similarity + 0.5, so the older one wins exactly when 0.5 ** (7 / half_life)
+    # exceeds the newer one's similarity: about 0.71 at 14 days, 0.5 at 7 and 0.2 at 3.
+    assert winner(0.5, half_life, newer_similarity) == expected
 
 
 def test_recency_is_measured_to_the_latest_observed_turn():
     # Moving the latest turn on by one half-life halves both recencies, so a
     # similarity gap that lost by recency now wins.
-    records = [record("S1-T1", "model.sentiment", "older", at=START),
-               record("S2-T1", "model.sentiment", "newer", at=START + timedelta(days=7))]
-    embedder = TableEmbedder({"older": [1.0, 0.0], "newer": [0.6, 0.8]})
-    budget = max(len(LINE(r).encode()) for r in records)
-    retriever = SharedRetriever(0.5, 7, embedder=embedder)
-    assert [r.value for r in retriever.select("q", records, START + timedelta(days=7), budget, LINE)] == ["newer"]
-    assert [r.value for r in retriever.select("q", records, START + timedelta(days=21), budget, LINE)] == ["older"]
+    assert winner(0.5, 7, 0.6, latest=START + timedelta(days=7)) == "newer"
+    assert winner(0.5, 7, 0.6, latest=START + timedelta(days=21)) == "older"
 
 
 @pytest.mark.parametrize("alpha", [0, 0.3, 1])
@@ -278,11 +295,9 @@ def test_no_records_need_no_embedding():
     assert SharedRetriever(0, 7, embedder=NoEmbedder()).select("q", [], None, 12000, LINE) == []
 
 
-def test_describe_records_the_settings_and_the_embedder_only_when_used():
+def test_describe_records_what_systems_may_vary_and_the_embedder_only_when_used():
     assert SharedRetriever(1, 7, embedder=KeywordEmbedder()).describe() == {
-        "policy": "similarity_recency_newest_tiebreak_whole_lines_v1", "ranking": "newest_first",
-        "alpha": 1.0, "half_life_days": 7.0, "recency_age": "record_created_at_to_latest_observed_turn",
-        "document_text": "context_line", "embedder": None,
+        "ranking": "newest_first", "alpha": 1.0, "half_life_days": 7.0, "embedder": None,
     }
     assert SharedRetriever(0, 7, embedder=KeywordEmbedder()).describe()["ranking"] == "similarity"
     mixed = SharedRetriever(0.3, 7, embedder=KeywordEmbedder()).describe()
@@ -384,9 +399,10 @@ def test_large_requests_are_sent_in_batches(sdk):
     assert [len(batch) for batch in sent(sdk)] == [2, 2, 1]
 
 
-def test_transient_failures_are_retried_and_nothing_failed_is_saved(sdk, tmp_path):
+@pytest.mark.parametrize("status", [408, 409, 429, 500, 503])
+def test_transient_failures_are_retried_and_nothing_failed_is_saved(sdk, tmp_path, status):
     succeed = sdk.create.side_effect
-    failures = [sdk.APIConnectionError("down"), sdk.APIStatusError(503, "busy")]
+    failures = [sdk.APIConnectionError("down"), sdk.APIStatusError(status, "busy")]
 
     def flaky(**kwargs):
         if failures:
@@ -414,6 +430,17 @@ def test_exhausted_or_rejected_requests_stop_the_run_and_save_nothing(sdk, tmp_p
     assert not (tmp_path / "cache" / "emb").exists()
 
 
+def test_an_empty_embedding_stops_the_run_and_saves_nothing(sdk, tmp_path):
+    # An empty vector would be saved, and a later cosine on it would raise an error
+    # that does not stop the run cleanly.
+    sdk.create.side_effect = lambda **kwargs: SimpleNamespace(data=[
+        SimpleNamespace(index=0, embedding=[20.0, 1.0]), SimpleNamespace(index=1, embedding=[])])
+    with pytest.raises(FatalModelError, match="empty embedding"):
+        OllamaEmbeddings.from_env().embed_documents(["abc", "de"])
+    assert sdk.create.call_count == 1  # A malformed reply is not retried.
+    assert not (tmp_path / "cache" / "emb").exists()  # Not even the well-formed row.
+
+
 def test_a_malformed_cache_file_is_a_miss_and_is_replaced(sdk):
     embedder = OllamaEmbeddings.from_env()
     path = embedder._path("search_document: abc")
@@ -431,6 +458,29 @@ def test_a_similarity_retriever_embeds_through_the_local_server_by_default(sdk):
     assert retriever.select("Which model?", records, None, 12000, LINE) == first == records
     assert sdk.create.call_count == 2  # The query once and the lines once; the repeat is all saved.
     assert SharedRetriever(1, 7).embedder is None
+
+
+def test_shared_settings_hold_the_policy_and_the_embedding_model_whatever_the_alpha(sdk, monkeypatch):
+    recency_only = SharedRetriever(1, 7).shared_settings()
+    assert recency_only == {
+        "policy": "similarity_recency_newest_tiebreak_whole_lines_v1",
+        "recency_age": "record_created_at_to_latest_observed_turn", "document_text": "context_line",
+        "embedding": {"api": "openai_compatible_embeddings", "model": "nomic-embed-text",
+                      "query_prefix": "search_query: ", "document_prefix": "search_document: "},
+    }
+    # A system that embeds shares them whatever its alpha and half-life; the address is not recorded.
+    assert SharedRetriever(0, 7).shared_settings() == recency_only
+    elsewhere = OllamaEmbeddings(base_url="http://gpu-box:11434/v1")
+    assert SharedRetriever(0.3, 3, embedder=elsewhere).shared_settings() == recency_only
+    # Another model changes them for systems that embed and systems that do not alike.
+    monkeypatch.setenv("TRACEMEM_EMBED_MODEL", "other-embedder")
+    other = SharedRetriever(1, 7).shared_settings()
+    assert other["embedding"] == {"api": "openai_compatible_embeddings", "model": "other-embedder",
+                                  "query_prefix": "", "document_prefix": ""}
+    assert SharedRetriever(0, 7).shared_settings() == other
+    # A system given its own embedder records that embedder, not the environment's model.
+    assert SharedRetriever(0, 7, embedder=OllamaEmbeddings()).shared_settings() == recency_only
+    assert SharedRetriever(0, 7, embedder=KeywordEmbedder()).shared_settings()["embedding"] == "KeywordEmbedder"
 
 
 # The shared answerer
@@ -481,7 +531,7 @@ def test_the_shared_answerer_reads_what_its_retriever_selects():
     assert (answer.status, answer.value) == ("answer", "IMDB")
 
 
-def test_every_controlled_arm_records_its_retriever_outside_the_shared_settings():
+def test_every_controlled_arm_records_what_it_shares_and_what_it_may_vary():
     for name in comparison.NAMES:
         system = comparison.make_system(name, pilot("pilot-01").meta(), config=CONFIG, client=ScriptedClient(ABSTAIN))
         try:
@@ -489,8 +539,31 @@ def test_every_controlled_arm_records_its_retriever_outside_the_shared_settings(
         finally:
             getattr(system, "close", lambda: None)()
         assert description["shared_retriever"] == SharedRetriever(1, 7).describe()
-        # Later arms differ in their retriever, and the report requires equal shared settings.
-        assert "shared_retriever" not in description["comparison"]
+        # The report requires equal comparison settings: they hold what every arm shares,
+        # and not the settings later arms differ in.
+        shared = description["comparison"]["retriever"]
+        assert shared == SharedRetriever(1, 7).shared_settings()
+        assert not {"ranking", "alpha", "half_life_days"} & set(shared)
+
+
+def test_the_report_refuses_runs_whose_embedding_models_differ(tmp_path, monkeypatch):
+    monkeypatch.setattr(harness, "_git", lambda *args: None)
+    monkeypatch.delenv("TRACEMEM_EMBED_MODEL", raising=False)
+    scenario = Scenario.model_validate(minimal_dict())
+
+    def run(name, model):
+        monkeypatch.setenv("TRACEMEM_EMBED_MODEL", model)
+        spec = SystemSpec(name, lambda meta, gold: comparison.make_system(
+            name, meta, config=CONFIG, client=VisibleStateClient()), False, "offline retriever test")
+        return harness.write_run(harness.run(spec, [scenario], "dev", condition="gold_candidates"), tmp_path / "runs")
+
+    first = run("tracemem-controlled", "nomic-embed-text")
+    assert comparison_table([first, run("tracemem-no-versions", "nomic-embed-text")], n=20)
+    other = run("tracemem-no-versions", "other-embedder")
+    manifest = json.loads((other / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["comparison"]["retriever"]["embedding"]["model"] == "other-embedder"
+    with pytest.raises(ValueError, match="shared inputs and models are required"):
+        comparison_table([first, other], n=20)
 
 
 # The shared answer prompt

@@ -9,6 +9,9 @@ the selection is returned in time order. With alpha 1 the score depends on age a
 so the ranking is the time order itself: no embedding is computed, and the selection
 equals the controlled comparison's newest-first reader, tie-breaks included.
 
+Compared systems differ only in alpha and half_life_days (describe). Everything else,
+the embedding model included, must be equal across them (shared_settings).
+
 OllamaEmbeddings embeds texts through an OpenAI-compatible /v1/embeddings endpoint,
 by default a local Ollama server, and saves every embedding on disk, keyed by model
 and text, so a text already embedded is never sent again.
@@ -36,6 +39,19 @@ POLICY = "similarity_recency_newest_tiebreak_whole_lines_v1"
 # Models trained with task prefixes, keyed by name without the tag: (query, document).
 # Any other model embeds the bare text.
 TASK_PREFIXES = {"nomic-embed-text": ("search_query: ", "search_document: ")}
+
+
+def embed_model(environ: Mapping[str, str] | None = None) -> str:
+    """The embedding model TRACEMEM_EMBED_MODEL names, nomic-embed-text by default."""
+    env = os.environ if environ is None else environ
+    return env.get("TRACEMEM_EMBED_MODEL", "").strip() or DEFAULT_EMBED_MODEL
+
+
+def embedding_settings(model: str) -> dict:
+    """What decides an embedding: the model and the task prefix put before each text."""
+    query_prefix, document_prefix = TASK_PREFIXES.get(model.split(":", 1)[0], ("", ""))
+    return {"api": "openai_compatible_embeddings", "model": model,
+            "query_prefix": query_prefix, "document_prefix": document_prefix}
 
 
 class Embedder(Protocol):
@@ -82,7 +98,8 @@ class OllamaEmbeddings:
         self._sdk = openai
         self._client = openai.OpenAI(api_key=api_key, base_url=base_url, max_retries=0)
         self.base_url, self.model = base_url, model
-        self.query_prefix, self.document_prefix = TASK_PREFIXES.get(model.split(":", 1)[0], ("", ""))
+        settings = embedding_settings(model)
+        self.query_prefix, self.document_prefix = settings["query_prefix"], settings["document_prefix"]
         self.cache_dir = Path(cache_dir)
         self.timeout_seconds, self.max_attempts, self.batch_size = timeout_seconds, max_attempts, batch_size
 
@@ -91,12 +108,11 @@ class OllamaEmbeddings:
         """The local server of TRACEMEM_LOCAL_BASE_URL and the model TRACEMEM_EMBED_MODEL."""
         env = os.environ if environ is None else environ
         return cls(base_url=env.get("TRACEMEM_LOCAL_BASE_URL", "").strip() or LOCAL_BASE_URL,
-                   model=env.get("TRACEMEM_EMBED_MODEL", "").strip() or DEFAULT_EMBED_MODEL,
+                   model=embed_model(env),
                    api_key=env.get("TRACEMEM_LOCAL_API_KEY", "").strip() or "local")
 
     def describe(self) -> dict:
-        return {"api": "openai_compatible_embeddings", "base_url": self.base_url, "model": self.model,
-                "query_prefix": self.query_prefix, "document_prefix": self.document_prefix}
+        return {**embedding_settings(self.model), "base_url": self.base_url}
 
     def embed_query(self, text: str) -> list[float]:
         return self._embed([self.query_prefix + text])[0]
@@ -141,8 +157,10 @@ class OllamaEmbeddings:
                                       "check TRACEMEM_EMBED_MODEL and TRACEMEM_LOCAL_BASE_URL") from None
             rows = sorted(result.data, key=lambda row: row.index)
             vectors = [[float(value) for value in row.embedding] for row in rows]
-            if len(vectors) != len(texts) or not all(vectors):
+            if len(vectors) != len(texts):
                 raise FatalModelError("embedding server returned the wrong number of embeddings")
+            if not all(vectors):
+                raise FatalModelError("embedding server returned an empty embedding")
             return vectors
         raise FatalModelError(f"embedding server unavailable after {self.max_attempts} attempts")
 
@@ -181,16 +199,36 @@ class SharedRetriever:
         # Only a score with a similarity term needs embeddings; the default is the local server.
         self.embedder = embedder if embedder is not None or self.alpha == 1 else OllamaEmbeddings.from_env()
 
+    def _embedder(self) -> dict | str | None:
+        if self.alpha == 1:
+            return None
+        describe = getattr(self.embedder, "describe", None)
+        return describe() if callable(describe) else type(self.embedder).__name__
+
     def describe(self) -> dict:
-        """The settings that decide the selection, for the run manifest."""
-        embedder = None
-        if self.alpha < 1:
-            describe = getattr(self.embedder, "describe", None)
-            embedder = describe() if callable(describe) else type(self.embedder).__name__
+        """The settings compared systems may differ in, for the run manifest."""
         ranking = "newest_first" if self.alpha == 1 else "similarity" if self.alpha == 0 else "similarity_and_recency"
-        return {"policy": POLICY, "ranking": ranking, "alpha": self.alpha, "half_life_days": self.half_life_days,
-                "recency_age": "record_created_at_to_latest_observed_turn",
-                "document_text": "context_line", "embedder": embedder}
+        return {"ranking": ranking, "alpha": self.alpha, "half_life_days": self.half_life_days,
+                "embedder": self._embedder()}
+
+    def shared_settings(self) -> dict:
+        """The settings every compared system must share, for the comparison settings.
+
+        A system that embeds records its embedder's model and prefixes; one that ranks
+        by recency alone records those of TRACEMEM_EMBED_MODEL, the model a similarity
+        system run alongside it embeds with. Runs embedded with different models then
+        cannot be reported together. The server's address does not change an embedding,
+        so it is not recorded here.
+        """
+        embedder = self._embedder()
+        if embedder is None:
+            embedding = embedding_settings(embed_model())
+        elif isinstance(embedder, dict):
+            embedding = {key: value for key, value in embedder.items() if key != "base_url"}
+        else:
+            embedding = embedder
+        return {"policy": POLICY, "recency_age": "record_created_at_to_latest_observed_turn",
+                "document_text": "context_line", "embedding": embedding}
 
     def select(self, question: str, records: Sequence[Record], latest: datetime | None, budget_bytes: int,
                line: Callable[[Record], str]) -> list[Record]:

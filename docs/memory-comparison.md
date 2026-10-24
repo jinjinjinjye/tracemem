@@ -101,22 +101,30 @@ their context selection can differ only in its two settings. Each entry scores
 `recency = 0.5 ** (age_days / half_life_days)` and the age runs from the entry's
 `created_at` to the latest observed turn. An entry's text is its context line, exactly
 as the answer model reads it. Entries are taken in descending score, newest first
-among equal scores, while they fit the byte budget; each costs its line's UTF-8 bytes
-plus one for the newline before it, and a line that does not fit is skipped whole. The
-selection is shown in time order. Embeddings come from the local server's
-OpenAI-compatible `/v1/embeddings` endpoint (`TRACEMEM_LOCAL_BASE_URL`, model
-`TRACEMEM_EMBED_MODEL`, default `nomic-embed-text` with its `search_query: ` and
-`search_document: ` prefixes) and are saved under `cache/emb/`, keyed by model and
-text, so each text is embedded once.
+among equal scores, while they fit the byte budget; each costs its line's UTF-8 bytes,
+plus one for the newline before it unless it is the first selected, and a line that
+does not fit is skipped whole. The selection is shown in time order. Embeddings come
+from the local server's OpenAI-compatible `/v1/embeddings` endpoint
+(`TRACEMEM_LOCAL_BASE_URL`, model `TRACEMEM_EMBED_MODEL`, default `nomic-embed-text`
+with its `search_query: ` and `search_document: ` prefixes) and are saved under
+`cache/emb/`, keyed by model and text, so each text is embedded once.
 
 The three arms above use `alpha=1`. Recency then falls strictly with age, so the
 ranking is the time order itself: the retriever makes no embedding call and selects
 exactly the entries the earlier newest-first code chose, ties included (newest first
 by creation time, creating turn, item, value and record ID). Offline tests check this
 on every record set in the saved fixtures and on each pilot's gold store, at several
-budgets. Each manifest records the retriever's settings under
-`system_config.shared_retriever`, outside `comparison`: systems are meant to differ
-in them, and `tracemem report` requires the `comparison` settings to be equal.
+budgets.
+
+Each manifest splits the retriever's settings in two. Systems may differ in `alpha`
+and `half_life_days`, so these, the ranking they give and the embedder a system
+actually calls are recorded under `system_config.shared_retriever`. Everything else
+must be equal and is recorded under `comparison.retriever`: the selection policy,
+how age is measured, the document text and the embedding model with its prefixes.
+A system that ranks by recency alone makes no embedding call, so it records the model
+`TRACEMEM_EMBED_MODEL` selects, the one a similarity system run alongside it uses.
+`tracemem report` therefore refuses to compare runs embedded with different models
+or selected under a different policy.
 
 The shared answer prompt also states, in one paragraph (`ANSWER_CONVENTIONS`), the
 labelling conventions of [benchmark section 5](benchmark.md#5-labelling-conventions-for-hard-cases)

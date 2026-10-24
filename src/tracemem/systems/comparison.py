@@ -255,11 +255,14 @@ def _cache_usage(client: CompletionClient) -> dict | None:
     return {key: client.stats[key] for key in ("calls", "hits", "misses")}
 
 
-def comparison_settings(config: ResolverConfig, budget_bytes: int, client: CompletionClient) -> dict:
+def comparison_settings(config: ResolverConfig, budget_bytes: int, client: CompletionClient,
+                        retriever: SharedRetriever | None = None) -> dict:
     # Record the same TraceMem reference in every arm's manifest. Constructing a
     # resolver with the existing client only describes the prompt/schema; it
     # makes no provider calls and does not change Mem0's native update behavior.
     reference = LLMResolver(config, client).describe()
+    # Arms may differ in the retriever's alpha and half-life, never in the rest.
+    retriever = retriever if retriever is not None else SharedRetriever(1.0, DEFAULT_HALF_LIFE_DAYS)
     return {
         "protocol": "gold-candidate-memory-v1", "input_policy": "gold_candidates_only",
         "model_config": config.model_dump(), "model_client": _client_settings(client),
@@ -272,6 +275,7 @@ def comparison_settings(config: ResolverConfig, budget_bytes: int, client: Compl
         "resolver_reference_prompt_hash": reference["prompt_hash"],
         "resolver_reference_schema_hash": reference["output_schema_hash"],
         "resolver_reference_policy_hash": reference["decision_policy_hash"],
+        "retriever": retriever.shared_settings(),
     }
 
 
@@ -484,7 +488,7 @@ class ControlledTraceMem(TraceMemPipeline):
                  client: CompletionClient, budget_bytes: int):
         super().__init__(meta, _CandidatesOnly(), GoldMatcher(), LLMResolver(config, client),
                          _AllMemory(), SharedAnswerer(config, client, budget_bytes), name=name)
-        self.comparison = comparison_settings(config, budget_bytes, client)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever)
         if name == "tracemem-no-versions":
             self.log = CurrentOnlyStore(meta.project_id)
 
@@ -514,7 +518,7 @@ class ControlledMem0:
         self.meta = meta
         self.backend = Mem0Backend(meta, config, client)
         self.answerer = SharedAnswerer(config, client, budget_bytes)
-        self.comparison = comparison_settings(config, budget_bytes, client)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever)
         self._candidates = []
         self._observed = set()
 
