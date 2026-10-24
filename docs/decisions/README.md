@@ -32,3 +32,6 @@ Never rewrite the substance of an accepted record. In one pull request:
 | 0008 | [Constrain adoption sources and check answer evidence roles](0008-constrain-adoption-and-answer-evidence.md) | proposed |
 | 0009 | [Preserve adoption during source retries and prioritise unresolved disputes](0009-preserve-adoption-during-source-retries.md) | proposed |
 | 0010 | [Validate visible answer evidence and restore historical state](0010-validate-reader-evidence-and-historical-state.md) | proposed |
+| 0011 | [Compare five memory systems through one retriever and one answer prompt](0011-compare-five-memory-systems.md) | proposed |
+| 0012 | [Call local and paid models through one client with a reply cache and a spending cap](0012-cache-and-cap-model-calls.md) | proposed |
+| 0013 | [Embed records with nomic-embed-text on the local model server](0013-embed-with-nomic-embed-text.md) | proposed |
