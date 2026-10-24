@@ -327,16 +327,16 @@ TraceMem and the baselines should differ in one thing only: whether a resolver a
 
 ## Comparison systems (planned)
 
-These systems are not built yet; so far only TraceMem's pipeline exists, wired from stand-ins. The list is a proposal until the team records it in a [decision record](decisions/README.md). An *embedding* is a list of numbers that represents a text's meaning, so that texts with similar meanings get nearby lists.
+The two similarity systems now exist in the gold-candidate condition, as `similarity` and `similarity-recency`, beside TraceMem and the two Mem0 systems; [the controlled comparison guide](memory-comparison.md) describes them. Timeline, full history and the end-to-end version of every system, which reads a real extractor's candidates, are still planned. The list is a proposal until the team records it in a [decision record](decisions/README.md). An *embedding* is a list of numbers that represents a text's meaning, so that texts with similar meanings get nearby lists.
 
 - **Similarity**: shows the records most similar to the question by embedding, with no status.
-- **Similarity + recency**: the same, but each record's score adds a term that favours newer records. Its parameters are tuned on development scenarios only.
+- **Similarity + recency**: the same, but each record's score adds a term that favours newer records. Its weight and half-life (0.3 and 7 days) are provisional, not tuned; any tuning uses development scenarios only.
 - **Timeline**: shows every record of the items its retriever selects, oldest first, with no status. The answer model works out what still holds when it reads them.
 - **TraceMem**: the same item selection as Timeline, with each record's status shown.
 - **TraceMem without supersession**: an ablation, a copy of TraceMem with one part removed to measure that part. Its resolver may only add records.
 - **Full history**: gives the answer model every turn so far. It is a reference point, not a record-based system.
 
-All record-based systems use the same extracted candidates, the same renderer (`render_records`) and the same token budget.
+All record-based systems use the same extracted candidates, the same renderer (`render_records`) and the same context budget, counted in UTF-8 bytes (`TRACEMEM_CONTEXT_BUDGET_BYTES`), not tokens.
 
 ## When the store rejects an operation
 

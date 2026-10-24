@@ -5,8 +5,9 @@ comparison.make_embedder, which every test sees replaced by OfflineEmbedder: let
 and digit counts as embeddings, describing itself as the model TRACEMEM_EMBED_MODEL
 selects, so that its runs can be reported beside the other systems' runs. A test that
 checks the real factory, or supplies its own embedder, does so explicitly. Nor does
-any test read a local model server's list of loaded models: a test of the local
-client replaces model_client.server_context_length itself.
+any test read a local model server's list of loaded or installed models: a test of
+the local client replaces model_client.server_context_length and
+model_client.model_digest itself.
 
 Without the optional mem0 extra, a test that runs mem0-classic and skips it itself,
 such as one parametrized with every registered system, skips mem0-instructions too.
@@ -67,9 +68,10 @@ def offline_embedders(monkeypatch):
 @pytest.fixture(autouse=True)
 def no_model_server(monkeypatch):
     def forbidden(*args, **kwargs):
-        raise AssertionError("tests must not read a model server's loaded models")
+        raise AssertionError("tests must not read a model server's loaded or installed models")
 
     monkeypatch.setattr(model_client, "server_context_length", forbidden)
+    monkeypatch.setattr(model_client, "model_digest", forbidden)
 
 
 def _cases(item, value: str) -> set[tuple]:

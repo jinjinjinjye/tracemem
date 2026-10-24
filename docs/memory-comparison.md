@@ -114,6 +114,17 @@ similarity to the question alone; `similarity-recency` mixes in recency, with th
 age measured to the latest observed turn, including turns without candidates. Its
 weight and half-life are provisional.
 
+On every current development scenario, the default 12,000-byte budget holds all of a
+similarity system's records: the largest store, pilot-01's, takes 1,153 bytes. The
+retriever then drops nothing, and since the selection is shown in time order, its
+ranking has no effect. `similarity` and `similarity-recency` therefore select the
+same records and send identical requests on these scenarios, so their answers can
+differ only through model variation; when they share a reply cache, the second
+system replays the first one's replies. Their results on these scenarios are one
+result, not a comparison of retrievers. The weight and half-life can matter only
+when a store is larger than the budget, through longer scenarios or a smaller budget
+for every arm.
+
 ## Shared inputs and answering
 
 All arms use the same candidate list, explicit model, optional temperature,
@@ -123,8 +134,9 @@ OpenRouter or a local Ollama server ([local model guide](local-model.md)), alway
 the same reply cache and spending cap; no seed is set. The same configuration also controls
 answer calls. The model must support the existing structured-answer
 transport. Candidate hashes, configuration, the model client's reply-changing
-settings (provider, endpoint, thinking switch and output-limit field, never the key
-or the cache), reference resolver prompt/schema hashes, answer prompt/schema hashes,
+settings (provider, endpoint, thinking switch, output-limit field and, for a local
+server, the model's context and digest; never the key, the cache or the cost log),
+reference resolver prompt/schema hashes, answer prompt/schema hashes,
 answer-validation policy hash and temporal reader policy are recorded in
 `manifest.json`.
 
@@ -468,6 +480,10 @@ failures abort the run. Incomplete native writes are rolled back in both current
 storage and SQLite history. Failed runs retain diagnostics and cannot appear in
 a completed comparison report.
 
-The experiment conventions remain proposed in [decision 0004](decisions/0004-compare-controlled-memory.md).
-Production extraction, vector retrieval, latest Mem0 2.x, and paid model evaluation
-are separate experiments.
+[Decision 0004](decisions/0004-compare-controlled-memory.md) proposed the conventions
+of the earlier three-system comparison. The five-system protocol described here, with
+its systems and stores, retriever weights, quoted source turns for the similarity arms
+and the Mem0 project instructions, extends it and has a proposed decision record of
+its own in [the decision index](decisions/README.md); neither is agreed yet. This comparison embeds records for the similarity arms and is planned to
+run on Haiku through OpenRouter with a capped budget ([local model guide](local-model.md)).
+Production extraction and the latest Mem0 2.x remain separate experiments.

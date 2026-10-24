@@ -9,11 +9,14 @@ Select the provider with TRACEMEM_PROVIDER (openai, the default, keeps the built
 OpenAICompletionClient; openrouter; local, meaning an Ollama server). Only the
 OpenRouter key is read from a local .env file, and only when it is absent from the
 process environment. Once the cost log reaches TRACEMEM_BUDGET_USD (default 12), no
-further provider call is made. Only priced calls count towards it: OpenRouter's
-reported cost, else the price table below. Any other call, including every call
-through the default openai provider, is logged as unpriced at zero, so the cap does
-not limit its spending. The log covers this machine only, and local calls are never
-capped.
+further provider call is made. The cost log is TRACEMEM_COST_LOG (default
+cache/costs.jsonl), never inside a reply cache folder, and its total is read again
+before every paid call, so fresh cache folders and runs going on at the same time
+share one cap. Only priced calls count towards it: OpenRouter's reported cost, else
+the price table below. OpenRouter therefore accepts only a model in the price table.
+Any other call, including every call through the default openai provider, is logged
+as unpriced at zero, so the cap does not limit its spending. The log covers this
+machine only, and local calls are never capped.
 
 A local server that gives the model a shorter context than a request needs does not
 refuse it: Ollama cuts the request from the front and answers anyway. The local
@@ -21,11 +24,15 @@ client therefore records the context the server must give the model
 (TRACEMEM_LOCAL_CONTEXT_TOKENS, default 16,384), and after every reply checks it
 against the length the server reports in /api/ps, and the tokens the server read
 against the size of the request. Either mismatch stops the run before the reply can
-be saved.
+be saved. A tag such as qwen3.5:4b can be pulled again with new weights, so the local
+client also records the digest the server lists for the model in /api/tags. A local
+server that refuses or drops the connection is down, so the run stops instead of
+scoring the remaining questions as failed answers; a timeout is still retried.
 """
 
 from __future__ import annotations
 
+import contextlib
 import hashlib
 import json
 import math
@@ -45,6 +52,8 @@ from tracemem.resolver import (
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 LOCAL_BASE_URL = "http://127.0.0.1:11434/v1"  # Ollama's default port
 DEFAULT_CACHE_DIR = "cache/llm"
+# Outside every reply cache folder, so a fresh folder never resets the spending.
+DEFAULT_COST_LOG = "cache/costs.jsonl"
 DEFAULT_BUDGET_USD = 12.0
 PROVIDERS = ("openai", "openrouter", "local")
 DEFAULT_LOCAL_CONTEXT_TOKENS = 16384
@@ -87,28 +96,52 @@ def read_dotenv(path: str | os.PathLike) -> dict[str, str]:
     return values
 
 
+def _server_models(base_url: str, endpoint: str, what: str, timeout_seconds: float) -> list:
+    """The model entries an Ollama server lists at endpoint; FatalModelError if unreadable."""
+    root = base_url.rstrip("/").removesuffix("/v1")
+    if not root.startswith(("http://", "https://")):
+        raise FatalModelError("the local server address must start with http:// or https://")
+    try:
+        with urllib.request.urlopen(root + endpoint, timeout=timeout_seconds) as response:
+            listing = json.load(response)
+    except (OSError, ValueError):
+        raise FatalModelError(f"could not read the {what} models from the local server's {endpoint}; "
+                              "the local provider needs an Ollama server") from None
+    entries = listing.get("models") if isinstance(listing, dict) else None
+    return [entry for entry in entries if isinstance(entry, dict)] if isinstance(entries, list) else []
+
+
+def _entry(entries: list, model: str) -> dict | None:
+    names = {model} if ":" in model else {model, model + ":latest"}
+    return next((entry for entry in entries if entry.get("name") in names or entry.get("model") in names), None)
+
+
 def server_context_length(base_url: str, model: str, timeout_seconds: float = 10.0) -> int | None:
     """The context length an Ollama server reports in /api/ps for a loaded model.
 
     None when the model is not loaded or no length is reported. An unreachable
     server, or one without Ollama's /api/ps, stops the run with FatalModelError.
     """
-    root = base_url.rstrip("/").removesuffix("/v1")
-    if not root.startswith(("http://", "https://")):
-        raise FatalModelError("the local server address must start with http:// or https://")
-    try:
-        with urllib.request.urlopen(root + "/api/ps", timeout=timeout_seconds) as response:
-            listing = json.load(response)
-    except (OSError, ValueError):
-        raise FatalModelError("could not read the loaded models from the local server's /api/ps; "
-                              "the local provider needs an Ollama server") from None
-    names = {model} if ":" in model else {model, model + ":latest"}
-    entries = listing.get("models") if isinstance(listing, dict) else None
-    for entry in entries if isinstance(entries, list) else []:
-        if isinstance(entry, dict) and (entry.get("name") in names or entry.get("model") in names):
-            length = entry.get("context_length")
-            return length if isinstance(length, int) and not isinstance(length, bool) else None
-    return None
+    entry = _entry(_server_models(base_url, "/api/ps", "loaded", timeout_seconds), model)
+    length = entry.get("context_length") if entry is not None else None
+    return length if isinstance(length, int) and not isinstance(length, bool) else None
+
+
+def model_digest(base_url: str, model: str, timeout_seconds: float = 10.0) -> str:
+    """The digest an Ollama server lists in /api/tags for an installed model.
+
+    /api/tags lists installed models without loading them. A model that is not
+    installed is a ResolverConfigError; an unreachable server, one without Ollama's
+    /api/tags, or a listing without a digest stops the run with FatalModelError.
+    """
+    entry = _entry(_server_models(base_url, "/api/tags", "installed", timeout_seconds), model)
+    if entry is None:
+        raise ResolverConfigError(f"the local server has no model {model}; pull it with ollama pull {model}")
+    digest = entry.get("digest")
+    if not isinstance(digest, str) or not digest.strip():
+        raise FatalModelError(f"the local server lists no digest for {model} in /api/tags, "
+                              "so its weights cannot be identified")
+    return digest.strip()
 
 
 def _switch(env: Mapping[str, str], name: str, default: str) -> bool:
@@ -123,7 +156,8 @@ class OpenAICompatibleClient:
 
     def __init__(self, *, base_url: str, api_key: str, extra_body: dict | None = None,
                  headers: dict[str, str] | None = None, label: str = "openai-compatible",
-                 token_field: str = "max_completion_tokens", context_tokens: int | None = None):
+                 token_field: str = "max_completion_tokens", context_tokens: int | None = None,
+                 model: str | None = None, model_digest: str | None = None, connection_fatal: bool = False):
         try:
             import openai
         except ImportError:
@@ -140,6 +174,11 @@ class OpenAICompatibleClient:
         self.token_field = token_field
         # When set, the context the server must give the model, checked after every reply.
         self.context_tokens = context_tokens
+        # When set, the only model this client calls, and the digest of its weights.
+        self.model = model
+        self.model_digest = model_digest
+        # A local server that refuses or drops the connection is down, not busy.
+        self.connection_fatal = connection_fatal
         self.last_cost: float | None = None
 
     def describe(self) -> dict:
@@ -149,6 +188,9 @@ class OpenAICompatibleClient:
         if self.context_tokens is not None:
             # A shorter context cuts long requests, so it changes replies.
             settings["context_tokens"] = self.context_tokens
+        if self.model_digest is not None:
+            # The same tag pulled again can name other weights, which change replies.
+            settings["model_digest"] = self.model_digest
         return settings
 
     def _check_context(self, model: str, messages: list[dict[str, str]], usage) -> None:
@@ -169,6 +211,10 @@ class OpenAICompatibleClient:
 
     def complete(self, *, config: ResolverConfig, messages: list[dict[str, str]],
                  response_format: dict) -> ModelReply:
+        if self.model is not None and config.model != self.model:
+            # The recorded digest belongs to self.model; another model's replies would carry it.
+            raise FatalModelError(f"this client identified the model {self.model}, not {config.model}; "
+                                  "build one client for each model")
         kwargs = dict(model=config.model, messages=messages, response_format=response_format,
                       timeout=config.timeout_seconds)
         kwargs[self.token_field] = config.max_completion_tokens
@@ -179,7 +225,13 @@ class OpenAICompatibleClient:
         self.last_cost = None
         try:
             result = self._client.chat.completions.create(**kwargs)
+        except self._sdk.APITimeoutError:
+            # A slow reply is retried; APITimeoutError is a kind of APIConnectionError.
+            raise RetryableModelError("provider connection or timeout failure") from None
         except self._sdk.APIConnectionError:
+            if self.connection_fatal:
+                raise FatalModelError(f"the {self.label} model server at {self.base_url} refused or dropped "
+                                      "the connection; check that it is running (docs/local-model.md)") from None
             raise RetryableModelError("provider connection or timeout failure") from None
         except self._sdk.APIStatusError as error:
             code = error.status_code
@@ -203,10 +255,14 @@ class OpenAICompatibleClient:
         )
 
 
-def local_client(environ: Mapping[str, str] | None = None) -> OpenAICompatibleClient:
+def local_client(environ: Mapping[str, str] | None = None, model: str | None = None) -> OpenAICompatibleClient:
     """An Ollama server; thinking is off unless TRACEMEM_LOCAL_THINKING=on.
 
     The server must give the model the context of TRACEMEM_LOCAL_CONTEXT_TOKENS.
+    Given a model, as from_env always gives one, the client calls only that model
+    and records the digest the server lists for it, so a reply saved from other
+    weights under the same tag is never replayed, and runs on different weights
+    are never reported together. A refused or dropped connection stops the run.
     """
     env = os.environ if environ is None else environ
     thinking = _switch(env, "TRACEMEM_LOCAL_THINKING", "off")
@@ -217,13 +273,16 @@ def local_client(environ: Mapping[str, str] | None = None) -> OpenAICompatibleCl
             raise ValueError
     except ValueError:
         raise ResolverConfigError("TRACEMEM_LOCAL_CONTEXT_TOKENS must be a positive whole number of tokens") from None
+    base_url = env.get("TRACEMEM_LOCAL_BASE_URL", "").strip() or LOCAL_BASE_URL
+    digest = model_digest(base_url, model) if model is not None else None
     # reasoning_effort "none" is how Ollama's OpenAI endpoint turns thinking off.
     extra = {} if thinking else {"reasoning_effort": "none"}
     return OpenAICompatibleClient(
-        base_url=env.get("TRACEMEM_LOCAL_BASE_URL", "").strip() or LOCAL_BASE_URL,
+        base_url=base_url,
         # Ollama ignores the key; a server that checks one can be given it here.
         api_key=env.get("TRACEMEM_LOCAL_API_KEY", "").strip() or "local",
-        extra_body=extra, label="local", token_field="max_tokens", context_tokens=context)
+        extra_body=extra, label="local", token_field="max_tokens", context_tokens=context,
+        model=model, model_digest=digest, connection_fatal=True)
 
 
 def openrouter_client(environ: Mapping[str, str] | None = None,
@@ -266,10 +325,13 @@ class CachedClient:
     numbered slot in the cache. It therefore reaches the provider, as it would
     without the cache, and a later run replays the slots in the same order. With
     use_cache=False nothing is read or saved, but calls are still logged and the
-    spending cap still applies. The cap is checked before each provider call against
-    every cost in the log, so a run stops within one call of the cap. A cost is the
-    provider's own figure, else the price table's; a model in neither is logged at
-    zero as "unpriced" and does not count towards the cap.
+    spending cap still applies. The cost log is log_path, by default DEFAULT_COST_LOG,
+    and never depends on the cache folder. Before each provider call under a cap, the
+    log's total is read again, so other clients and other processes writing to the
+    same log are counted and a run stops within one call of the cap. A paid call is
+    logged before its reply is saved, so a reply that cannot be saved is still counted.
+    A cost is the provider's own figure, else the price table's; a model in neither is
+    logged at zero as "unpriced" and does not count towards the cap.
     """
 
     def __init__(self, inner: CompletionClient, cache_dir: str | os.PathLike = DEFAULT_CACHE_DIR,
@@ -277,7 +339,7 @@ class CachedClient:
                  use_cache: bool = True):
         self.inner = inner
         self.cache_dir = Path(cache_dir)
-        self.log_path = Path(log_path) if log_path is not None else self.cache_dir / "calls.jsonl"
+        self.log_path = Path(log_path if log_path is not None else DEFAULT_COST_LOG)
         self.budget_usd = budget_usd
         self.use_cache = use_cache
         self.spent_usd = self._logged_spend()
@@ -346,9 +408,12 @@ class CachedClient:
                                refused=saved["refused"])
             self._log(key, config.model, True, saved, 0.0, "cache", time.monotonic() - started)
             return reply
-        if self.budget_usd is not None and self.spent_usd >= self.budget_usd:
-            raise SpendingCapError(f"spending cap of US${self.budget_usd:.2f} reached "
-                                   f"(US${self.spent_usd:.4f} logged in {self.log_path})")
+        if self.budget_usd is not None:
+            # Read the whole log again: another run, or another client of this one, may have spent since.
+            self.spent_usd = self._logged_spend()
+            if self.spent_usd >= self.budget_usd:
+                raise SpendingCapError(f"spending cap of US${self.budget_usd:.2f} reached "
+                                       f"(US${self.spent_usd:.4f} logged in {self.log_path})")
         reply = self.inner.complete(config=config, messages=messages, response_format=response_format)
         reported = getattr(self.inner, "last_cost", None)
         priced = _price(config.model, reply)
@@ -361,22 +426,29 @@ class CachedClient:
         record = {"content": reply.content, "finish_reason": reply.finish_reason, "refused": reply.refused,
                   "input_tokens": reply.input_tokens, "output_tokens": reply.output_tokens,
                   "cost_usd": cost, "cost_source": source, "model": config.model}
-        if self.use_cache and reply.finish_reason == "stop" and not reply.refused:
-            self._write(path, record)
-            self._slots[request] = slot + 1
         self.stats["misses"] += 1
         self.stats["cost_usd"] += cost
         self.spent_usd += cost
+        # Log before saving: the call is paid for even if its reply cannot be saved.
         self._log(key, config.model, False, record, cost, source, time.monotonic() - started)
+        if self.use_cache and reply.finish_reason == "stop" and not reply.refused:
+            self._write(path, record)
+            self._slots[request] = slot + 1
         return reply
 
     def _write(self, path: Path, record: dict) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         # Write then rename, so an interrupted run never leaves a half-written reply.
         handle, temporary = tempfile.mkstemp(dir=path.parent, suffix=".tmp")
-        with os.fdopen(handle, "w", encoding="utf-8") as stream:
-            json.dump(record, stream, ensure_ascii=False)
-        os.replace(temporary, path)
+        try:
+            with os.fdopen(handle, "w", encoding="utf-8") as stream:
+                json.dump(record, stream, ensure_ascii=False)
+            os.replace(temporary, path)
+        except BaseException:
+            # A failed save leaves no temporary file behind.
+            with contextlib.suppress(OSError):
+                os.unlink(temporary)
+            raise
 
     def _log(self, key: str, model: str, hit: bool, record: dict, cost: float, source: str,
              seconds: float) -> None:
@@ -394,8 +466,12 @@ def from_env(environ: Mapping[str, str] | None = None) -> CompletionClient:
 
     Every setting is checked before any client is constructed. The cap at
     TRACEMEM_BUDGET_USD counts only priced calls (see CachedClient), so it does not
-    limit spending through the default openai provider. A local server charges
-    nothing, so spending logged for a paid provider never stops it.
+    limit spending through the default openai provider. OpenRouter accepts only a
+    model of TRACEMEM_RESOLVER_MODEL in the price table, so a call whose cost the
+    provider omits is still counted. The local client identifies that model by the
+    digest its server lists. A local server charges nothing, so spending logged for
+    a paid provider never stops it. The cost log is TRACEMEM_COST_LOG, whatever
+    TRACEMEM_CACHE_DIR is.
     """
     env = os.environ if environ is None else environ
     provider = env.get("TRACEMEM_PROVIDER", "openai").strip().lower()
@@ -409,11 +485,16 @@ def from_env(environ: Mapping[str, str] | None = None) -> CompletionClient:
         raise ResolverConfigError("TRACEMEM_BUDGET_USD must be a non-negative number of US dollars") from None
     use_cache = _switch(env, "TRACEMEM_CACHE", "on")
     cache_dir = env.get("TRACEMEM_CACHE_DIR", "").strip() or DEFAULT_CACHE_DIR
+    cost_log = env.get("TRACEMEM_COST_LOG", "").strip() or DEFAULT_COST_LOG
     if provider == "openai":
         client: CompletionClient = OpenAICompletionClient(api_key=env.get("OPENAI_API_KEY"))
     elif provider == "openrouter":
+        if ResolverConfig.from_env(env).model not in PRICES_PER_MILLION:
+            raise ResolverConfigError("with TRACEMEM_PROVIDER=openrouter, TRACEMEM_RESOLVER_MODEL must be one of "
+                                      f"{', '.join(PRICES_PER_MILLION)}, the models the spending cap can price "
+                                      "(PRICES_PER_MILLION in src/tracemem/model_client.py)")
         client = openrouter_client(env)
     else:
-        client = local_client(env)
-    return CachedClient(client, cache_dir, budget_usd=None if provider == "local" else budget,
+        client = local_client(env, model=ResolverConfig.from_env(env).model)
+    return CachedClient(client, cache_dir, log_path=cost_log, budget_usd=None if provider == "local" else budget,
                         use_cache=use_cache)

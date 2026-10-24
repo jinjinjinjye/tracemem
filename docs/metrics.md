@@ -212,7 +212,7 @@ The random seed is fixed, so the same runs always give the same intervals. `trac
 For the [controlled memory comparison](memory-comparison.md), the manifest also
 stores shared model/reader/prompt settings and candidate hashes. Those must match
 even with `--allow-mixed`; mixing a controlled run with an unmarked legacy run is
-also refused. The report uses the same question-level metrics for all three arms.
+also refused. The report uses the same question-level metrics for all arms.
 Mem0's native actions are exported separately and are not assigned TraceMem's
 five-label operation F1. Write and answer costs appear separately in `usage.json`.
 

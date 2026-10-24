@@ -79,6 +79,16 @@ never replayed under another. Runs and saved replies made before this check exis
 do not record a context: they cannot be reported beside newer runs, and a newer run
 asks the model again.
 
+A tag such as `qwen3.5:4b` does not fix the weights: pulling it again can bring new
+weights or a new template under the same name. Before a run, the local client
+therefore reads the model's digest from the server's `/api/tags` and records it with
+the other model settings. A model pulled again gets a new digest, so its replies are
+never mixed with replies saved from the old weights, and `tracemem report` refuses
+to compare runs made on different weights, including two teammates' runs. If the
+model is not installed, the run stops before it starts and names the `ollama pull`
+command to run. Runs and saved replies made before the digest was recorded cannot be
+reported beside newer runs either, and a newer run asks the model again.
+
 ## 4. Run a pilot
 
 Install the package with the model SDK from the repository root
@@ -110,7 +120,11 @@ TRACEMEM_PROVIDER=local TRACEMEM_RESOLVER_MODEL=qwen3.5:4b \
 
 A small local model is slower than an API. If requests time out, raise
 `TRACEMEM_RESOLVER_TIMEOUT_SECONDS` (at most 300); if replies are cut off, raise
-`TRACEMEM_RESOLVER_MAX_COMPLETION_TOKENS`. Thinking is off, so the model answers
+`TRACEMEM_RESOLVER_MAX_COMPLETION_TOKENS`. A timeout is retried within
+`TRACEMEM_RESOLVER_MAX_ATTEMPTS`, but a server that refuses or drops the connection
+is down, so the run stops with an error and is saved as failed; otherwise every
+remaining question would be scored as a failed answer. Start the server again and
+rerun: the saved replies make the repeated part free. Thinking is off, so the model answers
 directly; `TRACEMEM_LOCAL_THINKING=on` allows it, and then needs a larger token limit.
 For a server at another address, set `TRACEMEM_LOCAL_BASE_URL`; Ollama needs no key,
 but `TRACEMEM_LOCAL_API_KEY` is sent if a server asks for one.
@@ -137,9 +151,10 @@ usage between systems, run each with `TRACEMEM_CACHE=off` or its own fresh
 `TRACEMEM_CACHE_DIR`.
 
 To ask everything again, set `TRACEMEM_CACHE=off` or use a fresh cache folder. Every
-completed call, saved or not, is appended to `cache/llm/calls.jsonl` with its model,
-tokens, cost and whether it came from the cache. The cache folder is in `.gitignore`;
-never commit it.
+completed call, saved or not, is appended to the cost log, `cache/costs.jsonl`
+(`TRACEMEM_COST_LOG`), with its model, tokens, cost and whether it came from the
+cache. The cost log is not inside the cache folder, so every cache folder adds to the
+same log. The `cache/` folder is in `.gitignore`; never commit it.
 
 Embeddings for similarity retrieval always come from the local server
 (`TRACEMEM_LOCAL_BASE_URL`, model `TRACEMEM_EMBED_MODEL`), whichever provider answers,
@@ -158,17 +173,26 @@ TRACEMEM_PROVIDER=openrouter TRACEMEM_RESOLVER_MODEL=anthropic/claude-haiku-5.5 
 ```
 
 Requests are routed only to OpenRouter endpoints that support every parameter sent,
-so structured output is never silently dropped. Before each paid call the client adds
-up every cost in the cost log; once the total reaches `TRACEMEM_BUDGET_USD` (US$12 by
-default), the run stops with a "spending cap" error instead of calling the model.
-Each cost is OpenRouter's own figure for the call, or else the price table in
-`src/tracemem/model_client.py`. A call to a model in neither is logged as `unpriced`
-at zero and does not count towards the cap; this includes the default `openai`
-provider. Local calls are never capped.
+so structured output is never silently dropped. Before each paid call the client
+reads the cost log again and adds up every cost in it; once the total reaches
+`TRACEMEM_BUDGET_USD` (US$12 by default), the run stops with a "spending cap" error
+instead of calling the model. Each cost is OpenRouter's own figure for the call, or
+else the price table (`PRICES_PER_MILLION` in `src/tracemem/model_client.py`). So
+that no call escapes the cap when OpenRouter omits its figure, the openrouter
+provider accepts only a `TRACEMEM_RESOLVER_MODEL` in that table, and refuses any other
+before the run starts; to use another model, add its prices to the table first. A
+call through the default `openai` provider is logged as `unpriced` at zero and does
+not count towards the cap. Local calls are never capped. A call is logged before its
+reply is saved, so a reply that cannot be saved, for example on a full disk, is still
+counted.
 
-The log covers one machine and one cache folder, so each teammate's spending is
-counted separately, and a fresh cache folder starts again from zero. Agree on who
-runs paid commands, and with which budget, before starting them.
+The cost log, `cache/costs.jsonl` unless `TRACEMEM_COST_LOG` names another file, does
+not depend on the cache folder. A fresh cache folder therefore keeps the spending
+already logged, and runs going on at the same time on one machine share one cap,
+because each reads the log again before every paid call. A relative path is read from
+the folder you run in, so run paid commands from the repository root. The log covers
+one machine, so each teammate's spending is counted separately. Agree on who runs
+paid commands, and with which budget, before starting them.
 
 ## Settings
 
@@ -177,10 +201,12 @@ runs paid commands, and with which budget, before starting them.
 | `TRACEMEM_PROVIDER` | `openai` | `openai` (built-in client, `OPENAI_API_KEY`), `openrouter` or `local` |
 | `OPENROUTER_API_KEY` | none | Read from the environment, else from `.env` |
 | `TRACEMEM_LOCAL_BASE_URL` | `http://127.0.0.1:11434/v1` | The local server's OpenAI-compatible address |
+| `TRACEMEM_LOCAL_API_KEY` | `local` | Sent to the local server; Ollama ignores it, so set it only for a server that checks one |
 | `TRACEMEM_LOCAL_THINKING` | `off` | `on` lets the local model think before answering |
 | `TRACEMEM_LOCAL_CONTEXT_TOKENS` | `16384` | The context the local server must give the model (`OLLAMA_CONTEXT_LENGTH`); checked after every reply |
 | `TRACEMEM_CACHE` | `on` | `off` neither reads nor saves replies; calls are still logged and capped |
-| `TRACEMEM_CACHE_DIR` | `cache/llm` | Saved replies and the cost log `calls.jsonl` |
+| `TRACEMEM_CACHE_DIR` | `cache/llm` | Saved replies |
+| `TRACEMEM_COST_LOG` | `cache/costs.jsonl` | The cost log: every completed call with its cost, whatever the cache folder |
 | `TRACEMEM_BUDGET_USD` | `12` | Spending cap over the whole cost log; counts only priced calls, so not the default `openai` provider |
 | `TRACEMEM_EMBED_MODEL` | `nomic-embed-text` | Embedding model on the local server, for similarity retrieval |
 
