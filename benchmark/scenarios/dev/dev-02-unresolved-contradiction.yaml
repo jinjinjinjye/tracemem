@@ -1,0 +1,95 @@
+# Development scenario. Not yet reviewed by the team.
+# Focal pattern: a second speaker disputes the backbone decision (S2), the
+# dispute stays open through two checkpoints (S2, S3) while a third option is
+# only suggested, and the team settles on the disputed value in S4. A second
+# dispute, about the train/test split, is settled within the same meeting (S3).
+scenario_id: dev-02
+title: A disputed backbone for the leaf classifier
+category: unresolved_contradiction
+split: dev
+author: mace2305
+review: {status: unreviewed}
+project_id: leaf-disease-classifier
+
+items:
+  - key: model.backbone
+    kind: decision
+    description: pretrained image backbone that the leaf-disease classifier fine-tunes
+    ask: Which backbone are we using for the leaf-disease classifier?
+    values:
+      ResNet-50: [resnet50, resnet]
+      EfficientNet-B0: [efficientnet b0, efficientnet, effnet-b0]
+      MobileNetV3: [mobilenet v3, mobilenet-v3, mobilenet]
+  - key: data.split
+    kind: decision
+    description: how the leaf photos are divided into training and test sets
+    ask: How are we splitting the leaf photos into training and test sets?
+    values:
+      random split: [random 80/20 split, random 80/20, random]
+      split by plant: [plant-level split, grouped by plant, by plant]
+  - key: task.garden_photos
+    kind: task
+    description: photograph and label diseased leaves in the campus garden
+    ask: What is the status of the campus-garden photos?
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Bruno, text: "OK, for the leaf-disease classifier let's fine-tune ResNet-50 as the backbone. It's what the course tutorial uses."}
+      - {id: S1-T2, speaker: Leila, text: "And for the split, let's just shuffle all the photos and do a random 80/20."}
+      - {id: S1-T3, speaker: Femi, text: "I'll photograph the sick leaves in the campus garden this week and label them, so we've got some real field photos too."}
+      - {id: S1-T4, speaker: Bruno, text: "Great, a couple of hundred would be plenty."}
+      - {id: S1-T5, speaker: Leila, text: "I'll get the data loader working tonight."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Leila, text: "Before I kick off training: we settled on EfficientNet-B0 on Tuesday, not ResNet-50. I wrote it down."}
+      - {id: S2-T2, speaker: Bruno, text: "That's not how I remember it, I thought it was ResNet-50. Let's not argue now, I'll look for my notes."}
+      - {id: S2-T3, speaker: Femi, text: "Honestly I can't remember which one we said. Can we sort it out next meeting?"}
+      - {id: S2-T4, speaker: Femi, text: "Also, the garden photos are stuck: the campus garden is closed for pesticide spraying all week."}
+      - {id: S2-T5, speaker: Leila, text: "Annoying. I'll keep cleaning up the loader in the meantime."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Leila, text: "I ran a quick check on the validation fold over the weekend: EfficientNet-B0 got about 93% accuracy."}
+      - {id: S3-T2, speaker: Bruno, text: "And ResNet-50 got 92% on the same fold, so it's basically a tie."}
+      - {id: S3-T3, speaker: Femi, text: "If it's a tie, maybe we try MobileNetV3 instead? It's small enough to run on a phone."}
+      - {id: S3-T4, speaker: Bruno, text: "Maybe, but I'd rather settle the first two before we throw in a third."}
+      - {id: S3-T5, speaker: Femi, text: "Good news on the photos, by the way: the garden reopened yesterday, so I'm back out there taking them."}
+      - {id: S3-T6, speaker: Femi, text: "Oh, and one thing: we agreed to split the photos by plant, not randomly. I'm sure that's what we said."}
+      - {id: S3-T7, speaker: Leila, text: "No, I set that one up myself, and it's a random 80/20 split. That's what we're using."}
+      - {id: S3-T8, speaker: Femi, text: "Fair enough, random split then. I must've mixed it up."}
+      - {id: S3-T9, speaker: Bruno, text: "OK. We'll settle the backbone on Friday, then."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Bruno, text: "I found the notes from our first meeting, and they do say ResNet-50. But EfficientNet-B0 did a bit better, so let's switch to EfficientNet-B0 for good."}
+      - {id: S4-T2, speaker: Leila, text: "Works for me. EfficientNet-B0 it is."}
+      - {id: S4-T3, speaker: Femi, text: "The garden photos are done: 240 leaves, all labelled and uploaded."}
+      - {id: S4-T4, speaker: Bruno, text: "Nice work. To be fair, ResNet-50 was never a bad pick, it was only a point behind."}
+      - {id: S4-T5, speaker: Leila, text: "True. I'll start the full training run tonight."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.backbone, value: ResNet-50}
+  - {turn: S1-T2, act: decide, item: data.split, value: random split}
+  - {turn: S1-T3, act: task_open, item: task.garden_photos}
+  - {turn: S2-T1, act: contest, item: model.backbone, value: EfficientNet-B0}
+  - {turn: S2-T2, act: mention, item: model.backbone, value: ResNet-50}
+  - {turn: S2-T4, act: task_progress, item: task.garden_photos, progress: blocked}
+  - {turn: S3-T1, act: mention, item: model.backbone, value: EfficientNet-B0}
+  - {turn: S3-T2, act: mention, item: model.backbone, value: ResNet-50}
+  - {turn: S3-T3, act: suggest, item: model.backbone, value: MobileNetV3}
+  - {turn: S3-T5, act: task_progress, item: task.garden_photos, progress: open}
+  - {turn: S3-T6, act: contest, item: data.split, value: split by plant}
+  - {turn: S3-T7, act: restate, item: data.split, value: random split}
+  - {turn: S3-T8, act: restate, item: data.split, value: random split}
+  - {turn: S4-T1, act: revise, item: model.backbone, value: EfficientNet-B0, reason: "EfficientNet-B0 scored slightly higher on the validation fold"}
+  - {turn: S4-T2, act: restate, item: model.backbone, value: EfficientNet-B0}
+  - {turn: S4-T3, act: task_progress, item: task.garden_photos, progress: completed}
+  - {turn: S4-T4, act: mention, item: model.backbone, value: ResNet-50}
+
+questions:
+  - {id: model.backbone@S4-previous, after: S4, kind: previous, item: model.backbone, text: "Which backbone, if any, did we use for the leaf-disease classifier before the current one?"}
+  - {id: model.backbone@S4-asof-S3, after: S4, kind: as_of, session: S3, item: model.backbone, text: "What was the state of the backbone choice at the end of the third meeting?"}
+  - {id: data.split@S4-previous, after: S4, kind: previous, item: data.split, text: "Which train/test split, if any, did we use for the leaf photos before the current one?"}

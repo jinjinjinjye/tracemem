@@ -1,0 +1,88 @@
+# Development scenario. Not yet reviewed by the team.
+# Focal pattern: the noise filtering goes open -> blocked -> open -> completed,
+# with a suggestion to cancel it while it is blocked that nobody takes up (S2)
+# and a later recollection of the block (S4). The species tagging is put on
+# hold (S2), then cancelled (S3), and the cancellation is disputed in the last
+# meeting without being settled (S4).
+scenario_id: dev-05
+title: Cleaning and tagging bird-call clips
+category: task_lifecycle
+split: dev
+author: mace2305
+review: {status: unreviewed}
+project_id: wetland-bird-calls
+
+items:
+  - key: task.denoise
+    kind: task
+    description: filter wind and road noise out of the field recordings
+    ask: What is the status of the noise filtering?
+  - key: task.species_tags
+    kind: task
+    description: hand-tag the bird species heard in each clip
+    ask: What is the status of the species tagging?
+  - key: audio.clip_length
+    kind: decision
+    description: length of the clips the field recordings are cut into
+    ask: What clip length are we cutting the recordings into?
+    values:
+      5 seconds: [5 s, 5 sec, five seconds, 5-second clips]
+      3 seconds: [3 s, 3 sec, three seconds, 3-second clips]
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Noor, text: "Okay, first thing: let's cut every recording into 5-second clips."}
+      - {id: S1-T2, speaker: Elias, text: "Works for me. A lot of them have wind and road noise on them, though."}
+      - {id: S1-T3, speaker: Elias, text: "I'll take care of the noise filtering, starting tomorrow."}
+      - {id: S1-T4, speaker: Sanne, text: "And I'll hand-tag the species in each clip as they come out."}
+      - {id: S1-T5, speaker: Noor, text: "Great. Let's check in again on Friday."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Elias, text: "Bad news: the noise filtering is stuck. I need a few clean reference recordings for the noise profile, and the field station still hasn't sent them."}
+      - {id: S2-T2, speaker: Sanne, text: "Ugh. Maybe we should just drop the filtering and train on the raw clips?"}
+      - {id: S2-T3, speaker: Noor, text: "Let's give the field station until next week before we decide that."}
+      - {id: S2-T4, speaker: Sanne, text: "On my end, I've tagged about 200 clips, but most of the calls are under two seconds, so the clips are mostly silence."}
+      - {id: S2-T5, speaker: Sanne, text: "Could we cut them shorter, say 3 seconds?"}
+      - {id: S2-T6, speaker: Noor, text: "Yeah, that makes sense. We'll re-cut everything into 3-second clips."}
+      - {id: S2-T7, speaker: Sanne, text: "Then I'll put the species tagging on hold until the new clips are cut."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Elias, text: "Good news: the field station sent the reference recordings over the weekend, so I'm back on the noise filtering."}
+      - {id: S3-T2, speaker: Noor, text: "Good. And about the species tagging: the survey sheets already say which species is on every recording, so we're cancelling the hand-tagging and using the survey labels instead."}
+      - {id: S3-T3, speaker: Sanne, text: "Fine by me. That saves me redoing two hundred clips."}
+      - {id: S3-T4, speaker: Sanne, text: "I'll have the shorter clips on the shared drive by tonight."}
+      - {id: S3-T5, speaker: Elias, text: "Cool, I'll run the filter on those, then."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Elias, text: "The noise filtering is done: every clip has been through the filter, and the spectrograms look a lot cleaner."}
+      - {id: S4-T2, speaker: Noor, text: "Nice work, Elias."}
+      - {id: S4-T3, speaker: Elias, text: "Took long enough. It sat stuck for a whole week waiting on those reference recordings."}
+      - {id: S4-T4, speaker: Sanne, text: "Great, so the cleaned clips can go straight into training."}
+      - {id: S4-T5, speaker: Elias, text: "Hold on, about the species tagging: I thought we agreed it was only on hold, not cancelled."}
+      - {id: S4-T6, speaker: Noor, text: "I remember us cancelling it. I'll check the meeting notes tonight."}
+      - {id: S4-T7, speaker: Sanne, text: "Okay. Meanwhile I'll set up the first training run on the cleaned clips."}
+
+script:
+  - {turn: S1-T1, act: decide, item: audio.clip_length, value: 5 seconds}
+  - {turn: S1-T3, act: task_open, item: task.denoise}
+  - {turn: S1-T4, act: task_open, item: task.species_tags}
+  - {turn: S2-T1, act: task_progress, item: task.denoise, progress: blocked}
+  - {turn: S2-T2, act: suggest, item: task.denoise, value: cancelled}
+  - {turn: S2-T5, act: suggest, item: audio.clip_length, value: 3 seconds}
+  - {turn: S2-T6, act: accept, item: audio.clip_length, accepts: S2-T5, reason: "most calls are under two seconds, so longer clips are mostly silence"}
+  - {turn: S2-T7, act: task_progress, item: task.species_tags, progress: blocked}
+  - {turn: S3-T1, act: task_progress, item: task.denoise, progress: open}
+  - {turn: S3-T2, act: task_progress, item: task.species_tags, progress: cancelled, reason: "the survey sheets already give the species for every recording"}
+  - {turn: S4-T1, act: task_progress, item: task.denoise, progress: completed}
+  - {turn: S4-T3, act: mention, item: task.denoise, value: blocked}
+  - {turn: S4-T5, act: contest, item: task.species_tags, value: blocked}
+  - {turn: S4-T6, act: mention, item: task.species_tags, value: cancelled}
+
+questions:
+  - {id: audio.clip_length@S4-previous, after: S4, kind: previous, item: audio.clip_length, text: "Which clip length, if any, did we use before the current one?"}
+  - {id: task.denoise@S4-asof-S2, after: S4, kind: as_of, session: S2, item: task.denoise, text: "What was the state of the noise filtering at the end of the second meeting?"}

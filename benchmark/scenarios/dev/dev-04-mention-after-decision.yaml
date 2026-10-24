@@ -1,0 +1,99 @@
+# Development scenario. Not yet reviewed by the team.
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: after each decision, later turns name other values without
+# proposing them: a curious question (S2-T2), a report about another group's
+# project (S2-T4), a recollection of a replaced value (S3-T3), a question about
+# the past (S4-T2) and a side figure for the appendix (S4-T3). None of them
+# changes the memory, but each is the newest mention of its item when the
+# checkpoint question is asked. One real change happens in between (S3-T1).
+scenario_id: dev-04
+title: Card-fraud model with recollections and side reports
+category: mention_after_decision
+split: dev
+author: mace2305
+review: {status: unreviewed}
+project_id: card-fraud
+
+items:
+  - key: model.fraud
+    kind: decision
+    description: the classifier that flags fraudulent card transactions
+    ask: Which model are we using for the fraud classifier?
+    values:
+      XGBoost: [xgb, xgboost classifier]
+      random forest: [rf, random forest classifier]
+      LightGBM: [lgbm, light gbm]
+  - key: training.imbalance
+    kind: decision
+    description: how training deals with the rare fraud class
+    ask: How are we handling the class imbalance in training?
+    values:
+      SMOTE: [smote oversampling, synthetic oversampling]
+      class weights: [class weighting, weighted loss]
+      undersampling: [random undersampling, undersampling the majority class]
+  - key: metric.primary
+    kind: decision
+    description: the main score we report for the fraud classifier
+    ask: What is our primary evaluation metric?
+    values:
+      PR-AUC: [pr auc, auprc, average precision]
+      ROC-AUC: [roc auc, auroc]
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Nadia, text: "Right, for the fraud classifier let's go with XGBoost. It's the usual pick for tabular data like this."}
+      - {id: S1-T2, speaker: Tomas, text: "Sounds fine. Fraud is only about 0.2% of the rows, though. Maybe we could oversample the frauds with SMOTE?"}
+      - {id: S1-T3, speaker: Ivy, text: "We definitely need something, or the model will just call everything legit."}
+      - {id: S1-T4, speaker: Nadia, text: "Yeah, let's do SMOTE, applied to the training folds only."}
+      - {id: S1-T5, speaker: Nadia, text: "And we'll use PR-AUC as the main metric. ROC-AUC looks great on data this skewed whatever the model does."}
+      - {id: S1-T6, speaker: Ivy, text: "Makes sense. I'll split the data by month so the test set is the newest few weeks."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Tomas, text: "First full run is in: 0.71 PR-AUC on the held-out month."}
+      - {id: S2-T2, speaker: Ivy, text: "Nice. Out of curiosity, how does a random forest usually do on card fraud? Not that we're changing anything."}
+      - {id: S2-T3, speaker: Nadia, text: "No idea, honestly. I've only ever seen boosting in the tutorials."}
+      - {id: S2-T4, speaker: Tomas, text: "By the way, the group who had this dataset last year used class weights. They only got 0.55."}
+      - {id: S2-T5, speaker: Nadia, text: "Good to know we're ahead, then."}
+      - {id: S2-T6, speaker: Ivy, text: "I'll start on the threshold analysis this week."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Ivy, text: "I ran undersampling over the weekend, keeping one in ten legit transactions. PR-AUC goes from 0.71 to 0.76, and training is five times faster than with SMOTE. Let's switch to undersampling."}
+      - {id: S3-T2, speaker: Nadia, text: "Agreed, undersampling it is. The model stays XGBoost, we just retrain it."}
+      - {id: S3-T3, speaker: Tomas, text: "Shame, I spent a whole evening tuning the SMOTE neighbours."}
+      - {id: S3-T4, speaker: Tomas, text: "I'll rerun the month-by-month evaluation with the new setup tonight."}
+      - {id: S3-T5, speaker: Ivy, text: "Can you also log the false positives per merchant category?"}
+      - {id: S3-T6, speaker: Nadia, text: "Good. See you both on Friday."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Nadia, text: "Draft summary for the report: XGBoost, trained with undersampling, scored on PR-AUC."}
+      - {id: S4-T2, speaker: Tomas, text: "Looking back, should we have tried LightGBM? Too late to switch now anyway."}
+      - {id: S4-T3, speaker: Ivy, text: "Probably about the same. For the appendix, ROC-AUC comes out at 0.98, but that number hides how many frauds we miss."}
+      - {id: S4-T4, speaker: Nadia, text: "Fine, appendix only. Tomas, can you tag the final config?"}
+      - {id: S4-T5, speaker: Tomas, text: "Will do, tonight."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.fraud, value: XGBoost}
+  - {turn: S1-T2, act: suggest, item: training.imbalance, value: SMOTE}
+  - {turn: S1-T4, act: accept, item: training.imbalance, accepts: S1-T2, reason: "fraud is only about 0.2% of the rows"}
+  - {turn: S1-T5, act: decide, item: metric.primary, value: PR-AUC, reason: "ROC-AUC looks good on skewed data whatever the model does"}
+  - {turn: S2-T2, act: mention, item: model.fraud, value: random forest}
+  - {turn: S2-T4, act: mention, item: training.imbalance, value: class weights}
+  - {turn: S3-T1, act: revise, item: training.imbalance, value: undersampling, reason: "PR-AUC rises from 0.71 to 0.76 and training is five times faster"}
+  - {turn: S3-T2, act: restate, item: training.imbalance, value: undersampling}
+  - {turn: S3-T2, act: restate, item: model.fraud, value: XGBoost}
+  - {turn: S3-T3, act: mention, item: training.imbalance, value: SMOTE}
+  - {turn: S4-T1, act: restate, item: model.fraud, value: XGBoost}
+  - {turn: S4-T1, act: restate, item: training.imbalance, value: undersampling}
+  - {turn: S4-T1, act: restate, item: metric.primary, value: PR-AUC}
+  - {turn: S4-T2, act: mention, item: model.fraud, value: LightGBM}
+  - {turn: S4-T3, act: mention, item: metric.primary, value: ROC-AUC}
+
+questions:
+  - {id: training.imbalance@S4-previous, after: S4, kind: previous, item: training.imbalance, text: "Which method for the class imbalance, if any, did we use before the current one?"}
+  - {id: training.imbalance@S4-asof-S2, after: S4, kind: as_of, session: S2, item: training.imbalance, text: "What was the state of the class-imbalance choice at the end of the second meeting?"}
+  - {id: model.fraud@S4-previous, after: S4, kind: previous, item: model.fraud, text: "Which model, if any, did we use for the fraud classifier before the current one?"}

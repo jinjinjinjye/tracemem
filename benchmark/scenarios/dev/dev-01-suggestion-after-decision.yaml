@@ -1,0 +1,91 @@
+# Development scenario. Not yet reviewed by the team.
+# Focal pattern: the demand model is decided in S1-T2 ("Let's just go with LightGBM
+# on lag features..."). In S2-T2 ("Hmm, maybe we could try Prophet?...") a teammate
+# suggests another model, and nobody ever adopts it, so after S2 and S3 the newest
+# record about the model is that open suggestion. As a contrast, the metric
+# suggestion from the same meeting, S2-T5 ("...Should we score on RMSE instead?"),
+# is accepted in S3-T4 ("Okay, you've convinced me..."). In S4-T3 ("Looking back,
+# Prophet probably would've handled the holidays better...") the unadopted model is
+# named again in hindsight, without being proposed.
+scenario_id: dev-01
+title: Demand model with a suggestion nobody adopts
+category: suggestion_after_decision
+split: dev
+author: mace2305
+review: {status: unreviewed}
+project_id: bike-share-demand
+
+items:
+  - key: model.demand
+    kind: decision
+    description: model that forecasts the total number of rentals per day
+    ask: Which model are we using for the daily demand forecast?
+    values:
+      LightGBM: [lgbm, light gbm, lightgbm regressor]
+      Prophet: [prophet model]
+  - key: metric.primary
+    kind: decision
+    description: headline error measure for scoring the daily forecast
+    ask: What is our main evaluation metric for the forecast?
+    values:
+      MAE: [mean absolute error]
+      RMSE: [root mean squared error, root mean square error]
+  - key: task.weather_join
+    kind: task
+    description: pull daily weather records and join them onto the rental counts
+    ask: What is the status of the weather join?
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Lena, text: "Okay, so the brief is one number per day: total rentals across the whole network for tomorrow."}
+      - {id: S1-T2, speaker: Tomas, text: "Right. Let's just go with LightGBM on lag features for the forecast. It's quick to train and we all know it."}
+      - {id: S1-T3, speaker: Lena, text: "Works for me. And we'll score it on MAE, since it's in bikes per day and anyone can read that."}
+      - {id: S1-T4, speaker: Lena, text: "Farah, could you pull the daily weather and join it onto the rental counts?"}
+      - {id: S1-T5, speaker: Farah, text: "Sure, I'll grab it from the city weather archive tonight."}
+      - {id: S1-T6, speaker: Tomas, text: "Cool, see you all Friday."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Tomas, text: "The first LightGBM run finished. It's decent on normal days but completely misses the holiday dips."}
+      - {id: S2-T2, speaker: Farah, text: "Hmm, maybe we could try Prophet? Apparently it handles holidays out of the box."}
+      - {id: S2-T3, speaker: Lena, text: "Could be. I'd want to see some numbers before we change anything, though."}
+      - {id: S2-T4, speaker: Farah, text: "Also, I'm stuck on the weather join. The archive times out every time I ask for the full year."}
+      - {id: S2-T5, speaker: Tomas, text: "One more thing. MAE treats every day the same, but the rebalancing crews mostly care about the big peak days. Should we score on RMSE instead?"}
+      - {id: S2-T6, speaker: Lena, text: "Maybe. Let me think about it over the weekend."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Farah, text: "Good news, the weather join is finished. I split the requests by month and it went through."}
+      - {id: S3-T2, speaker: Tomas, text: "Nice, I've rerun everything with temperature and rain added."}
+      - {id: S3-T3, speaker: Tomas, text: "The errors on the summer peaks are still massive, and our current metric hides that completely."}
+      - {id: S3-T4, speaker: Lena, text: "Okay, you've convinced me. From now on RMSE is our main metric."}
+      - {id: S3-T5, speaker: Farah, text: "I'll redo the comparison table with the new metric then."}
+      - {id: S3-T6, speaker: Lena, text: "Great. Let's meet Friday and plan the write-up."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Lena, text: "For the write-up: the model is LightGBM and we report RMSE."}
+      - {id: S4-T2, speaker: Tomas, text: "I'll draft the methods section this weekend."}
+      - {id: S4-T3, speaker: Farah, text: "Looking back, Prophet probably would've handled the holidays better, but we never got round to trying it."}
+      - {id: S4-T4, speaker: Lena, text: "Maybe. Either way, it's too late to change anything now."}
+      - {id: S4-T5, speaker: Tomas, text: "Agreed. I'll send round the draft by Monday."}
+
+script:
+  - {turn: S1-T2, act: decide, item: model.demand, value: LightGBM}
+  - {turn: S1-T3, act: decide, item: metric.primary, value: MAE}
+  - {turn: S1-T4, act: task_open, item: task.weather_join}
+  - {turn: S2-T2, act: suggest, item: model.demand, value: Prophet}
+  - {turn: S2-T4, act: task_progress, item: task.weather_join, progress: blocked}
+  - {turn: S2-T5, act: suggest, item: metric.primary, value: RMSE}
+  - {turn: S3-T1, act: task_progress, item: task.weather_join, progress: completed}
+  - {turn: S3-T4, act: accept, item: metric.primary, accepts: S2-T5, reason: "the current metric hides the large errors on peak days"}
+  - {turn: S4-T1, act: restate, item: model.demand, value: LightGBM}
+  - {turn: S4-T1, act: restate, item: metric.primary, value: RMSE}
+  - {turn: S4-T3, act: mention, item: model.demand, value: Prophet}
+
+questions:
+  - {id: model.demand@S4-previous, after: S4, kind: previous, item: model.demand, text: "Which model, if any, did we use for the daily demand forecast before the current one?"}
+  - {id: model.demand@S4-asof-S3, after: S4, kind: as_of, session: S3, item: model.demand, text: "What was the state of the demand-model choice at the end of the third meeting?"}
+  - {id: metric.primary@S4-asof-S2, after: S4, kind: as_of, session: S2, item: metric.primary, text: "What was the state of the main-metric choice at the end of the second meeting?"}

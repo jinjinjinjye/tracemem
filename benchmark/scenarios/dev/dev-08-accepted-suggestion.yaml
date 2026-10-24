@@ -1,0 +1,90 @@
+# Development scenario. Not yet reviewed by the team.
+# Focal pattern: suggestions accepted at three distances. The first topic model
+# is suggested and accepted in the same meeting (session S1). The topic-quality
+# score is suggested in S1 and accepted in S2. A second topic model is suggested
+# in S2 and accepted only in S4, after a competing suggestion in S3 that nobody
+# takes up, so the acceptance must reach back past the newer suggestion.
+scenario_id: dev-08
+title: Topic model adopted two meetings after it was suggested
+category: accepted_suggestion
+split: dev
+author: mace2305
+review: {status: unreviewed}
+project_id: campus-paper-topics
+
+items:
+  - key: model.topic
+    kind: decision
+    description: the model that groups the newspaper articles into topics
+    ask: Which topic model are we using for the articles?
+    values:
+      LDA: [latent dirichlet allocation, lda model]
+      BERTopic: [bert topic, bertopic model]
+      NMF: [non-negative matrix factorisation, non-negative matrix factorization]
+  - key: metric.topic_quality
+    kind: decision
+    description: the score used to judge how good the topics are
+    ask: Which measure are we using to score the topics?
+    values:
+      C_v coherence: [c_v, cv coherence, c-v coherence]
+  - key: task.archive_download
+    kind: task
+    description: download the paper's online article archive
+    ask: What is the status of the archive download?
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Marta, text: "So the idea is to map what the campus paper has been writing about over the last five years."}
+      - {id: S1-T2, speaker: Joel, text: "I'll download the archive from the paper's website this week. It's around four thousand articles."}
+      - {id: S1-T3, speaker: Hiro, text: "For the model, maybe LDA to start? It's the one we all know from class."}
+      - {id: S1-T4, speaker: Marta, text: "Yeah, let's go with LDA for now, it's quick to set up."}
+      - {id: S1-T5, speaker: Joel, text: "How do we tell if the topics are any good, though? Maybe C_v coherence, like in the lecture notes?"}
+      - {id: S1-T6, speaker: Marta, text: "Could be. Let me read up on it before we commit."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Joel, text: "Bad news: the paper's site started rate-limiting me, so the archive download is stuck at about a third."}
+      - {id: S2-T2, speaker: Marta, text: "Ugh. One of the editors is in my tutorial, I'll ask her about it."}
+      - {id: S2-T3, speaker: Hiro, text: "Meanwhile I ran LDA on the third we have. Half the topics are mush, like sports and campus events in one bucket."}
+      - {id: S2-T4, speaker: Hiro, text: "Maybe BERTopic would do better? It works off embeddings, so short news pieces might cluster more cleanly."}
+      - {id: S2-T5, speaker: Joel, text: "Maybe, but I'd want the full archive in before we change anything."}
+      - {id: S2-T6, speaker: Marta, text: "Fair. Oh, and I read up on Joel's idea from Tuesday: let's go with C_v coherence to score the topics."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Marta, text: "The editors are fine with us scraping, as long as it's slow and overnight."}
+      - {id: S3-T2, speaker: Joel, text: "Great, then I've restarted the archive download."}
+      - {id: S3-T3, speaker: Joel, text: "It should be done by Friday."}
+      - {id: S3-T4, speaker: Hiro, text: "I tried BERTopic on a sample of five hundred articles over the weekend. Sports and campus events finally came out as separate topics."}
+      - {id: S3-T5, speaker: Joel, text: "Or we could maybe try NMF? It's a lot lighter than anything with embeddings."}
+      - {id: S3-T6, speaker: Marta, text: "Let's not add a third option yet. We'll compare properly once the full archive is in."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Joel, text: "The archive download finished last night. All 4,100 articles are in the shared folder."}
+      - {id: S4-T2, speaker: Hiro, text: "And I ran BERTopic on the whole archive: about forty minutes on my laptop, and the topics still look clean."}
+      - {id: S4-T3, speaker: Marta, text: "Then that settles it. We're switching to BERTopic, like Hiro proposed last week."}
+      - {id: S4-T4, speaker: Joel, text: "Fine by me. The scoring stays C_v coherence."}
+      - {id: S4-T5, speaker: Marta, text: "Good. Same time on Tuesday, and bring your topic lists."}
+
+script:
+  - {turn: S1-T2, act: task_open, item: task.archive_download}
+  - {turn: S1-T3, act: suggest, item: model.topic, value: LDA}
+  - {turn: S1-T4, act: accept, item: model.topic, accepts: S1-T3, reason: "quick to set up"}
+  - {turn: S1-T5, act: suggest, item: metric.topic_quality, value: C_v coherence}
+  - {turn: S2-T1, act: task_progress, item: task.archive_download, progress: blocked}
+  - {turn: S2-T4, act: suggest, item: model.topic, value: BERTopic}
+  - {turn: S2-T6, act: accept, item: metric.topic_quality, accepts: S1-T5}
+  - {turn: S3-T2, act: task_progress, item: task.archive_download, progress: open}
+  - {turn: S3-T4, act: mention, item: model.topic, value: BERTopic}
+  - {turn: S3-T5, act: suggest, item: model.topic, value: NMF}
+  - {turn: S4-T1, act: task_progress, item: task.archive_download, progress: completed}
+  - {turn: S4-T2, act: mention, item: model.topic, value: BERTopic}
+  - {turn: S4-T3, act: accept, item: model.topic, accepts: S2-T4, reason: "the first topic model lumped sports and campus events together; BERTopic separates them and runs on the full archive in about forty minutes"}
+  - {turn: S4-T4, act: restate, item: metric.topic_quality, value: C_v coherence}
+
+questions:
+  - {id: model.topic@S4-previous, after: S4, kind: previous, item: model.topic, text: "Which topic model, if any, did we use for the articles before the current one?"}
+  - {id: metric.topic_quality@S4-asof-S1, after: S4, kind: as_of, session: S1, item: metric.topic_quality, text: "What was the state of the topic-scoring choice at the end of the first meeting?"}
