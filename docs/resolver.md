@@ -251,7 +251,7 @@ feedback limits; increment the corresponding version when changing those policie
 The current intent policy is `candidate-speech-act-v4` and the executable adoption
 source policy is `selected-adoption-origins-v2`; guide text
 is also covered by the system-prompt hash. Controlled comparison manifests
-carry it as `resolver_reference_policy_hash` in all three arms, so a run with a
+carry it as `resolver_reference_policy_hash` in every arm, so a run with a
 different resolver request policy cannot silently enter the same comparison.
 `usage()` counts all attempted calls and reported tokens, including
 invalid completions and retries, across this resolver instance. Tokens from a failed
