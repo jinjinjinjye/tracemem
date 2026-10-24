@@ -59,9 +59,11 @@ output limit, timeout and retry limit. They share one model client, chosen by
 OpenRouter or a local Ollama server ([local model guide](local-model.md)), always with
 the same reply cache and spending cap; no seed is set. The same configuration also controls
 answer calls. The model must support the existing structured-answer
-transport. Candidate hashes, configuration, reference resolver prompt/schema hashes,
-answer prompt/schema hashes, answer-validation policy hash and temporal reader
-policy are recorded in `manifest.json`.
+transport. Candidate hashes, configuration, the model client's reply-changing
+settings (provider, endpoint, thinking switch and output-limit field, never the key
+or the cache), reference resolver prompt/schema hashes, answer prompt/schema hashes,
+answer-validation policy hash and temporal reader policy are recorded in
+`manifest.json`.
 
 The shared reader considers all retained records without a gold question-item
 filter. For an as-of question, TraceMem first projects its own applied operation
@@ -292,11 +294,11 @@ adoption-origin citation regressions remain enabled. A real-model rerun is still
 needed to measure conflict accuracy; it must separate reader effects from the
 simultaneous Resolver source-retry repair and count exhausted writes explicitly.
 
-`tracemem report` refuses controlled comparisons with different protocol settings
-or candidate hashes, even with `--allow-mixed`. Ordinary checks for scenario files,
-split and condition still apply. Shared settings must also stay constant across
-scenarios within one run. Every scenario gets a fresh store, and the harness closes
-native resources after collecting its results.
+`tracemem report` refuses controlled comparisons with different protocol settings,
+model client settings or candidate hashes, even with `--allow-mixed`. Ordinary
+checks for scenario files, split and condition still apply. Shared settings must
+also stay constant across scenarios within one run. Every scenario gets a fresh
+store, and the harness closes native resources after collecting its results.
 
 ## Run and inspect
 
@@ -335,7 +337,13 @@ Mem0's action space is different, so its native actions are saved in
 
 `usage.json` records write-path usage under `resolver` and answer usage under
 `answer`. Calls and reported tokens include retries; a failed request without a
-usage response has unknown token cost. Mem0 candidate events distinguish
+usage response has unknown token cost. A reply served from the reply cache
+([local model guide](local-model.md)) reports zero tokens, and by default every arm
+shares one cache folder. An arm that repeats a request another arm or an earlier run
+already made therefore reports fewer tokens than the work it did; `usage.json`
+counts each scenario's cache calls, hits and misses under `model_cache`. Compare
+token usage across arms only from runs with `TRACEMEM_CACHE=off` or a fresh
+`TRACEMEM_CACHE_DIR` for each arm. Mem0 candidate events distinguish
 `applied`, `no_change`, `generation_failed` and `aborted`. Exhausted generation
 failures leave memory unchanged and allow the next candidate; fatal/input/config
 failures abort the run. Incomplete native writes are rolled back in both current

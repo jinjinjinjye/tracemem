@@ -8,8 +8,12 @@ and every completed call, saved or not, is appended to a usage and cost log.
 Select the provider with TRACEMEM_PROVIDER (openai, the default, keeps the built-in
 OpenAICompletionClient; openrouter; local, meaning an Ollama server). Only the
 OpenRouter key is read from a local .env file, and only when it is absent from the
-process environment. Paid calls stop once the cost log reaches TRACEMEM_BUDGET_USD
-(default 12); the log covers this machine only, and local calls are never capped.
+process environment. Once the cost log reaches TRACEMEM_BUDGET_USD (default 12), no
+further provider call is made. Only priced calls count towards it: OpenRouter's
+reported cost, else the price table below. Any other call, including every call
+through the default openai provider, is logged as unpriced at zero, so the cap does
+not limit its spending. The log covers this machine only, and local calls are never
+capped.
 """
 
 from __future__ import annotations
@@ -58,13 +62,14 @@ def read_dotenv(path: str | os.PathLike) -> dict[str, str]:
         line = line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
-        key, value = line.split("=", 1)
+        key, raw = line.split("=", 1)
         key = key.strip().removeprefix("export ").strip()
-        value = value.strip()
+        value = raw.strip()
         if not key:
             continue
         end = value.find(value[0], 1) if value[:1] in ("'", '"') else -1
-        values[key] = value[1:end] if end > 0 else re.split(r"\s#", value, maxsplit=1)[0].rstrip()
+        # Cut the comment before stripping: in "KEY= # note" the "#" follows a space.
+        values[key] = value[1:end] if end > 0 else re.split(r"\s#", raw, maxsplit=1)[0].strip()
     return values
 
 
@@ -183,12 +188,16 @@ class CachedClient:
     Saved replies are returned with zero tokens, because the provider is not called
     and nothing is charged; their original counts stay in the cache file and the log.
     Only complete replies are saved: a provider error, a refusal or a cut-off reply
-    is not, so retrying the same request asks the provider again, as it would
-    without the cache. With use_cache=False nothing is read or saved, but calls are
-    still logged and the spending cap still applies. The cap is checked before each
-    provider call against every cost in the log, so a run stops within one call of
-    the cap. A cost is the provider's own figure, else the price table's; a model in
-    neither is logged at zero as "unpriced" and does not count towards the cap.
+    is not, so retrying the same request asks the provider again. A request that
+    repeats one this client has already served or saved, such as a retry that
+    resends the same feedback after a complete but invalid reply, gets its own
+    numbered slot in the cache. It therefore reaches the provider, as it would
+    without the cache, and a later run replays the slots in the same order. With
+    use_cache=False nothing is read or saved, but calls are still logged and the
+    spending cap still applies. The cap is checked before each provider call against
+    every cost in the log, so a run stops within one call of the cap. A cost is the
+    provider's own figure, else the price table's; a model in neither is logged at
+    zero as "unpriced" and does not count towards the cap.
     """
 
     def __init__(self, inner: CompletionClient, cache_dir: str | os.PathLike = DEFAULT_CACHE_DIR,
@@ -201,6 +210,8 @@ class CachedClient:
         self.use_cache = use_cache
         self.spent_usd = self._logged_spend()
         self.stats = {"calls": 0, "hits": 0, "misses": 0, "cost_usd": 0.0}
+        # Request key -> slots this client has served or saved; the next repeat uses the next slot.
+        self._slots: dict[str, int] = {}
 
     def _logged_spend(self) -> float:
         total = 0.0
@@ -217,15 +228,20 @@ class CachedClient:
 
     def describe(self) -> dict:
         inner = getattr(self.inner, "describe", None)
-        return {"cache": str(self.cache_dir), "inner": inner() if callable(inner) else type(self.inner).__name__}
+        return {"cache": str(self.cache_dir), "use_cache": self.use_cache,
+                "inner": inner() if callable(inner) else type(self.inner).__name__}
 
-    def key(self, *, config: ResolverConfig, messages: list[dict[str, str]], response_format: dict) -> str:
+    def key(self, *, config: ResolverConfig, messages: list[dict[str, str]], response_format: dict,
+            slot: int = 0) -> str:
         inner = getattr(self.inner, "describe", None)
         material = {"client": inner() if callable(inner) else type(self.inner).__name__,
                     # Timeouts and retry counts never change a reply.
                     "config": {k: v for k, v in config.model_dump().items()
                                if k not in ("timeout_seconds", "max_attempts")},
                     "messages": messages, "response_format": response_format}
+        if slot:
+            # Slot 0 keeps the plain key, so replies saved before slots existed still match.
+            material["repeat"] = slot
         return hashlib.sha256(json.dumps(material, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
 
     def _path(self, key: str) -> Path:
@@ -243,12 +259,16 @@ class CachedClient:
 
     def complete(self, *, config: ResolverConfig, messages: list[dict[str, str]],
                  response_format: dict) -> ModelReply:
-        key = self.key(config=config, messages=messages, response_format=response_format)
+        request = self.key(config=config, messages=messages, response_format=response_format)
+        slot = self._slots.get(request, 0)
+        key = self.key(config=config, messages=messages, response_format=response_format, slot=slot) \
+            if slot else request
         path = self._path(key)
         self.stats["calls"] += 1
         started = time.monotonic()
         saved = self._read(path) if self.use_cache else None
         if saved is not None:
+            self._slots[request] = slot + 1
             self.stats["hits"] += 1
             reply = ModelReply(content=saved["content"], finish_reason=saved["finish_reason"],
                                refused=saved["refused"])
@@ -271,6 +291,7 @@ class CachedClient:
                   "cost_usd": cost, "cost_source": source, "model": config.model}
         if self.use_cache and reply.finish_reason == "stop" and not reply.refused:
             self._write(path, record)
+            self._slots[request] = slot + 1
         self.stats["misses"] += 1
         self.stats["cost_usd"] += cost
         self.spent_usd += cost
@@ -299,9 +320,10 @@ class CachedClient:
 def from_env(environ: Mapping[str, str] | None = None) -> CompletionClient:
     """The client named by TRACEMEM_PROVIDER, cached unless TRACEMEM_CACHE=off.
 
-    Every setting is checked before any client is constructed. Paid providers are
-    capped at TRACEMEM_BUDGET_USD; a local server charges nothing, so spending
-    logged for a paid provider never stops it.
+    Every setting is checked before any client is constructed. The cap at
+    TRACEMEM_BUDGET_USD counts only priced calls (see CachedClient), so it does not
+    limit spending through the default openai provider. A local server charges
+    nothing, so spending logged for a paid provider never stops it.
     """
     env = os.environ if environ is None else environ
     provider = env.get("TRACEMEM_PROVIDER", "openai").strip().lower()

@@ -226,6 +226,21 @@ def _budget(value: int | None) -> int:
         raise ResolverConfigError("TRACEMEM_CONTEXT_BUDGET_BYTES must be an integer from 256 to 1000000") from None
 
 
+def _client_settings(client: CompletionClient) -> object:
+    # Provider, endpoint, thinking switch and token field change replies, so arms
+    # must share them. The reply cache's folder and switch do not; no key is recorded.
+    inner = client.inner if isinstance(client, model_client.CachedClient) else client
+    describe = getattr(inner, "describe", None)
+    return describe() if callable(describe) else type(inner).__name__
+
+
+def _cache_usage(client: CompletionClient) -> dict | None:
+    # Saved replies report zero tokens; these counts show how many calls they served.
+    if not isinstance(client, model_client.CachedClient):
+        return None
+    return {key: client.stats[key] for key in ("calls", "hits", "misses")}
+
+
 def comparison_settings(config: ResolverConfig, budget_bytes: int, client: CompletionClient) -> dict:
     # Record the same TraceMem reference in every arm's manifest. Constructing a
     # resolver with the existing client only describes the prompt/schema; it
@@ -233,7 +248,8 @@ def comparison_settings(config: ResolverConfig, budget_bytes: int, client: Compl
     reference = LLMResolver(config, client).describe()
     return {
         "protocol": "gold-candidate-memory-v1", "input_policy": "gold_candidates_only",
-        "model_config": config.model_dump(), "answer_prompt_hash": _hash(ANSWER_PROMPT),
+        "model_config": config.model_dump(), "model_client": _client_settings(client),
+        "answer_prompt_hash": _hash(ANSWER_PROMPT),
         "answer_schema_hash": _hash(ANSWER_FORMAT), "context_budget_bytes": budget_bytes,
         "answer_validation_policy_hash": _hash(ANSWER_VALIDATION_POLICY),
         "write_matching": "all_same_item", "reader": "retained_memory_asof_oplog_snapshot_whole_entries_v2",
@@ -462,6 +478,9 @@ class ControlledTraceMem(TraceMemPipeline):
     def answer_usage(self):
         return self.answerer.usage()
 
+    def model_cache_usage(self):
+        return _cache_usage(self.answerer.client)
+
 
 class ControlledMem0:
     accepts_gold_candidates = True
@@ -501,6 +520,9 @@ class ControlledMem0:
 
     def answer_usage(self):
         return self.answerer.usage()
+
+    def model_cache_usage(self):
+        return _cache_usage(self.answerer.client)
 
     def fingerprint(self):
         return self.backend.fingerprint()

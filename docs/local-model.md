@@ -88,9 +88,17 @@ Every complete reply is saved under `cache/llm/` (`TRACEMEM_CACHE_DIR`). The cac
 covers the provider settings, the model settings and the full request, but not the
 timeout or the number of attempts. Running the same system on the same scenarios with
 the same settings again therefore makes no model calls, costs nothing and gives the
-same answers. A saved reply reports zero tokens, so a rerun's usage totals count only
-the calls that reached the provider. Errors, refusals and cut-off replies are not
-saved; they are asked again next time.
+same answers. Errors, refusals and cut-off replies are not saved; they are asked again
+next time. A request repeated within one scenario, such as a retry that resends the
+same feedback, is also sent to the model again and saved separately, so a retry never
+receives the reply it is retrying, and a rerun replays both in order.
+
+A saved reply reports zero tokens, so usage totals count only the calls that reached
+the provider. All systems share the cache folder: a system that repeats a request
+another system or an earlier run already made also reports zero tokens for it.
+`usage.json` shows each scenario's cache hits under `model_cache`. To compare token
+usage between systems, run each with `TRACEMEM_CACHE=off` or its own fresh
+`TRACEMEM_CACHE_DIR`.
 
 To ask everything again, set `TRACEMEM_CACHE=off` or use a fresh cache folder. Every
 completed call, saved or not, is appended to `cache/llm/calls.jsonl` with its model,
@@ -131,7 +139,7 @@ runs paid commands, and with which budget, before starting them.
 | `TRACEMEM_LOCAL_THINKING` | `off` | `on` lets the local model think before answering |
 | `TRACEMEM_CACHE` | `on` | `off` neither reads nor saves replies; calls are still logged and capped |
 | `TRACEMEM_CACHE_DIR` | `cache/llm` | Saved replies and the cost log `calls.jsonl` |
-| `TRACEMEM_BUDGET_USD` | `12` | Spending cap for paid providers, over the whole cost log |
+| `TRACEMEM_BUDGET_USD` | `12` | Spending cap over the whole cost log; counts only priced calls, so not the default `openai` provider |
 | `TRACEMEM_EMBED_MODEL` | `nomic-embed-text` | Embedding model on the local server, for similarity retrieval |
 
 The model itself and its request limits are the existing `TRACEMEM_RESOLVER_*`
