@@ -64,4 +64,5 @@ script:
   - {turn: S4-T1, act: task_progress, item: task.baseline_runs, progress: completed}
   - {turn: S4-T2, act: suggest, item: task.error_analysis, value: open}
 
-questions: []
+questions:
+  - {id: compute.gpu@S2-previous, after: S2, kind: previous, item: compute.gpu, text: "Which compute setup, if any, did we use for our experiments before the current one?"}
