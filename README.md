@@ -108,7 +108,7 @@ Four rules make the comparison fair, and the harness enforces each one:
 The repository departs from the project proposal in three ways. Each one is a proposal until the team records it in [`docs/decisions/`](docs/decisions/README.md).
 
 - **Research question 3 asks about a different item in the same project, not about different projects.** Every system filters its memory by project id, so a statement from another project never reaches the answer model, and that case would test nothing. The benchmark instead tests pairs of similar items within one project, such as the sentiment model and the NER model.
-- **The comparison systems are fixed.** They are similarity, similarity + recency, Timeline, TraceMem, TraceMem without supersession, and a full-history reference. [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) describes each one.
+- **The comparison systems are fixed.** They are similarity, similarity + recency, Timeline, TraceMem, TraceMem without supersession, and a full-history reference. [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) describes each one. [Decision 0011](docs/decisions/0011-compare-five-memory-systems.md) proposes another set for the gold-candidate comparison: it adds classic Mem0 and Mem0 with TraceMem's rules, and has no TraceMem without supersession. The team has still to choose between the two.
 - **The scope is cut.** The demo gets a thin user interface. There is no human evaluation, except to check an automatic judge if the team uses one. Memory holds decisions and tasks only.
 
 ## Terms used in this project

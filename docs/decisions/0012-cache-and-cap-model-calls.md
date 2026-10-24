@@ -26,6 +26,15 @@ separates retryable from fatal provider errors, and this client keeps that split
 
 ## Decision
 
+Every controlled comparison system gets its model client from
+`model_client.from_env()`, chosen by `TRACEMEM_PROVIDER`. Local runs use an Ollama
+server whose model has a 16,384-token context, and paid runs use Haiku 5.5
+through OpenRouter; the default, `openai`, keeps the built-in client. Each
+complete reply is saved under `cache/llm/`, so a repeated request costs nothing,
+and paid calls stop once the cost log reaches US$12.
+
+The details follow.
+
 - **One client for every comparison system.** `comparison.make_client()` returns
   `model_client.from_env()`, so `TRACEMEM_PROVIDER` chooses the client of every
   controlled comparison system: `openai`, the default, keeps the built-in client
@@ -89,8 +98,9 @@ going on at the same time on one machine, and stops a paid run within one call o
 the budget. A cut request or a stopped local server ends the run instead of
 producing answers that look valid, and a re-pulled model gets new cache keys.
 
-Saved replies report zero tokens, so usage totals count only calls that reached
-the provider. Token comparisons between systems need `TRACEMEM_CACHE=off` or a
+Saved replies report zero tokens, so token totals count only calls that reached
+the provider; call counts include cache hits, and `model_cache` gives the hits and
+misses. Token comparisons between systems need `TRACEMEM_CACHE=off` or a
 fresh `TRACEMEM_CACHE_DIR` for each system, and repeated runs meant as independent
 samples need a fresh cache folder each, or they replay the first run's replies.
 

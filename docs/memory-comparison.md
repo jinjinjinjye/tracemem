@@ -209,11 +209,14 @@ The shared answer prompt also states, in one paragraph (`ANSWER_CONVENTIONS`), t
 labelling conventions of [benchmark section 5](benchmark.md#5-labelling-conventions-for-hard-cases)
 that decide answers, in the parts the prompt did not already say: function decides
 between a suggestion and a mention; a dispute stays open until someone settles it;
-an acceptance names the suggestion it accepts and may come sessions later; announced
-progress counts when it changes the progress. All arms receive it. This changes
-`answer_prompt_hash`, so `tracemem report` refuses to compare runs made before and
-after it; rerun every arm. The output schema, renderer, validator, model settings
-and Resolver fingerprints are unchanged.
+an acceptance adopts the earlier suggestion it agrees to, even sessions later;
+announced progress counts when it changes the progress. It leaves out the
+convention's rule that a decision adopting an open suggestion's value accepts it and
+cites its turn, a limit that
+[decision 0011](decisions/0011-compare-five-memory-systems.md) records. All arms
+receive the paragraph. It changes `answer_prompt_hash`, so `tracemem report` refuses
+to compare runs made before and after it; rerun every arm. The output schema,
+renderer, validator, model settings and Resolver fingerprints are unchanged.
 
 ### Current validation and historical reads
 

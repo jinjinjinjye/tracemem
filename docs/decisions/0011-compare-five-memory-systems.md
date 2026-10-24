@@ -13,7 +13,7 @@ superseded_by: []
 ## Context
 
 [Decision 0004](0004-compare-controlled-memory.md) (the controlled comparison of
-TraceMem, its current-only ablation and classic Mem0) registers three
+TraceMem, its current-only ablation and classic Mem0) compares three
 gold-candidate systems. RQ1 ("Does TraceMem give fewer outdated answers and fewer
 wrong replacements than a memory that retrieves by similarity, with and without a
 preference for recent statements?") needs two baselines without a write path, and
@@ -23,15 +23,29 @@ what the rules contribute can be told apart from what TraceMem's operation log
 contributes. The repository now registers these three systems, and every compared
 system selects its context through one retriever, `SharedRetriever` in
 [`retrieval.py`](../../src/tracemem/retrieval.py). This record proposes that
-protocol. It extends decision 0004 without changing it, and keeps the answer
-validation and historical reads of
+protocol: it builds on decision 0004, changes only which of its systems are
+compared, and keeps the answer validation and historical reads of
 [decision 0010](0010-validate-reader-evidence-and-historical-state.md).
 
 ## Decision
 
-Five systems take part. All accept only `--condition gold_candidates`, and none
+Five systems are compared on gold candidates: `similarity` and
+`similarity-recency` over every candidate as a record without a status,
+`mem0-classic` and `mem0-instructions` over native Mem0 memories, and
+`tracemem-controlled` over its operation log. All five select their context
+through one retriever (`alpha=0`, `alpha=0.3` with a 7-day half-life, and
+`alpha=1` for the other three) and answer through one shared prompt, client and
+validator. Only the similarity systems' lines quote their source turn, and
+`mem0-instructions` adds the project rules below after Mem0's default update
+prompt. `tracemem-no-versions` leaves the compared set and stays registered as a
+diagnostic.
+
+The details follow. All five accept only `--condition gold_candidates`, and none
 receives the gold timeline, expected answers or the question-to-item mapping.
-`tracemem-no-versions` stays registered as decision 0004's diagnostic ablation.
+Decision 0004 compares `tracemem-no-versions`, its current-only ablation, as one
+of its three systems. This record replaces that part of 0004: the ablation runs
+under the same shared settings, but as a diagnostic outside the five reported
+systems (open question 6). Decision 0004's record is left as it is.
 
 | System | Write path | Store | Retriever |
 |---|---|---|---|
@@ -111,21 +125,21 @@ receives the gold timeline, expected answers or the question-to-item mapping.
   answer validation, retry limit and byte budget, and with one model client per
   scenario from `make_client()` ([decision 0012](0012-cache-and-cap-model-calls.md)).
   A system with a write path uses the same client and settings for its write calls.
-  The prompt states, in one paragraph, the four conventions of
+  The prompt adds one paragraph (`ANSWER_CONVENTIONS`) for the conventions of
   [benchmark section 5](../benchmark.md#5-labelling-conventions-for-hard-cases)
-  that decide answers: function decides between a suggestion and a mention; a
-  dispute stays open until someone settles it; an acceptance names the suggestion
-  it accepts and may come sessions later; announced progress counts when it
-  changes the progress. With that paragraph, `answer_prompt_hash` begins
-  `b6571cd57e4e`.
-- **Manifests.** Each run records the settings systems may differ in (the ranking,
-  `alpha`, `half_life_days` and the embedder called) under
-  `system_config.shared_retriever`, and the settings every system must share (the
-  selection policy, how age is measured, the document text, and the embedding
-  model with its prefixes) under `comparison.retriever`. It also records
-  `system_config.quote_source_turns`. The Mem0 systems record `update_prompt_hash`
-  and `instructions_hash`, which begins `33757c0e88e5` for these rules and is
-  `null` for `mem0-classic`. `tracemem report` refuses to compare runs whose shared
+  that decide answers, in the parts it did not already state: a turn that puts a
+  value forward is a suggestion, and one that only names a value is a mention; a
+  dispute stays open until someone states a value as final or the other side
+  agrees; an acceptance adopts the earlier suggestion it agrees to, even sessions
+  later; a task's progress changes when someone announces the change. The
+  paragraph leaves out part of the acceptance convention (see the limits below).
+  With it, `answer_prompt_hash` begins `b6571cd57e4e`.
+- **Manifests.** Each run records its retriever settings, whether its lines quote
+  source turns and, for the Mem0 systems, the hashes of the update prompt and of
+  the rules; `instructions_hash` begins `33757c0e88e5` for these rules and is
+  `null` for `mem0-classic`.
+  [The comparison guide](../memory-comparison.md#shared-retriever-and-answer-conventions)
+  lists the fields. `tracemem report` refuses to compare runs whose shared
   settings differ.
 
 ## Consequences
@@ -138,7 +152,7 @@ zero write usage and have no operations to score. Mem0's native actions stay in
 the quote or the rules changes requests, so the affected systems must be rerun; a
 change to the answer prompt means rerunning all of them.
 
-Three limits apply now:
+Four limits apply now:
 
 - On every development scenario in the repository, the default budget holds all
   of a similarity system's records: the largest store, pilot-01's, takes 1,153
@@ -155,11 +169,27 @@ Three limits apply now:
 - The rules leave out the last four sentences of `INTENT_GUIDE` item 2, and items
   3 and 5, so `mem0-instructions` is not given TraceMem's definition of a decision
   (item 3).
+- The conventions paragraph leaves out benchmark section 5's rule that, on a
+  decision, a turn adopting the value of an open suggestion accepts it, even when
+  it gives reasons of its own, and that only an acceptance cites the suggestion's
+  turn as evidence. The similarity systems cannot get that link from their
+  records. In pilot-01, `model.sentiment@S3` ("Which model are we using for the
+  sentiment classifier?", after session 3) needs both S2-T3 ("Maybe we could try
+  DistilBERT?") and S3-T2 ("Then we switch the sentiment classifier to DistilBERT,
+  since BERT misses the latency limit.") as support, but the record for S3-T2
+  has only its own turn as source; TraceMem's records can carry the earlier turn
+  as a source. Adding the rule changes `answer_prompt_hash` and means rerunning
+  all five systems.
 
 This record does not cover the planned Timeline and full-history systems or the
 end-to-end version of any system, listed in
 [the interfaces guide](../interfaces.md#comparison-systems-planned), nor
-production extraction or Mem0 2.x. Commands and details are in
+production extraction or Mem0 2.x. Its set of systems also differs from the list
+the [README](../../README.md#how-this-differs-from-the-proposal-pending-team-ratification)
+gives as pending team ratification. This record adds the two Mem0 systems, and it
+has no TraceMem without supersession, the README's ablation, whose resolver may
+only add records; the registered ablation, `tracemem-no-versions`, keeps
+supersession and discards closed versions. Commands and details are in
 [the comparison guide](../memory-comparison.md). The retrieval, resolver and
 evaluation owners should review this record before ratification.
 
@@ -192,3 +222,9 @@ decides:
 5. **The rules' text.** Whether to keep the added first line and this choice of
    passages, to copy item 2 whole, or to add items 3 and 5. Any change alters
    `instructions_hash` and the answers of `mem0-instructions`.
+6. **Which systems are reported.** The options are this record's five, with
+   `tracemem-no-versions` as a diagnostic outside them; the same five and that
+   ablation, as decision 0004 compares it; or the README's list, which has no Mem0
+   system and adds Timeline, full history and TraceMem without supersession. The
+   README and [the interfaces guide](../interfaces.md#comparison-systems-planned)
+   should then list the set the team chooses.
