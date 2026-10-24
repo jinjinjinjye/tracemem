@@ -14,11 +14,12 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, ValidationError
 
+from tracemem import model_client
 from tracemem.components import GoldMatcher, render_records
 from tracemem.ops import OpLog
 from tracemem.pipeline import TraceMemPipeline
 from tracemem.resolver import (
-    CompletionClient, LLMResolver, OpenAICompletionClient, ResolverConfig,
+    CompletionClient, LLMResolver, ResolverConfig,
     ResolverConfigError, ResolverError, ResolverInputError, RetryableModelError,
 )
 from tracemem.schema import Answer, Candidate, Record, ScenarioMeta, SystemQuestion, Usage
@@ -211,7 +212,8 @@ def _hash(value: object) -> str:
 
 
 def make_client() -> CompletionClient:
-    return OpenAICompletionClient()
+    # One client per scenario, chosen by TRACEMEM_PROVIDER, with the reply cache and cap.
+    return model_client.from_env()
 
 
 def _budget(value: int | None) -> int:

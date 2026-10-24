@@ -54,8 +54,10 @@ partial-write rollback; an SDK upgrade requires reviewing that seam and repinnin
 ## Shared inputs and answering
 
 All three arms use the same candidate list, explicit model, optional temperature,
-output limit, timeout and retry limit. They share the existing built-in OpenAI
-transport and fixed endpoint; no seed is set. The same configuration also controls
+output limit, timeout and retry limit. They share one model client, chosen by
+`TRACEMEM_PROVIDER`: the built-in OpenAI transport and fixed endpoint by default, or
+OpenRouter or a local Ollama server ([local model guide](local-model.md)), always with
+the same reply cache and spending cap; no seed is set. The same configuration also controls
 answer calls. The model must support the existing structured-answer
 transport. Candidate hashes, configuration, reference resolver prompt/schema hashes,
 answer prompt/schema hashes, answer-validation policy hash and temporal reader

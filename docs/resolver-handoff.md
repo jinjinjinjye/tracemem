@@ -74,14 +74,18 @@ evaluation alongside successful writes.
 
 ## Choose the model adapter explicitly
 
-`LLMResolver.from_env()` and the default comparison factory use
+`LLMResolver.from_env()`, and so `pipeline-resolver-dev`, use
 `OpenAICompletionClient`, whose endpoint is fixed to `https://api.openai.com/v1`.
 Changing a base-URL environment variable does not redirect it. The package does
-not load `.env` automatically; `.env.example` documents the configuration names.
+not load `.env` automatically, except for `OPENROUTER_API_KEY` (below);
+`.env.example` documents the configuration names.
 
-OpenRouter, Claude or a local Ollama backend needs an explicit `CompletionClient`
-adapter and a compatibility check for structured responses, usage, timeouts and
-error handling. Inject the same adapter/configuration into every comparison arm.
+The default comparison factory takes its client from `model_client.from_env()`:
+`TRACEMEM_PROVIDER` selects the same OpenAI client, OpenRouter or a local Ollama
+server, and every arm gets the same reply cache and spending cap
+([local model guide](local-model.md)). Another backend needs its own
+`CompletionClient` adapter and a compatibility check for structured responses, usage,
+timeouts and error handling. Inject the same adapter/configuration into every comparison arm.
 The private runner used for earlier OpenRouter experiments is not included here.
 Agree on the exact provider, model/version, request limits and budget before
 running paid commands in [the comparison guide](memory-comparison.md).
