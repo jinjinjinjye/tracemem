@@ -13,7 +13,7 @@ That gives 795 rows: 5 systems × 3 repeats × 53 questions (46 about the presen
 - `a5-answers.csv`: one row per answer. List fields are joined with "; ".
 - `a5-answers.json`: the same rows, with lists kept as lists.
 - `table.md`: the summary table, the mean over the three repeats with the lowest and highest.
-- `runs/r1` to `runs/r3`: each run's `manifest.json` (exact settings, code commit, scenario fingerprints) and `metrics.json` (every rate the scorer computes). The full run folders are not committed: `runs/` is ignored, as the [working agreement](../../docs/working-agreement.md) section 4 sets out, and these two files are the record a reader needs.
+- `run-records/r1` to `run-records/r3`: each run's `manifest.json` (exact settings, code commit, scenario fingerprints) and `metrics.json` (every rate the scorer computes). The full run folders are not committed: `runs/` is ignored, as the [working agreement](../../docs/working-agreement.md) section 4 sets out, and these two files are the record a reader needs.
 
 ## Columns
 

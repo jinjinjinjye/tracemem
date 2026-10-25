@@ -1,0 +1,350 @@
+{
+  "current_accuracy": {
+    "all": {
+      "value": 0.5,
+      "n": 46
+    },
+    "trap_candidate": {
+      "value": 0.25,
+      "n": 8
+    },
+    "trap_mention": {
+      "value": 0.6,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.5,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.4444444444444444,
+      "n": 18
+    },
+    "no_trap": {
+      "value": 0.5357142857142857,
+      "n": 28
+    }
+  },
+  "stale_answer_rate": {
+    "all": {
+      "value": 0.21052631578947367,
+      "n": 19
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 2
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 4
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 1
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 7
+    },
+    "no_trap": {
+      "value": 0.3333333333333333,
+      "n": 12
+    }
+  },
+  "incorrect_replacement_rate": {
+    "all": {
+      "value": 0.05555555555555555,
+      "n": 18
+    },
+    "trap_candidate": {
+      "value": 0.16666666666666666,
+      "n": 6
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 4
+    },
+    "trap_confusable": {
+      "value": 0.16666666666666666,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.06666666666666667,
+      "n": 15
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 3
+    }
+  },
+  "presented_as_current_rate": {
+    "all": {
+      "value": 0.1956521739130435,
+      "n": 46
+    },
+    "trap_candidate": {
+      "value": 0.125,
+      "n": 8
+    },
+    "trap_mention": {
+      "value": 0.2,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.3333333333333333,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.16666666666666666,
+      "n": 18
+    },
+    "no_trap": {
+      "value": 0.21428571428571427,
+      "n": 28
+    }
+  },
+  "false_certainty_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 1
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 1
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 1
+    },
+    "no_trap": {
+      "value": null,
+      "n": 0
+    }
+  },
+  "false_conflict_rate": {
+    "all": {
+      "value": 0.022222222222222223,
+      "n": 45
+    },
+    "trap_candidate": {
+      "value": 0.14285714285714285,
+      "n": 7
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.058823529411764705,
+      "n": 17
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 28
+    }
+  },
+  "non_answer_rate": {
+    "all": {
+      "value": 0.30434782608695654,
+      "n": 46
+    },
+    "trap_candidate": {
+      "value": 0.625,
+      "n": 8
+    },
+    "trap_mention": {
+      "value": 0.2,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.16666666666666666,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.3888888888888889,
+      "n": 18
+    },
+    "no_trap": {
+      "value": 0.25,
+      "n": 28
+    }
+  },
+  "abstention_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 46
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 8
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 18
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 28
+    }
+  },
+  "historical_accuracy": {
+    "all": {
+      "value": 0.42857142857142855,
+      "n": 7
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 1
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 1
+    },
+    "no_trap": {
+      "value": 0.5,
+      "n": 6
+    }
+  },
+  "citation_validity": {
+    "all": {
+      "value": 1.0,
+      "n": 46
+    },
+    "trap_candidate": {
+      "value": 1.0,
+      "n": 8
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 1.0,
+      "n": 5
+    },
+    "any_trap": {
+      "value": 1.0,
+      "n": 17
+    },
+    "no_trap": {
+      "value": 1.0,
+      "n": 29
+    }
+  },
+  "supported_answer_rate": {
+    "all": {
+      "value": 0.4807692307692308,
+      "n": 52
+    },
+    "trap_candidate": {
+      "value": 0.2222222222222222,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 0.6,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.5,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.42105263157894735,
+      "n": 19
+    },
+    "no_trap": {
+      "value": 0.5151515151515151,
+      "n": 33
+    }
+  },
+  "citation_coverage": {
+    "all": {
+      "value": 0.4423076923076923,
+      "n": 52
+    },
+    "trap_candidate": {
+      "value": 0.2222222222222222,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 0.5,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.5,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.39473684210526316,
+      "n": 19
+    },
+    "no_trap": {
+      "value": 0.4696969696969697,
+      "n": 33
+    }
+  },
+  "evidence_recall": {
+    "all": {
+      "value": 0.8269230769230769,
+      "n": 52
+    },
+    "trap_candidate": {
+      "value": 0.7777777777777778,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.8333333333333334,
+      "n": 6
+    },
+    "any_trap": {
+      "value": 0.8947368421052632,
+      "n": 19
+    },
+    "no_trap": {
+      "value": 0.7878787878787878,
+      "n": 33
+    }
+  },
+  "weighting": "question",
+  "outcome_counts": {
+    "correct": 26,
+    "wrong_other": 4,
+    "unconfirmed_as_current": 1,
+    "missed": 16,
+    "current_as_historical": 1,
+    "stale": 4,
+    "false_conflict": 1
+  }
+}
