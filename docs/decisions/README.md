@@ -35,3 +35,4 @@ Never rewrite the substance of an accepted record. In one pull request:
 | 0011 | [Compare five memory systems through one retriever and one answer prompt](0011-compare-five-memory-systems.md) | proposed |
 | 0012 | [Call local and paid models through one client with a reply cache and a spending cap](0012-cache-and-cap-model-calls.md) | proposed |
 | 0013 | [Embed records with nomic-embed-text on the local model server](0013-embed-with-nomic-embed-text.md) | proposed |
+| 0014 | [Freeze the deck as freeze-deck and keep tuning on development scenarios until freeze-v1](0014-freeze-the-deck-and-keep-tuning-for-the-report.md) | proposed |
