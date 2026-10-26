@@ -595,9 +595,23 @@ def test_the_answer_prompt_states_the_benchmark_conventions_once_before_the_stat
     assert prompt.endswith("\n" + comparison.ANSWER_EVIDENCE_CHECK)
     conventions = " ".join(comparison.ANSWER_CONVENTIONS.split())
     for phrase in ("suggestion, even when it is phrased as a question", "is a mention",
-                   "A dispute is settled only when", "even one made sessions before",
+                   "A dispute is settled only when",
+                   "a turn that adopts the value of an earlier open suggestion accepts that suggestion",
+                   "even when it gives reasons of its own", "the suggestion was made sessions before",
+                   "the suggestion's turn is then part of the evidence",
                    "progress changes when someone announces the change"):
         assert phrase in conventions
+
+
+def test_history_questions_answer_none_when_no_earlier_settled_value_is_shown():
+    guide = " ".join(comparison.ANSWER_STATE_GUIDE.split())
+    for phrase in ("Never treat the current value as its own predecessor.",
+                   "For PREVIOUS, answer none when the current settled value is the first settled value",
+                   "An unadopted proposal is not a predecessor.",
+                   "Abstain only when the evidence indicates that an earlier settled value existed",
+                   "For AS_OF, answer none when the evidence shows no settled value of the item"):
+        assert phrase in guide
+    assert "If the necessary history is absent, abstain" not in guide
 
 
 def test_the_conventions_change_only_the_answer_prompt_fingerprint(monkeypatch):

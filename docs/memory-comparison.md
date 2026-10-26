@@ -217,12 +217,10 @@ The shared answer prompt also states, in one paragraph (`ANSWER_CONVENTIONS`), t
 labelling conventions of [benchmark section 5](benchmark.md#5-labelling-conventions-for-hard-cases)
 that decide answers, in the parts the prompt did not already say: function decides
 between a suggestion and a mention; a dispute stays open until someone settles it;
-an acceptance adopts the earlier suggestion it agrees to, even sessions later;
-announced progress counts when it changes the progress. It leaves out the
-convention's rule that a decision adopting an open suggestion's value accepts it and
-cites its turn, a limit that
-[decision 0011](decisions/0011-compare-five-memory-systems.md) records. All arms
-receive the paragraph. It changes `answer_prompt_hash`, so `tracemem report` refuses
+on a decision, a turn that adopts the value of an earlier open suggestion accepts it,
+even when it gives reasons of its own, and the suggestion's turn is part of the
+evidence; announced progress counts when it changes the progress. All arms receive the
+paragraph. It changes `answer_prompt_hash`, so `tracemem report` refuses
 to compare runs made before and after it; rerun every arm. The output schema,
 renderer, validator, model settings and Resolver fingerprints are unchanged.
 
@@ -640,3 +638,69 @@ plan in the README and in [the interfaces guide](interfaces.md#comparison-system
 listed these three systems. None of the three was built. TraceMem without supersession
 would be a different ablation: its resolver could only add records and never replace one,
 so it would measure the replacement step rather than the kept decisions.
+
+## Questions about Mem0
+
+Short answers for teammates and for questions from the audience. The technical details are
+in "Why Mem0 classic 1.0.11" and "Mem0 with project instructions" above.
+
+**What is Mem0?** Mem0 is a published memory system for AI assistants (Chhikara et al.,
+2025), released as an open-source Python library called `mem0ai`. When Mem0 receives a new
+fact, it asks a language model to choose one of four actions: add the fact as a new memory,
+update an existing memory, delete an existing memory, or do nothing.
+
+**Which Mem0 do we run?** We run the real Mem0 library, version 1.0.11. We did not rebuild
+Mem0 from its paper. Version 1.0.11 still has the add, update and delete actions. Later
+versions, from 2.0 onwards, only add memories, so they would not test the same design.
+
+**What do we change around the Mem0 library, and why?** We change three things around the
+library, so that Mem0 works from the same inputs as TraceMem. Mem0's own choice of action
+stays as the library makes it.
+
+- Mem0 normally uses a model to pull facts out of each message. In our runs every system
+  receives the same correct statements instead, so Mem0 receives each statement as one fact
+  and makes no model call to extract it.
+- Mem0 normally searches its memory for the five memories closest to a new fact. In our
+  runs Mem0 sees every memory about the same item, as TraceMem does, so neither system can
+  miss a related memory.
+- Mem0 calls the same model, with the same settings, as every other system.
+
+**How does TraceMem differ from Mem0?** Both systems ask a model what a new statement does
+to memory. They differ in what a memory can record and in what the code checks.
+
+- Mem0 stores facts without a status. TraceMem gives each record a status: active (the
+  current decision), proposed (suggested but not agreed), contested (disputed and not yet
+  settled) or superseded (replaced by a later decision).
+- When Mem0 updates a memory, the new text replaces the old text, and the old text survives
+  only in Mem0's history of changes. TraceMem keeps a replaced decision as a record of its
+  own, marked superseded, with the turns it came from.
+- Mem0's code applies whatever action the model chooses. TraceMem's code checks each
+  operation before applying it and rejects an operation that breaks a rule, for example a
+  replacement of a decision about a different item.
+
+**What is Mem0 with project instructions?** Mem0 with project instructions is the same Mem0
+library, with TraceMem's rules added in plain words to the end of Mem0's own update prompt.
+The rules say four things: a suggestion is not a decision; a dispute stays open until
+someone settles it; a statement about another item never replaces a decision about this
+item; and a replaced decision is kept as the previous version. The rules are copied from
+TraceMem's own resolver prompt. No code enforces the rules, so the model alone decides
+whether to follow them.
+
+**Why compare Mem0 with and without the instructions?** The comparison separates two
+possible causes of any advantage that TraceMem has. TraceMem has its rules in its prompt and
+also has statuses and checks in its code. If Mem0 with project instructions scores as well
+as TraceMem, the written rules are enough, and TraceMem's statuses and checks add nothing.
+If TraceMem scores better, the statuses and checks make the difference.
+
+**Can Mem0 answer questions about the past?** Yes. Mem0 keeps a history line for every
+change it makes, and the history lines are among the memories that the answering model can
+be shown. If TraceMem answers questions about the past better than Mem0, the reason is
+therefore not that Mem0 lacked its history.
+
+**Why did Mem0 store nothing in the first Haiku run?** Claude Haiku writes its reply to
+Mem0's update prompt as JSON inside a Markdown code block (a block that starts with
+```` ```json ```` and ends with ```` ``` ````). The Mem0 library removes such a block before
+it reads the reply, but our connection to the library did not, so it rejected every reply
+and Mem0's memory stayed empty. Since 26 Oct the connection removes the block in the same
+way as the library (commit `2bdd44c`). The local Qwen model did not wrap its replies in a
+block, so the local runs were not affected.

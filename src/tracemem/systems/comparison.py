@@ -54,8 +54,10 @@ suggestion, even when it is phrased as a question; a turn that only names a valu
 as a recollection, a question about the past or a report, is a mention, which neither
 suggests nor decides anything. A dispute is settled only when someone states a value as
 final or the other side agrees; repeating what one remembers, or putting the decision
-off, leaves it open. An acceptance adopts the particular earlier suggestion it agrees
-to, even one made sessions before. A task's progress changes when someone announces
+off, leaves it open. On a decision, a turn that adopts the value of an earlier open
+suggestion accepts that suggestion, even when it gives reasons of its own and even when
+the suggestion was made sessions before; the suggestion's turn is then part of the
+evidence for the answer. A task's progress changes when someone announces
 the change, such as saying they will restart a blocked task; taking on a task that is
 already open changes nothing.
 """
@@ -93,8 +95,15 @@ For CURRENT questions about records with explicit statuses:
 For PREVIOUS / AS_OF questions, reconstruct the requested earlier state from retained
 history and the requested session. Today's active value does not override the past,
 and a proposal does not create a new settled version. A superseded record can support
-an earlier value; distinguish a past dispute from a current one. If the necessary
-history is absent, abstain instead of treating the current value as its own predecessor.
+an earlier value; distinguish a past dispute from a current one. Never treat the
+current value as its own predecessor. For PREVIOUS, answer none when the current settled
+value is the first settled value the evidence shows for the item: no earlier settled
+value of the item is visible, and the decision that set the current value does not
+describe replacing another value. An unadopted proposal is not a predecessor. Abstain
+only when the evidence indicates that an earlier settled value existed but does not
+show it. For AS_OF, answer none when the evidence shows no settled value of the item at
+the requested session, for example when the item's only records at that time are
+proposals, or when the item has no record at that time.
 
 Native Mem0 entries do not carry these explicit TraceMem statuses. Interpret their
 stored text and before/after events as evidence of proposals, decisions and disputes;

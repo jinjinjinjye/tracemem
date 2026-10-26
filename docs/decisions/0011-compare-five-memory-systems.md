@@ -145,10 +145,13 @@ systems (open question 6). Decision 0004's record is left as it is.
   that decide answers, in the parts it did not already state: a turn that puts a
   value forward is a suggestion, and one that only names a value is a mention; a
   dispute stays open until someone states a value as final or the other side
-  agrees; an acceptance adopts the earlier suggestion it agrees to, even sessions
-  later; a task's progress changes when someone announces the change. The
-  paragraph leaves out part of the acceptance convention (see the limits below).
-  With it, `answer_prompt_hash` begins `b6571cd57e4e`.
+  agrees; on a decision, a turn that adopts the value of an earlier open
+  suggestion accepts it, even when it gives reasons of its own, and the
+  suggestion's turn is part of the evidence; a task's progress changes when
+  someone announces the change. Since 26 Oct (task A7) the prompt also says that
+  a question about the previous value is answered *none* when the evidence shows
+  no earlier settled value, rather than abstaining. With both, `answer_prompt_hash`
+  begins `01b75f6fb20f`.
 - **Manifests.** Each run records its retriever settings, whether its lines quote
   source turns and, for the Mem0 systems, the hashes of the update prompt and of
   the rules; `instructions_hash` begins `33757c0e88e5` for these rules and is
@@ -167,7 +170,7 @@ zero write usage and have no operations to score. Mem0's native actions stay in
 the quote or the rules changes requests, so the affected systems must be rerun; a
 change to the answer prompt means rerunning all of them.
 
-Four limits apply now:
+Four limits applied when this record was proposed; the first and the last are now resolved:
 
 - On every development scenario in the repository, the default budget holds all
   of a similarity system's records: the largest store, pilot-01's, takes 1,153
@@ -176,7 +179,9 @@ Four limits apply now:
   select the same records and send identical requests, so on these scenarios they
   are one system, and RQ1's comparisons against the two baselines are comparisons
   against the same system. The weight and half-life matter only once a store is
-  larger than the budget.
+  larger than the budget. Resolved by question 4: with `TRACEMEM_CONTEXT_TOP_K=4`
+  each system shows the four records closest to the question, so the two
+  similarity systems differ.
 - The similarity systems read the speaker's own words; the other three read stored
   values and statuses, or Mem0's memory text, which may or may not keep the quote.
   A difference between them may therefore come from the quote rather than from the
@@ -184,7 +189,8 @@ Four limits apply now:
 - The rules leave out the last four sentences of `INTENT_GUIDE` item 2, and items
   3 and 5, so `mem0-instructions` is not given TraceMem's definition of a decision
   (item 3).
-- The conventions paragraph leaves out benchmark section 5's rule that, on a
+- Resolved on 26 Oct (task A7), when the paragraph gained the rule. Until then,
+  the conventions paragraph left out benchmark section 5's rule that, on a
   decision, a turn adopting the value of an open suggestion accepts it, even when
   it gives reasons of its own, and that only an acceptance cites the suggestion's
   turn as evidence. The similarity systems cannot get that link from their
