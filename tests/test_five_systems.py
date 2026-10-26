@@ -277,9 +277,9 @@ def test_recency_is_measured_to_the_latest_observed_turn(offline_embedders):
     seen = []
     select = system.answerer.retriever.select
 
-    def spy(question_text, records, latest, budget_bytes, line):
+    def spy(question_text, records, latest, budget_bytes, line, top_k=None):
         seen.append(latest)
-        return select(question_text, records, latest, budget_bytes, line)
+        return select(question_text, records, latest, budget_bytes, line, top_k=top_k)
 
     system.answerer.retriever.select = spy
     observe_candidate(system, "S1-T1", "BERT")

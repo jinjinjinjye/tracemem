@@ -254,6 +254,21 @@ def _budget(value: int | None) -> int:
         raise ResolverConfigError("TRACEMEM_CONTEXT_BUDGET_BYTES must be an integer from 256 to 1000000") from None
 
 
+def _top_k(value: int | None = None) -> int | None:
+    # How many records each answer may show (decision record 0011, question 4). Unset
+    # or empty, every system selects as before: everything that fits the byte budget.
+    raw = value if value is not None else os.environ.get("TRACEMEM_CONTEXT_TOP_K", "").strip()
+    if raw in ("", None):
+        return None
+    try:
+        result = raw if isinstance(raw, int) and not isinstance(raw, bool) else int(str(raw), 10)
+        if not 1 <= result <= 1000:
+            raise ValueError
+        return result
+    except (ValueError, TypeError):
+        raise ResolverConfigError("TRACEMEM_CONTEXT_TOP_K must be an integer from 1 to 1000") from None
+
+
 def _client_settings(client: CompletionClient) -> object:
     # Provider, endpoint, thinking switch, token field, and a local server's context
     # and model digest change replies, so arms must share them. The reply cache's
@@ -271,7 +286,7 @@ def _cache_usage(client: CompletionClient) -> dict | None:
 
 
 def comparison_settings(config: ResolverConfig, budget_bytes: int, client: CompletionClient,
-                        retriever: SharedRetriever | None = None) -> dict:
+                        retriever: SharedRetriever | None = None, top_k: int | None = None) -> dict:
     # Record the same TraceMem reference in every arm's manifest. Constructing a
     # resolver with the existing client only describes the prompt/schema; it
     # makes no provider calls and does not change Mem0's native update behavior.
@@ -283,6 +298,7 @@ def comparison_settings(config: ResolverConfig, budget_bytes: int, client: Compl
         "model_config": config.model_dump(), "model_client": _client_settings(client),
         "answer_prompt_hash": _hash(ANSWER_PROMPT),
         "answer_schema_hash": _hash(ANSWER_FORMAT), "context_budget_bytes": budget_bytes,
+        "context_top_k": top_k,
         "answer_validation_policy_hash": _hash(ANSWER_VALIDATION_POLICY),
         "write_matching": "all_same_item", "reader": "retained_memory_asof_oplog_snapshot_whole_entries_v2",
         "temporal_read_policy": "observed_session_oplog_prefix_other_stores_retained_only_v1",
@@ -413,10 +429,13 @@ def _evidence_feedback(question: SystemQuestion, decision: _AnswerDecision, visi
 
 class SharedAnswerer:
     def __init__(self, config: ResolverConfig, client: CompletionClient, budget_bytes: int = DEFAULT_BUDGET_BYTES,
-                 retriever: SharedRetriever | None = None, quote_source_turns: bool = False):
+                 retriever: SharedRetriever | None = None, quote_source_turns: bool = False,
+                 top_k: int | None = None):
         self.config, self.client, self.budget_bytes = config, client, _budget(budget_bytes)
         # alpha 1 ranks by time alone, so the default selects exactly as answer_context does.
         self.retriever = retriever if retriever is not None else SharedRetriever(1.0, DEFAULT_HALF_LIFE_DAYS)
+        # At most top_k records per answer; None keeps every record that fits the budget.
+        self.top_k = _top_k(top_k) if top_k is not None else None
         # On, each line also quotes its record's source turn from the turns given to answer().
         self.quote_source_turns = quote_source_turns
         self._usage = Usage()
@@ -431,7 +450,7 @@ class SharedAnswerer:
         # The line read is also the line budgeted and embedded.
         line = (lambda record: _quoted_line(record, turns)) if self.quote_source_turns else _line
         # Select once: rendering and validation must see exactly the same records.
-        visible = self.retriever.select(question.text, records, latest, self.budget_bytes, line)
+        visible = self.retriever.select(question.text, records, latest, self.budget_bytes, line, top_k=self.top_k)
         context = "\n".join(line(record) for record in visible)
         sources = sorted({source for record in visible for source in record.source_turn_ids})
         initial_messages = [{"role": "system", "content": ANSWER_PROMPT}, {"role": "user", "content": json.dumps({
@@ -513,10 +532,12 @@ def _check_batch(meta, turn, candidates, observed):
 
 class ControlledTraceMem(TraceMemPipeline):
     def __init__(self, name: str, meta: ScenarioMeta, config: ResolverConfig,
-                 client: CompletionClient, budget_bytes: int):
-        super().__init__(meta, _CandidatesOnly(), GoldMatcher(), LLMResolver(config, client),
-                         _AllMemory(), SharedAnswerer(config, client, budget_bytes), name=name)
-        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever)
+                 client: CompletionClient, budget_bytes: int, retriever: SharedRetriever | None = None,
+                 top_k: int | None = None):
+        super().__init__(meta, _CandidatesOnly(), GoldMatcher(), LLMResolver(config, client), _AllMemory(),
+                         SharedAnswerer(config, client, budget_bytes, retriever=retriever, top_k=top_k), name=name)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever,
+                                              self.answerer.top_k)
         if name == "tracemem-no-versions":
             self.log = CurrentOnlyStore(meta.project_id)
 
@@ -541,7 +562,7 @@ class ControlledMem0:
     accepts_gold_candidates = True
     name = "mem0-classic"
 
-    def __init__(self, meta, config, client, budget_bytes, name="mem0-classic"):
+    def __init__(self, meta, config, client, budget_bytes, name="mem0-classic", retriever=None, top_k=None):
         from tracemem.systems.mem0_baseline import PROJECT_RULES, Mem0Backend
 
         if name not in MEM0_NAMES:
@@ -550,8 +571,9 @@ class ControlledMem0:
         # mem0-instructions adds the project rules after Mem0's own update prompt.
         self.backend = Mem0Backend(meta, config, client,
                                    instructions=PROJECT_RULES if name == "mem0-instructions" else None)
-        self.answerer = SharedAnswerer(config, client, budget_bytes)
-        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever)
+        self.answerer = SharedAnswerer(config, client, budget_bytes, retriever=retriever, top_k=top_k)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever,
+                                              self.answerer.top_k)
         self._candidates = []
         self._observed = set()
 
@@ -608,10 +630,12 @@ class ControlledSimilarity:
     accepts_gold_candidates = True
 
     def __init__(self, name: str, meta: ScenarioMeta, config: ResolverConfig, client: CompletionClient,
-                 budget_bytes: int, retriever: SharedRetriever):
+                 budget_bytes: int, retriever: SharedRetriever, top_k: int | None = None):
         self.name, self.meta = name, meta
-        self.answerer = SharedAnswerer(config, client, budget_bytes, retriever=retriever, quote_source_turns=True)
-        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever)
+        self.answerer = SharedAnswerer(config, client, budget_bytes, retriever=retriever, quote_source_turns=True,
+                                       top_k=top_k)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever,
+                                              self.answerer.top_k)
         self._candidates: list[Candidate] = []
         self._turns: dict[str, Turn] = {}
         self._times: dict[str, datetime] = {}
@@ -659,14 +683,20 @@ def make_system(name: str, meta: ScenarioMeta, config: ResolverConfig | None = N
         raise ValueError("unknown controlled memory system")
     config = config if config is not None else ResolverConfig.from_env()
     budget_bytes = _budget(budget_bytes)
+    top_k = _top_k()
     client = client if client is not None else make_client()
-    if name in MEM0_NAMES:
-        return ControlledMem0(meta, config, client, budget_bytes, name=name)
     if name in SIMILARITY_RETRIEVERS:
         alpha, half_life_days = SIMILARITY_RETRIEVERS[name]
         retriever = SharedRetriever(alpha, half_life_days, embedder if embedder is not None else make_embedder())
-        return ControlledSimilarity(name, meta, config, client, budget_bytes, retriever)
-    return ControlledTraceMem(name, meta, config, client, budget_bytes)
+        return ControlledSimilarity(name, meta, config, client, budget_bytes, retriever, top_k=top_k)
+    # With a fixed number of records per answer, Mem0 and TraceMem also take the
+    # records closest to the question (decision record 0011, question 4); without
+    # it they keep PR #4's newest-first selection.
+    retriever = None if top_k is None else SharedRetriever(
+        0.0, DEFAULT_HALF_LIFE_DAYS, embedder if embedder is not None else make_embedder())
+    if name in MEM0_NAMES:
+        return ControlledMem0(meta, config, client, budget_bytes, name=name, retriever=retriever, top_k=top_k)
+    return ControlledTraceMem(name, meta, config, client, budget_bytes, retriever=retriever, top_k=top_k)
 
 
 def factory(name: str):

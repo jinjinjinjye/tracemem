@@ -231,14 +231,18 @@ class SharedRetriever:
                 "document_text": "context_line", "embedding": embedding}
 
     def select(self, question: str, records: Sequence[Record], latest: datetime | None, budget_bytes: int,
-               line: Callable[[Record], str]) -> list[Record]:
+               line: Callable[[Record], str], top_k: int | None = None) -> list[Record]:
         """The records that fit budget_bytes, best first, returned in time order.
 
         A record costs its line's UTF-8 bytes, plus one for the newline before it
         unless it is the first chosen; a line that does not fit is skipped whole and
-        the next one is tried. latest is the time of the latest observed turn; it is
-        needed only when the score mixes similarity and recency.
+        the next one is tried. With top_k, at most top_k records are chosen, the
+        best-scoring that fit; without it, every record that fits is. latest is the
+        time of the latest observed turn; it is needed only when the score mixes
+        similarity and recency.
         """
+        if top_k is not None and (isinstance(top_k, bool) or not isinstance(top_k, int) or top_k < 1):
+            raise ValueError("top_k must be a positive integer")
         if not records:
             return []
         lines = [line(record) for record in records]
@@ -256,6 +260,8 @@ class SharedRetriever:
             order = sorted(range(len(records)), key=lambda i: (scores[i], _time_key(records[i])), reverse=True)
         chosen, size = [], 0
         for index in order:
+            if top_k is not None and len(chosen) >= top_k:
+                break
             cost = len(lines[index].encode("utf-8")) + bool(chosen)
             if size + cost <= budget_bytes:
                 chosen.append(index)
