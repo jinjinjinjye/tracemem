@@ -594,7 +594,9 @@ def test_the_answer_prompt_states_the_benchmark_conventions_once_before_the_stat
     assert prompt.index(comparison.ANSWER_CONVENTIONS) < prompt.index(comparison.ANSWER_STATE_GUIDE)
     assert prompt.endswith("\n" + comparison.ANSWER_EVIDENCE_CHECK)
     conventions = " ".join(comparison.ANSWER_CONVENTIONS.split())
-    for phrase in ("suggestion, even when it is phrased as a question", "is a mention",
+    for phrase in ("is a decision and settles the value, even when nobody replies",
+                   "a suggestion is tentative",
+                   "suggestion, even when it is phrased as a question", "is a mention",
                    "A dispute is settled only when",
                    "a turn that adopts the value of an earlier open suggestion accepts that suggestion",
                    "even when it gives reasons of its own", "the suggestion was made sessions before",

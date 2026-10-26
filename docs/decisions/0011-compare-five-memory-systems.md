@@ -142,16 +142,18 @@ systems (open question 6). Decision 0004's record is left as it is.
   A system with a write path uses the same client and settings for its write calls.
   The prompt adds one paragraph (`ANSWER_CONVENTIONS`) for the conventions of
   [benchmark section 5](../benchmark.md#5-labelling-conventions-for-hard-cases)
-  that decide answers, in the parts it did not already state: a turn that puts a
-  value forward is a suggestion, and one that only names a value is a mention; a
+  that decide answers, in the parts it did not already state: a turn that states a
+  choice without hedging is a decision, even when nobody replies; a turn that puts a
+  value forward tentatively is a suggestion, and one that only names a value is a
+  mention; a
   dispute stays open until someone states a value as final or the other side
   agrees; on a decision, a turn that adopts the value of an earlier open
   suggestion accepts it, even when it gives reasons of its own, and the
   suggestion's turn is part of the evidence; a task's progress changes when
   someone announces the change. Since 26 Oct (task A7) the prompt also says that
   a question about the previous value is answered *none* when the evidence shows
-  no earlier settled value, rather than abstaining. With both, `answer_prompt_hash`
-  begins `01b75f6fb20f`.
+  no earlier settled value, rather than abstaining. With these changes, `answer_prompt_hash`
+  begins `67e86c7f78db`.
 - **Manifests.** Each run records its retriever settings, whether its lines quote
   source turns and, for the Mem0 systems, the hashes of the update prompt and of
   the rules; `instructions_hash` begins `33757c0e88e5` for these rules and is

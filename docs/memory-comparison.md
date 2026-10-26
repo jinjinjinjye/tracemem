@@ -215,7 +215,8 @@ or selected under a different policy.
 
 The shared answer prompt also states, in one paragraph (`ANSWER_CONVENTIONS`), the
 labelling conventions of [benchmark section 5](benchmark.md#5-labelling-conventions-for-hard-cases)
-that decide answers, in the parts the prompt did not already say: function decides
+that decide answers, in the parts the prompt did not already say: a turn that states a
+choice without hedging is a decision, even when nobody replies; function decides
 between a suggestion and a mention; a dispute stays open until someone settles it;
 on a decision, a turn that adopts the value of an earlier open suggestion accepts it,
 even when it gives reasons of its own, and the suggestion's turn is part of the

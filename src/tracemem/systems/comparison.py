@@ -49,8 +49,11 @@ ANSWER_VALIDATION_POLICY = {
 }
 # The labelling conventions of docs/benchmark.md section 5 that decide answers, in
 # the parts the rest of the prompt does not already state.
-ANSWER_CONVENTIONS = """Read each turn by what it does. A turn that puts a value forward for the plan is a
-suggestion, even when it is phrased as a question; a turn that only names a value, such
+ANSWER_CONVENTIONS = """Read each turn by what it does. A turn that states a choice for the plan without
+hedging, such as "Let's use Postgres for the database.", is a decision and settles the
+value, even when nobody replies; a suggestion is tentative, such as "Could we try SQLite
+instead?". Any other turn that puts a value forward for the plan is a suggestion, even
+when it is phrased as a question; a turn that only names a value, such
 as a recollection, a question about the past or a report, is a mention, which neither
 suggests nor decides anything. A dispute is settled only when someone states a value as
 final or the other side agrees; repeating what one remembers, or putting the decision
