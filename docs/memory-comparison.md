@@ -498,3 +498,55 @@ and the Mem0 project instructions, extends it and has a proposed decision record
 its own in [the decision index](decisions/README.md); neither is agreed yet. This comparison embeds records for the similarity arms and is planned to
 run on Haiku through OpenRouter with a capped budget ([local model guide](local-model.md)).
 Production extraction and the latest Mem0 2.x remain separate experiments.
+
+## Questions about retrieval
+
+Short answers for teammates and for the presentation's questions. The rule itself is in
+[decision 0011](decisions/0011-compare-five-memory-systems.md), question 4.
+
+**What is the budget?** The most memory text a system may put in front of the answering
+model for one question: 12,000 UTF-8 bytes by default, a page with room for about 12,000
+characters. Memory lines are dense with turn ids and item keys, so on the local model
+they run at about 2.6 bytes per token: 12,000 bytes is about 4,600 tokens of memory, on
+top of an answer prompt of about 2,550 tokens.
+
+**Why is it 12,000?** It came as the default with the comparison harness; no reason is
+recorded. It is large enough that no development scenario ever fills it. Pilot-01's
+memories after its last meeting take 533 bytes (TraceMem) to 4,680 bytes (Mem0).
+
+**What is wrong with a page that never fills?** Retrieval, the step that chooses which
+memories go on the page, never chooses anything: every system sees its whole memory.
+Similarity and similarity + recency then send the same page byte for byte, so they give
+the same answers, and five systems become four.
+
+**Why not just make the page smaller?** The way a page is cut then decides who looks
+good. In a one-run test at 600 bytes, the systems that kept the newest memories first
+(both Mem0 systems) lost about a quarter of their accuracy on current questions, because
+older decisions fell off the page.
+
+**What do the systems do instead?** Each shows the `k` memories closest to the question
+(`TRACEMEM_CONTEXT_TOP_K`); similarity + recency also favours newer ones. Every system
+chooses the same way, which is also how Mem0 itself searches its memory: it embeds the
+question and returns the closest memories, up to a limit.
+
+**How was `k` chosen, and could it favour TraceMem?** By a rule that reads no system's
+answers: the smallest `k` that puts every turn a question's correct answer rests on onto
+the page for at least 90% of development questions, measured on the plain list of
+statements ranked by closeness (`scripts/choose_top_k.py`). On the 13 development
+scenarios that is `k = 4` (157 of 165 questions; `k = 3` reaches 147). It is fixed
+before the test scenarios are opened.
+
+**Why not `k = 1`?** Many questions need two memories at once: "which model did we use
+before the current one?" needs the old and the new, and a dispute needs both claims. At
+`k = 1` only 82 of the 165 questions have what they need on the page.
+
+**Why do the systems hold different numbers of memories?** They receive the same
+statements but store them differently. On pilot-01 (10 statements), similarity keeps one
+memory per statement (10); TraceMem adds a statement that only confirms an existing
+record to that record (8); Mem0 keeps its current memories plus a history line for each
+change (17). With one `k` for all, a system with a compact memory loses less to the cut.
+
+**Why does only similarity + recency use recency?** Testing whether preferring newer
+information is enough is that system's purpose. TraceMem marks which record is current
+with its statuses, and Mem0 updates or deletes outdated memories itself; a recency bonus
+on top would blur what each of them is tested for.
