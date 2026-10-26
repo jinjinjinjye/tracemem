@@ -511,13 +511,18 @@ they run at about 2.6 bytes per token: 12,000 bytes is about 4,600 tokens of mem
 top of an answer prompt of about 2,550 tokens.
 
 **Why is it 12,000?** It came as the default with the comparison harness; no reason is
-recorded. It is large enough that no development scenario ever fills it. Pilot-01's
-memories after its last meeting take 533 bytes (TraceMem) to 4,680 bytes (Mem0).
+recorded. It is large enough that no development scenario ever fills it: the largest
+similarity memory, dev-04's, takes 2,158 bytes, and pilot-01's memories after its last
+meeting take 533 bytes (TraceMem) to 4,680 bytes (Mem0).
+
+![Every memory fits on the 12,000-byte page several times over](figures/page-vs-memory.png)
 
 **What is wrong with a page that never fills?** Retrieval, the step that chooses which
 memories go on the page, never chooses anything: every system sees its whole memory.
 Similarity and similarity + recency then send the same page byte for byte, so they give
 the same answers, and five systems become four.
+
+![With room for everything both similarity systems send the same page; with k = 4 they differ](figures/same-page.png)
 
 **Why not just make the page smaller?** The way a page is cut then decides who looks
 good. In a one-run test at 600 bytes, the systems that kept the newest memories first
@@ -535,6 +540,16 @@ the page for at least 90% of development questions, measured on the plain list o
 statements ranked by closeness (`scripts/choose_top_k.py`). On the 13 development
 scenarios that is `k = 4` (157 of 165 questions; `k = 3` reaches 147). It is fixed
 before the test scenarios are opened.
+
+**Why 90%, and not 100%?** The threshold is a judgment, but `k = 4` does not hang on it:
+any threshold from 89.2% to 95.2% gives the same `k`, because the coverage curve flattens
+at 4 (each further memory adds fewer questions: 3 to 4 adds 10, 4 to 5 adds 6, 5 to 8 adds
+1). A rule of 100% needs `k = 9`, and then the page leaves something out for only 35 of the
+165 questions (21%), against 113 (68%) at `k = 4`: retrieval would again choose too
+rarely to matter, the problem the rule exists to fix. 90% keeps the evidence on the page
+for nine questions in ten while still making every system choose for two in three.
+
+![k = 4 is the smallest page that holds the evidence for 9 in 10 questions](figures/why-k-4.png)
 
 **Why not `k = 1`?** Many questions need two memories at once: "which model did we use
 before the current one?" needs the old and the new, and a dispute needs both claims. At
