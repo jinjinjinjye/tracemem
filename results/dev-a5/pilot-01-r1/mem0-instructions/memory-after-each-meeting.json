@@ -1,0 +1,740 @@
+{
+ "S1": {
+  "records": [
+   {
+    "record_id": "mem0-current:c8fe0495-c20b-4042-86d2-9a16279ca8c3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:6ba8fdd7-9f75-4d52-bde7-baafe9994096",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:75d7999e-e957-41de-969a-8fbaa678e914",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7f1621fa-549f-4999-ac19-78d8e5aed359",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T2 Arun: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" } | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"} | sources=S1-T3",
+  "same_for_every_question": true
+ },
+ "S2": {
+  "records": [
+   {
+    "record_id": "mem0-current:c8fe0495-c20b-4042-86d2-9a16279ca8c3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:6ba8fdd7-9f75-4d52-bde7-baafe9994096",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:75d7999e-e957-41de-969a-8fbaa678e914",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7f1621fa-549f-4999-ac19-78d8e5aed359",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:65a58380-d922-4ff5-93ae-86cdca4c5f64",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Maybe we could try DistilBERT? It might be faster.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:3b59f21a-c47f-4ec8-a4c3-2fd18289be92",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Maybe we could try DistilBERT? It might be faster.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:bc79c7e5-8f33-4986-89b4-ed16509f091b",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: \"Separately, for the NER part we'll use a spaCy model.\", value: \"spaCy\"",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:ea8d2e76-6836-4fbe-8797-f4ff3845a88a",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"\\\"Separately, for the NER part we'll use a spaCy model.\\\", value: \\\"spaCy\\\"\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T2 Arun: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" } | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"} | sources=S1-T3\nS2-T3 Arun: model.sentiment = Current Mem0 memory: Maybe we could try DistilBERT? It might be faster. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Maybe we could try DistilBERT? It might be faster.\"} | sources=S2-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: \"Separately, for the NER part we'll use a spaCy model.\", value: \"spaCy\" | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"\\\"Separately, for the NER part we'll use a spaCy model.\\\", value: \\\"spaCy\\\"\"} | sources=S2-T5",
+  "same_for_every_question": true
+ },
+ "S3": {
+  "records": [
+   {
+    "record_id": "mem0-current:c8fe0495-c20b-4042-86d2-9a16279ca8c3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:6ba8fdd7-9f75-4d52-bde7-baafe9994096",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:75d7999e-e957-41de-969a-8fbaa678e914",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7f1621fa-549f-4999-ac19-78d8e5aed359",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:65a58380-d922-4ff5-93ae-86cdca4c5f64",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Maybe we could try DistilBERT? It might be faster.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:3b59f21a-c47f-4ec8-a4c3-2fd18289be92",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Maybe we could try DistilBERT? It might be faster.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:bc79c7e5-8f33-4986-89b4-ed16509f091b",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: \"Separately, for the NER part we'll use a spaCy model.\", value: \"spaCy\"",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:ea8d2e76-6836-4fbe-8797-f4ff3845a88a",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"\\\"Separately, for the NER part we'll use a spaCy model.\\\", value: \\\"spaCy\\\"\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:93dcc5c0-9757-4075-9be5-c804a530834e",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:68f3ae07-de0d-40f6-b2bb-4ec2a81b59b5",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:0871d7f4-0cc4-403a-b0b1-f5b1276500f4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\"candidate_id\": \"metric.primary@S3-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T3\"], \"speaker\": \"Arun\", \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\", \"value\": \"macro-F1\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:add85f09-b27a-4aa2-9ee5-60c399a999ca",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T3\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\", \\\"value\\\": \\\"macro-F1\\\"}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:9df8e0c3-9f18-4bc0-9a13-8b583d6bbe94",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S3-T4\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T4\"], \"speaker\": \"Mei\", \"text\": \"Agreed, macro-F1 is the primary metric from now on.\", \"value\": \"macro-F1\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:57a07ae9-1cf8-4415-8658-066b1e0c8886",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T4\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\", \\\"value\\\": \\\"macro-F1\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T2 Arun: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" } | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"} | sources=S1-T3\nS2-T3 Arun: model.sentiment = Current Mem0 memory: Maybe we could try DistilBERT? It might be faster. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Maybe we could try DistilBERT? It might be faster.\"} | sources=S2-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: \"Separately, for the NER part we'll use a spaCy model.\", value: \"spaCy\" | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"\\\"Separately, for the NER part we'll use a spaCy model.\\\", value: \\\"spaCy\\\"\"} | sources=S2-T5\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit. | sources=S3-T2\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\"} | sources=S3-T2\nS3-T3 Arun: metric.primary = Current Mem0 memory: {\"candidate_id\": \"metric.primary@S3-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T3\"], \"speaker\": \"Arun\", \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\", \"value\": \"macro-F1\"} | sources=S3-T3\nS3-T3 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T3\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\", \\\"value\\\": \\\"macro-F1\\\"}\"} | sources=S3-T3\nS3-T4 Mei: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S3-T4\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T4\"], \"speaker\": \"Mei\", \"text\": \"Agreed, macro-F1 is the primary metric from now on.\", \"value\": \"macro-F1\" } | sources=S3-T4\nS3-T4 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T4\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\", \\\"value\\\": \\\"macro-F1\\\" }\"} | sources=S3-T4",
+  "same_for_every_question": true
+ },
+ "S4": {
+  "records": [
+   {
+    "record_id": "mem0-current:c8fe0495-c20b-4042-86d2-9a16279ca8c3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:6ba8fdd7-9f75-4d52-bde7-baafe9994096",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:75d7999e-e957-41de-969a-8fbaa678e914",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7f1621fa-549f-4999-ac19-78d8e5aed359",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:65a58380-d922-4ff5-93ae-86cdca4c5f64",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Maybe we could try DistilBERT? It might be faster.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:3b59f21a-c47f-4ec8-a4c3-2fd18289be92",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Maybe we could try DistilBERT? It might be faster.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:bc79c7e5-8f33-4986-89b4-ed16509f091b",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: \"Separately, for the NER part we'll use a spaCy model.\", value: \"spaCy\"",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:ea8d2e76-6836-4fbe-8797-f4ff3845a88a",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"\\\"Separately, for the NER part we'll use a spaCy model.\\\", value: \\\"spaCy\\\"\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:93dcc5c0-9757-4075-9be5-c804a530834e",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:68f3ae07-de0d-40f6-b2bb-4ec2a81b59b5",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:0871d7f4-0cc4-403a-b0b1-f5b1276500f4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\"candidate_id\": \"metric.primary@S3-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T3\"], \"speaker\": \"Arun\", \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\", \"value\": \"macro-F1\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:add85f09-b27a-4aa2-9ee5-60c399a999ca",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T3\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\", \\\"value\\\": \\\"macro-F1\\\"}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:9df8e0c3-9f18-4bc0-9a13-8b583d6bbe94",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S3-T4\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T4\"], \"speaker\": \"Mei\", \"text\": \"Agreed, macro-F1 is the primary metric from now on.\", \"value\": \"macro-F1\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:57a07ae9-1cf8-4415-8658-066b1e0c8886",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T4\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\", \\\"value\\\": \\\"macro-F1\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:c94d7df4-2203-49e9-a444-d49e3dd26f96",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: { \"candidate_id\": \"metric.primary@S4-T1\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S4-T1\"], \"speaker\": \"Mei\", \"text\": \"For the write-up: we're on DistilBERT, scored with macro-F1.\", \"value\": \"macro-F1\" }",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:2430a4c3-135a-488b-a91a-9427c3b74e8b",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S4-T1\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S4-T1\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"For the write-up: we're on DistilBERT, scored with macro-F1.\\\", \\\"value\\\": \\\"macro-F1\\\" }\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T2 Arun: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S1-T2\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T2\"], \"speaker\": \"Arun\", \"text\": \"Sounds good. What do we report, plain accuracy?\", \"value\": \"accuracy\" } | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T2\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\", \\\"value\\\": \\\"accuracy\\\" }\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\"candidate_id\": \"metric.primary@S1-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S1-T3\"], \"speaker\": \"Mei\", \"text\": \"Yes, accuracy as the main metric for now.\", \"value\": \"accuracy\"} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S1-T3\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\", \\\"value\\\": \\\"accuracy\\\"}\"} | sources=S1-T3\nS2-T3 Arun: model.sentiment = Current Mem0 memory: Maybe we could try DistilBERT? It might be faster. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Maybe we could try DistilBERT? It might be faster.\"} | sources=S2-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: \"Separately, for the NER part we'll use a spaCy model.\", value: \"spaCy\" | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"\\\"Separately, for the NER part we'll use a spaCy model.\\\", value: \\\"spaCy\\\"\"} | sources=S2-T5\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit. | sources=S3-T2\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\"} | sources=S3-T2\nS3-T3 Arun: metric.primary = Current Mem0 memory: {\"candidate_id\": \"metric.primary@S3-T3\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T3\"], \"speaker\": \"Arun\", \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\", \"value\": \"macro-F1\"} | sources=S3-T3\nS3-T3 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T3\\\"], \\\"speaker\\\": \\\"Arun\\\", \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\", \\\"value\\\": \\\"macro-F1\\\"}\"} | sources=S3-T3\nS3-T4 Mei: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S3-T4\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S3-T4\"], \"speaker\": \"Mei\", \"text\": \"Agreed, macro-F1 is the primary metric from now on.\", \"value\": \"macro-F1\" } | sources=S3-T4\nS3-T4 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S3-T4\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\", \\\"value\\\": \\\"macro-F1\\\" }\"} | sources=S3-T4\nS4-T1 Mei: metric.primary = Current Mem0 memory: { \"candidate_id\": \"metric.primary@S4-T1\", \"item\": \"metric.primary\", \"project_id\": \"sentiment-project\", \"source_turn_ids\": [\"S4-T1\"], \"speaker\": \"Mei\", \"text\": \"For the write-up: we're on DistilBERT, scored with macro-F1.\", \"value\": \"macro-F1\" } | sources=S4-T1\nS4-T1 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{ \\\"candidate_id\\\": \\\"metric.primary@S4-T1\\\", \\\"item\\\": \\\"metric.primary\\\", \\\"project_id\\\": \\\"sentiment-project\\\", \\\"source_turn_ids\\\": [\\\"S4-T1\\\"], \\\"speaker\\\": \\\"Mei\\\", \\\"text\\\": \\\"For the write-up: we're on DistilBERT, scored with macro-F1.\\\", \\\"value\\\": \\\"macro-F1\\\" }\"} | sources=S4-T1",
+  "same_for_every_question": true
+ }
+}
