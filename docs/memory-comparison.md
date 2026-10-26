@@ -501,107 +501,142 @@ Production extraction and the latest Mem0 2.x remain separate experiments.
 
 ## Questions about retrieval
 
-Short answers for teammates and for the presentation's questions. The rule itself is in
-[decision 0011](decisions/0011-compare-five-memory-systems.md), question 4.
+Short answers for teammates and for questions from the audience. The rule for retrieval is
+settled in question 4 of [decision 0011](decisions/0011-compare-five-memory-systems.md).
+The pictures call the memory text that a system shows the answering model for one question
+its *page*.
 
-**What is the budget?** The most memory text a system may put in front of the answering
-model for one question: 12,000 UTF-8 bytes by default, a page with room for about 12,000
-characters. Memory lines are dense with turn ids and item keys, so on the local model
-they run at about 2.6 bytes per token: 12,000 bytes is about 4,600 tokens of memory, on
-top of an answer prompt of about 2,550 tokens.
+**What is the budget?** The budget is the largest amount of memory text that a system may
+show the answering model for one question. By default the budget is 12,000 UTF-8 bytes,
+which is room for about 12,000 characters. Memory lines contain many turn ids and item
+keys, so on the local model they take about 2.6 bytes per token. The 12,000 bytes are
+therefore about 4,600 tokens of memory, added to an answer prompt of about 2,550 tokens.
 
-**Why is it 12,000?** It came as the default with the comparison harness; no reason is
-recorded. It is large enough that no development scenario ever fills it: the largest
-similarity memory, dev-04's, takes 2,158 bytes, and pilot-01's memories after its last
-meeting take 533 bytes (TraceMem) to 4,680 bytes (Mem0).
+**Why is the budget 12,000 bytes?** The comparison harness came with 12,000 as its default
+value, and no reason for the number is recorded. No development scenario fills the budget.
+The largest whole memory of the similarity system, dev-04's, takes 2,158 bytes. Pilot-01's
+memories after its last meeting take from 533 bytes (TraceMem) to 4,680 bytes (Mem0).
 
-![Every memory fits on the 12,000-byte page several times over](figures/page-vs-memory.png)
+![Every memory fits in the 12,000-byte budget several times over](figures/page-vs-memory.png)
 
-**What is wrong with a page that never fills?** Retrieval, the step that chooses which
-memories go on the page, never chooses anything: every system sees its whole memory.
-Similarity and similarity + recency then send the same page byte for byte, so they give
-the same answers, and five systems become four.
+**What is wrong with a budget that is never filled?** Retrieval is the step that chooses
+which memories a system shows the answering model. When every memory fits in the budget,
+retrieval never leaves a memory out, and every system shows its whole memory. Similarity
+and similarity + recency then send exactly the same text, byte for byte, so they give the
+same answers. The comparison would then have only four different systems instead of five.
 
-![With room for everything both similarity systems send the same page; with k = 4 they differ](figures/same-page.png)
+![When every memory fits, both similarity systems send the same text; with k = 4 they differ](figures/same-page.png)
 
-**Why not just make the page smaller?** The way a page is cut then decides who looks
-good. In a one-run test at 600 bytes, the systems that kept the newest memories first
-(both Mem0 systems) lost about a quarter of their accuracy on current questions, because
-older decisions fell off the page.
+**Why not make the budget smaller?** A smaller budget forces each system to leave memories
+out, and the rule for leaving them out then decides which systems score well. In a one-run
+test with a 600-byte budget, both Mem0 systems lost about a quarter of their accuracy on
+questions about the present. They lost it because they show the newest memories first, so
+older decisions no longer fitted in the budget.
 
-**What do the systems do instead?** Each shows the `k` memories closest to the question
-(`TRACEMEM_CONTEXT_TOP_K`); similarity + recency also favours newer ones. Every system
-chooses the same way, which is also how Mem0 itself searches its memory: it embeds the
-question and returns the closest memories, up to a limit.
+**What do the systems do instead?** Each system shows the answering model the `k` memories
+closest in meaning to the question (setting `TRACEMEM_CONTEXT_TOP_K`). Similarity + recency
+also gives newer memories a higher score. All five systems choose memories in the same way.
+Mem0's own search works the same way: it turns the question into an embedding (a list of
+numbers that represents the question's meaning) and returns the closest memories, up to a
+limit.
 
-**How was `k` chosen, and could it favour TraceMem?** By a rule that reads no system's
-answers: the smallest `k` that puts every turn a question's correct answer rests on onto
-the page for at least 90% of development questions, measured on the plain list of
-statements ranked by closeness (`scripts/choose_top_k.py`). On the 13 development
-scenarios that is `k = 4` (157 of 165 questions; `k = 3` reaches 147). It is fixed
-before the test scenarios are opened.
+**How was `k` chosen, and could the choice favour TraceMem?** A fixed rule chose `k`, and
+the rule reads no system's answers. The rule takes the smallest `k` that shows the
+answering model every turn that a question's correct answer depends on, for at least 90% of
+the development questions. The script `scripts/choose_top_k.py` measures this on the plain
+list of statements, ranked by closeness to the question. On the 13 development scenarios
+the rule gives `k = 4`, which covers 157 of the 165 questions; `k = 3` covers 147. The value
+of `k` is fixed before any test scenario is opened.
 
-**Why 90%, and not 100%?** The threshold is a judgment, but `k = 4` does not hang on it:
-any threshold from 89.2% to 95.2% gives the same `k`, because the coverage curve flattens
-at 4 (each further memory adds fewer questions: 3 to 4 adds 10, 4 to 5 adds 6, 5 to 8 adds
-1). A rule of 100% needs `k = 9`, and then the page leaves something out for only 35 of the
-165 questions (21%), against 113 (68%) at `k = 4`: retrieval would again choose too
-rarely to matter, the problem the rule exists to fix. 90% keeps the evidence on the page
-for nine questions in ten while still making every system choose for two in three.
+**Why 90%, and not 100%?** The 90% threshold is a judgment, but the result `k = 4` does not
+depend on it. Any threshold from 89.2% to 95.2% gives the same `k`, because each memory
+added after the fourth covers few more questions: going from 3 to 4 memories covers 10 more
+questions, from 4 to 5 covers 6 more, and from 5 to 8 covers 1 more. A 100% rule needs
+`k = 9`. With `k = 9`, a system has to leave memories out for only 35 of the 165 questions
+(21%), against 113 questions (68%) with `k = 4`. Retrieval would then choose memories too
+rarely to affect the results, which is the problem the rule is meant to fix. With 90%, the
+answering model sees every memory an answer depends on for nine questions in ten, and every
+system still has to choose memories for two questions in three.
 
-![k = 4 is the smallest page that holds the evidence for 9 in 10 questions](figures/why-k-4.png)
+![k = 4 is the smallest number of memories that holds the evidence for 9 in 10 questions](figures/why-k-4.png)
 
-**Why not `k = 1`?** Many questions need two memories at once: "which model did we use
-before the current one?" needs the old and the new, and a dispute needs both claims. At
-`k = 1` only 82 of the 165 questions have what they need on the page.
+**Why not `k = 1`?** Many questions need two memories at once. "Which model did we use
+before the current one?" needs the old model and the new one, and a dispute needs both
+claims. With `k = 1`, only 82 of the 165 questions have all the memories they need.
 
-**Why do the systems hold different numbers of memories?** They receive the same
-statements but store them differently. On pilot-01 (10 statements), similarity keeps one
-memory per statement (10); TraceMem adds a statement that only confirms an existing
-record to that record (8); Mem0 keeps its current memories plus a history line for each
-change (17). With one `k` for all, a system with a compact memory loses less to the cut.
+**Why do the systems hold different numbers of memories?** All systems receive the same
+statements, but each system stores them differently. On pilot-01, which has 10 statements,
+similarity stores one memory per statement, 10 in all. TraceMem adds a statement that only
+confirms an existing record to that record, so it stores 8. Mem0 stores its current
+memories plus a history line for each change, 17 in all. With the same `k` for every
+system, a system with fewer memories leaves fewer of them out.
 
-**Why does only similarity + recency use recency?** Testing whether preferring newer
-information is enough is that system's purpose. TraceMem marks which record is current
-with its statuses, and Mem0 updates or deletes outdated memories itself; a recency bonus
-on top would blur what each of them is tested for.
+**Why does only similarity + recency use recency?** Similarity + recency exists to test
+whether preferring newer information is enough. TraceMem already marks which record is
+current with its statuses, and Mem0 updates or deletes outdated memories itself. Adding a
+preference for newer memories to TraceMem or Mem0 would mix a second rule into what each of
+them is tested for.
 
 ## Questions about the systems
 
-Short answers for teammates and for the presentation's questions. The choice itself is in
-[decision 0011](decisions/0011-compare-five-memory-systems.md), question 6.
+Short answers for teammates and for questions from the audience. The choice of systems is
+settled in question 6 of [decision 0011](decisions/0011-compare-five-memory-systems.md).
 
-**Which systems are in the results?** Five: similarity, similarity + recency, Mem0, Mem0
-with project instructions, and TraceMem. Together they answer the project's question:
-does a memory that tracks the status of each decision beat memories that find similar
-statements (the two similarity systems) or that let a model add, update and delete facts
-(the two Mem0 systems)?
+**Which systems are in the results?** The results compare five systems: similarity,
+similarity + recency, Mem0, Mem0 with project instructions, and TraceMem. These five
+systems answer the project's question: does a memory that tracks the status of each
+decision give better answers than two other kinds of memory? The two similarity systems
+find the stored statements closest in meaning to the question. The two Mem0 systems let a
+model add, update and delete stored facts.
 
-**What is `tracemem-no-versions`?** A copy of TraceMem that forgets a decision once it is
-replaced. It is an *ablation*: a copy of a system with one part removed, to measure what
-that part is worth. Here the removed part is the history of replaced decisions. The
-resolver, its prompt and the handling of suggestions and disputes stay the same.
+**What is an ablation?** An ablation is a copy of a system with one part removed.
+Comparing the copy with the full system measures how much the removed part helps.
 
-**What does it measure?** What keeping history buys. In pilot-01 the team chooses BERT in
-meeting 1 (S1-T1, "Let's go with BERT for the sentiment classifier.") and switches in
-meeting 3 (S3-T2, "Then we switch the sentiment classifier to DistilBERT, since BERT misses
-the latency limit."). TraceMem then holds DistilBERT as current and keeps BERT, marked as
-replaced, along with the suggestions the team later adopted; the ablation holds DistilBERT
-only. Both give the same answer about the present. Only
-TraceMem's memory can answer "Which model, if any, did we use for the sentiment classifier
-before the current one?" The gap between the two on history questions is the value of
-keeping history.
+**Why do we need an ablation?** The comparison of the five systems shows whether TraceMem
+answers better than the other memories, but not which part of TraceMem makes the
+difference. TraceMem differs from the other memories in several parts at once. It stores
+suggestions apart from decisions, it keeps a dispute open until someone settles it, it
+checks that a replacement concerns the same item, and it keeps a decision after a new one
+replaces it. An ablation removes one of these parts and keeps the others, so any change in
+the scores comes from the removed part alone.
 
-![TraceMem keeps replaced decisions; the ablation forgets them](figures/with-and-without-history.png)
+**What is `tracemem-no-versions`?** `tracemem-no-versions` is our ablation. It is a copy of
+TraceMem that deletes a decision from its memory once a new decision replaces it. The
+removed part is TraceMem's record of replaced decisions. Everything else stays as in
+TraceMem: the resolver (the step that decides what each new statement does to memory), the
+resolver's prompt, and the handling of suggestions and disputes.
 
-**Why is it not a sixth system in the results?** It answers a different question. The five
-compare TraceMem with other kinds of memory; the ablation compares TraceMem with itself, to
-show which of its parts matters. That belongs in the report, beside the main results,
-rather than in a short deck. It also rests on few questions: only the 30 history questions
-of the 13 development scenarios can separate the two, so its numbers will be rough.
+**What does the ablation measure?** The ablation measures how much keeping replaced
+decisions helps TraceMem answer questions about the past. In pilot-01 the team chooses
+BERT for the sentiment classifier in meeting 1 (S1-T1, "Let's go with BERT for the
+sentiment classifier."). In meeting 3 the team switches to DistilBERT (S3-T2, "Then we
+switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.").
+After meeting 3, TraceMem's memory holds DistilBERT marked as current and BERT marked as
+replaced. The ablation's memory holds DistilBERT only. Both memories give the same answer
+to "Which model are we using for the sentiment classifier?". Only TraceMem's memory holds
+the record needed to answer "Which model, if any, did we use for the sentiment classifier
+before the current one?". If the ablation answers such questions about the past worse than
+TraceMem does, the difference between their scores shows how much keeping replaced
+decisions helps.
 
-**What happened to Timeline, full history and TraceMem without supersession?** They were
-an earlier plan in the README and [the interfaces guide](interfaces.md#comparison-systems-planned),
-and none of them is built. TraceMem without supersession would be a different ablation: its
-resolver could only add records, so it would measure the replacement step rather than the
-history.
+![TraceMem keeps replaced decisions; the ablation deletes them](figures/with-and-without-history.png)
+
+The picture shows pilot-01's memory after meeting 3. The left side is TraceMem's memory in
+the A7 run on Claude Haiku. The right side is the same memory without the records that no
+longer hold, which is what the ablation stores; it is derived from the left side, not taken
+from a separate run. Three records on the left are suggestions that the team adopted later.
+The ablation deletes these records too, because it keeps only records that still hold.
+
+**Why is the ablation not a sixth system in the results?** The ablation answers a
+different question from the five systems. The five systems compare TraceMem with other
+kinds of memory. The ablation compares TraceMem with a copy of itself, to show which of
+TraceMem's parts matters. That comparison belongs in the report, next to the main results,
+and not in the short deck. The ablation's scores will also be uncertain, because only
+questions about the past can show a difference, and the 13 development scenarios contain
+only 30 such questions.
+
+**What happened to Timeline, full history and TraceMem without supersession?** An earlier
+plan in the README and in [the interfaces guide](interfaces.md#comparison-systems-planned)
+listed these three systems. None of the three was built. TraceMem without supersession
+would be a different ablation: its resolver could only add records and never replace one,
+so it would measure the replacement step rather than the kept decisions.

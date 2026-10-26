@@ -124,7 +124,7 @@ The repository departs from the project proposal in three ways. Each one is a pr
 | **Trap** | A question where the newest related statement is *not* the answer: a later suggestion, a dispute, a passing mention, or a decision about a similar item. A memory that trusts the newest statement fails on traps. |
 | **Probe** | A simple rule-based system that reads the correct answers or the script. Probes check that the scorer and the benchmark work; they are never compared with TraceMem. |
 | **Stand-in** | A component that returns the correct output from the benchmark, so that each teammate can build a stage before the stage before it is finished. |
-| **Ablation** | A copy of a system with one part removed, to measure what that part is worth. Ours is `tracemem-no-versions`: TraceMem that forgets a decision once it is replaced, so the gap on questions about the past shows what keeping history buys. |
+| **Ablation** | A copy of a system with one part removed. Comparing the copy with the full system measures how much the removed part helps. Our ablation is `tracemem-no-versions`, a copy of TraceMem that deletes a decision once a new decision replaces it; if it answers questions about the past worse than TraceMem, the difference shows how much keeping replaced decisions helps. |
 
 ## The contracts you code against
 
