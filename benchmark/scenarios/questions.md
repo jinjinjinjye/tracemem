@@ -112,13 +112,13 @@ Written by hand under `questions:`:
 
 ### dev-01: Demand model with a suggestion nobody adopts
 
-[`dev/dev-01-suggestion-after-decision.yaml`](dev/dev-01-suggestion-after-decision.yaml) · category `suggestion_after_decision` · meetings S1, S2, S3, S4 · fingerprint `8b8ad07e318d`
+[`dev/dev-01-suggestion-after-decision.yaml`](dev/dev-01-suggestion-after-decision.yaml) · category `suggestion_after_decision` · meetings S1, S2, S3, S4 · fingerprint `ed175c7de967`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `model.demand` | Which model are we using for the daily demand forecast? | S1-T2 ("Right. Let's just go with LightGBM on lag features for the forecast. It's quick to train and we all know it."): decide LightGBM | S1, S2, S3, S4 | 4 |
-| `metric.primary` | What is our main evaluation metric for the forecast? | S1-T3 ("Works for me. And we'll score it on MAE, since it's in bikes per day and anyone can read that."): decide MAE | S1, S2, S3, S4 | 4 |
-| `task.weather_join` | What is the status of the weather join? | S1-T4 ("Farah, could you pull the daily weather and join it onto the rental counts?"): task_open | S1, S2, S3, S4 | 4 |
+| `model.demand` | Which model are we using for the daily demand forecast? | S1-T2 ("Right. We just go with LightGBM on lag features for the forecast lah. Quick to train and we all know it."): decide LightGBM | S1, S2, S3, S4 | 4 |
+| `metric.primary` | What is our main evaluation metric for the forecast? | S1-T3 ("Can. And we'll score it on MAE, since it's in bikes per day and anyone can read that."): decide MAE | S1, S2, S3, S4 | 4 |
+| `task.weather_join` | What is the status of the weather join? | S1-T4 ("Farah, can you help pull the daily weather and join it to the rental counts?"): task_open | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 
@@ -132,13 +132,13 @@ Written by hand under `questions:`:
 
 ### dev-02: A disputed backbone for the leaf classifier
 
-[`dev/dev-02-unresolved-contradiction.yaml`](dev/dev-02-unresolved-contradiction.yaml) · category `unresolved_contradiction` · meetings S1, S2, S3, S4 · fingerprint `f8ffcaccb249`
+[`dev/dev-02-unresolved-contradiction.yaml`](dev/dev-02-unresolved-contradiction.yaml) · category `unresolved_contradiction` · meetings S1, S2, S3, S4 · fingerprint `4525ddef5849`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `model.backbone` | Which backbone are we using for the leaf-disease classifier? | S1-T1 ("OK, for the leaf-disease classifier let's fine-tune ResNet-50 as the backbone. It's what the course tutorial uses."): decide ResNet-50 | S1, S2, S3, S4 | 4 |
-| `data.split` | How are we splitting the leaf photos into training and test sets? | S1-T2 ("And for the split, let's just shuffle all the photos and do a random 80/20."): decide random split | S1, S2, S3, S4 | 4 |
-| `task.garden_photos` | What is the status of the campus-garden photos? | S1-T3 ("I'll photograph the sick leaves in the campus garden this week and label them, so we've got some real field photos too."): task_open | S1, S2, S3, S4 | 4 |
+| `model.backbone` | Which backbone are we using for the leaf-disease classifier? | S1-T1 ("Hi, for the leaf-disease classifier, let's fine-tune ResNet-50 as the backbone. It is what the course tutorial uses, no?"): decide ResNet-50 | S1, S2, S3, S4 | 4 |
+| `data.split` | How are we splitting the leaf photos into training and test sets? | S1-T2 ("And for split, we just shuffle all photos. Do a random 80/20."): decide random split | S1, S2, S3, S4 | 4 |
+| `task.garden_photos` | What is the status of the campus-garden photos? | S1-T3 ("I'll go photograph the sick leaves in the campus garden this week and label them, so we get some real field photos also."): task_open | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 
@@ -152,13 +152,13 @@ Written by hand under `questions:`:
 
 ### dev-03: Two learning rates in one recommender
 
-[`dev/dev-03-confusable-items.yaml`](dev/dev-03-confusable-items.yaml) · category `confusable_items` · meetings S1, S2, S3, S4 · fingerprint `9850f7cda876`
+[`dev/dev-03-confusable-items.yaml`](dev/dev-03-confusable-items.yaml) · category `confusable_items` · meetings S1, S2, S3, S4 · fingerprint `f6b41628d36c`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `lr.embedding` | What learning rate are we using for the embedding tables? | S1-T2 ("The embedding tables only get sparse updates, so they get their own learning rate. Let's go with 0.05 for the embeddings."): decide 0.05 | S1, S2, S3, S4 | 4 |
-| `lr.mlp` | What learning rate are we using for the MLP layers? | S2-T3 ("Dense layers usually want something much smaller. Let's fix the MLP learning rate at 0.001."): decide 0.001 | S2, S3, S4 | 3 |
-| `task.eval_script` | What is the status of the evaluation script? | S1-T5 ("Okay. I'll write the evaluation script for the top-10 lists."): task_open | S1, S2, S3, S4 | 4 |
+| `lr.embedding` | What learning rate are we using for the embedding tables? | S1-T2 ("Embedding tables only get sparse updates, so they need their own LR. Let's fix 0.05 for the embeddings."): decide 0.05 | S1, S2, S3, S4 | 4 |
+| `lr.mlp` | What learning rate are we using for the MLP layers? | S2-T3 ("Dense layers usually require a much smaller rate. Let's set the MLP LR at 0.001."): decide 0.001 | S2, S3, S4 | 3 |
+| `task.eval_script` | What is the status of the evaluation script? | S1-T5 ("Noted. I'll write the eval script for the top-10 lists."): task_open | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 
@@ -173,13 +173,13 @@ Written by hand under `questions:`:
 
 ### dev-04: Card-fraud model with recollections and side reports
 
-[`dev/dev-04-mention-after-decision.yaml`](dev/dev-04-mention-after-decision.yaml) · category `mention_after_decision` · meetings S1, S2, S3, S4 · fingerprint `eada44f67f09`
+[`dev/dev-04-mention-after-decision.yaml`](dev/dev-04-mention-after-decision.yaml) · category `mention_after_decision` · meetings S1, S2, S3, S4 · fingerprint `aede1b5508b3`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `model.fraud` | Which model are we using for the fraud classifier? | S1-T1 ("Right, for the fraud classifier let's go with XGBoost. It's the usual pick for tabular data like this."): decide XGBoost | S1, S2, S3, S4 | 4 |
-| `training.imbalance` | How are we handling the class imbalance in training? | S1-T2 ("Sounds fine. Fraud is only about 0.2% of the rows, though. Maybe we could oversample the frauds with SMOTE?"): suggest SMOTE | S1, S2, S3, S4 | 4 |
-| `metric.primary` | What is our primary evaluation metric? | S1-T5 ("And we'll use PR-AUC as the main metric. ROC-AUC looks great on data this skewed whatever the model does."): decide PR-AUC | S1, S2, S3, S4 | 4 |
+| `model.fraud` | Which model are we using for the fraud classifier? | S1-T1 ("Right, for the fraud classifier let's just go with XGBoost. It's the standard pick for this kind of tabular data, so there's no reason to overcomplicate things right now."): decide XGBoost | S1, S2, S3, S4 | 4 |
+| `training.imbalance` | How are we handling the class imbalance in training? | S1-T2 ("Sounds good! Just a thought though, fraud is only about 0.2% of the rows. Maybe we could try oversampling the frauds with SMOTE? Just to balance it out a bit."): suggest SMOTE | S1, S2, S3, S4 | 4 |
+| `metric.primary` | What is our primary evaluation metric? | S1-T5 ("Also, we will use PR-AUC as the main metric. ROC-AUC always looks great on skewed data no matter what the model actually does, so PR-AUC is more accurate for us."): decide PR-AUC | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 
@@ -193,13 +193,13 @@ Written by hand under `questions:`:
 
 ### dev-05: Cleaning and tagging bird-call clips
 
-[`dev/dev-05-task-lifecycle.yaml`](dev/dev-05-task-lifecycle.yaml) · category `task_lifecycle` · meetings S1, S2, S3, S4 · fingerprint `a9b8f853c637`
+[`dev/dev-05-task-lifecycle.yaml`](dev/dev-05-task-lifecycle.yaml) · category `task_lifecycle` · meetings S1, S2, S3, S4 · fingerprint `d46b386056b6`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `task.denoise` | What is the status of the noise filtering? | S1-T3 ("I'll take care of the noise filtering, starting tomorrow."): task_open | S1, S2, S3, S4 | 4 |
+| `task.denoise` | What is the status of the noise filtering? | S1-T3 ("I'll totally take care of the noise filtering, starting tomorrow!! Leave it to me!"): task_open | S1, S2, S3, S4 | 4 |
 | `task.species_tags` | What is the status of the species tagging? | S1-T4 ("And I'll hand-tag the species in each clip as they come out."): task_open | S1, S2, S3, S4 | 4 |
-| `audio.clip_length` | What clip length are we cutting the recordings into? | S1-T1 ("Okay, first thing: let's cut every recording into 5-second clips."): decide 5 seconds | S1, S2, S3, S4 | 4 |
+| `audio.clip_length` | What clip length are we cutting the recordings into? | S1-T1 ("Okay, first thing! Let's just cut every recording into 5-second clips. Nice and simple!"): decide 5 seconds | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 
@@ -212,13 +212,13 @@ Written by hand under `questions:`:
 
 ### dev-06: Lecture captions changed with explicit replacements
 
-[`dev/dev-06-explicit-revision.yaml`](dev/dev-06-explicit-revision.yaml) · category `explicit_revision` · meetings S1, S2, S3, S4 · fingerprint `832c0425ea28`
+[`dev/dev-06-explicit-revision.yaml`](dev/dev-06-explicit-revision.yaml) · category `explicit_revision` · meetings S1, S2, S3, S4 · fingerprint `1541c9085654`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `model.asr` | Which speech-to-text model are we using for the lecture recordings? | S1-T2 ("For the recognizer, let's go with wav2vec 2.0. There's a base checkpoint already fine-tuned on LibriSpeech, so we can start right away."): decide wav2vec 2.0 | S1, S2, S3, S4 | 4 |
-| `audio.segmentation` | How are we splitting the lecture audio before transcribing it? | S1-T4 ("The lectures are an hour each, way too long to push through in one go. We'll cut them into fixed 30-second chunks."): decide fixed 30-second chunks | S1, S2, S3, S4 | 4 |
-| `output.format` | Which caption file format are we exporting? | S2-T6 ("Oh, and the lecture portal wants caption files. Let's just export SRT, it's the format everyone uses."): decide SRT | S2, S3, S4 | 3 |
+| `model.asr` | Which speech-to-text model are we using for the lecture recordings? | S1-T2 ("For the recognizer, just use wav2vec 2.0. Got a base checkpoint fine-tuned on LibriSpeech already, so can start straight away. Let's just get this over with."): decide wav2vec 2.0 | S1, S2, S3, S4 | 4 |
+| `audio.segmentation` | How are we splitting the lecture audio before transcribing it? | S1-T4 ("The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks."): decide fixed 30-second chunks | S1, S2, S3, S4 | 4 |
+| `output.format` | Which caption file format are we exporting? | S2-T6 ("Oh, by the way, the lecture portal needs caption files. Let's just export SRT, it's what everyone uses anyway."): decide SRT | S2, S3, S4 | 3 |
 
 Written by hand under `questions:`:
 
@@ -232,13 +232,13 @@ Written by hand under `questions:`:
 
 ### dev-07: Readmission choices changed without naming the old ones
 
-[`dev/dev-07-implicit-revision.yaml`](dev/dev-07-implicit-revision.yaml) · category `implicit_revision` · meetings S1, S2, S3, S4 · fingerprint `1268532ad442`
+[`dev/dev-07-implicit-revision.yaml`](dev/dev-07-implicit-revision.yaml) · category `implicit_revision` · meetings S1, S2, S3, S4 · fingerprint `029cb97404fb`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `model.risk` | Which model are we using to predict readmissions? | S1-T1 ("Okay, for the readmission model let's start with logistic regression. Clinicians can actually read the coefficients."): decide logistic regression | S1, S2, S3, S4 | 4 |
-| `split.eval` | How are we splitting the data for evaluation? | S1-T2 ("Fine by me. For evaluation we'll do a random 80/20 split of the discharges, nothing fancy."): decide random split | S1, S2, S3, S4 | 4 |
-| `metric.primary` | What is our primary evaluation metric? | S1-T3 ("And AUROC is our headline metric, that's what all the readmission papers report."): decide AUROC | S1, S2, S3, S4 | 4 |
+| `model.risk` | Which model are we using to predict readmissions? | S1-T1 ("Right, so for the readmission model, let's start with logistic regression. Clinicians can actually read the coefficients, which is rather important."): decide logistic regression | S1, S2, S3, S4 | 4 |
+| `split.eval` | How are we splitting the data for evaluation? | S1-T2 ("Uh, yes, that sounds fine by me. For the evaluation, we'll just do a standard random 80/20 split of the discharges, nothing too complicated."): decide random split | S1, S2, S3, S4 | 4 |
+| `metric.primary` | What is our primary evaluation metric? | S1-T3 ("And AUROC is our headline metric. That's what all the standard readmission papers report."): decide AUROC | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 
@@ -252,13 +252,13 @@ Written by hand under `questions:`:
 
 ### dev-08: Topic model adopted two meetings after it was suggested
 
-[`dev/dev-08-accepted-suggestion.yaml`](dev/dev-08-accepted-suggestion.yaml) · category `accepted_suggestion` · meetings S1, S2, S3, S4 · fingerprint `4a576b89e325`
+[`dev/dev-08-accepted-suggestion.yaml`](dev/dev-08-accepted-suggestion.yaml) · category `accepted_suggestion` · meetings S1, S2, S3, S4 · fingerprint `29973485bd12`
 
 | Item | Asked as (`ask:`) | First event | Asked after | Count |
 |---|---|---|---|---|
-| `model.topic` | Which topic model are we using for the articles? | S1-T3 ("For the model, maybe LDA to start? It's the one we all know from class."): suggest LDA | S1, S2, S3, S4 | 4 |
-| `metric.topic_quality` | Which measure are we using to score the topics? | S1-T5 ("How do we tell if the topics are any good, though? Maybe C_v coherence, like in the lecture notes?"): suggest C_v coherence | S1, S2, S3, S4 | 4 |
-| `task.archive_download` | What is the status of the archive download? | S1-T2 ("I'll download the archive from the paper's website this week. It's around four thousand articles."): task_open | S1, S2, S3, S4 | 4 |
+| `model.topic` | Which topic model are we using for the articles? | S1-T3 ("For the model... maybe we could use LDA to start? It's the one we all know from class..."): suggest LDA | S1, S2, S3, S4 | 4 |
+| `metric.topic_quality` | Which measure are we using to score the topics? | S1-T5 ("Spot on. How do we tell if the topics are actually any good, though? I was thinking maybe C_v coherence, like in the lecture notes?"): suggest C_v coherence | S1, S2, S3, S4 | 4 |
+| `task.archive_download` | What is the status of the archive download? | S1-T2 ("I'll handle downloading the archive from the paper's website this week. It's around four thousand articles, but I'll get it sorted straight away for you."): task_open | S1, S2, S3, S4 | 4 |
 
 Written by hand under `questions:`:
 

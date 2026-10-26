@@ -39,39 +39,39 @@ sessions:
   - id: S1
     date: 2026-10-06
     turns:
-      - {id: S1-T1, speaker: Rhea, text: "Okay, so the goal is captions for the department's recorded lectures. We've got about forty hours of audio to get through."}
-      - {id: S1-T2, speaker: Felix, text: "For the recognizer, let's go with wav2vec 2.0. There's a base checkpoint already fine-tuned on LibriSpeech, so we can start right away."}
-      - {id: S1-T3, speaker: Dana, text: "Works for me."}
-      - {id: S1-T4, speaker: Rhea, text: "The lectures are an hour each, way too long to push through in one go. We'll cut them into fixed 30-second chunks."}
-      - {id: S1-T5, speaker: Dana, text: "I'll hand-correct transcripts for three lectures so we have something to score against."}
-      - {id: S1-T6, speaker: Felix, text: "Cool. Same time Friday?"}
+      - {id: S1-T1, speaker: Rhea, text: "Okay... goal is captions for the department's recorded lectures. Forty hours of audio to get through. Sigh."}
+      - {id: S1-T2, speaker: Felix, text: "For the recognizer, just use wav2vec 2.0. Got a base checkpoint fine-tuned on LibriSpeech already, so can start straight away. Let's just get this over with."}
+      - {id: S1-T3, speaker: Dana, text: "Yeah, whatever. Works for me."}
+      - {id: S1-T4, speaker: Rhea, text: "The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks."}
+      - {id: S1-T5, speaker: Dana, text: "I guess I'll hand-correct transcripts for three lectures. Just so we have a baseline."}
+      - {id: S1-T6, speaker: Felix, text: "Right. Same time Friday then."}
   - id: S2
     date: 2026-10-09
     turns:
-      - {id: S2-T1, speaker: Dana, text: "The reference transcripts for the three lectures are done, they're in the shared folder."}
-      - {id: S2-T2, speaker: Felix, text: "First pass is through. Word error rate is around 34 percent, and the output has no punctuation or capitals at all."}
-      - {id: S2-T3, speaker: Dana, text: "It also keeps botching the lecturer's accent and pretty much every stats term. 'Heteroscedasticity' comes out as four random words."}
-      - {id: S2-T4, speaker: Rhea, text: "Right, decision: we're switching to Whisper small instead of wav2vec 2.0. It punctuates out of the box and copes way better with accents."}
-      - {id: S2-T5, speaker: Felix, text: "Fair enough. I'll rerun the three lectures over the weekend."}
-      - {id: S2-T6, speaker: Dana, text: "Oh, and the lecture portal wants caption files. Let's just export SRT, it's the format everyone uses."}
-      - {id: S2-T7, speaker: Rhea, text: "Sure."}
+      - {id: S2-T1, speaker: Dana, text: "Reference transcripts for those three lectures are done. Dropped them in the shared folder. That took forever."}
+      - {id: S2-T2, speaker: Felix, text: "First pass is done. Word error rate is like 34 percent. And the output got zero punctuation or capitals. Great."}
+      - {id: S2-T3, speaker: Dana, text: "It also completely messes up the lecturer's accent and literally every stats term. 'Heteroscedasticity' comes out as four random words. So dumb."}
+      - {id: S2-T4, speaker: Rhea, text: "Haiz, like that how to submit... Right, decision: we're switching to Whisper small instead of wav2vec 2.0 lah. It punctuates out of the box and handles the accents way better."}
+      - {id: S2-T5, speaker: Felix, text: "Fine lor. I'll just rerun the three lectures over the weekend. Weekend gone."}
+      - {id: S2-T6, speaker: Dana, text: "Oh, by the way, the lecture portal needs caption files. Let's just export SRT, it's what everyone uses anyway."}
+      - {id: S2-T7, speaker: Rhea, text: "Sure... whatever is easiest."}
   - id: S3
     date: 2026-10-13
     turns:
-      - {id: S3-T1, speaker: Felix, text: "The rerun's done. Word error rate is down to 14 percent, and the punctuation actually looks decent."}
-      - {id: S3-T2, speaker: Dana, text: "Most of what's left happens right at the cut points, though. Words get sliced in half every half minute."}
-      - {id: S3-T3, speaker: Rhea, text: "Okay, then we split on voice activity detection instead of the fixed 30-second chunks, so the cuts land in the pauses."}
-      - {id: S3-T4, speaker: Felix, text: "Makes sense, lecturers pause all the time anyway."}
-      - {id: S3-T5, speaker: Dana, text: "I'll rewrite the segmentation script tonight."}
+      - {id: S3-T1, speaker: Felix, text: "The rerun's done. Word error rate down to 14 percent. Punctuation actually looks decent for once."}
+      - {id: S3-T2, speaker: Dana, text: "Most of the errors left are right at the cut points, though. Words are literally getting sliced in half every thirty seconds. Annoying."}
+      - {id: S3-T3, speaker: Rhea, text: "Aiyah... Okay, then we split on voice activity detection instead of the fixed 30-second chunks, ya? So the cuts land in the pauses."}
+      - {id: S3-T4, speaker: Felix, text: "Makes sense. Lecturers pause all the time anyway."}
+      - {id: S3-T5, speaker: Dana, text: "Ugh. I'll rewrite the segmentation script tonight, I guess."}
   - id: S4
     date: 2026-10-16
     turns:
-      - {id: S4-T1, speaker: Dana, text: "New segments are in. On the three reference lectures we're at 11 percent now."}
-      - {id: S4-T2, speaker: Felix, text: "Bad news from the portal side: I uploaded a test caption file and the player just shows nothing. Turns out it doesn't read our files at all."}
-      - {id: S4-T3, speaker: Rhea, text: "Ugh. Okay, then we export WebVTT instead of SRT from now on. The conversion is basically a header line and a different timestamp format."}
-      - {id: S4-T4, speaker: Dana, text: "I can patch the export script today."}
-      - {id: S4-T5, speaker: Rhea, text: "Great. So for the progress report: Whisper small, split with voice activity detection, captions as WebVTT."}
-      - {id: S4-T6, speaker: Felix, text: "I'll put the numbers table together."}
+      - {id: S4-T1, speaker: Dana, text: "New segments are in. We're at 11 percent on the three reference lectures now. So that's something."}
+      - {id: S4-T2, speaker: Felix, text: "Bad news from the portal side. I uploaded a test caption file and the player shows nothing. Turns out it doesn't even read our files at all sia. Waste my time."}
+      - {id: S4-T3, speaker: Rhea, text: "Haiz, why always got problem one... Okay, then we export WebVTT instead of SRT from now on lah. The conversion is just a header line and different timestamp format."}
+      - {id: S4-T4, speaker: Dana, text: "I can patch the export script today. Whatever."}
+      - {id: S4-T5, speaker: Rhea, text: "Great... So for the progress report: Whisper small, split with voice activity detection, captions as WebVTT. Hope nothing else goes wrong."}
+      - {id: S4-T6, speaker: Felix, text: "I'll just put the numbers table together."}
 
 script:
   - {turn: S1-T2, act: decide, item: model.asr, value: wav2vec 2.0}

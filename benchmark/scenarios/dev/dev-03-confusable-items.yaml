@@ -39,39 +39,39 @@ sessions:
   - id: S1
     date: 2026-10-06
     turns:
-      - {id: S1-T1, speaker: Clara, text: "Okay, so the plan is user and movie embeddings going into a small MLP that predicts the rating."}
-      - {id: S1-T2, speaker: Jonah, text: "The embedding tables only get sparse updates, so they get their own learning rate. Let's go with 0.05 for the embeddings."}
-      - {id: S1-T3, speaker: Esme, text: "And the MLP layers on top?"}
-      - {id: S1-T4, speaker: Jonah, text: "Let's leave those until the embeddings train without blowing up."}
-      - {id: S1-T5, speaker: Esme, text: "Okay. I'll write the evaluation script for the top-10 lists."}
-      - {id: S1-T6, speaker: Clara, text: "And I'll clean up the ratings file tonight."}
+      - {id: S1-T1, speaker: Clara, text: "Okay, plan is user and movie embeddings into a small MLP to predict rating."}
+      - {id: S1-T2, speaker: Jonathan, text: "Embedding tables only get sparse updates, so they need their own LR. Let's fix 0.05 for the embeddings."}
+      - {id: S1-T3, speaker: Mel, text: "What about the MLP layers on top?"}
+      - {id: S1-T4, speaker: Jonathan, text: "Hold off on those until the embeddings train properly without blowing up."}
+      - {id: S1-T5, speaker: Mel, text: "Noted. I'll write the eval script for the top-10 lists."}
+      - {id: S1-T6, speaker: Clara, text: "I'll clean up the ratings file tonight."}
   - id: S2
     date: 2026-10-09
     turns:
-      - {id: S2-T1, speaker: Clara, text: "Good news: the embeddings train fine, the loss goes down nice and smooth."}
-      - {id: S2-T2, speaker: Esme, text: "Nice. So what rate do the MLP layers get?"}
-      - {id: S2-T3, speaker: Jonah, text: "Dense layers usually want something much smaller. Let's fix the MLP learning rate at 0.001."}
-      - {id: S2-T4, speaker: Clara, text: "Works for me. I'll put it in the config."}
-      - {id: S2-T5, speaker: Esme, text: "The eval script is stuck, though. I don't know what to do with movies that only show up in the test set."}
-      - {id: S2-T6, speaker: Jonah, text: "Good question. Let's ask the TA after Monday's tutorial."}
+      - {id: S2-T1, speaker: Clara, text: "Embeddings training fine, loss going down smoothly."}
+      - {id: S2-T2, speaker: Mel, text: "Good. So what's the LR for the MLP layers?"}
+      - {id: S2-T3, speaker: Jonathan, text: "Dense layers usually require a much smaller rate. Let's set the MLP LR at 0.001."}
+      - {id: S2-T4, speaker: Clara, text: "Can. I'll update the config."}
+      - {id: S2-T5, speaker: Mel, text: "Eval script is stuck though. Not sure how to handle movies that only appear in the test set."}
+      - {id: S2-T6, speaker: Jonathan, text: "Good point. We'll check with the TA after Monday's tutorial."}
   - id: S3
     date: 2026-10-14
     turns:
-      - {id: S3-T1, speaker: Esme, text: "Validation loss starts climbing after epoch three. Looks like the MLP is overfitting."}
-      - {id: S3-T2, speaker: Jonah, text: "Then we lower the MLP learning rate to 0.0003 and add some dropout."}
-      - {id: S3-T3, speaker: Clara, text: "Fine by me. The embedding rate stays as it is, right?"}
-      - {id: S3-T4, speaker: Jonah, text: "Yeah, no change there."}
-      - {id: S3-T5, speaker: Esme, text: "Also, the TA said to just drop movies that never appear in training, so the eval script is finished."}
-      - {id: S3-T6, speaker: Clara, text: "Great. I'll kick off a long training run tonight."}
+      - {id: S3-T1, speaker: Mel, text: "Validation loss climbing after epoch three. MLP is definitely overfitting."}
+      - {id: S3-T2, speaker: Jonathan, text: "Then we drop the MLP LR to 0.0003 and add dropout."}
+      - {id: S3-T3, speaker: Clara, text: "Okay. Embedding rate stays the same, right?"}
+      - {id: S3-T4, speaker: Jonathan, text: "Yeah, no change."}
+      - {id: S3-T5, speaker: Mel, text: "Also, TA said to just drop movies not in training, so eval script is done."}
+      - {id: S3-T6, speaker: Clara, text: "Great. I'll start a long training run tonight."}
   - id: S4
     date: 2026-10-20
     turns:
-      - {id: S4-T1, speaker: Esme, text: "Now that the MLP has dropout, maybe its learning rate could go back up to 0.001? Might converge faster."}
-      - {id: S4-T2, speaker: Clara, text: "Maybe, but there's a bigger problem. The long run is really noisy, and the jumps come from the embedding tables."}
-      - {id: S4-T3, speaker: Jonah, text: "Then we cut the embedding learning rate to 0.01. That should calm it down."}
-      - {id: S4-T4, speaker: Esme, text: "Agreed. Honestly, 0.05 was always a bit high for the embeddings."}
-      - {id: S4-T5, speaker: Clara, text: "I'll rerun it tonight and send the curves round."}
-      - {id: S4-T6, speaker: Jonah, text: "Cool. See you all on Friday."}
+      - {id: S4-T1, speaker: Mel, text: "Since the MLP has dropout now, maybe bump its LR back to 0.001? Might converge faster."}
+      - {id: S4-T2, speaker: Clara, text: "Maybe, but bigger issue now. The long run is very noisy, jumps are coming from the embedding tables."}
+      - {id: S4-T3, speaker: Jonathan, text: "Then we cut the embedding LR to 0.01. That will stabilize it."}
+      - {id: S4-T4, speaker: Mel, text: "Agreed. Frankly, 0.05 was always a bit high for embeddings."}
+      - {id: S4-T5, speaker: Clara, text: "I'll rerun tonight and send the curves."}
+      - {id: S4-T6, speaker: Jonathan, text: "Noted. See you guys Friday."}
 
 script:
   - {turn: S1-T2, act: decide, item: lr.embedding, value: "0.05"}

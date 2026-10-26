@@ -41,42 +41,42 @@ sessions:
   - id: S1
     date: 2026-10-06
     turns:
-      - {id: S1-T1, speaker: Ines, text: "Okay, for the readmission model let's start with logistic regression. Clinicians can actually read the coefficients."}
-      - {id: S1-T2, speaker: Omar, text: "Fine by me. For evaluation we'll do a random 80/20 split of the discharges, nothing fancy."}
-      - {id: S1-T3, speaker: Greta, text: "And AUROC is our headline metric, that's what all the readmission papers report."}
-      - {id: S1-T4, speaker: Ines, text: "Great. Greta, are you okay cleaning up the discharge table this week?"}
-      - {id: S1-T5, speaker: Greta, text: "Yep, should be done by Friday."}
-      - {id: S1-T6, speaker: Omar, text: "I'll get the training script going in the meantime."}
+      - {id: S1-T1, speaker: Ines, text: "Right, so for the readmission model, let's start with logistic regression. Clinicians can actually read the coefficients, which is rather important."}
+      - {id: S1-T2, speaker: Omar, text: "Uh, yes, that sounds fine by me. For the evaluation, we'll just do a standard random 80/20 split of the discharges, nothing too complicated."}
+      - {id: S1-T3, speaker: Greta, text: "And AUROC is our headline metric. That's what all the standard readmission papers report."}
+      - {id: S1-T4, speaker: Ines, text: "Brilliant. Greta, are you alright with cleaning up the discharge table this week?"}
+      - {id: S1-T5, speaker: Greta, text: "Yep, definitely. Should have it done by Friday."}
+      - {id: S1-T6, speaker: Omar, text: "I'll go ahead and get the training script going in the meantime, then."}
   - id: S2
     date: 2026-10-09
     turns:
-      - {id: S2-T1, speaker: Greta, text: "Table's clean. Heads up though, a lot of patients come back more than once, some have six or seven stays."}
-      - {id: S2-T2, speaker: Omar, text: "Ugh, that's a problem for our test numbers. The same person can end up on both sides."}
-      - {id: S2-T3, speaker: Ines, text: "Yeah. So from now on we split by patient, all of one person's stays go to the same side."}
-      - {id: S2-T4, speaker: Omar, text: "Makes sense. I'll redo the folds tonight and rerun everything."}
-      - {id: S2-T5, speaker: Greta, text: "Cool. I'll start writing up the cohort section meanwhile."}
+      - {id: S2-T1, speaker: Greta, text: "The table's clean. Just a heads up though, a lot of patients come back more than once. Some even have six or seven separate stays."}
+      - {id: S2-T2, speaker: Omar, text: "Oh, right... that's actually a bit of a problem for our test numbers. The same person could end up on both sides."}
+      - {id: S2-T3, speaker: Ines, text: "Exactly. So from now on, we split by patient. All of one person's stays have to go to the same side."}
+      - {id: S2-T4, speaker: Omar, text: "Yes, that makes total sense. I'll redo the folds tonight and rerun everything for you."}
+      - {id: S2-T5, speaker: Greta, text: "Sounds like a plan. I'll start drafting the cohort section in the meantime."}
   - id: S3
     date: 2026-10-13
     turns:
-      - {id: S3-T1, speaker: Omar, text: "Reran with the new folds. The model's stuck at about 0.68, and piling on more features barely moves it."}
-      - {id: S3-T2, speaker: Greta, text: "Makes sense, a linear model can't pick up stuff like age interacting with the number of prior stays."}
-      - {id: S3-T3, speaker: Ines, text: "Okay, then we're going with XGBoost for the model. Trees should catch those interactions without us hand-building them."}
-      - {id: S3-T4, speaker: Omar, text: "Sure, I'll port the pipeline over tonight."}
-      - {id: S3-T5, speaker: Greta, text: "One more thing. Only about 11% of discharges get readmitted within 30 days."}
-      - {id: S3-T6, speaker: Ines, text: "Hm, so our headline number can look decent even when the model barely finds anyone."}
-      - {id: S3-T7, speaker: Greta, text: "Exactly. So AUPRC is our main metric from now on, it actually tracks how well we catch the rare positives."}
-      - {id: S3-T8, speaker: Ines, text: "Agreed."}
-      - {id: S3-T9, speaker: Omar, text: "I'll put it first in the results table."}
+      - {id: S3-T1, speaker: Omar, text: "I've reran it with the new folds. The model is kind of stuck at about 0.68, and even when I pile on more features, it barely moves."}
+      - {id: S3-T2, speaker: Greta, text: "Makes sense, to be honest. A linear model can't really pick up things like age interacting with the number of prior stays."}
+      - {id: S3-T3, speaker: Ines, text: "Right, in that case, we're going with XGBoost for the model. Trees should naturally catch those interactions without us having to hand-build them."}
+      - {id: S3-T4, speaker: Omar, text: "Okay, sure. I'll port the pipeline over tonight."}
+      - {id: S3-T5, speaker: Greta, text: "One more thing to note. Only about 11% of discharges actually get readmitted within 30 days."}
+      - {id: S3-T6, speaker: Ines, text: "Hm. Which means our headline number could look perfectly decent even when the model is barely finding anyone. That won't do."}
+      - {id: S3-T7, speaker: Greta, text: "Exactly. So AUPRC is our main metric from now on. It actually tracks how well we catch the rare positives."}
+      - {id: S3-T8, speaker: Ines, text: "Completely agreed."}
+      - {id: S3-T9, speaker: Omar, text: "I'll make sure to put it first in the results table, then."}
   - id: S4
     date: 2026-10-16
     turns:
-      - {id: S4-T1, speaker: Greta, text: "I talked to the discharge team at the partner hospital. They'd run this on next year's patients, so they care how it does on future discharges."}
-      - {id: S4-T2, speaker: Ines, text: "Fair point. Then we split by discharge date: train on everything up to June, test on July to September."}
-      - {id: S4-T3, speaker: Omar, text: "Doesn't that put some patients on both sides again?"}
-      - {id: S4-T4, speaker: Ines, text: "A few, sure, but that's exactly what it'll look like once it's running on the wards."}
-      - {id: S4-T5, speaker: Omar, text: "Okay. I'll rebuild the train and test sets this afternoon."}
-      - {id: S4-T6, speaker: Ines, text: "For the slides then: we're on XGBoost, and we lead with AUPRC."}
-      - {id: S4-T7, speaker: Greta, text: "I'll do the plots once Omar's numbers are in."}
+      - {id: S4-T1, speaker: Greta, text: "I touched base with the discharge team at the partner hospital. They'd be running this on next year's patients, so they really care how it performs on future discharges."}
+      - {id: S4-T2, speaker: Ines, text: "That's a very fair point. Then we split by discharge date instead: train on everything up to June, test on July to September."}
+      - {id: S4-T3, speaker: Omar, text: "Um, Ines... doesn't that put some patients on both sides again?"}
+      - {id: S4-T4, speaker: Ines, text: "A few, quite possibly. But that's exactly what it will look like once it's actually deployed on the wards, right?"}
+      - {id: S4-T5, speaker: Omar, text: "Ah, I see. Okay, I'll rebuild the train and test sets this afternoon."}
+      - {id: S4-T6, speaker: Ines, text: "Perfect. So for the presentation slides: we're on XGBoost, and we lead with AUPRC."}
+      - {id: S4-T7, speaker: Greta, text: "Got it. I'll handle the plots once Omar's numbers come in."}
 
 script:
   - {turn: S1-T1, act: decide, item: model.risk, value: logistic regression}

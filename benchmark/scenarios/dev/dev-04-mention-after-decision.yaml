@@ -43,38 +43,38 @@ sessions:
   - id: S1
     date: 2026-10-06
     turns:
-      - {id: S1-T1, speaker: Nadia, text: "Right, for the fraud classifier let's go with XGBoost. It's the usual pick for tabular data like this."}
-      - {id: S1-T2, speaker: Tomas, text: "Sounds fine. Fraud is only about 0.2% of the rows, though. Maybe we could oversample the frauds with SMOTE?"}
-      - {id: S1-T3, speaker: Ivy, text: "We definitely need something, or the model will just call everything legit."}
-      - {id: S1-T4, speaker: Nadia, text: "Yeah, let's do SMOTE, applied to the training folds only."}
-      - {id: S1-T5, speaker: Nadia, text: "And we'll use PR-AUC as the main metric. ROC-AUC looks great on data this skewed whatever the model does."}
-      - {id: S1-T6, speaker: Ivy, text: "Makes sense. I'll split the data by month so the test set is the newest few weeks."}
+      - {id: S1-T1, speaker: Genevieve, text: "Right, for the fraud classifier let's just go with XGBoost. It's the standard pick for this kind of tabular data, so there's no reason to overcomplicate things right now."}
+      - {id: S1-T2, speaker: Tom, text: "Sounds good! Just a thought though, fraud is only about 0.2% of the rows. Maybe we could try oversampling the frauds with SMOTE? Just to balance it out a bit."}
+      - {id: S1-T3, speaker: Ivy, text: "Need to do something. Otherwise the model just predicts everything as legit."}
+      - {id: S1-T4, speaker: Genevieve, text: "I was getting to that. Yes, let's do SMOTE. But we must apply it to the training folds only, otherwise we leak data."}
+      - {id: S1-T5, speaker: Genevieve, text: "Also, we will use PR-AUC as the main metric. ROC-AUC always looks great on skewed data no matter what the model actually does, so PR-AUC is more accurate for us."}
+      - {id: S1-T6, speaker: Ivy, text: "Makes sense. I'll split data by month so test set is the newest few weeks."}
   - id: S2
     date: 2026-10-09
     turns:
-      - {id: S2-T1, speaker: Tomas, text: "First full run is in: 0.71 PR-AUC on the held-out month."}
-      - {id: S2-T2, speaker: Ivy, text: "Nice. Out of curiosity, how does a random forest usually do on card fraud? Not that we're changing anything."}
-      - {id: S2-T3, speaker: Nadia, text: "No idea, honestly. I've only ever seen boosting in the tutorials."}
-      - {id: S2-T4, speaker: Tomas, text: "By the way, the group who had this dataset last year used class weights. They only got 0.55."}
-      - {id: S2-T5, speaker: Nadia, text: "Good to know we're ahead, then."}
-      - {id: S2-T6, speaker: Ivy, text: "I'll start on the threshold analysis this week."}
+      - {id: S2-T1, speaker: Tom, text: "First full run is out! We got 0.71 PR-AUC on the held-out month, quite exciting."}
+      - {id: S2-T2, speaker: Ivy, text: "Not bad. Out of curiosity, how does a random forest usually perform on card fraud? Not saying we change."}
+      - {id: S2-T3, speaker: Genevieve, text: "Why are we asking about random forest now? Honestly, I have no idea, I've only ever seen boosting used in the standard tutorials anyway."}
+      - {id: S2-T4, speaker: Tom, text: "Ah, just sharing! The group who had this dataset last year used class weights instead. They only got 0.55, so we are doing better."}
+      - {id: S2-T5, speaker: Genevieve, text: "Exactly, good to know we are ahead then. Our approach is working."}
+      - {id: S2-T6, speaker: Ivy, text: "I'll start threshold analysis this week."}
   - id: S3
     date: 2026-10-13
     turns:
-      - {id: S3-T1, speaker: Ivy, text: "I ran undersampling over the weekend, keeping one in ten legit transactions. PR-AUC goes from 0.71 to 0.76, and training is five times faster than with SMOTE. Let's switch to undersampling."}
-      - {id: S3-T2, speaker: Nadia, text: "Agreed, undersampling it is. The model stays XGBoost, we just retrain it."}
-      - {id: S3-T3, speaker: Tomas, text: "Shame, I spent a whole evening tuning the SMOTE neighbours."}
-      - {id: S3-T4, speaker: Tomas, text: "I'll rerun the month-by-month evaluation with the new setup tonight."}
-      - {id: S3-T5, speaker: Ivy, text: "Can you also log the false positives per merchant category?"}
-      - {id: S3-T6, speaker: Nadia, text: "Good. See you both on Friday."}
+      - {id: S3-T1, speaker: Ivy, text: "Ran undersampling over the weekend. Kept one in ten legit transactions. PR-AUC went from 0.71 to 0.76, and training is five times faster than SMOTE. Let's switch to undersampling."}
+      - {id: S3-T2, speaker: Genevieve, text: "I mean, if the numbers are better and it's faster, agreed, undersampling it is. But the model stays XGBoost, let's be clear on that. We just retrain it with the new data split."}
+      - {id: S3-T3, speaker: Tom, text: "Oh man. I actually spent a whole evening tuning the SMOTE neighbours. But it's okay, faster is better."}
+      - {id: S3-T4, speaker: Tom, text: "I will rerun the month-by-month evaluation with the new setup tonight, no problem!"}
+      - {id: S3-T5, speaker: Ivy, text: "Can help to log false positives per merchant category as well?"}
+      - {id: S3-T6, speaker: Genevieve, text: "Good. Let's touch base again on Friday."}
   - id: S4
     date: 2026-10-16
     turns:
-      - {id: S4-T1, speaker: Nadia, text: "Draft summary for the report: XGBoost, trained with undersampling, scored on PR-AUC."}
-      - {id: S4-T2, speaker: Tomas, text: "Looking back, should we have tried LightGBM? Too late to switch now anyway."}
-      - {id: S4-T3, speaker: Ivy, text: "Probably about the same. For the appendix, ROC-AUC comes out at 0.98, but that number hides how many frauds we miss."}
-      - {id: S4-T4, speaker: Nadia, text: "Fine, appendix only. Tomas, can you tag the final config?"}
-      - {id: S4-T5, speaker: Tomas, text: "Will do, tonight."}
+      - {id: S4-T1, speaker: Genevieve, text: "Okay, draft summary for the report is as follows: we used XGBoost, trained with undersampling, and scored on PR-AUC. Everyone aligned?"}
+      - {id: S4-T2, speaker: Tom, text: "Just wondering looking back, should we have given LightGBM a try? Though I know it's too late to switch now anyway."}
+      - {id: S4-T3, speaker: Ivy, text: "Results probably about the same. For appendix, ROC-AUC comes out at 0.98. But that number hides how many frauds we actually miss."}
+      - {id: S4-T4, speaker: Genevieve, text: "Let's not get sidetracked, keep it to the appendix only. We don't want to confuse the main report. Tom, can you tag the final config?"}
+      - {id: S4-T5, speaker: Tom, text: "Will do, I'll get it sorted tonight!"}
 
 script:
   - {turn: S1-T1, act: decide, item: model.fraud, value: XGBoost}

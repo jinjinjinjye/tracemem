@@ -36,38 +36,38 @@ sessions:
   - id: S1
     date: 2026-10-06
     turns:
-      - {id: S1-T1, speaker: Marta, text: "So the idea is to map what the campus paper has been writing about over the last five years."}
-      - {id: S1-T2, speaker: Joel, text: "I'll download the archive from the paper's website this week. It's around four thousand articles."}
-      - {id: S1-T3, speaker: Hiro, text: "For the model, maybe LDA to start? It's the one we all know from class."}
-      - {id: S1-T4, speaker: Marta, text: "Yeah, let's go with LDA for now, it's quick to set up."}
-      - {id: S1-T5, speaker: Joel, text: "How do we tell if the topics are any good, though? Maybe C_v coherence, like in the lecture notes?"}
-      - {id: S1-T6, speaker: Marta, text: "Could be. Let me read up on it before we commit."}
+      - {id: S1-T1, speaker: Mel, text: "Right, let's just get this over with. The idea is to map what the campus paper has been writing about over the last five years."}
+      - {id: S1-T2, speaker: Joel, text: "I'll handle downloading the archive from the paper's website this week. It's around four thousand articles, but I'll get it sorted straight away for you."}
+      - {id: S1-T3, speaker: Hiro, text: "For the model... maybe we could use LDA to start? It's the one we all know from class..."}
+      - {id: S1-T4, speaker: Mel, text: "Yeah, let's just go with LDA for now. It's quick to set up."}
+      - {id: S1-T5, speaker: Joel, text: "Spot on. How do we tell if the topics are actually any good, though? I was thinking maybe C_v coherence, like in the lecture notes?"}
+      - {id: S1-T6, speaker: Mel, text: "Could be. Let me read up on it myself before we commit to anything."}
   - id: S2
     date: 2026-10-09
     turns:
-      - {id: S2-T1, speaker: Joel, text: "Bad news: the paper's site started rate-limiting me, so the archive download is stuck at about a third."}
-      - {id: S2-T2, speaker: Marta, text: "Ugh. One of the editors is in my tutorial, I'll ask her about it."}
-      - {id: S2-T3, speaker: Hiro, text: "Meanwhile I ran LDA on the third we have. Half the topics are mush, like sports and campus events in one bucket."}
-      - {id: S2-T4, speaker: Hiro, text: "Maybe BERTopic would do better? It works off embeddings, so short news pieces might cluster more cleanly."}
-      - {id: S2-T5, speaker: Joel, text: "Maybe, but I'd want the full archive in before we change anything."}
-      - {id: S2-T6, speaker: Marta, text: "Fair. Oh, and I read up on Joel's idea from Tuesday: let's go with C_v coherence to score the topics."}
+      - {id: S2-T1, speaker: Joel, text: "Bit of bad news, I'm afraid. The paper's site started rate-limiting me, so the archive download is stuck at about a third."}
+      - {id: S2-T2, speaker: Mel, text: "Ugh. Great. One of the editors is in my tutorial, I'll just ask her about it."}
+      - {id: S2-T3, speaker: Hiro, text: "Meanwhile, I ran LDA on the third we have. Half the topics are mush... like sports and campus events in one bucket. I was looking at it for a while."}
+      - {id: S2-T4, speaker: Hiro, text: "Maybe BERTopic would do better? It works off embeddings... so short news pieces might cluster more cleanly."}
+      - {id: S2-T5, speaker: Joel, text: "Maybe, mate, but I'd want the full archive in before we change anything prematurely."}
+      - {id: S2-T6, speaker: Mel, text: "Fair. Oh, and I read up on the idea from Tuesday. Let's go with C_v coherence to score the topics and just move on."}
   - id: S3
     date: 2026-10-13
     turns:
-      - {id: S3-T1, speaker: Marta, text: "The editors are fine with us scraping, as long as it's slow and overnight."}
-      - {id: S3-T2, speaker: Joel, text: "Great, then I've restarted the archive download."}
-      - {id: S3-T3, speaker: Joel, text: "It should be done by Friday."}
-      - {id: S3-T4, speaker: Hiro, text: "I tried BERTopic on a sample of five hundred articles over the weekend. Sports and campus events finally came out as separate topics."}
-      - {id: S3-T5, speaker: Joel, text: "Or we could maybe try NMF? It's a lot lighter than anything with embeddings."}
-      - {id: S3-T6, speaker: Marta, text: "Let's not add a third option yet. We'll compare properly once the full archive is in."}
+      - {id: S3-T1, speaker: Mel, text: "I spoke to the editors. They are fine with us scraping, as long as it's slow and overnight. So that's settled."}
+      - {id: S3-T2, speaker: Joel, text: "Brilliant work. I've already restarted the archive download based on that."}
+      - {id: S3-T3, speaker: Joel, text: "I'll make absolutely sure it's done by Friday."}
+      - {id: S3-T4, speaker: Hiro, text: "I stayed up over the weekend trying BERTopic on a sample of five hundred articles... Sports and campus events finally came out as separate topics. The clusters look nice."}
+      - {id: S3-T5, speaker: Joel, text: "Right, or we could maybe try NMF? It's actually a lot lighter than anything with embeddings, which is just more efficient."}
+      - {id: S3-T6, speaker: Mel, text: "Let's not add a third option yet. We'll compare properly once the full archive is in. Let's just stick to the plan."}
   - id: S4
     date: 2026-10-16
     turns:
-      - {id: S4-T1, speaker: Joel, text: "The archive download finished last night. All 4,100 articles are in the shared folder."}
-      - {id: S4-T2, speaker: Hiro, text: "And I ran BERTopic on the whole archive: about forty minutes on my laptop, and the topics still look clean."}
-      - {id: S4-T3, speaker: Marta, text: "Then that settles it. We're switching to BERTopic, like Hiro proposed last week."}
-      - {id: S4-T4, speaker: Joel, text: "Fine by me. The scoring stays C_v coherence."}
-      - {id: S4-T5, speaker: Marta, text: "Good. Same time on Tuesday, and bring your topic lists."}
+      - {id: S4-T1, speaker: Joel, text: "Just to update, the archive download finished last night. All 4,100 articles are in the shared folder, all sorted."}
+      - {id: S4-T2, speaker: Hiro, text: "And I ran BERTopic on the whole archive. About forty minutes on my laptop... and the topics still look very clean."}
+      - {id: S4-T3, speaker: Mel, text: "Then that settles it. We're switching to BERTopic, like Hiro proposed last week. Let's wrap this up."}
+      - {id: S4-T4, speaker: Joel, text: "Absolutely fine by me. The scoring stays C_v coherence, then."}
+      - {id: S4-T5, speaker: Mel, text: "Good. Same time on Tuesday. Just bring your topic lists and keep the chat to a minimum."}
 
 script:
   - {turn: S1-T2, act: task_open, item: task.archive_download}
