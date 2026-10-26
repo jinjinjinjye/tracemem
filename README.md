@@ -33,7 +33,7 @@ production extraction and retrieval remain to be implemented.
 | Resolver operation metrics and error analysis | implemented; gold-candidate condition | [`docs/metrics.md`](docs/metrics.md#9-resolver-operation-metrics-and-error-analysis) |
 | Controlled comparison: similarity, similarity + recency, Mem0 classic, Mem0 with project instructions, TraceMem (and TraceMem without versions) | implemented; offline tested, gold-candidate only | [`docs/memory-comparison.md`](docs/memory-comparison.md) |
 | Real extraction, matching, retrieval and answering components | planned | interfaces in [`docs/interfaces.md`](docs/interfaces.md) |
-| Comparison systems: Timeline, full history, and the similarity systems end to end | planned | [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) |
+| The compared systems end to end, reading a real extractor's candidates | planned | [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) |
 | The team's benchmark scenarios | planned | [`docs/benchmark.md`](docs/benchmark.md) |
 | Demo interface | planned | |
 
@@ -108,7 +108,7 @@ Four rules make the comparison fair, and the harness enforces each one:
 The repository departs from the project proposal in three ways. Each one is a proposal until the team records it in [`docs/decisions/`](docs/decisions/README.md).
 
 - **Research question 3 asks about a different item in the same project, not about different projects.** Every system filters its memory by project id, so a statement from another project never reaches the answer model, and that case would test nothing. The benchmark instead tests pairs of similar items within one project, such as the sentiment model and the NER model.
-- **The comparison systems are fixed.** They are similarity, similarity + recency, Timeline, TraceMem, TraceMem without supersession, and a full-history reference. [`docs/interfaces.md`](docs/interfaces.md#comparison-systems-planned) describes each one. [Decision 0011](docs/decisions/0011-compare-five-memory-systems.md) proposes another set for the gold-candidate comparison: it adds classic Mem0 and Mem0 with TraceMem's rules, and has no TraceMem without supersession. The team has still to choose between the two.
+- **The compared systems are five.** They are similarity, similarity + recency, Mem0, Mem0 with TraceMem's rules added to its prompt, and TraceMem ([decision 0011](docs/decisions/0011-compare-five-memory-systems.md), question 6, settled by member A for the team to accept). An ablation, TraceMem without its history of replaced decisions (`tracemem-no-versions`), runs beside them as a diagnostic, not as a sixth compared system. An earlier plan listed Timeline, a full-history reference and TraceMem without supersession; none of them is built. [The comparison guide](docs/memory-comparison.md#questions-about-the-systems) explains the choice in plain words.
 - **The scope is cut.** The demo gets a thin user interface. There is no human evaluation, except to check an automatic judge if the team uses one. Memory holds decisions and tasks only.
 
 ## Terms used in this project
@@ -124,6 +124,7 @@ The repository departs from the project proposal in three ways. Each one is a pr
 | **Trap** | A question where the newest related statement is *not* the answer: a later suggestion, a dispute, a passing mention, or a decision about a similar item. A memory that trusts the newest statement fails on traps. |
 | **Probe** | A simple rule-based system that reads the correct answers or the script. Probes check that the scorer and the benchmark work; they are never compared with TraceMem. |
 | **Stand-in** | A component that returns the correct output from the benchmark, so that each teammate can build a stage before the stage before it is finished. |
+| **Ablation** | A copy of a system with one part removed, to measure what that part is worth. Ours is `tracemem-no-versions`: TraceMem that forgets a decision once it is replaced, so the gap on questions about the past shows what keeping history buys. |
 
 ## The contracts you code against
 

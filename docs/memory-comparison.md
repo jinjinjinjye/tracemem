@@ -565,3 +565,43 @@ change (17). With one `k` for all, a system with a compact memory loses less to 
 information is enough is that system's purpose. TraceMem marks which record is current
 with its statuses, and Mem0 updates or deletes outdated memories itself; a recency bonus
 on top would blur what each of them is tested for.
+
+## Questions about the systems
+
+Short answers for teammates and for the presentation's questions. The choice itself is in
+[decision 0011](decisions/0011-compare-five-memory-systems.md), question 6.
+
+**Which systems are in the results?** Five: similarity, similarity + recency, Mem0, Mem0
+with project instructions, and TraceMem. Together they answer the project's question:
+does a memory that tracks the status of each decision beat memories that find similar
+statements (the two similarity systems) or that let a model add, update and delete facts
+(the two Mem0 systems)?
+
+**What is `tracemem-no-versions`?** A copy of TraceMem that forgets a decision once it is
+replaced. It is an *ablation*: a copy of a system with one part removed, to measure what
+that part is worth. Here the removed part is the history of replaced decisions. The
+resolver, its prompt and the handling of suggestions and disputes stay the same.
+
+**What does it measure?** What keeping history buys. In pilot-01 the team chooses BERT in
+meeting 1 (S1-T1, "Let's go with BERT for the sentiment classifier.") and switches in
+meeting 3 (S3-T2, "Then we switch the sentiment classifier to DistilBERT, since BERT misses
+the latency limit."). TraceMem then holds DistilBERT as current and keeps BERT, marked as
+replaced, along with the suggestions the team later adopted; the ablation holds DistilBERT
+only. Both give the same answer about the present. Only
+TraceMem's memory can answer "Which model, if any, did we use for the sentiment classifier
+before the current one?" The gap between the two on history questions is the value of
+keeping history.
+
+![TraceMem keeps replaced decisions; the ablation forgets them](figures/with-and-without-history.png)
+
+**Why is it not a sixth system in the results?** It answers a different question. The five
+compare TraceMem with other kinds of memory; the ablation compares TraceMem with itself, to
+show which of its parts matters. That belongs in the report, beside the main results,
+rather than in a short deck. It also rests on few questions: only the 30 history questions
+of the 13 development scenarios can separate the two, so its numbers will be rough.
+
+**What happened to Timeline, full history and TraceMem without supersession?** They were
+an earlier plan in the README and [the interfaces guide](interfaces.md#comparison-systems-planned),
+and none of them is built. TraceMem without supersession would be a different ablation: its
+resolver could only add records, so it would measure the replacement step rather than the
+history.

@@ -327,7 +327,7 @@ TraceMem and the baselines should differ in one thing only: whether a resolver a
 
 ## Comparison systems (planned)
 
-The two similarity systems now exist in the gold-candidate condition, as `similarity` and `similarity-recency`, beside TraceMem and the two Mem0 systems; [the controlled comparison guide](memory-comparison.md) describes them. Timeline, full history and the end-to-end version of every system, which reads a real extractor's candidates, are still planned. The list is a proposal until the team records it in a [decision record](decisions/README.md). An *embedding* is a list of numbers that represents a text's meaning, so that texts with similar meanings get nearby lists.
+The compared systems are the five of [decision 0011](decisions/0011-compare-five-memory-systems.md) (question 6, settled by member A for the team to accept): similarity, similarity + recency, Mem0, Mem0 with project instructions, and TraceMem, with TraceMem without its history (`tracemem-no-versions`) as a diagnostic beside them. [The controlled comparison guide](memory-comparison.md) describes them. The end-to-end version of every system, which reads a real extractor's candidates, is still planned. Timeline, TraceMem without supersession and full history below were an earlier plan and are not built; they stay listed for the record. An *embedding* is a list of numbers that represents a text's meaning, so that texts with similar meanings get nearby lists.
 
 - **Similarity**: shows the records most similar to the question by embedding, with no status.
 - **Similarity + recency**: the same, but each record's score adds a term that favours newer records. Its weight and half-life (0.3 and 7 days) are provisional, not tuned; any tuning uses development scenarios only.

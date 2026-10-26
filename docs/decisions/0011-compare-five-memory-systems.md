@@ -251,3 +251,13 @@ decides:
    system and adds Timeline, full history and TraceMem without supersession. The
    README and [the interfaces guide](../interfaces.md#comparison-systems-planned)
    should then list the set the team chooses.
+   **Settled on 26 Oct by member A, for the team to accept: the first option**,
+   this record's five, with `tracemem-no-versions` as a diagnostic outside them.
+   The reason: the five answer the project's question, whether a memory that
+   tracks each decision's status beats memories that find similar statements or
+   let a model add, update and delete facts. The ablation answers a different
+   question, which part of TraceMem matters, and only the history questions can
+   separate it from TraceMem, so it is reported beside the five. The README and
+   the interfaces guide now list this set;
+   [the comparison guide](../memory-comparison.md#questions-about-the-systems)
+   explains it in plain words.
