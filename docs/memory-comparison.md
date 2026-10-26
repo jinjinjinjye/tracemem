@@ -125,6 +125,14 @@ result, not a comparison of retrievers. The weight and half-life can matter only
 when a store is larger than the budget, through longer scenarios or a smaller budget
 for every arm.
 
+For that reason the comparison runs with a fixed number of records per answer,
+`TRACEMEM_CONTEXT_TOP_K` ([decision 0011](decisions/0011-compare-five-memory-systems.md),
+question 4): every system shows the answering model the `k` records closest to the
+question, and `similarity-recency` adds recency. Mem0 and TraceMem then rank by
+similarity too, instead of newest first. `k = 4` on the development scenarios of
+26 Oct, chosen by `scripts/choose_top_k.py`; set it for every system of a run, or
+the runs cannot be reported together.
+
 ## Shared inputs and answering
 
 All arms use the same candidate list, explicit model, optional temperature,

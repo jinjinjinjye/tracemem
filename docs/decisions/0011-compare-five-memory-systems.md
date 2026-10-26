@@ -68,6 +68,21 @@ systems (open question 6). Decision 0004's record is left as it is.
   record id. The similarity + recency weight and half-life are provisional and may
   be tuned on development scenarios only. The embedding model is the subject of
   [decision 0013](0013-embed-with-nomic-embed-text.md).
+- **A fixed number of records per answer (question 4 below, settled 26 Oct).**
+  With `TRACEMEM_CONTEXT_TOP_K=k`, every system shows the answering model at most
+  `k` records: the `k` best-scoring that fit the byte budget, still shown in time
+  order. `similarity`, both Mem0 systems and TraceMem then rank by similarity alone
+  (`alpha=0`); `similarity-recency` keeps its recency weight, its one difference.
+  Every system records `k` as `context_top_k` in its comparison settings, so runs
+  with different `k` cannot be reported together. Unset, every system selects as
+  above, and Mem0 and TraceMem keep the newest-first selection. `k` is fixed by a
+  rule that reads no system's answers: the smallest `k` that puts every turn a
+  question's correct answer rests on (its required support) on the page for at
+  least 90% of the development questions, measured on the similarity store
+  ranked by closeness ([`scripts/choose_top_k.py`](../../scripts/choose_top_k.py)).
+  On the 13 development scenarios of 26 Oct it gives `k = 4` (157 of 165
+  questions covered; `k = 3` covers 147). It is recomputed whenever the
+  development scenarios change before the freeze, and frozen with the prompts.
 - **Quoted source turns for the similarity systems only.** Their store is the
   candidate text itself, so each of their lines adds the quoted text of the
   record's first source turn, as `render_records` writes it when given the turns.
@@ -219,6 +234,14 @@ decides:
    records closest to the question, while the Mem0 and TraceMem systems here read
    newest first. The choice should come before any tuning; until then the weight
    0.3 and the 7-day half-life stay provisional.
+   **Settled on 26 Oct by member A, for the team to accept: the first option**,
+   with `k` chosen by the 90% rule (see "A fixed number of records per answer"
+   above). The reason: at the default budget both similarity systems send
+   identical requests on every development scenario, while a smaller budget
+   with newest-first selection decides which systems look good (in a one-run
+   diagnostic at 600 bytes, both Mem0 systems lost about a quarter of their
+   current accuracy and TraceMem gained). With every system taking the records
+   closest to the question, no system is cut by a different rule.
 5. **The rules' text.** Whether to keep the added first line and this choice of
    passages, to copy item 2 whole, or to add items 3 and 5. Any change alters
    `instructions_hash` and the answers of `mem0-instructions`.
