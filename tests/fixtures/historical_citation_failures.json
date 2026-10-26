@@ -1,0 +1,40 @@
+{
+  "provenance": {
+    "split": "dev",
+    "run": "20261019T001503Z-resolver-explicit-decision-rerun",
+    "system": "tracemem-controlled",
+    "model": "openai/gpt-4.1-mini",
+    "sequence": 88,
+    "request_hash": "8a9e861fcab391765fd78ec0dab7645347c5bc6a58a9c64bbbbe4832eb11d2fc",
+    "scope": "Captured model request payload and reply only; no gold or hidden record links were supplied."
+  },
+  "scenario_id": "pilot-05",
+  "glosses": {
+    "S1-T1": "Let's make the baseline logistic regression on TF-IDF features.",
+    "S1-T2": "What if we used naive Bayes instead? It's the classic for spam.",
+    "S3-T1": "I ran it: the linear SVM beats logistic regression by two points. Let's make the SVM our baseline.",
+    "S3-T2": "OK, SVM it is."
+  },
+  "request": {
+    "question": {
+      "text": "Which baseline classifier, if any, did we use before the current one?",
+      "kind": "previous",
+      "session": null
+    },
+    "context": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2",
+    "allowed_source_turn_ids": [
+      "S1-T1",
+      "S1-T2",
+      "S3-T1",
+      "S3-T2"
+    ]
+  },
+  "observed_decision": {
+    "status": "answer",
+    "value": "logistic regression",
+    "cited_turn_ids": [
+      "S1-T1"
+    ],
+    "text": "The baseline classifier before the current one (linear SVM) was logistic regression, which is marked as superseded in S1-T1."
+  }
+}

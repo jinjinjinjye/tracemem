@@ -1,0 +1,352 @@
+{
+  "cases": [
+    {
+      "id": "previous_replacement_omitted",
+      "scenario_id": "pilot-05",
+      "question_id": "model.baseline@S3-previous",
+      "after": "S3",
+      "provenance": {
+        "split": "dev",
+        "run": "20261019T024350Z-resolver-provenance-rerun",
+        "system": "tracemem-controlled",
+        "model": "openai/gpt-4.1-mini",
+        "sequence": 88,
+        "request_hash": "0a145ff231805da4a0b16d636d6ea009aa5e215fe5280c394804c28504674349",
+        "scope": "Actual saved request, reply and records replayed from the saved operations. Gold is used only by tests, never supplied to the answerer."
+      },
+      "glosses": {
+        "S1-T1": "Let's make the baseline logistic regression on TF-IDF features.",
+        "S1-T2": "What if we used naive Bayes instead? It's the classic for spam.",
+        "S3-T1": "I ran it: the linear SVM beats logistic regression by two points. Let's make the SVM our baseline.",
+        "S3-T2": "OK, SVM it is."
+      },
+      "records": [
+        {
+          "record_id": "model.baseline@S1-T1",
+          "project_id": "spam-filter",
+          "item": "model.baseline",
+          "value": "logistic regression",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Kai"
+          ],
+          "created_turn": "S1-T1",
+          "created_at": "2026-10-05T10:00:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "features.text@S1-T1",
+          "project_id": "spam-filter",
+          "item": "features.text",
+          "value": "TF-IDF",
+          "status": "active",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Kai"
+          ],
+          "created_turn": "S1-T1",
+          "created_at": "2026-10-05T10:00:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "model.baseline@S1-T2",
+          "project_id": "spam-filter",
+          "item": "model.baseline",
+          "value": "naive Bayes",
+          "status": "proposed",
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "speakers": [
+            "Rosa"
+          ],
+          "created_turn": "S1-T2",
+          "created_at": "2026-10-05T10:01:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "model.baseline@S3-T1",
+          "project_id": "spam-filter",
+          "item": "model.baseline",
+          "value": "linear SVM",
+          "status": "active",
+          "source_turn_ids": [
+            "S3-T1",
+            "S3-T2"
+          ],
+          "speakers": [
+            "Kai",
+            "Rosa"
+          ],
+          "created_turn": "S3-T1",
+          "created_at": "2026-10-12T12:00:00",
+          "supersedes": [
+            "model.baseline@S1-T1"
+          ],
+          "reason": null
+        }
+      ],
+      "request": {
+        "question": {
+          "text": "Which baseline classifier, if any, did we use before the current one?",
+          "kind": "previous",
+          "session": null
+        },
+        "context": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2",
+        "allowed_source_turn_ids": [
+          "S1-T1",
+          "S1-T2",
+          "S3-T1",
+          "S3-T2"
+        ]
+      },
+      "observed_decision": {
+        "status": "answer",
+        "value": "logistic regression",
+        "cited_turn_ids": [
+          "S1-T1"
+        ],
+        "text": "The baseline classifier before the current one (linear SVM) was logistic regression, which is marked as superseded in S1-T1."
+      },
+      "corrected_decision": {
+        "status": "answer",
+        "value": "logistic regression",
+        "cited_turn_ids": [
+          "S1-T1",
+          "S3-T1"
+        ],
+        "text": "Scripted complete evidence for the requested value and time relationship."
+      }
+    },
+    {
+      "id": "adopted_origin_omitted",
+      "scenario_id": "pilot-01",
+      "question_id": "model.sentiment@S4",
+      "after": "S4",
+      "provenance": {
+        "split": "dev",
+        "run": "20261019T024350Z-resolver-provenance-rerun",
+        "system": "tracemem-controlled",
+        "model": "openai/gpt-4.1-mini",
+        "sequence": 23,
+        "request_hash": "649ee04ba39d9d81e02e989ef696eaaef415c071b98438c1344c2e96324f40cf",
+        "scope": "Actual saved request, reply and records replayed from the saved operations. Gold is used only by tests, never supplied to the answerer."
+      },
+      "glosses": {
+        "S1-T1": "Let's go with BERT for the sentiment classifier. It's the safe choice.",
+        "S1-T2": "Sounds good. What do we report, plain accuracy?",
+        "S1-T3": "Yes, accuracy as the main metric for now.",
+        "S2-T3": "Maybe we could try DistilBERT? It might be faster.",
+        "S2-T5": "Separately, for the NER part we'll use a spaCy model.",
+        "S3-T2": "Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.",
+        "S3-T3": "With an 80/20 split, accuracy will flatter us. Should we use macro-F1?",
+        "S3-T4": "Agreed, macro-F1 is the primary metric from now on.",
+        "S4-T1": "For the write-up: we're on DistilBERT, scored with macro-F1."
+      },
+      "records": [
+        {
+          "record_id": "model.sentiment@S1-T1",
+          "project_id": "sentiment-project",
+          "item": "model.sentiment",
+          "value": "BERT",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Mei"
+          ],
+          "created_turn": "S1-T1",
+          "created_at": "2026-10-05T10:00:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "metric.primary@S1-T2",
+          "project_id": "sentiment-project",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "speakers": [
+            "Arun"
+          ],
+          "created_turn": "S1-T2",
+          "created_at": "2026-10-05T10:01:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "metric.primary@S1-T3",
+          "project_id": "sentiment-project",
+          "item": "metric.primary",
+          "value": "accuracy",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S1-T3",
+            "S1-T2"
+          ],
+          "speakers": [
+            "Mei",
+            "Arun"
+          ],
+          "created_turn": "S1-T3",
+          "created_at": "2026-10-05T10:02:00",
+          "supersedes": [
+            "metric.primary@S1-T2"
+          ],
+          "reason": null
+        },
+        {
+          "record_id": "model.sentiment@S2-T3",
+          "project_id": "sentiment-project",
+          "item": "model.sentiment",
+          "value": "DistilBERT",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "speakers": [
+            "Arun"
+          ],
+          "created_turn": "S2-T3",
+          "created_at": "2026-10-08T11:02:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "model.ner@S2-T5",
+          "project_id": "sentiment-project",
+          "item": "model.ner",
+          "value": "spaCy",
+          "status": "active",
+          "source_turn_ids": [
+            "S2-T5"
+          ],
+          "speakers": [
+            "Mei"
+          ],
+          "created_turn": "S2-T5",
+          "created_at": "2026-10-08T11:04:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "model.sentiment@S3-T2",
+          "project_id": "sentiment-project",
+          "item": "model.sentiment",
+          "value": "DistilBERT",
+          "status": "active",
+          "source_turn_ids": [
+            "S3-T2",
+            "S2-T3",
+            "S1-T1",
+            "S4-T1"
+          ],
+          "speakers": [
+            "Mei",
+            "Arun",
+            "Mei",
+            "Mei"
+          ],
+          "created_turn": "S3-T2",
+          "created_at": "2026-10-12T12:01:00",
+          "supersedes": [
+            "model.sentiment@S1-T1",
+            "model.sentiment@S2-T3"
+          ],
+          "reason": null
+        },
+        {
+          "record_id": "metric.primary@S3-T3",
+          "project_id": "sentiment-project",
+          "item": "metric.primary",
+          "value": "macro-F1",
+          "status": "superseded",
+          "source_turn_ids": [
+            "S3-T3"
+          ],
+          "speakers": [
+            "Arun"
+          ],
+          "created_turn": "S3-T3",
+          "created_at": "2026-10-12T12:02:00",
+          "supersedes": [],
+          "reason": null
+        },
+        {
+          "record_id": "metric.primary@S3-T4",
+          "project_id": "sentiment-project",
+          "item": "metric.primary",
+          "value": "macro-F1",
+          "status": "active",
+          "source_turn_ids": [
+            "S3-T4",
+            "S3-T3",
+            "S1-T3",
+            "S4-T1"
+          ],
+          "speakers": [
+            "Mei",
+            "Arun",
+            "Mei",
+            "Mei"
+          ],
+          "created_turn": "S3-T4",
+          "created_at": "2026-10-12T12:03:00",
+          "supersedes": [
+            "metric.primary@S1-T3",
+            "metric.primary@S3-T3"
+          ],
+          "reason": null
+        }
+      ],
+      "request": {
+        "question": {
+          "text": "Which model are we using for the sentiment classifier?",
+          "kind": "current",
+          "session": null
+        },
+        "context": "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [superseded] | sources=S1-T3,S1-T2\nS2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3,S1-T1,S4-T1\nS3-T3 Arun: metric.primary = macro-F1 [superseded] | sources=S3-T3\nS3-T4 Mei: metric.primary = macro-F1 [active] | sources=S3-T4,S3-T3,S1-T3,S4-T1",
+        "allowed_source_turn_ids": [
+          "S1-T1",
+          "S1-T2",
+          "S1-T3",
+          "S2-T3",
+          "S2-T5",
+          "S3-T2",
+          "S3-T3",
+          "S3-T4",
+          "S4-T1"
+        ]
+      },
+      "observed_decision": {
+        "status": "answer",
+        "value": "DistilBERT",
+        "cited_turn_ids": [
+          "S3-T2"
+        ],
+        "text": "The current settled model for the sentiment classifier is DistilBERT, as established by Mei in S3-T2, which is marked active and supersedes the earlier BERT model from S1-T1 and the earlier DistilBERT proposal in S2-T3."
+      },
+      "corrected_decision": {
+        "status": "answer",
+        "value": "DistilBERT",
+        "cited_turn_ids": [
+          "S2-T3",
+          "S3-T2"
+        ],
+        "text": "Scripted complete evidence for the requested value and time relationship."
+      }
+    }
+  ]
+}

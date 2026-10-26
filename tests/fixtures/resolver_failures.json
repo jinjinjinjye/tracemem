@@ -1,0 +1,574 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "source": "20261018T124711Z-real-model-comparison",
+    "split": "dev",
+    "content": "Captured synthetic development candidates, visible records, and all invalid decisions from the eight final write failures. Provider data, credentials, and machine paths are excluded.",
+    "corrections": "Corrected decisions are scripted test inputs, not rerun model predictions and not benchmark gold. Earlier bad state is deliberately retained."
+  },
+  "cases": [
+    {
+      "case_id": "tracemem-controlled:pilot-02:task.label_audit@S3-T2",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-02",
+      "description": "Restarting the audit with no active record must adopt only the matching open proposal; a proposal cannot be a FLAG target.",
+      "candidate": {
+        "candidate_id": "task.label_audit@S3-T2",
+        "item": "task.label_audit",
+        "project_id": "review-sentiment",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speaker": "Priya",
+        "text": "OK, IMDB then. I'll restart the audit today.",
+        "value": "open"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-06T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.label_audit",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "task.label_audit@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        },
+        {
+          "created_at": "2026-10-09T11:02:00",
+          "created_turn": "S2-T3",
+          "item": "task.label_audit",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "task.label_audit@S2-T3",
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "speakers": [
+            "Priya"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "blocked"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"FLAG\",\"add_as\":null,\"targets\":[\"task.label_audit@S1-T3\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":null,\"rationale\":\"The candidate proposes the value 'open' for task.label_audit, which matches the earlier proposed record task.label_audit@S1-T3 with value 'open'. However, there is also a conflicting proposed record task.label_audit@S2-T3 with value 'blocked'. Since no active record exists, and there are conflicting proposals, the candidate's statement flags the existing proposal as disputed rather than confirming or superseding it.\"}",
+          "error": "KEEP and FLAG must target exactly the active record"
+        },
+        {
+          "response": "{\"op\":\"FLAG\",\"add_as\":null,\"targets\":[\"task.label_audit@S1-T3\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":null,\"rationale\":\"The candidate proposes 'open' but the only existing record is a proposed 'open' from S1-T3 and a proposed 'blocked' from S2-T3; no active record exists, so FLAG targets the proposed 'open' record to indicate dispute.\"}",
+          "error": "KEEP and FLAG must target exactly the active record"
+        }
+      ],
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [
+          "task.label_audit@S1-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T2",
+          "S1-T3"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "task.label_audit@S1-T3": "superseded",
+        "task.label_audit@S2-T3": "proposed"
+      },
+      "expected_previous_active": null
+    },
+    {
+      "case_id": "tracemem-controlled:pilot-02:task.label_audit@S4-T1",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-02",
+      "description": "Completion after previous failed writes has no active record; it cannot supersede or adopt old open/blocked proposals as the new completed value.",
+      "candidate": {
+        "candidate_id": "task.label_audit@S4-T1",
+        "item": "task.label_audit",
+        "project_id": "review-sentiment",
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "speaker": "Priya",
+        "text": "The label audit is done: about 3% of labels look wrong.",
+        "value": "completed"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-06T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.label_audit",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "task.label_audit@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        },
+        {
+          "created_at": "2026-10-09T11:02:00",
+          "created_turn": "S2-T3",
+          "item": "task.label_audit",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "task.label_audit@S2-T3",
+          "source_turn_ids": [
+            "S2-T3"
+          ],
+          "speakers": [
+            "Priya"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "blocked"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"task.label_audit@S1-T3\",\"task.label_audit@S2-T3\"],\"source_turn_ids\":[\"S4-T1\"],\"reason\":null,\"rationale\":\"The candidate states the label audit is completed, superseding previous open and blocked proposals.\"}",
+          "error": "without an active record, confirm a proposal with ADD-active"
+        },
+        {
+          "response": "{\"op\":\"ADD\",\"add_as\":\"active\",\"targets\":[\"task.label_audit@S1-T3\",\"task.label_audit@S2-T3\"],\"source_turn_ids\":[\"S4-T1\"],\"reason\":null,\"rationale\":\"No active record exists; the candidate confirms the task as completed, so add it as active and target existing proposals for adoption.\"}",
+          "error": "ADD-active may only adopt open proposals with the candidate value"
+        }
+      ],
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "task.label_audit@S1-T3": "proposed",
+        "task.label_audit@S2-T3": "proposed"
+      },
+      "expected_previous_active": null
+    },
+    {
+      "case_id": "tracemem-controlled:pilot-04:task.error_analysis@S3-T2",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-04",
+      "description": "Cancellation with only an open proposal must add a settled cancelled value without adopting the different-value proposal.",
+      "candidate": {
+        "candidate_id": "task.error_analysis@S3-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speaker": "Ana",
+        "text": "Good. We're dropping the error analysis; the report deadline moved up.",
+        "value": "cancelled"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-05T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.error_analysis",
+          "project_id": "churn-prediction",
+          "reason": null,
+          "record_id": "task.error_analysis@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Ana"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"task.error_analysis@S1-T3\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":\"We're dropping the error analysis; the report deadline moved up.\",\"rationale\":\"The candidate explicitly cancels the previously proposed 'open' status for the task.error_analysis, changing it to 'cancelled', which supersedes the earlier proposal.\"}",
+          "error": "without an active record, confirm a proposal with ADD-active"
+        },
+        {
+          "response": "{\"op\":\"ADD\",\"add_as\":\"active\",\"targets\":[\"task.error_analysis@S1-T3\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":\"Good. We're dropping the error analysis; the report deadline moved up.\",\"rationale\":\"No active record exists; the candidate confirms the proposal to cancel the task, so add as active and adopt the proposal.\"}",
+          "error": "ADD-active may only adopt open proposals with the candidate value"
+        }
+      ],
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "task.error_analysis@S1-T3": "proposed"
+      },
+      "expected_previous_active": null
+    },
+    {
+      "case_id": "tracemem-controlled:pilot-05:model.baseline@S3-T1",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-05",
+      "description": "A settled move to linear SVM replaces active logistic regression; unrelated contested naive Bayes is settled by storage, not included as a SUPERSEDE target.",
+      "candidate": {
+        "candidate_id": "model.baseline@S3-T1",
+        "item": "model.baseline",
+        "project_id": "spam-filter",
+        "source_turn_ids": [
+          "S3-T1"
+        ],
+        "speaker": "Kai",
+        "text": "I ran it: the linear SVM beats logistic regression by two points. Let's make the SVM our baseline.",
+        "value": "linear SVM"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-05T10:00:00",
+          "created_turn": "S1-T1",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "reason": null,
+          "record_id": "model.baseline@S1-T1",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Kai"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "logistic regression"
+        },
+        {
+          "created_at": "2026-10-05T10:01:00",
+          "created_turn": "S1-T2",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "reason": "Suggestion to use naive Bayes instead of the current logistic regression model.",
+          "record_id": "model.baseline@S1-T2",
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "speakers": [
+            "Rosa"
+          ],
+          "status": "contested",
+          "supersedes": [
+            "model.baseline@S1-T1"
+          ],
+          "value": "naive Bayes"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.baseline@S1-T1\",\"model.baseline@S1-T2\"],\"source_turn_ids\":[\"S3-T1\"],\"reason\":\"Let's make the SVM our baseline.\",\"rationale\":\"The user explicitly states to make the linear SVM the baseline, replacing the active logistic regression and the contested naive Bayes proposal.\"}",
+          "error": "additional SUPERSEDE targets must carry the new value"
+        },
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.baseline@S1-T1\",\"model.baseline@S1-T2\"],\"source_turn_ids\":[\"S3-T1\"],\"reason\":null,\"rationale\":\"The user confirms a new baseline model 'linear SVM', superseding the active 'logistic regression' and the contested 'naive Bayes' proposals, both related to the same item.\"}",
+          "error": "additional SUPERSEDE targets must carry the new value"
+        }
+      ],
+      "corrected_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "model.baseline@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T1"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "model.baseline@S1-T1": "superseded",
+        "model.baseline@S1-T2": "declined"
+      },
+      "expected_previous_active": "model.baseline@S1-T1"
+    },
+    {
+      "case_id": "tracemem-controlled:pilot-05:model.baseline@S3-T2",
+      "system": "tracemem-controlled",
+      "scenario_id": "pilot-05",
+      "description": "After the previous write failed, confirming SVM still replaces logistic regression; neither the unrelated dispute nor the current candidate is an existing target.",
+      "candidate": {
+        "candidate_id": "model.baseline@S3-T2",
+        "item": "model.baseline",
+        "project_id": "spam-filter",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speaker": "Rosa",
+        "text": "OK, SVM it is.",
+        "value": "linear SVM"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-05T10:00:00",
+          "created_turn": "S1-T1",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "reason": null,
+          "record_id": "model.baseline@S1-T1",
+          "source_turn_ids": [
+            "S1-T1"
+          ],
+          "speakers": [
+            "Kai"
+          ],
+          "status": "active",
+          "supersedes": [],
+          "value": "logistic regression"
+        },
+        {
+          "created_at": "2026-10-05T10:01:00",
+          "created_turn": "S1-T2",
+          "item": "model.baseline",
+          "project_id": "spam-filter",
+          "reason": "Suggestion to use naive Bayes instead of the current logistic regression model.",
+          "record_id": "model.baseline@S1-T2",
+          "source_turn_ids": [
+            "S1-T2"
+          ],
+          "speakers": [
+            "Rosa"
+          ],
+          "status": "contested",
+          "supersedes": [
+            "model.baseline@S1-T1"
+          ],
+          "value": "naive Bayes"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.baseline@S1-T1\",\"model.baseline@S1-T2\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":null,\"rationale\":\"The user explicitly confirms switching the baseline model to 'linear SVM', superseding the active 'logistic regression' and the contested 'naive Bayes' proposals.\"}",
+          "error": "additional SUPERSEDE targets must carry the new value"
+        },
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.baseline@S1-T1\",\"model.baseline@S3-T2\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":\"OK, SVM it is.\",\"rationale\":\"The user explicitly confirms switching the baseline model to 'linear SVM', superseding the previous active record and adopting the new value from the current turn.\"}",
+          "error": "targets must name supplied records of this item and project"
+        }
+      ],
+      "corrected_decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "model.baseline@S1-T1"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "model.baseline@S1-T1": "superseded",
+        "model.baseline@S1-T2": "declined"
+      },
+      "expected_previous_active": "model.baseline@S1-T1"
+    },
+    {
+      "case_id": "tracemem-no-versions:pilot-02:task.label_audit@S2-T3",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-02",
+      "description": "A blocked task report with no active record cannot FLAG a proposed open task; the scripted correction adds the first settled blocked value.",
+      "candidate": {
+        "candidate_id": "task.label_audit@S2-T3",
+        "item": "task.label_audit",
+        "project_id": "review-sentiment",
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "speaker": "Priya",
+        "text": "The label audit is blocked until we know which dataset it is.",
+        "value": "blocked"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-06T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.label_audit",
+          "project_id": "review-sentiment",
+          "reason": null,
+          "record_id": "task.label_audit@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Wei"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"FLAG\",\"add_as\":null,\"targets\":[\"task.label_audit@S1-T3\"],\"source_turn_ids\":[\"S2-T3\"],\"reason\":\"The label audit is blocked until we know which dataset it is.\",\"rationale\":\"The current candidate states the task is blocked, which disputes the existing proposed status of open without settling it.\"}",
+          "error": "KEEP and FLAG must target exactly the active record"
+        },
+        {
+          "response": "{\"op\":\"FLAG\",\"add_as\":null,\"targets\":[\"task.label_audit@S1-T3\"],\"source_turn_ids\":[\"S2-T3\"],\"reason\":\"The label audit is blocked until we know which dataset it is, disputing the current 'open' status.\",\"rationale\":\"The current active record is proposed as 'open', and the new statement indicates the task is 'blocked', which disputes the active value without settling it.\"}",
+          "error": "KEEP and FLAG must target exactly the active record"
+        }
+      ],
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S2-T3"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "task.label_audit@S1-T3": "proposed"
+      },
+      "expected_previous_active": null
+    },
+    {
+      "case_id": "tracemem-no-versions:pilot-03:model.ner@S3-T1",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-03",
+      "description": "Moving the tagger to spaCy when only a BERT proposal exists cannot supersede or adopt that different-value proposal.",
+      "candidate": {
+        "candidate_id": "model.ner@S3-T1",
+        "item": "model.ner",
+        "project_id": "product-reviews",
+        "source_turn_ids": [
+          "S3-T1"
+        ],
+        "speaker": "Lin",
+        "text": "Fine-tuning BERT for tagging is too slow on our GPU. We move the tagger to spaCy.",
+        "value": "spaCy"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-08T11:00:00",
+          "created_turn": "S2-T1",
+          "item": "model.ner",
+          "project_id": "product-reviews",
+          "reason": null,
+          "record_id": "model.ner@S2-T1",
+          "source_turn_ids": [
+            "S2-T1"
+          ],
+          "speakers": [
+            "Lin"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "BERT"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"model.ner@S2-T1\"],\"source_turn_ids\":[\"S3-T1\"],\"reason\":null,\"rationale\":\"The user states they are moving the tagger to spaCy due to slow fine-tuning of BERT, which supersedes the previously proposed BERT model.\"}",
+          "error": "without an active record, confirm a proposal with ADD-active"
+        },
+        {
+          "response": "{\"op\":\"ADD\",\"add_as\":\"active\",\"targets\":[\"model.ner@S2-T1\"],\"source_turn_ids\":[\"S3-T1\"],\"reason\":\"Fine-tuning BERT for tagging is too slow on our GPU. We move the tagger to spaCy.\",\"rationale\":\"No active record exists; the candidate confirms a new value different from the proposed BERT, so add spaCy as active and adopt the proposal.\"}",
+          "error": "ADD-active may only adopt open proposals with the candidate value"
+        }
+      ],
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S3-T1"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "model.ner@S2-T1": "proposed"
+      },
+      "expected_previous_active": null
+    },
+    {
+      "case_id": "tracemem-no-versions:pilot-04:task.error_analysis@S3-T2",
+      "system": "tracemem-no-versions",
+      "scenario_id": "pilot-04",
+      "description": "The no-version run repeated the cancellation failure: an open proposal cannot be adopted as the different cancelled value.",
+      "candidate": {
+        "candidate_id": "task.error_analysis@S3-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speaker": "Ana",
+        "text": "Good. We're dropping the error analysis; the report deadline moved up.",
+        "value": "cancelled"
+      },
+      "related": [
+        {
+          "created_at": "2026-10-05T10:02:00",
+          "created_turn": "S1-T3",
+          "item": "task.error_analysis",
+          "project_id": "churn-prediction",
+          "reason": null,
+          "record_id": "task.error_analysis@S1-T3",
+          "source_turn_ids": [
+            "S1-T3"
+          ],
+          "speakers": [
+            "Ana"
+          ],
+          "status": "proposed",
+          "supersedes": [],
+          "value": "open"
+        }
+      ],
+      "invalid_attempts": [
+        {
+          "response": "{\"op\":\"SUPERSEDE\",\"add_as\":null,\"targets\":[\"task.error_analysis@S1-T3\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":\"We're dropping the error analysis; the report deadline moved up.\",\"rationale\":\"The candidate explicitly cancels the previously proposed 'open' status for the task, settling on 'cancelled' and superseding the earlier proposal.\"}",
+          "error": "without an active record, confirm a proposal with ADD-active"
+        },
+        {
+          "response": "{\"op\":\"ADD\",\"add_as\":\"active\",\"targets\":[\"task.error_analysis@S1-T3\"],\"source_turn_ids\":[\"S3-T2\"],\"reason\":\"Good. We're dropping the error analysis; the report deadline moved up.\",\"rationale\":\"No active record exists; the candidate confirms the proposal to cancel the task, so add as active and adopt the proposal.\"}",
+          "error": "ADD-active may only adopt open proposals with the candidate value"
+        }
+      ],
+      "corrected_decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": null,
+        "rationale": "Scripted contract-valid correction for this offline regression; not a real-model prediction."
+      },
+      "expected_existing_statuses": {
+        "task.error_analysis@S1-T3": "proposed"
+      },
+      "expected_previous_active": null
+    }
+  ]
+}

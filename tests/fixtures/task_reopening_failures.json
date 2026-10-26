@@ -1,0 +1,324 @@
+{
+  "provenance": {
+    "split": "dev",
+    "run_id": "20261018T221110Z-resolver-intent-rerun",
+    "scenario_id": "pilot-04",
+    "description": "Synthetic development failures from the real-model intent rerun. Captures contain only model-visible evidence and parsed replies; corrected replies and the final explicit acceptance are scripted offline test data."
+  },
+  "resolver_failure": {
+    "system": "tracemem-controlled",
+    "candidate": {
+      "candidate_id": "task.error_analysis@S4-T2",
+      "item": "task.error_analysis",
+      "project_id": "churn-prediction",
+      "source_turn_ids": [
+        "S4-T2"
+      ],
+      "speaker": "Ana",
+      "text": "Should we reopen the error analysis now that there's slack?",
+      "value": "open"
+    },
+    "related": [
+      {
+        "created_at": "2026-10-05T10:02:00",
+        "created_turn": "S1-T3",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "reason": "Ana commits to doing an error analysis task once predictions are available, indicating a settled plan to open the task.",
+        "record_id": "task.error_analysis@S1-T3",
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "speakers": [
+          "Ana"
+        ],
+        "status": "superseded",
+        "supersedes": [],
+        "value": "open"
+      },
+      {
+        "created_at": "2026-10-12T12:01:00",
+        "created_turn": "S3-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "reason": "Ana explicitly commits to dropping the error analysis task, indicating cancellation despite the previous active open task.",
+        "record_id": "task.error_analysis@S3-T2",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speakers": [
+          "Ana"
+        ],
+        "status": "active",
+        "supersedes": [
+          "task.error_analysis@S1-T3"
+        ],
+        "value": "cancelled"
+      }
+    ],
+    "observed_decision": {
+      "op": "SUPERSEDE",
+      "add_as": null,
+      "targets": [
+        "task.error_analysis@S3-T2"
+      ],
+      "source_turn_ids": [
+        "S4-T2"
+      ],
+      "reason": "Ana proposes reopening the error analysis task, which directly contradicts the current active cancellation; this is a settled change of task status.",
+      "rationale": "The candidate explicitly commits to reopening the task, superseding the previously active cancelled status."
+    },
+    "corrected_decision": {
+      "op": "ADD",
+      "add_as": "proposed",
+      "targets": [],
+      "source_turn_ids": [
+        "S4-T2"
+      ],
+      "reason": "there's slack",
+      "rationale": "The speaker asks whether to reopen; extra capacity supports considering a proposal but does not adopt it."
+    }
+  },
+  "answer_failure": {
+    "system": "tracemem-no-versions",
+    "request": {
+      "question": {
+        "text": "What is the status of the error analysis?",
+        "kind": "current",
+        "session": null
+      },
+      "context": "S1-T1 Ana: compute.gpu = Colab [proposed] | sources=S1-T1\nS2-T2 Ana: compute.gpu = lab server [active] | sources=S2-T2\nS3-T2 Ana: task.error_analysis = cancelled [active] | sources=S3-T2\nS4-T1 Ben: task.baseline_runs = completed [active] | sources=S4-T1\nS4-T2 Ana: task.error_analysis = open [proposed] | sources=S4-T2",
+      "allowed_source_turn_ids": [
+        "S1-T1",
+        "S2-T2",
+        "S3-T2",
+        "S4-T1",
+        "S4-T2"
+      ]
+    },
+    "records": [
+      {
+        "record_id": "compute.gpu@S1-T1",
+        "project_id": "churn-prediction",
+        "item": "compute.gpu",
+        "value": "Colab",
+        "status": "proposed",
+        "source_turn_ids": [
+          "S1-T1"
+        ],
+        "speakers": [
+          "Ana"
+        ],
+        "created_turn": "S1-T1",
+        "created_at": "2026-10-05T10:00:00",
+        "supersedes": [],
+        "reason": "Speaker suggests running everything on Colab as a proposal, not a confirmed decision."
+      },
+      {
+        "record_id": "compute.gpu@S2-T2",
+        "project_id": "churn-prediction",
+        "item": "compute.gpu",
+        "value": "lab server",
+        "status": "active",
+        "source_turn_ids": [
+          "S2-T2"
+        ],
+        "speakers": [
+          "Ana"
+        ],
+        "created_turn": "S2-T2",
+        "created_at": "2026-10-08T11:01:00",
+        "supersedes": [],
+        "reason": "Ana commits to moving experiments to the lab server, indicating a settled choice rather than a mere proposal."
+      },
+      {
+        "record_id": "task.error_analysis@S3-T2",
+        "project_id": "churn-prediction",
+        "item": "task.error_analysis",
+        "value": "cancelled",
+        "status": "active",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speakers": [
+          "Ana"
+        ],
+        "created_turn": "S3-T2",
+        "created_at": "2026-10-12T12:01:00",
+        "supersedes": [],
+        "reason": "Ana explicitly commits to dropping the error analysis task due to the report deadline moving up, indicating cancellation of the previously active open task."
+      },
+      {
+        "record_id": "task.baseline_runs@S4-T1",
+        "project_id": "churn-prediction",
+        "item": "task.baseline_runs",
+        "value": "completed",
+        "status": "active",
+        "source_turn_ids": [
+          "S4-T1"
+        ],
+        "speakers": [
+          "Ben"
+        ],
+        "created_turn": "S4-T1",
+        "created_at": "2026-10-15T13:00:00",
+        "supersedes": [],
+        "reason": "Ben explicitly confirms that the baseline runs are completed, updating the status from open to completed."
+      },
+      {
+        "record_id": "task.error_analysis@S4-T2",
+        "project_id": "churn-prediction",
+        "item": "task.error_analysis",
+        "value": "open",
+        "status": "proposed",
+        "source_turn_ids": [
+          "S4-T2"
+        ],
+        "speakers": [
+          "Ana"
+        ],
+        "created_turn": "S4-T2",
+        "created_at": "2026-10-15T13:01:00",
+        "supersedes": [],
+        "reason": "Ana is suggesting reopening the error analysis task, which is a proposal, not a confirmed decision."
+      }
+    ],
+    "observed_decision": {
+      "status": "conflict",
+      "value": null,
+      "cited_turn_ids": [
+        "S3-T2",
+        "S4-T2"
+      ],
+      "text": "There is conflicting information about the status of the error analysis: in S3-T2 it is marked as cancelled (active), while in S4-T2 it is proposed as open."
+    },
+    "corrected_decision": {
+      "status": "answer",
+      "value": "cancelled",
+      "cited_turn_ids": [
+        "S3-T2"
+      ],
+      "text": "The task remains cancelled. Reopening is only proposed."
+    }
+  },
+  "lifecycle": [
+    {
+      "candidate": {
+        "candidate_id": "task.error_analysis@S1-T3",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "speaker": "Ana",
+        "text": "And I'll do an error analysis on 100 misclassified customers once we have predictions.",
+        "value": "open"
+      },
+      "decision": {
+        "op": "ADD",
+        "add_as": "active",
+        "targets": [],
+        "source_turn_ids": [
+          "S1-T3"
+        ],
+        "reason": "Ana commits to doing an error analysis task once predictions are available, indicating a settled plan to open the task.",
+        "rationale": "The statement 'I'll do an error analysis...' is a commitment to undertake the task, justifying adding it as active."
+      },
+      "observation": {
+        "turn_id": "S1-T3",
+        "when": "2026-10-05T10:02:00",
+        "speaker": "Ana"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_id": "task.error_analysis@S3-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "speaker": "Ana",
+        "text": "Good. We're dropping the error analysis; the report deadline moved up.",
+        "value": "cancelled"
+      },
+      "decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "task.error_analysis@S1-T3"
+        ],
+        "source_turn_ids": [
+          "S3-T2"
+        ],
+        "reason": "Ana explicitly commits to dropping the error analysis task, indicating cancellation despite the previous active open task.",
+        "rationale": "Ana's statement 'We're dropping the error analysis' is a clear decision to cancel the previously active open task, justifying a SUPERSEDE operation to update the task status from open to cancelled."
+      },
+      "observation": {
+        "turn_id": "S3-T2",
+        "when": "2026-10-12T12:01:00",
+        "speaker": "Ana"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_id": "task.error_analysis@S4-T2",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S4-T2"
+        ],
+        "speaker": "Ana",
+        "text": "Should we reopen the error analysis now that there's slack?",
+        "value": "open"
+      },
+      "decision": {
+        "op": "ADD",
+        "add_as": "proposed",
+        "targets": [],
+        "source_turn_ids": [
+          "S4-T2"
+        ],
+        "reason": "there's slack",
+        "rationale": "The speaker asks whether to reopen; extra capacity supports considering a proposal but does not adopt it."
+      },
+      "observation": {
+        "turn_id": "S4-T2",
+        "when": "2026-10-15T13:01:00",
+        "speaker": "Ana"
+      }
+    },
+    {
+      "candidate": {
+        "candidate_id": "task.error_analysis@S5-T1",
+        "item": "task.error_analysis",
+        "project_id": "churn-prediction",
+        "source_turn_ids": [
+          "S5-T1"
+        ],
+        "speaker": "Ana",
+        "text": "We accept the reopening proposal. I am restarting the error analysis today.",
+        "value": "open"
+      },
+      "decision": {
+        "op": "SUPERSEDE",
+        "add_as": null,
+        "targets": [
+          "task.error_analysis@S3-T2",
+          "task.error_analysis@S4-T2"
+        ],
+        "source_turn_ids": [
+          "S5-T1",
+          "S4-T2"
+        ],
+        "reason": null,
+        "rationale": "The speaker explicitly adopts the pending reopening proposal and commits to restarting."
+      },
+      "observation": {
+        "turn_id": "S5-T1",
+        "when": "2026-10-19T14:00:00",
+        "speaker": "Ana"
+      }
+    }
+  ]
+}
