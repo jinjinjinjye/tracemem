@@ -1,0 +1,303 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Kai: model.baseline = logistic regression [active] | sources=S1-T1",
+   "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "model.baseline@S1-T1",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "logistic regression",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "features.text@S1-T1",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "TF-IDF",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.baseline@S1-T2",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "naive Bayes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S1": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [active] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2",
+   "model.baseline@S1": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [active] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Kai: model.baseline = logistic regression [active] | sources=S1-T1",
+   "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "model.baseline@S1-T1",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "logistic regression",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "features.text@S1-T1",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "TF-IDF",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.baseline@S1-T2",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "naive Bayes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S2": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [active] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2",
+   "model.baseline@S2": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [active] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1",
+   "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2",
+   "S3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2"
+  ],
+  "records": [
+   {
+    "record_id": "model.baseline@S1-T1",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "logistic regression",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "features.text@S1-T1",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "TF-IDF",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.baseline@S1-T2",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "naive Bayes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.baseline@S3-T1",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "linear SVM",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T1",
+     "S3-T2"
+    ],
+    "speakers": [
+     "Kai",
+     "Rosa"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [
+     "model.baseline@S1-T1"
+    ],
+    "reason": "the linear SVM beats logistic regression by two points"
+   }
+  ],
+  "shown": {
+   "features.text@S3": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2",
+   "model.baseline@S3": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2",
+   "model.baseline@S3-previous": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1",
+   "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2",
+   "S3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2"
+  ],
+  "records": [
+   {
+    "record_id": "model.baseline@S1-T1",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "logistic regression",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "features.text@S1-T1",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "TF-IDF",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.baseline@S1-T2",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "naive Bayes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.baseline@S3-T1",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "linear SVM",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T1",
+     "S3-T2"
+    ],
+    "speakers": [
+     "Kai",
+     "Rosa"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [
+     "model.baseline@S1-T1"
+    ],
+    "reason": "the linear SVM beats logistic regression by two points"
+   }
+  ],
+  "shown": {
+   "features.text@S4": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2",
+   "model.baseline@S4": "S1-T1 Kai: features.text = TF-IDF [active] | sources=S1-T1\nS1-T1 Kai: model.baseline = logistic regression [superseded] | sources=S1-T1\nS1-T2 Rosa: model.baseline = naive Bayes [proposed] | sources=S1-T2\nS3-T1 Kai: model.baseline = linear SVM [active] | sources=S3-T1,S3-T2"
+  }
+ }
+}

@@ -1,0 +1,635 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2) | sources=S1-T2",
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks. | sources=S1-T4",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:be6c662f-fe63-4c4e-9664-8a623e641e67",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7785c8b1-9109-41f4-92b8-e2db5a19903f",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:38bf9556-dcbc-4949-bdeb-28e1bc6ca751",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:dfdebd64-0baf-439c-b324-2bb47e2387ae",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S1": "S1-T2 Felix: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2) | sources=S1-T2\nS1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks. | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4",
+   "model.asr@S1": "S1-T2 Felix: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2) | sources=S1-T2\nS1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks. | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks. | sources=S1-T4",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4) | sources=S2-T4,S1-T2",
+   "S2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2",
+   "S2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6",
+   "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:7785c8b1-9109-41f4-92b8-e2db5a19903f",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:38bf9556-dcbc-4949-bdeb-28e1bc6ca751",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:dfdebd64-0baf-439c-b324-2bb47e2387ae",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:be6c662f-fe63-4c4e-9664-8a623e641e67",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:75df20e0-694f-4009-8464-fda9094d43a4",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:bdbc043f-404d-4e1c-9008-be5faa13ab39",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:2e98c213-c671-4f4e-8a47-777c0ce64b75",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S2": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks. | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6",
+   "model.asr@S2": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks. | sources=S1-T4\nS2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6",
+   "output.format@S2": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4) | sources=S2-T4,S1-T2",
+   "S2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2",
+   "S2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6",
+   "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6",
+   "S3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4",
+   "S3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"} | sources=S3-T3,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:7785c8b1-9109-41f4-92b8-e2db5a19903f",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:dfdebd64-0baf-439c-b324-2bb47e2387ae",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:be6c662f-fe63-4c4e-9664-8a623e641e67",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:75df20e0-694f-4009-8464-fda9094d43a4",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:bdbc043f-404d-4e1c-9008-be5faa13ab39",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:2e98c213-c671-4f4e-8a47-777c0ce64b75",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:38bf9556-dcbc-4949-bdeb-28e1bc6ca751",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:283052cf-b103-4c57-a42a-fc6e85373a8f",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S3": "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4\nS3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"} | sources=S3-T3,S1-T4",
+   "model.asr@S3": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4",
+   "model.asr@S3-previous": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4",
+   "output.format@S3": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2\nS2-T6 Dana: output.format = Current Mem0 memory: Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses. | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"} | sources=S2-T4,S1-T2",
+   "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6",
+   "S3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4",
+   "S3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"} | sources=S3-T3,S1-T4",
+   "S4-T3 Rhea: output.format = Current Mem0 memory: Project lecture-captions: output.format is WebVTT. Rhea said to export WebVTT instead of SRT from now on, since the conversion is just a header line and a different timestamp format. | sources=S4-T3,S2-T6",
+   "S4-T3 Rhea: output.format = {\"mem0_history\": \"UPDATE\", \"before\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\", \"after\": \"Project lecture-captions: output.format is WebVTT. Rhea said to export WebVTT instead of SRT from now on, since the conversion is just a header line and a different timestamp format.\"} | sources=S4-T3,S2-T6",
+   "S4-T5 Rhea: audio.segmentation = Current Mem0 memory: Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT. | sources=S4-T5",
+   "S4-T5 Rhea: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better; audio is split with voice activity detection and captions are output as WebVTT (speaker: Rhea, source turns: S2-T4, S4-T5) | sources=S4-T5,S1-T2,S2-T4",
+   "S4-T5 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better; audio is split with voice activity detection and captions are output as WebVTT (speaker: Rhea, source turns: S2-T4, S4-T5)\"} | sources=S4-T5,S1-T2,S2-T4",
+   "S4-T5 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT.\"} | sources=S4-T5"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:7785c8b1-9109-41f4-92b8-e2db5a19903f",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:dfdebd64-0baf-439c-b324-2bb47e2387ae",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:75df20e0-694f-4009-8464-fda9094d43a4",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:2e98c213-c671-4f4e-8a47-777c0ce64b75",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:38bf9556-dcbc-4949-bdeb-28e1bc6ca751",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:283052cf-b103-4c57-a42a-fc6e85373a8f",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:bdbc043f-404d-4e1c-9008-be5faa13ab39",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Project lecture-captions: output.format is WebVTT. Rhea said to export WebVTT instead of SRT from now on, since the conversion is just a header line and a different timestamp format.",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T3",
+     "S2-T6"
+    ],
+    "speakers": [
+     "Rhea",
+     "Dana"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-16T13:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:062994e0-4b4f-49f9-b1bd-c6b2fb8b9a57",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\", \"after\": \"Project lecture-captions: output.format is WebVTT. Rhea said to export WebVTT instead of SRT from now on, since the conversion is just a header line and a different timestamp format.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T3",
+     "S2-T6"
+    ],
+    "speakers": [
+     "Rhea",
+     "Dana"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-16T13:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:3b0a9fa3-b145-472e-be7a-16278b12ea58",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT.",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T5"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S4-T5",
+    "created_at": "2026-10-16T13:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:be6c662f-fe63-4c4e-9664-8a623e641e67",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better; audio is split with voice activity detection and captions are output as WebVTT (speaker: Rhea, source turns: S2-T4, S4-T5)",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T5",
+     "S1-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix",
+     "Rhea"
+    ],
+    "created_turn": "S4-T5",
+    "created_at": "2026-10-16T13:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:99a150f5-e5c6-47f4-958e-0db9a98ffaac",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better; audio is split with voice activity detection and captions are output as WebVTT (speaker: Rhea, source turns: S2-T4, S4-T5)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T5",
+     "S1-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix",
+     "Rhea"
+    ],
+    "created_turn": "S4-T5",
+    "created_at": "2026-10-16T13:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:ec881e2a-f668-4aa5-9aff-33463512db61",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T5"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S4-T5",
+    "created_at": "2026-10-16T13:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S4": "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4\nS3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"} | sources=S3-T3,S1-T4\nS4-T5 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT.\"} | sources=S4-T5",
+   "audio.segmentation@S4-previous": "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\"} | sources=S1-T4\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go. | sources=S3-T3,S1-T4\nS3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"UPDATE\", \"before\": \"audio.segmentation: fixed 30-second chunks (project: lecture-captions, speaker: Rhea). The lectures are an hour each... too long to push through at one go. Just cut them into fixed 30-second chunks.\", \"after\": \"audio.segmentation: split on voice activity detection so cuts land in pauses (project: lecture-captions, speaker: Rhea). The lectures are an hour each, so they are too long to process in one go.\"} | sources=S3-T3,S1-T4\nS4-T5 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT.\"} | sources=S4-T5",
+   "model.asr@S4": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the lecture-captions project, the model.asr (recognizer) is wav2vec 2.0, using a base checkpoint fine-tuned on LibriSpeech (speaker: Felix, source turn: S1-T2)\"} | sources=S1-T2\nS4-T5 Rhea: audio.segmentation = Current Mem0 memory: Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT. | sources=S4-T5\nS4-T5 Rhea: model.asr = Current Mem0 memory: For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better; audio is split with voice activity detection and captions are output as WebVTT (speaker: Rhea, source turns: S2-T4, S4-T5) | sources=S4-T5,S1-T2,S2-T4\nS4-T5 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better (speaker: Rhea, source turn: S2-T4)\", \"after\": \"For the lecture-captions project, the model.asr (recognizer) is Whisper small, chosen over wav2vec 2.0 because it punctuates out of the box and handles accents better; audio is split with voice activity detection and captions are output as WebVTT (speaker: Rhea, source turns: S2-T4, S4-T5)\"} | sources=S4-T5,S1-T2,S2-T4",
+   "output.format@S4": "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\"} | sources=S2-T6\nS4-T3 Rhea: output.format = Current Mem0 memory: Project lecture-captions: output.format is WebVTT. Rhea said to export WebVTT instead of SRT from now on, since the conversion is just a header line and a different timestamp format. | sources=S4-T3,S2-T6\nS4-T3 Rhea: output.format = {\"mem0_history\": \"UPDATE\", \"before\": \"Project lecture-captions: output.format is SRT. Dana said the lecture portal needs caption files and to export SRT since it's what everyone uses.\", \"after\": \"Project lecture-captions: output.format is WebVTT. Rhea said to export WebVTT instead of SRT from now on, since the conversion is just a header line and a different timestamp format.\"} | sources=S4-T3,S2-T6\nS4-T5 Rhea: audio.segmentation = Current Mem0 memory: Progress report (project: lecture-captions, speaker: Rhea): ASR model is Whisper small, and captions are output as WebVTT. | sources=S4-T5"
+  }
+ }
+}

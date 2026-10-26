@@ -1,4 +1,4 @@
-# similarity: memory after each meeting (pilot-01, Haiku, k = 4)
+# similarity: memory after each meeting (pilot-01, Haiku, freeze-deck settings, k = 4)
 
 For each meeting: the whole memory after it, then, for each question about the present asked after it, the 4 lines the answering model was shown (k = 4: the 4 records closest to the question). A question about an earlier meeting or about history has its exact input in answerer-inputs.jsonl.
 

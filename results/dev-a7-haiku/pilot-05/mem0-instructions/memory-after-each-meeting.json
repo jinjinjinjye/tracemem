@@ -1,0 +1,519 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai) | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:49ebbf67-6257-4a18-801e-f7735fbaac1d",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:8395331a-7fdc-49e8-ba97-9a7b7e9c0942",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:55effaf2-6cda-4e8e-bb86-0ab3c45a510f",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9fd36656-f71c-403f-919c-feb5769f0456",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:d484aa56-7866-4522-97a7-e50e064521fb",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b4594d65-6d29-4274-8d01-c38070edca49",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S1": "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1\nS1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2",
+   "model.baseline@S1": "S1-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai) | sources=S1-T1\nS1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai) | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:49ebbf67-6257-4a18-801e-f7735fbaac1d",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:8395331a-7fdc-49e8-ba97-9a7b7e9c0942",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:55effaf2-6cda-4e8e-bb86-0ab3c45a510f",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9fd36656-f71c-403f-919c-feb5769f0456",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:d484aa56-7866-4522-97a7-e50e064521fb",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b4594d65-6d29-4274-8d01-c38070edca49",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S2": "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1\nS1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2",
+   "model.baseline@S2": "S1-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai) | sources=S1-T1\nS1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2",
+   "S3-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features | sources=S3-T1,S1-T1",
+   "S3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\", \"after\": \"Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features\"} | sources=S3-T1,S1-T1"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:49ebbf67-6257-4a18-801e-f7735fbaac1d",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:55effaf2-6cda-4e8e-bb86-0ab3c45a510f",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9fd36656-f71c-403f-919c-feb5769f0456",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:d484aa56-7866-4522-97a7-e50e064521fb",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b4594d65-6d29-4274-8d01-c38070edca49",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:8395331a-7fdc-49e8-ba97-9a7b7e9c0942",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T1",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:682fb311-bfbe-4759-81bd-1c38e153f773",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\", \"after\": \"Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T1",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S3": "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1\nS1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2",
+   "model.baseline@S3": "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS3-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features | sources=S3-T1,S1-T1\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\", \"after\": \"Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features\"} | sources=S3-T1,S1-T1",
+   "model.baseline@S3-previous": "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2\nS3-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features | sources=S3-T1,S1-T1"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2",
+   "S3-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features | sources=S3-T1,S1-T1",
+   "S3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\", \"after\": \"Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features\"} | sources=S3-T1,S1-T1"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:49ebbf67-6257-4a18-801e-f7735fbaac1d",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:55effaf2-6cda-4e8e-bb86-0ab3c45a510f",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9fd36656-f71c-403f-919c-feb5769f0456",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:d484aa56-7866-4522-97a7-e50e064521fb",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b4594d65-6d29-4274-8d01-c38070edca49",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:8395331a-7fdc-49e8-ba97-9a7b7e9c0942",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T1",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:682fb311-bfbe-4759-81bd-1c38e153f773",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\", \"after\": \"Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T1",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S4": "S1-T1 Kai: features.text = Current Mem0 memory: spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active) | sources=S1-T1\nS1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"spam-filter project: features.text is TF-IDF for the baseline logistic regression (set by Kai, active)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2)\"} | sources=S1-T2",
+   "model.baseline@S4": "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Proposed (not adopted): model.baseline for project spam-filter could be naive Bayes instead (suggested by Rosa, source turn S1-T2) | sources=S1-T2\nS3-T1 Kai: model.baseline = Current Mem0 memory: Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features | sources=S3-T1,S1-T1\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Baseline model (model.baseline) for project spam-filter is logistic regression on TF-IDF features (decided by Kai)\", \"after\": \"Baseline model (model.baseline) for project spam-filter is linear SVM (decided by Kai); previous active version: logistic regression on TF-IDF features\"} | sources=S3-T1,S1-T1"
+  }
+ }
+}

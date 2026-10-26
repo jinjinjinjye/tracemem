@@ -1,0 +1,371 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = wav2vec 2.0 [active] | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "model.asr@S1-T2",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "wav2vec 2.0",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": "Got a base checkpoint fine-tuned on LibriSpeech already, so can start straight away."
+   },
+   {
+    "record_id": "audio.segmentation@S1-T4",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "fixed 30-second chunks",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": "The lectures are an hour each... too long to push through at one go."
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S1": "S1-T2 Felix: model.asr = wav2vec 2.0 [active] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4",
+   "model.asr@S1": "S1-T2 Felix: model.asr = wav2vec 2.0 [active] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4",
+   "S2-T6 Dana: output.format = SRT [active] | sources=S2-T6"
+  ],
+  "records": [
+   {
+    "record_id": "model.asr@S1-T2",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "wav2vec 2.0",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": "Got a base checkpoint fine-tuned on LibriSpeech already, so can start straight away."
+   },
+   {
+    "record_id": "audio.segmentation@S1-T4",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "fixed 30-second chunks",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": "The lectures are an hour each... too long to push through at one go."
+   },
+   {
+    "record_id": "model.asr@S2-T4",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Whisper small",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [
+     "model.asr@S1-T2"
+    ],
+    "reason": "It punctuates out of the box and handles the accents way better."
+   },
+   {
+    "record_id": "output.format@S2-T6",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "SRT",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": "it's what everyone uses anyway"
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S2": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4\nS2-T6 Dana: output.format = SRT [active] | sources=S2-T6",
+   "model.asr@S2": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4\nS2-T6 Dana: output.format = SRT [active] | sources=S2-T6",
+   "output.format@S2": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [active] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4\nS2-T6 Dana: output.format = SRT [active] | sources=S2-T6"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4",
+   "S2-T6 Dana: output.format = SRT [active] | sources=S2-T6",
+   "S3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "model.asr@S1-T2",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "wav2vec 2.0",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": "Got a base checkpoint fine-tuned on LibriSpeech already, so can start straight away."
+   },
+   {
+    "record_id": "audio.segmentation@S1-T4",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "fixed 30-second chunks",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": "The lectures are an hour each... too long to push through at one go."
+   },
+   {
+    "record_id": "model.asr@S2-T4",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Whisper small",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [
+     "model.asr@S1-T2"
+    ],
+    "reason": "It punctuates out of the box and handles the accents way better."
+   },
+   {
+    "record_id": "output.format@S2-T6",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "SRT",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": "it's what everyone uses anyway"
+   },
+   {
+    "record_id": "audio.segmentation@S3-T3",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "voice activity detection",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [
+     "audio.segmentation@S1-T4"
+    ],
+    "reason": "so the cuts land in the pauses"
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S3": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T6 Dana: output.format = SRT [active] | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3",
+   "model.asr@S3": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4\nS3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3",
+   "model.asr@S3-previous": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4\nS3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3",
+   "output.format@S3": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4\nS2-T6 Dana: output.format = SRT [active] | sources=S2-T6"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4,S4-T5",
+   "S2-T6 Dana: output.format = SRT [superseded] | sources=S2-T6",
+   "S3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3,S4-T5",
+   "S4-T3 Rhea: output.format = WebVTT [active] | sources=S4-T3,S4-T5"
+  ],
+  "records": [
+   {
+    "record_id": "model.asr@S1-T2",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "wav2vec 2.0",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": "Got a base checkpoint fine-tuned on LibriSpeech already, so can start straight away."
+   },
+   {
+    "record_id": "audio.segmentation@S1-T4",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "fixed 30-second chunks",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": "The lectures are an hour each... too long to push through at one go."
+   },
+   {
+    "record_id": "model.asr@S2-T4",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Whisper small",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T4",
+     "S4-T5"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [
+     "model.asr@S1-T2"
+    ],
+    "reason": "It punctuates out of the box and handles the accents way better."
+   },
+   {
+    "record_id": "output.format@S2-T6",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "SRT",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": "it's what everyone uses anyway"
+   },
+   {
+    "record_id": "audio.segmentation@S3-T3",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "voice activity detection",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T3",
+     "S4-T5"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [
+     "audio.segmentation@S1-T4"
+    ],
+    "reason": "so the cuts land in the pauses"
+   },
+   {
+    "record_id": "output.format@S4-T3",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "WebVTT",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S4-T5"
+    ],
+    "speakers": [
+     "Rhea",
+     "Rhea"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-16T13:02:00",
+    "supersedes": [
+     "output.format@S2-T6"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S4": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3,S4-T5\nS4-T3 Rhea: output.format = WebVTT [active] | sources=S4-T3,S4-T5",
+   "audio.segmentation@S4-previous": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T6 Dana: output.format = SRT [superseded] | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3,S4-T5",
+   "model.asr@S4": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T4 Rhea: model.asr = Whisper small [active] | sources=S2-T4,S4-T5\nS3-T3 Rhea: audio.segmentation = voice activity detection [active] | sources=S3-T3,S4-T5",
+   "output.format@S4": "S1-T2 Felix: model.asr = wav2vec 2.0 [superseded] | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = fixed 30-second chunks [superseded] | sources=S1-T4\nS2-T6 Dana: output.format = SRT [superseded] | sources=S2-T6\nS4-T3 Rhea: output.format = WebVTT [active] | sources=S4-T3,S4-T5"
+  }
+ }
+}

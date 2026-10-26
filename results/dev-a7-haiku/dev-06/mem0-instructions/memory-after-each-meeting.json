@@ -1,0 +1,617 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = Current Mem0 memory: model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2) | sources=S1-T2",
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:f9b502d0-ddcc-45af-b56c-1233b572a92c",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9a7ec25f-03f9-43bb-9c46-90f5d5bfaf44",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e2e267b2-7b24-477c-bcae-f973ede772d9",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:77327715-2d3c-4442-bc1b-497a5d21d2ef",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S1": "S1-T2 Felix: model.asr = Current Mem0 memory: model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2) | sources=S1-T2\nS1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4",
+   "model.asr@S1": "S1-T2 Felix: model.asr = Current Mem0 memory: model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2) | sources=S1-T2\nS1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Current Mem0 memory: model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4) | sources=S2-T4,S1-T2",
+   "S2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\", \"after\": \"model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)\"} | sources=S2-T4,S1-T2",
+   "S2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6",
+   "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:9a7ec25f-03f9-43bb-9c46-90f5d5bfaf44",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e2e267b2-7b24-477c-bcae-f973ede772d9",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:77327715-2d3c-4442-bc1b-497a5d21d2ef",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:f9b502d0-ddcc-45af-b56c-1233b572a92c",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:c5ad15cf-6881-48cd-9ea8-bd27f951de63",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\", \"after\": \"model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:393e1683-112c-43f4-9fcb-cccbdf048716",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:d6d6cefe-b429-4f3f-a13b-1a321d037459",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S2": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6",
+   "model.asr@S2": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6",
+   "output.format@S2": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Current Mem0 memory: model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4) | sources=S2-T4,S1-T2",
+   "S2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\", \"after\": \"model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)\"} | sources=S2-T4,S1-T2",
+   "S2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6",
+   "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6",
+   "S3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3",
+   "S3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"} | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:9a7ec25f-03f9-43bb-9c46-90f5d5bfaf44",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e2e267b2-7b24-477c-bcae-f973ede772d9",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:77327715-2d3c-4442-bc1b-497a5d21d2ef",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:f9b502d0-ddcc-45af-b56c-1233b572a92c",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:c5ad15cf-6881-48cd-9ea8-bd27f951de63",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\", \"after\": \"model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:393e1683-112c-43f4-9fcb-cccbdf048716",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:d6d6cefe-b429-4f3f-a13b-1a321d037459",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:eb07b97a-3b2f-4a04-a954-a014851cc858",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:67d96f7b-425d-4e69-af59-dc357c775577",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S3": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3\nS3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"} | sources=S3-T3",
+   "model.asr@S3": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3",
+   "model.asr@S3-previous": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3",
+   "output.format@S3": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2",
+   "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4",
+   "S1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4",
+   "S2-T4 Rhea: model.asr = Current Mem0 memory: model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4) | sources=S2-T4,S1-T2",
+   "S2-T4 Rhea: model.asr = {\"mem0_history\": \"UPDATE\", \"before\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\", \"after\": \"model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)\"} | sources=S2-T4,S1-T2",
+   "S2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6",
+   "S2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6",
+   "S3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3",
+   "S3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"} | sources=S3-T3",
+   "S4-T3 Rhea: output.format = Current Mem0 memory: Active output.format = WebVTT for project lecture-captions (committed by Rhea in S4-T3: \"we export WebVTT instead of SRT from now on\") | sources=S4-T3",
+   "S4-T3 Rhea: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Active output.format = WebVTT for project lecture-captions (committed by Rhea in S4-T3: \\\"we export WebVTT instead of SRT from now on\\\")\"} | sources=S4-T3"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:9a7ec25f-03f9-43bb-9c46-90f5d5bfaf44",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Felix"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-06T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e2e267b2-7b24-477c-bcae-f973ede772d9",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:77327715-2d3c-4442-bc1b-497a5d21d2ef",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:f9b502d0-ddcc-45af-b56c-1233b572a92c",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "Current Mem0 memory: model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:c5ad15cf-6881-48cd-9ea8-bd27f951de63",
+    "project_id": "lecture-captions",
+    "item": "model.asr",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\", \"after\": \"model.asr (project lecture-captions): Whisper small chosen as the recognizer, per Rhea (S2-T4)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T4",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rhea",
+     "Felix"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-09T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:393e1683-112c-43f4-9fcb-cccbdf048716",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:d6d6cefe-b429-4f3f-a13b-1a321d037459",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T6"
+    ],
+    "speakers": [
+     "Dana"
+    ],
+    "created_turn": "S2-T6",
+    "created_at": "2026-10-09T11:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:eb07b97a-3b2f-4a04-a954-a014851cc858",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:67d96f7b-425d-4e69-af59-dc357c775577",
+    "project_id": "lecture-captions",
+    "item": "audio.segmentation",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-13T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:8ad6e626-3741-4401-9b65-6152da619935",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "Current Mem0 memory: Active output.format = WebVTT for project lecture-captions (committed by Rhea in S4-T3: \"we export WebVTT instead of SRT from now on\")",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-16T13:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:6e272ed5-5a61-4408-8be4-d233bbb1615a",
+    "project_id": "lecture-captions",
+    "item": "output.format",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Active output.format = WebVTT for project lecture-captions (committed by Rhea in S4-T3: \\\"we export WebVTT instead of SRT from now on\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T3"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-16T13:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "audio.segmentation@S4": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3\nS3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"} | sources=S3-T3",
+   "audio.segmentation@S4-previous": "S1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS1-T4 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): fixed 30-second chunks\"} | sources=S1-T4\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3\nS3-T3 Rhea: audio.segmentation = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed)\"} | sources=S3-T3",
+   "model.asr@S4": "S1-T2 Felix: model.asr = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"model.asr (project lecture-captions): wav2vec 2.0 chosen as the recognizer, per Felix (S1-T2)\"} | sources=S1-T2\nS1-T4 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): fixed 30-second chunks | sources=S1-T4\nS2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS3-T3 Rhea: audio.segmentation = Current Mem0 memory: audio.segmentation (project lecture-captions): proposed voice activity detection split (ADD-proposed, not yet confirmed) | sources=S3-T3",
+   "output.format@S4": "S2-T6 Dana: output.format = Current Mem0 memory: Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value) | sources=S2-T6\nS2-T6 Dana: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Proposed output.format = SRT for project lecture-captions (suggested by Dana; not yet adopted as the settled value)\"} | sources=S2-T6\nS4-T3 Rhea: output.format = Current Mem0 memory: Active output.format = WebVTT for project lecture-captions (committed by Rhea in S4-T3: \"we export WebVTT instead of SRT from now on\") | sources=S4-T3\nS4-T3 Rhea: output.format = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Active output.format = WebVTT for project lecture-captions (committed by Rhea in S4-T3: \\\"we export WebVTT instead of SRT from now on\\\")\"} | sources=S4-T3"
+  }
+ }
+}
