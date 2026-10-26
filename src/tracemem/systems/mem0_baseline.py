@@ -143,6 +143,15 @@ class _UnusedEmbedding:
         return [0.0]
 
 
+def _parse_update_reply(content):
+    """Read an update reply exactly as the pinned Mem0 SDK does (mem0/memory/main.py):
+    json.loads(remove_code_blocks(reply), strict=False). Some models, Claude Haiku
+    among them, wrap the JSON in a ```json fence, which Mem0 itself removes."""
+    from mem0.memory.utils import remove_code_blocks
+
+    return json.loads(remove_code_blocks(content), strict=False)
+
+
 class _UpdateBridge:
     def __init__(self, backend):
         self.backend = backend
@@ -156,7 +165,7 @@ class _UpdateBridge:
 
     def _validate(self, content):
         try:
-            data = json.loads(content)
+            data = _parse_update_reply(content)
         except (ValueError, TypeError):
             raise ValueError("update response must be JSON") from None
         if not isinstance(data, dict) or set(data) != {"memory"} or not isinstance(data["memory"], list):
