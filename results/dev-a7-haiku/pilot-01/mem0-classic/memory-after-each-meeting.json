@@ -1,0 +1,758 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice. | sources=S1-T1",
+   "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\") | sources=S1-T2",
+   "S1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:64ab2cb3-ab41-40e4-be56-5e9d4bc0be3c",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:0338e6e3-762b-4f65-9fcd-0baa1ff79d7f",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2511fb1d-39bc-4472-b9aa-e8f353bf36e5",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\")",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:5f807064-7d4d-4ad3-80db-17a73065573f",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S1": "S1-T1 Mei: model.sentiment = Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice. | sources=S1-T1\nS1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\") | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2",
+   "model.sentiment@S1": "S1-T1 Mei: model.sentiment = Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice. | sources=S1-T1\nS1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\") | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice. | sources=S1-T1",
+   "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\") | sources=S1-T2",
+   "S1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2",
+   "S2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3",
+   "S2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3",
+   "S2-T5 Mei: model.ner = Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy). | sources=S2-T5",
+   "S2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"} | sources=S2-T5"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:64ab2cb3-ab41-40e4-be56-5e9d4bc0be3c",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:0338e6e3-762b-4f65-9fcd-0baa1ff79d7f",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2511fb1d-39bc-4472-b9aa-e8f353bf36e5",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\")",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:5f807064-7d4d-4ad3-80db-17a73065573f",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:25476c83-032f-443f-a49f-aed0f35f8966",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:52ceb0b5-177b-41a7-a150-dcd398be8db1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:a53fbba3-88f0-44eb-9dfc-9cc1979e7959",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:1a99a5c9-c753-4a28-ad76-dc205a394300",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S2": "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \"Sounds good. What do we report, plain accuracy?\") | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3",
+   "model.ner@S2": "S2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy). | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"} | sources=S2-T5",
+   "model.sentiment@S2": "S1-T1 Mei: model.sentiment = Current Mem0 memory: Let's go with BERT for the sentiment classifier. It's the safe choice. | sources=S1-T1\nS1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2",
+   "S2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3",
+   "S2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3",
+   "S2-T5 Mei: model.ner = Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy). | sources=S2-T5",
+   "S2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"} | sources=S2-T5",
+   "S3-T2 Mei: model.sentiment = Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit. | sources=S3-T2,S1-T1",
+   "S3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"} | sources=S3-T2,S1-T1",
+   "S3-T3 Arun: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\"} | sources=S3-T3,S1-T2",
+   "S3-T4 Mei: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.') | sources=S3-T4,S1-T2,S3-T3",
+   "S3-T4 Mei: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')\"} | sources=S3-T4,S1-T2,S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:0338e6e3-762b-4f65-9fcd-0baa1ff79d7f",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:5f807064-7d4d-4ad3-80db-17a73065573f",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:25476c83-032f-443f-a49f-aed0f35f8966",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:52ceb0b5-177b-41a7-a150-dcd398be8db1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:a53fbba3-88f0-44eb-9dfc-9cc1979e7959",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:1a99a5c9-c753-4a28-ad76-dc205a394300",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:64ab2cb3-ab41-40e4-be56-5e9d4bc0be3c",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:8a54384e-8ba8-4f8b-a25e-72c76607ce46",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b8b020ea-5bb6-4a32-8d78-e8b988e4065a",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun",
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2511fb1d-39bc-4472-b9aa-e8f353bf36e5",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4",
+     "S1-T2",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun",
+     "Arun"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:5af42a39-b803-4919-8d3c-7a1987ec5430",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4",
+     "S1-T2",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun",
+     "Arun"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S3": "S1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2\nS3-T3 Arun: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\"} | sources=S3-T3,S1-T2\nS3-T4 Mei: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.') | sources=S3-T4,S1-T2,S3-T3\nS3-T4 Mei: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')\"} | sources=S3-T4,S1-T2,S3-T3",
+   "model.ner@S3": "S2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy). | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"} | sources=S2-T5",
+   "model.sentiment@S3": "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit. | sources=S3-T2,S1-T1\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"} | sources=S3-T2,S1-T1",
+   "model.sentiment@S3-previous": "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit. | sources=S3-T2,S1-T1\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"} | sources=S3-T2,S1-T1"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2",
+   "S2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3",
+   "S2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3",
+   "S2-T5 Mei: model.ner = Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy). | sources=S2-T5",
+   "S2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"} | sources=S2-T5",
+   "S3-T2 Mei: model.sentiment = Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit. | sources=S3-T2,S1-T1",
+   "S3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"} | sources=S3-T2,S1-T1",
+   "S3-T3 Arun: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\"} | sources=S3-T3,S1-T2",
+   "S3-T4 Mei: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.') | sources=S3-T4,S1-T2,S3-T3",
+   "S3-T4 Mei: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')\"} | sources=S3-T4,S1-T2,S3-T3",
+   "S4-T1 Mei: metric.primary = Current Mem0 memory: In sentiment-project, for the write-up, the model is DistilBERT and it is scored with macro-F1 (stated by Mei in turn S4-T1). | sources=S4-T1",
+   "S4-T1 Mei: model.sentiment = Current Mem0 memory: Sentiment model for project sentiment-project is evaluated with macro-F1 (noted by Mei for the write-up). | sources=S4-T1",
+   "S4-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Sentiment model for project sentiment-project is evaluated with macro-F1 (noted by Mei for the write-up).\"} | sources=S4-T1",
+   "S4-T1 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, for the write-up, the model is DistilBERT and it is scored with macro-F1 (stated by Mei in turn S4-T1).\"} | sources=S4-T1"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-history:0338e6e3-762b-4f65-9fcd-0baa1ff79d7f",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:5f807064-7d4d-4ad3-80db-17a73065573f",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:25476c83-032f-443f-a49f-aed0f35f8966",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:52ceb0b5-177b-41a7-a150-dcd398be8db1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:a53fbba3-88f0-44eb-9dfc-9cc1979e7959",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:1a99a5c9-c753-4a28-ad76-dc205a394300",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:64ab2cb3-ab41-40e4-be56-5e9d4bc0be3c",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:8a54384e-8ba8-4f8b-a25e-72c76607ce46",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b8b020ea-5bb6-4a32-8d78-e8b988e4065a",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun",
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2511fb1d-39bc-4472-b9aa-e8f353bf36e5",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4",
+     "S1-T2",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun",
+     "Arun"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:5af42a39-b803-4919-8d3c-7a1987ec5430",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4",
+     "S1-T2",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun",
+     "Arun"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:6e9ac140-2044-4da3-9d5e-e146e2322e86",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: In sentiment-project, for the write-up, the model is DistilBERT and it is scored with macro-F1 (stated by Mei in turn S4-T1).",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:910cd311-f05a-44c9-9014-c744b50ece8a",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Sentiment model for project sentiment-project is evaluated with macro-F1 (noted by Mei for the write-up).",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:19843f39-5915-440c-84fd-0253d4079f3e",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Sentiment model for project sentiment-project is evaluated with macro-F1 (noted by Mei for the write-up).\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:31a91d2b-90ed-4a6e-87cb-613f189d2ae2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, for the write-up, the model is DistilBERT and it is scored with macro-F1 (stated by Mei in turn S4-T1).\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S4": "S1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\"} | sources=S1-T2\nS3-T3 Arun: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is accuracy (proposed by Arun in turn S1-T2: \\\"Sounds good. What do we report, plain accuracy?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\"} | sources=S3-T3,S1-T2\nS3-T4 Mei: metric.primary = Current Mem0 memory: In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.') | sources=S3-T4,S1-T2,S3-T3\nS3-T4 Mei: metric.primary = {\"mem0_history\": \"UPDATE\", \"before\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3: \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\")\", \"after\": \"In sentiment-project, the primary metric is macro-F1 (proposed by Arun in turn S3-T3 and agreed by Mei in turn S3-T4: 'Agreed, macro-F1 is the primary metric from now on.')\"} | sources=S3-T4,S1-T2,S3-T3",
+   "model.ner@S4": "S2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3\nS2-T3 Arun: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision.\"} | sources=S2-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy). | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the NER part of the sentiment-project, Mei will use a spaCy model (model.ner = spaCy).\"} | sources=S2-T5",
+   "model.sentiment@S4": "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\"} | sources=S1-T1\nS2-T3 Arun: model.sentiment = Current Mem0 memory: Arun suggested trying DistilBERT for the sentiment model (project sentiment-project) because it might be faster. This is a tentative proposal, not a confirmed decision. | sources=S2-T3\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit. | sources=S3-T2,S1-T1\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's go with BERT for the sentiment classifier. It's the safe choice.\", \"after\": \"Sentiment classifier switched to DistilBERT for project sentiment-project, since BERT misses the latency limit.\"} | sources=S3-T2,S1-T1"
+  }
+ }
+}
