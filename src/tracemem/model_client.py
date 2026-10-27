@@ -56,7 +56,7 @@ DEFAULT_CACHE_DIR = "cache/llm"
 # Outside every reply cache folder, so a fresh folder never resets the spending.
 DEFAULT_COST_LOG = "cache/costs.jsonl"
 DEFAULT_BUDGET_USD = 12.0
-# A paid call reserves its worst-case cost in the cost log before it goes out, so parallel runs sharing the
+# A paid call reserves its worst-case cost in <log>.reservations before it goes out, so parallel runs sharing the
 # log count each other's calls in flight. A reservation never settled (its process died) stops counting
 # after this long; a lock file older than STALE_LOCK_SECONDS is taken to be left by a dead process.
 RESERVATION_EXPIRY_SECONDS = 900
