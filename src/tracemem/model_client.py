@@ -41,6 +41,7 @@ import re
 import tempfile
 import time
 import urllib.request
+import uuid
 from pathlib import Path
 from typing import Mapping
 
@@ -55,6 +56,11 @@ DEFAULT_CACHE_DIR = "cache/llm"
 # Outside every reply cache folder, so a fresh folder never resets the spending.
 DEFAULT_COST_LOG = "cache/costs.jsonl"
 DEFAULT_BUDGET_USD = 12.0
+# A paid call reserves its worst-case cost in the cost log before it goes out, so parallel runs sharing the
+# log count each other's calls in flight. A reservation never settled (its process died) stops counting
+# after this long; a lock file older than STALE_LOCK_SECONDS is taken to be left by a dead process.
+RESERVATION_EXPIRY_SECONDS = 900
+STALE_LOCK_SECONDS = 30
 PROVIDERS = ("openai", "openrouter", "local")
 DEFAULT_LOCAL_CONTEXT_TOKENS = 16384
 # Text and JSON take about four UTF-8 bytes per token: 4.0 to 4.6 in the pilot-01
@@ -312,6 +318,83 @@ class SpendingCapError(FatalModelError):
     """The cost log has reached the spending cap; no paid call is made."""
 
 
+def _reservations_path(log_path: str | os.PathLike) -> Path:
+    path = Path(log_path)
+    return path.with_name(path.name + ".reservations")
+
+
+def read_cost_log(path: str | os.PathLike, now: float | None = None) -> tuple[float, float]:
+    """(spent, reserved): the costs in the log, and the reservations of calls still in flight.
+
+    Reservations live in <log>.reservations, so the cost log keeps one line per call for every
+    other reader. A reservation is open until a later line closes it (the call's cost was logged,
+    or the call failed), or until it is RESERVATION_EXPIRY_SECONDS old. Unreadable lines are skipped.
+    """
+    now = time.time() if now is None else now
+    spent, opened, closed = 0.0, {}, set()
+    for source in (Path(path), _reservations_path(path)):
+        try:
+            lines = source.read_text(encoding="utf-8").splitlines()
+        except OSError:
+            continue
+        for line in lines:
+            try:
+                entry = json.loads(line)
+                spent += float(entry.get("cost_usd") or 0.0)
+            except (ValueError, TypeError, AttributeError):
+                continue
+            name = entry.get("reservation")
+            if name is None:
+                continue
+            if "reserved_usd" in entry:
+                opened[name] = entry
+            else:
+                closed.add(name)
+    reserved = 0.0
+    for name, entry in opened.items():
+        try:
+            if name not in closed and now - float(entry.get("reserved_at", 0)) < RESERVATION_EXPIRY_SECONDS:
+                reserved += float(entry.get("reserved_usd") or 0.0)
+        except (TypeError, ValueError):
+            continue
+    return spent, reserved
+
+
+@contextlib.contextmanager
+def _cost_log_lock(log_path: Path):
+    """Hold <log>.lock, created exclusively, which works the same on Windows and POSIX.
+
+    It is held only while the log is read and a line appended. A lock file older than
+    STALE_LOCK_SECONDS is removed as left behind by a process that died holding it.
+    """
+    lock = log_path.with_name(log_path.name + ".lock")
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    while True:
+        try:
+            os.close(os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY))
+            break
+        except FileExistsError:
+            with contextlib.suppress(OSError):
+                if time.time() - lock.stat().st_mtime > STALE_LOCK_SECONDS:
+                    lock.unlink()
+                    continue
+            time.sleep(0.005)
+    try:
+        yield
+    finally:
+        with contextlib.suppress(OSError):
+            lock.unlink()
+
+
+def _worst_case_cost(config: ResolverConfig, messages: list[dict[str, str]], response_format: dict) -> float:
+    """An upper bound on a call's price-table cost: every request character a token, the full reply limit."""
+    if config.model not in PRICES_PER_MILLION:
+        return 0.0
+    rate_in, rate_out = PRICES_PER_MILLION[config.model]
+    characters = len(json.dumps(messages, ensure_ascii=False)) + len(json.dumps(response_format, ensure_ascii=False))
+    return (characters * rate_in + config.max_completion_tokens * rate_out) / 1e6
+
+
 class CachedClient:
     """Return a saved reply for a repeated request; log every completed call with its cost.
 
@@ -327,9 +410,11 @@ class CachedClient:
     use_cache=False nothing is read or saved, but calls are still logged and the
     spending cap still applies. The cost log is log_path, by default DEFAULT_COST_LOG,
     and never depends on the cache folder. Before each provider call under a cap, the
-    log's total is read again, so other clients and other processes writing to the
-    same log are counted and a run stops within one call of the cap. A paid call is
-    logged before its reply is saved, so a reply that cannot be saved is still counted.
+    log is read again under a lock file and the call reserves its worst-case cost in
+    <log>.reservations (read_cost_log), so other clients and other processes on the same
+    log count each other's calls in flight, and all of them together stop within one call
+    of the cap. A paid call is logged before its reply is saved, so a reply that cannot be
+    saved is still counted; logging its cost closes its reservation, and so does a failure.
     A cost is the provider's own figure, else the price table's; a model in neither is
     logged at zero as "unpriced" and does not count towards the cap.
     """
@@ -348,17 +433,7 @@ class CachedClient:
         self._slots: dict[str, int] = {}
 
     def _logged_spend(self) -> float:
-        total = 0.0
-        try:
-            lines = self.log_path.read_text(encoding="utf-8").splitlines()
-        except OSError:
-            return total
-        for line in lines:
-            try:
-                total += float(json.loads(line).get("cost_usd") or 0.0)
-            except (ValueError, TypeError, AttributeError):
-                continue
-        return total
+        return read_cost_log(self.log_path)[0]
 
     def describe(self) -> dict:
         inner = getattr(self.inner, "describe", None)
@@ -408,13 +483,31 @@ class CachedClient:
                                refused=saved["refused"])
             self._log(key, config.model, True, saved, 0.0, "cache", time.monotonic() - started)
             return reply
+        reservation = None
         if self.budget_usd is not None:
-            # Read the whole log again: another run, or another client of this one, may have spent since.
-            self.spent_usd = self._logged_spend()
-            if self.spent_usd >= self.budget_usd:
-                raise SpendingCapError(f"spending cap of US${self.budget_usd:.2f} reached "
-                                       f"(US${self.spent_usd:.4f} logged in {self.log_path})")
-        reply = self.inner.complete(config=config, messages=messages, response_format=response_format)
+            # Under the log's lock, read the whole log again (another run, or another client of this one,
+            # may have spent since or have calls in flight) and reserve this call's worst case.
+            with _cost_log_lock(self.log_path):
+                self.spent_usd, reserved = read_cost_log(self.log_path)
+                if self.spent_usd + reserved >= self.budget_usd:
+                    in_flight = f" and US${reserved:.4f} reserved by calls in flight" if reserved else ""
+                    raise SpendingCapError(f"spending cap of US${self.budget_usd:.2f} reached "
+                                           f"(US${self.spent_usd:.4f} logged{in_flight} in {self.log_path})")
+                worst = _worst_case_cost(config, messages, response_format)
+                if worst > 0:
+                    reservation = uuid.uuid4().hex
+                    self._write_line(_reservations_path(self.log_path),
+                                     {"at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "reservation": reservation,
+                                      "reserved_usd": worst, "reserved_at": time.time(), "model": config.model})
+        try:
+            reply = self.inner.complete(config=config, messages=messages, response_format=response_format)
+        except BaseException:
+            if reservation is not None:
+                with _cost_log_lock(self.log_path):
+                    self._write_line(_reservations_path(self.log_path),
+                                     {"at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "reservation": reservation,
+                                      "closed": "the call failed"})
+            raise
         reported = getattr(self.inner, "last_cost", None)
         priced = _price(config.model, reply)
         if isinstance(reported, float):
@@ -430,7 +523,8 @@ class CachedClient:
         self.stats["cost_usd"] += cost
         self.spent_usd += cost
         # Log before saving: the call is paid for even if its reply cannot be saved.
-        self._log(key, config.model, False, record, cost, source, time.monotonic() - started)
+        self._log(key, config.model, False, record, cost, source, time.monotonic() - started,
+                  reservation=reservation)
         if self.use_cache and reply.finish_reason == "stop" and not reply.refused:
             self._write(path, record)
             self._slots[request] = slot + 1
@@ -451,13 +545,22 @@ class CachedClient:
             raise
 
     def _log(self, key: str, model: str, hit: bool, record: dict, cost: float, source: str,
-             seconds: float) -> None:
-        self.log_path.parent.mkdir(parents=True, exist_ok=True)
+             seconds: float, reservation: str | None = None) -> None:
         entry = {"at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "key": key, "model": model, "cache_hit": hit,
                  "input_tokens": record.get("input_tokens", 0), "output_tokens": record.get("output_tokens", 0),
                  "finish_reason": record.get("finish_reason"), "cost_usd": cost, "cost_source": source,
                  "seconds": round(seconds, 3)}
-        with self.log_path.open("a", encoding="utf-8") as stream:
+        with _cost_log_lock(self.log_path):
+            self._write_line(self.log_path, entry)
+            if reservation is not None:
+                # The actual cost is now in the log, so the worst case stops counting.
+                self._write_line(_reservations_path(self.log_path),
+                                 {"at": entry["at"], "reservation": reservation, "closed": "cost logged"})
+
+    @staticmethod
+    def _write_line(path: Path, entry: dict) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as stream:
             stream.write(json.dumps(entry) + "\n")
 
 

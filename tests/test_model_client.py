@@ -10,7 +10,10 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import sys
+import threading
+import time
 import traceback
 import urllib.request
 from types import ModuleType, SimpleNamespace
@@ -1022,3 +1025,96 @@ def test_a_dead_local_server_aborts_the_run_instead_of_scoring_failed_answers(sd
     sdk.create.side_effect = sdk.APITimeoutError("synthetic timeout")
     assert run().status == "completed"
     assert sdk.create.call_count > 2
+
+
+# Several processes on one cost log (E's review of PR #6, finding 2)
+
+HAIKU = CONFIG.model_copy(update={"model": "anthropic/claude-haiku-5.5", "max_completion_tokens": 1000})
+
+
+class SlowClient(ScriptedClient):
+    """A priced call that takes a while, so parallel callers overlap as A8's six runs do."""
+
+    def __init__(self, delay):
+        super().__init__()
+        self.delay = delay
+
+    def complete(self, *, config, messages, response_format):
+        time.sleep(self.delay)
+        return super().complete(config=config, messages=messages, response_format=response_format)
+
+
+def test_parallel_clients_on_one_cost_log_stop_within_one_call_of_the_cap(tmp_path):
+    # Six clients share one log and all start at once. Before the fix each read an empty log, saw room
+    # under the cap and called, so six calls went out where the cap allowed one.
+    log = tmp_path / "costs.jsonl"
+    inner = SlowClient(delay=0.3)
+    start = threading.Barrier(6)
+    outcomes = []
+
+    def one(n):
+        client = CachedClient(inner, tmp_path / f"cache{n}", log_path=log, budget_usd=0.0003)
+        start.wait()
+        try:
+            request(client, config=HAIKU)
+            outcomes.append("called")
+        except SpendingCapError:
+            outcomes.append("capped")
+
+    threads = [threading.Thread(target=one, args=(n,)) for n in range(6)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    # Each call costs US$0.0002 at the price table's rates and reserves its worst case, about US$0.0005,
+    # before it goes out, so the first reservation already fills the US$0.0003 cap for the other five.
+    assert sorted(outcomes) == ["called"] + ["capped"] * 5
+    assert len(inner.calls) == 1
+    spent, reserved = model_client.read_cost_log(log)
+    assert spent == pytest.approx(0.0002) and reserved == 0.0
+
+
+def test_an_unsettled_reservation_counts_until_it_expires(tmp_path):
+    # A process that dies mid-call never settles its reservation; it keeps counting for a while, then expires.
+    log = tmp_path / "costs.jsonl"
+    log.write_text(json.dumps({"reservation": "crashed", "reserved_usd": 0.01, "reserved_at": time.time()}) + "\n",
+                   encoding="utf-8")
+    inner = ScriptedClient()
+    with pytest.raises(SpendingCapError, match="reserved"):
+        request(CachedClient(inner, tmp_path / "a", log_path=log, budget_usd=0.01), config=HAIKU)
+    assert inner.calls == []
+    stale = time.time() - model_client.RESERVATION_EXPIRY_SECONDS - 1
+    log.write_text(json.dumps({"reservation": "crashed", "reserved_usd": 0.01, "reserved_at": stale}) + "\n",
+                   encoding="utf-8")
+    request(CachedClient(inner, tmp_path / "b", log_path=log, budget_usd=0.01), config=HAIKU)
+    assert len(inner.calls) == 1
+
+
+def test_a_finished_or_failed_call_leaves_no_reservation_open(tmp_path):
+    log = tmp_path / "costs.jsonl"
+    inner = ScriptedClient(RetryableModelError("synthetic outage"))
+    cache = CachedClient(inner, tmp_path / "c", log_path=log, budget_usd=1.0)
+    with pytest.raises(RetryableModelError):
+        request(cache, config=HAIKU)
+    assert model_client.read_cost_log(log) == (0.0, 0.0)
+    request(cache, config=HAIKU)
+    spent, reserved = model_client.read_cost_log(log)
+    assert spent == pytest.approx(0.0002) and reserved == 0.0
+    # Readers that only sum cost_usd, such as the spend checks in the run guide, see the same total.
+    assert sum(entry.get("cost_usd") or 0.0 for entry in log_entries_at(log)) == pytest.approx(0.0002)
+
+
+def test_a_lock_file_left_by_a_dead_process_does_not_block_paid_calls(tmp_path):
+    log = tmp_path / "costs.jsonl"
+    lock = tmp_path / "costs.jsonl.lock"
+    lock.write_text("", encoding="utf-8")
+    old = time.time() - model_client.STALE_LOCK_SECONDS - 60
+    os.utime(lock, (old, old))
+    inner = ScriptedClient()
+    began = time.monotonic()
+    request(CachedClient(inner, tmp_path / "d", log_path=log, budget_usd=1.0), config=HAIKU)
+    assert len(inner.calls) == 1 and time.monotonic() - began < 2
+
+
+def log_entries_at(path):
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
