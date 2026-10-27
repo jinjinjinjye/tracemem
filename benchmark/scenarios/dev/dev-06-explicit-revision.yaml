@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # Focal pattern: three choices for a lecture-captioning project are each made
 # once and later changed with explicit replacement words ("X instead of Y"):
 # the recognition model (S2), the audio splitting (S3) and the caption file
@@ -9,7 +9,7 @@ title: Lecture captions changed with explicit replacements
 category: explicit_revision
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: lecture-captions
 
 items:

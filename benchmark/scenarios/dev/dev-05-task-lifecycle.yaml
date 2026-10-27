@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # Focal pattern: the noise filtering goes open -> blocked -> open -> completed,
 # with a suggestion to cancel it while it is blocked that nobody takes up (S2)
 # and a later recollection of the block (S4). The species tagging is put on
@@ -9,7 +9,7 @@ title: Cleaning and tagging bird-call clips
 category: task_lifecycle
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: wetland-bird-calls
 
 items:

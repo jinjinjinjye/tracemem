@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # It is a development-split fixture and never enters the test split.
 # Focal pattern: after each decision, later turns name other values without
 # proposing them: a curious question (S2-T2), a report about another group's
@@ -11,7 +11,7 @@ title: Card-fraud model with recollections and side reports
 category: mention_after_decision
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: card-fraud
 
 items:

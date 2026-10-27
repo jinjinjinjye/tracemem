@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # Focal pattern: a second speaker disputes the backbone decision (S2), the
 # dispute stays open through two checkpoints (S2, S3) while a third option is
 # only suggested, and the team settles on the disputed value in S4. A second
@@ -8,7 +8,7 @@ title: A disputed backbone for the leaf classifier
 category: unresolved_contradiction
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: leaf-disease-classifier
 
 items:

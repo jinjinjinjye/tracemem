@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # It is a development-split scenario and never enters the test split.
 # Focal pattern: one movie recommender with two learning rates, one for the
 # embedding tables (decided in S1) and one for the MLP layers (decided later, in
@@ -10,7 +10,7 @@ title: Two learning rates in one recommender
 category: confusable_items
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: movie-recommender
 
 items:

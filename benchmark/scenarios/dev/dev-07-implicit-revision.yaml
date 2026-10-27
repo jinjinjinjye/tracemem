@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # It is a development-split fixture and never enters the test split.
 # Focal pattern: every change replaces the current choice without naming it.
 # The evaluation split changes twice (S2-T3, S4-T2), the model once (S3-T3) and
@@ -10,7 +10,7 @@ title: Readmission choices changed without naming the old ones
 category: implicit_revision
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: readmission-risk
 
 items:

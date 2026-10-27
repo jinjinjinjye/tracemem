@@ -1,4 +1,4 @@
-# Example scenario that shows the format. Not yet reviewed by the team.
+# Example scenario that shows the format. Blind-checked by the team (see `review` below).
 # It is a development-split fixture and never enters the test split.
 # Focal pattern: after a decision, turns name other values without proposing
 # them (a question about results, a recollection, a counterfactual). None of
@@ -9,7 +9,7 @@ title: Hypotheticals and recollections around a baseline
 category: mention_after_decision
 split: dev
 author: pilot
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone (decision #40's round), which asked for answers only, not turn labels."}
 project_id: spam-filter
 
 items:

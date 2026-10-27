@@ -1,4 +1,4 @@
-# Development scenario. Not yet reviewed by the team.
+# Development scenario. Blind-checked by the team (see `review` below).
 # Focal pattern: the demand model is decided in S1-T2 ("We just go with LightGBM
 # on lag features..."). In S2-T2 ("Hmm, maybe we try Prophet?...") a teammate
 # suggests another model, and nobody ever adopts it, so after S2 and S3 the newest
@@ -12,7 +12,7 @@ title: Demand model with a suggestion nobody adopts
 category: suggestion_after_decision
 split: dev
 author: mace2305
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
 project_id: bike-share-demand
 
 items:
