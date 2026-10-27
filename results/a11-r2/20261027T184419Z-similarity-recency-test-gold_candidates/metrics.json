@@ -1,0 +1,349 @@
+{
+  "current_accuracy": {
+    "all": {
+      "value": 0.9080459770114943,
+      "n": 174
+    },
+    "trap_candidate": {
+      "value": 0.5294117647058824,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 1.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.7777777777777778,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.9420289855072463,
+      "n": 138
+    }
+  },
+  "stale_answer_rate": {
+    "all": {
+      "value": 0.023255813953488372,
+      "n": 43
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 1
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 4
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 4
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 9
+    },
+    "no_trap": {
+      "value": 0.029411764705882353,
+      "n": 34
+    }
+  },
+  "incorrect_replacement_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 49
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 11
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 2
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 22
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 27
+    }
+  },
+  "presented_as_current_rate": {
+    "all": {
+      "value": 0.040229885057471264,
+      "n": 174
+    },
+    "trap_candidate": {
+      "value": 0.23529411764705882,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.1111111111111111,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.021739130434782608,
+      "n": 138
+    }
+  },
+  "false_certainty_rate": {
+    "all": {
+      "value": 0.8,
+      "n": 5
+    },
+    "trap_candidate": {
+      "value": 0.8,
+      "n": 5
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": 0.8,
+      "n": 5
+    },
+    "no_trap": {
+      "value": null,
+      "n": 0
+    }
+  },
+  "false_conflict_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 169
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 12
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 31
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 138
+    }
+  },
+  "non_answer_rate": {
+    "all": {
+      "value": 0.04093567251461988,
+      "n": 171
+    },
+    "trap_candidate": {
+      "value": 0.23529411764705882,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.1111111111111111,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.022222222222222223,
+      "n": 135
+    }
+  },
+  "abstention_rate": {
+    "all": {
+      "value": 0.011494252873563218,
+      "n": 174
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.014492753623188406,
+      "n": 138
+    }
+  },
+  "historical_accuracy": {
+    "all": {
+      "value": 0.95,
+      "n": 20
+    },
+    "trap_candidate": {
+      "value": null,
+      "n": 0
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": null,
+      "n": 0
+    },
+    "no_trap": {
+      "value": 0.95,
+      "n": 20
+    }
+  },
+  "citation_validity": {
+    "all": {
+      "value": 1.0,
+      "n": 190
+    },
+    "trap_candidate": {
+      "value": 1.0,
+      "n": 16
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 1.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 1.0,
+      "n": 35
+    },
+    "no_trap": {
+      "value": 1.0,
+      "n": 155
+    }
+  },
+  "supported_answer_rate": {
+    "all": {
+      "value": 0.9214659685863874,
+      "n": 191
+    },
+    "trap_candidate": {
+      "value": 0.5294117647058824,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 1.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.7777777777777778,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.9548387096774194,
+      "n": 155
+    }
+  },
+  "citation_coverage": {
+    "all": {
+      "value": 0.8516579406631762,
+      "n": 191
+    },
+    "trap_candidate": {
+      "value": 0.5294117647058824,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.95,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.6666666666666666,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.6805555555555556,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.8913978494623656,
+      "n": 155
+    }
+  },
+  "evidence_recall": {
+    "all": {
+      "value": 0.9441535776614312,
+      "n": 191
+    },
+    "trap_candidate": {
+      "value": 0.9019607843137255,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.95,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.6666666666666666,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.8564814814814814,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.964516129032258,
+      "n": 155
+    }
+  },
+  "weighting": "question",
+  "outcome_counts": {
+    "correct": 177,
+    "missed": 7,
+    "abstained": 2,
+    "wrong_other": 3,
+    "false_certainty": 4,
+    "stale": 1
+  }
+}
