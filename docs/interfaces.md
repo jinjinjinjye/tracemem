@@ -244,12 +244,14 @@ Run it the same way and compare the two saved runs with `tracemem report runs/<f
 
 ## The two conditions
 
-`tracemem-controlled`, `tracemem-no-versions` and `mem0-classic` are registered
+`similarity`, `similarity-recency`, `mem0-classic`, `mem0-instructions`,
+`tracemem-controlled` and `tracemem-no-versions` are registered
 with `uses_gold=False`: their factories receive only `ScenarioMeta`, while the
 harness supplies candidates in the `gold_candidates` condition. They reject
-`end_to_end` rather than silently using an extractor. All three use the same model
+`end_to_end` rather than silently using an extractor. All of them use the same model
 configuration, answerer and memory-context budget; none uses the gold question-item
-lookup. The current-only store deliberately lacks historical reconstruction, so
+lookup. The two similarity systems store `flat_records` and differ only in their
+retriever. The current-only store deliberately lacks historical reconstruction, so
 it is paired with the all-memory reader instead of `GoldRetriever`. Native Mem0
 actions/history and its exact pinned adapter are described in
 [the controlled comparison guide](memory-comparison.md).
@@ -321,20 +323,20 @@ The baselines, such as a similarity-based memory and a recency-based memory, hav
 
 Every extractor must give each candidate the id `<item>@<turn id>`, using the id of the turn being read. The gold candidates have this form, and `GoldResolver` finds the gold operation for a candidate by its id. A candidate whose id the gold does not contain, such as an extra statement the extractor found or an id in another form, is stored as a proposal (an ADD as proposed) instead of crashing the run. An id in another form therefore turns even a correct candidate into a proposal.
 
-TraceMem and the baselines should differ in one thing only: whether a resolver assigned statuses, and how retrieval uses them. So every system that shows records to an answer model must turn records into text the same way. That means the same fields, in the same order, within the same token budget. Otherwise, a better score could come from nicer formatting rather than from the resolver. The shared function for this already exists: `render_records(records, turns, show_status)` in [`components.py`](../src/tracemem/components.py). It writes one line per record, in time order: the turn id, the speaker, the item, the value, the status in brackets when `show_status` is true, and the quoted text of the turn that created the record. Every record-based system must use it. A system without a resolver passes `show_status=False`.
+TraceMem and the baselines should differ in one thing only: whether a resolver assigned statuses, and how retrieval uses them. So every system that shows records to an answer model must turn records into text the same way. That means the same fields, in the same order, within the same context budget, counted in UTF-8 bytes. Otherwise, a better score could come from nicer formatting rather than from the resolver. The shared function for this already exists: `render_records(records, turns, show_status)` in [`components.py`](../src/tracemem/components.py). It writes one line per record, in time order: the turn id, the speaker, the item, the value, the status in brackets when `show_status` is true, and the quoted text of the turn that created the record. Every record-based system must use it. A system without a resolver passes `show_status=False`.
 
 ## Comparison systems (planned)
 
-These systems are not built yet; so far only TraceMem's pipeline exists, wired from stand-ins. The list is a proposal until the team records it in a [decision record](decisions/README.md). An *embedding* is a list of numbers that represents a text's meaning, so that texts with similar meanings get nearby lists.
+The compared systems are the five of [decision 0011](decisions/0011-compare-five-memory-systems.md) (question 6, settled by member A for the team to accept): similarity, similarity + recency, Mem0, Mem0 with project instructions, and TraceMem, with TraceMem without its history (`tracemem-no-versions`) as a diagnostic beside them. [The controlled comparison guide](memory-comparison.md) describes them. The end-to-end version of every system, which reads a real extractor's candidates, is still planned. Timeline, TraceMem without supersession and full history below were an earlier plan and are not built; they stay listed for the record. An *embedding* is a list of numbers that represents a text's meaning, so that texts with similar meanings get nearby lists.
 
 - **Similarity**: shows the records most similar to the question by embedding, with no status.
-- **Similarity + recency**: the same, but each record's score adds a term that favours newer records. Its parameters are tuned on development scenarios only.
+- **Similarity + recency**: the same, but each record's score adds a term that favours newer records. Its weight and half-life (0.3 and 7 days) are provisional, not tuned; any tuning uses development scenarios only.
 - **Timeline**: shows every record of the items its retriever selects, oldest first, with no status. The answer model works out what still holds when it reads them.
 - **TraceMem**: the same item selection as Timeline, with each record's status shown.
 - **TraceMem without supersession**: an ablation, a copy of TraceMem with one part removed to measure that part. Its resolver may only add records.
 - **Full history**: gives the answer model every turn so far. It is a reference point, not a record-based system.
 
-All record-based systems use the same extracted candidates, the same renderer (`render_records`) and the same token budget.
+All record-based systems use the same extracted candidates, the same renderer (`render_records`) and the same context budget, counted in UTF-8 bytes (`TRACEMEM_CONTEXT_BUDGET_BYTES`), not tokens.
 
 ## When the store rejects an operation
 

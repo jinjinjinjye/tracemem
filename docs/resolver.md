@@ -135,7 +135,9 @@ pytest tests/test_resolver.py tests/test_resolver_client.py tests/test_resolver_
 
 For the OpenAI adapter, install `pip install -e ".[dev,llm]"`. Supply these settings
 as process environment variables; [`.env.example`](../.env.example) is a template.
-The package does not automatically load `.env` files.
+The package does not automatically load `.env` files. The one exception is
+`OPENROUTER_API_KEY`, which the comparison systems' OpenRouter provider reads from
+`.env` when it is absent from the environment ([local model guide](local-model.md#paid-runs-haiku-through-openrouter)).
 
 | Variable | Default / requirement |
 |---|---|
@@ -249,7 +251,7 @@ feedback limits; increment the corresponding version when changing those policie
 The current intent policy is `candidate-speech-act-v4` and the executable adoption
 source policy is `selected-adoption-origins-v2`; guide text
 is also covered by the system-prompt hash. Controlled comparison manifests
-carry it as `resolver_reference_policy_hash` in all three arms, so a run with a
+carry it as `resolver_reference_policy_hash` in every arm, so a run with a
 different resolver request policy cannot silently enter the same comparison.
 `usage()` counts all attempted calls and reported tokens, including
 invalid completions and retries, across this resolver instance. Tokens from a failed

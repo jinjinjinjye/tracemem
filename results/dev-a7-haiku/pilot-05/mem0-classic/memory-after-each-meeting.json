@@ -1,0 +1,571 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Kai: model.baseline = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1",
+   "S1-T1 Kai: features.text = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes) | sources=S1-T2",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:5c0063c6-77ea-495c-b85e-90e63bfa6a67",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e7cf45bf-12e6-4fcb-abf7-ca1ce695f7de",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:675c052a-0ee7-4c57-b606-aea5f7a86876",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:f24d8dee-7ef8-42d2-a8af-1a4b1166d892",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:167bd3d4-e1f0-43ab-a11d-1ab2bc476490",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:4976c747-ada0-4a99-a4f1-d00b4c882987",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S1": "S1-T1 Kai: features.text = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1\nS1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2",
+   "model.baseline@S1": "S1-T1 Kai: model.baseline = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1\nS1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Kai: model.baseline = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1",
+   "S1-T1 Kai: features.text = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes) | sources=S1-T2",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:5c0063c6-77ea-495c-b85e-90e63bfa6a67",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e7cf45bf-12e6-4fcb-abf7-ca1ce695f7de",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:675c052a-0ee7-4c57-b606-aea5f7a86876",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:f24d8dee-7ef8-42d2-a8af-1a4b1166d892",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:167bd3d4-e1f0-43ab-a11d-1ab2bc476490",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:4976c747-ada0-4a99-a4f1-d00b4c882987",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S2": "S1-T1 Kai: features.text = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1\nS1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2",
+   "model.baseline@S2": "S1-T1 Kai: model.baseline = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1\nS1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = Current Mem0 memory: Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \"What if we used naive Bayes instead? It's the classic for spam.\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes) | sources=S1-T2\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Kai: features.text = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2",
+   "S3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1",
+   "S3-T2 Rosa: model.baseline = Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM) | sources=S3-T2,S1-T1,S3-T1",
+   "S3-T2 Rosa: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \\\"OK, SVM it is.\\\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)\"} | sources=S3-T2,S1-T1,S3-T1",
+   "S3-T2 Rosa: model.baseline = {\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null} | sources=S3-T2,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:e7cf45bf-12e6-4fcb-abf7-ca1ce695f7de",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:675c052a-0ee7-4c57-b606-aea5f7a86876",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:f24d8dee-7ef8-42d2-a8af-1a4b1166d892",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:4976c747-ada0-4a99-a4f1-d00b4c882987",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:54440cea-f681-4374-8802-dbca0185653c",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T1",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:5c0063c6-77ea-495c-b85e-90e63bfa6a67",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1",
+     "S3-T1"
+    ],
+    "speakers": [
+     "Rosa",
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:010df5b4-7b00-49a8-a869-cd5f6b806e0b",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \\\"OK, SVM it is.\\\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1",
+     "S3-T1"
+    ],
+    "speakers": [
+     "Rosa",
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9cda0965-d942-4fa2-925e-e3b1a5731665",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa",
+     "Rosa"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S3": "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1\nS3-T2 Rosa: model.baseline = {\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null} | sources=S3-T2,S1-T2",
+   "model.baseline@S3": "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1\nS3-T2 Rosa: model.baseline = Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM) | sources=S3-T2,S1-T1,S3-T1\nS3-T2 Rosa: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \\\"OK, SVM it is.\\\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)\"} | sources=S3-T2,S1-T1,S3-T1",
+   "model.baseline@S3-previous": "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1\nS3-T2 Rosa: model.baseline = Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM) | sources=S3-T2,S1-T1,S3-T1\nS3-T2 Rosa: model.baseline = {\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null} | sources=S3-T2,S1-T2"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Kai: features.text = Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features. | sources=S1-T1",
+   "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T1 Kai: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1",
+   "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2",
+   "S3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1",
+   "S3-T2 Rosa: model.baseline = Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM) | sources=S3-T2,S1-T1,S3-T1",
+   "S3-T2 Rosa: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \\\"OK, SVM it is.\\\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)\"} | sources=S3-T2,S1-T1,S3-T1",
+   "S3-T2 Rosa: model.baseline = {\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null} | sources=S3-T2,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "mem0-current:e7cf45bf-12e6-4fcb-abf7-ca1ce695f7de",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "Current Mem0 memory: Let's make the baseline logistic regression on TF-IDF features.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:675c052a-0ee7-4c57-b606-aea5f7a86876",
+    "project_id": "spam-filter",
+    "item": "features.text",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:f24d8dee-7ef8-42d2-a8af-1a4b1166d892",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:4976c747-ada0-4a99-a4f1-d00b4c882987",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:54440cea-f681-4374-8802-dbca0185653c",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T1",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-12T12:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:5c0063c6-77ea-495c-b85e-90e63bfa6a67",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1",
+     "S3-T1"
+    ],
+    "speakers": [
+     "Rosa",
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:010df5b4-7b00-49a8-a869-cd5f6b806e0b",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \\\"OK, SVM it is.\\\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1",
+     "S3-T1"
+    ],
+    "speakers": [
+     "Rosa",
+     "Kai",
+     "Kai"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:9cda0965-d942-4fa2-925e-e3b1a5731665",
+    "project_id": "spam-filter",
+    "item": "model.baseline",
+    "value": "{\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa",
+     "Rosa"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "features.text@S4": "S1-T1 Kai: features.text = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Let's make the baseline logistic regression on TF-IDF features.\"} | sources=S1-T1\nS1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1\nS3-T2 Rosa: model.baseline = {\"mem0_history\": \"DELETE\", \"before\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\", \"after\": null} | sources=S3-T2,S1-T2",
+   "model.baseline@S4": "S1-T2 Rosa: model.baseline = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Rosa proposed naive Bayes as an alternative baseline model for the spam-filter project: \\\"What if we used naive Bayes instead? It's the classic for spam.\\\" (candidate_id: model.baseline@S1-T2, source_turn_ids: [S1-T2], value: naive Bayes)\"} | sources=S1-T2\nS3-T1 Kai: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the baseline logistic regression on TF-IDF features.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\"} | sources=S3-T1,S1-T1\nS3-T2 Rosa: model.baseline = Current Mem0 memory: Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \"OK, SVM it is.\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM) | sources=S3-T2,S1-T1,S3-T1\nS3-T2 Rosa: model.baseline = {\"mem0_history\": \"UPDATE\", \"before\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points.\", \"after\": \"Let's make the linear SVM the baseline model for the spam-filter project, since it beats logistic regression by two points. Rosa confirmed: \\\"OK, SVM it is.\\\" (candidate_id: model.baseline@S3-T2, source_turn_ids: [S3-T2], value: linear SVM)\"} | sources=S3-T2,S1-T1,S3-T1"
+  }
+ }
+}

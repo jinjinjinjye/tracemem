@@ -1,4 +1,4 @@
-# Example scenario that shows the format. Not yet reviewed by the team.
+# Example scenario that shows the format. Blind-checked by the team (see `review` below).
 # It is a development-split fixture and never enters the test split.
 # Focal pattern: a suggestion arrives after a decision (session S2), and the
 # suggestion is accepted only later (session S3). This is the proposal's own demo.
@@ -7,7 +7,7 @@ title: Classifier choice with a late suggestion
 category: suggestion_after_decision
 split: dev
 author: pilot
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, in an earlier round that asked for answers only, not turn labels."}
 project_id: sentiment-project
 
 items:

@@ -60,6 +60,7 @@ class RunResult:
     resolver_events: dict[str, list[dict]] = field(default_factory=dict)
     resolver_usage: dict[str, Usage] = field(default_factory=dict)
     answer_usage: dict[str, Usage] = field(default_factory=dict)
+    model_cache: dict[str, dict] = field(default_factory=dict)
     resolver_scores: list[dict] | None = None
     memory_events: dict[str, list[dict]] = field(default_factory=dict)
     status: str = "completed"
@@ -162,6 +163,11 @@ def _collect_scenario(result: RunResult, scenario: Scenario, rows: list[ScoredAn
         value = answer_usage()
         if value is not None:
             result.answer_usage[scenario.scenario_id] = value
+    model_cache = getattr(system, "model_cache_usage", None)
+    if callable(model_cache):
+        value = model_cache()
+        if value is not None:
+            result.model_cache[scenario.scenario_id] = value
     memory_events = getattr(system, "memory_events", None)
     if callable(memory_events):
         result.memory_events[scenario.scenario_id] = memory_events()
@@ -330,6 +336,13 @@ def write_run(result: RunResult, out_root: str | Path, extra_manifest: dict | No
             key: sum(value[key] for value in by_scenario.values())
             for key in ("calls", "input_tokens", "output_tokens")
         }, "by_scenario": by_scenario, "tokens_are_provider_reported": True}
+    if result.model_cache:
+        # A reply served from the cache reports zero tokens, so the token totals
+        # above count only the calls that reached the provider.
+        by_scenario = {sid: dict(value) for sid, value in result.model_cache.items()}
+        usage_info["model_cache"] = {"total": {
+            key: sum(value[key] for value in by_scenario.values()) for key in ("calls", "hits", "misses")
+        }, "by_scenario": by_scenario, "hits_report_zero_tokens": True}
     if usage_info:
         (folder / "usage.json").write_text(json.dumps(usage_info, indent=2), encoding="utf-8")
     if result.memory_events:

@@ -1,0 +1,514 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S1": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3",
+   "model.sentiment@S1": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3",
+   "S2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3",
+   "S2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S2-T3",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.ner@S2-T5",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "spaCy",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S2": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3",
+   "model.ner@S2": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5",
+   "model.sentiment@S2": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3",
+   "S2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3",
+   "S2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5",
+   "S3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2",
+   "S3-T3 Arun: metric.primary = macro-F1 \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\" | sources=S3-T3",
+   "S3-T4 Mei: metric.primary = macro-F1 \"Agreed, macro-F1 is the primary metric from now on.\" | sources=S3-T4"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S2-T3",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.ner@S2-T5",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "spaCy",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S3-T2",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S3-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S3-T4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S3": "S1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3\nS3-T3 Arun: metric.primary = macro-F1 \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\" | sources=S3-T3\nS3-T4 Mei: metric.primary = macro-F1 \"Agreed, macro-F1 is the primary metric from now on.\" | sources=S3-T4",
+   "model.ner@S3": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2",
+   "model.sentiment@S3": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2",
+   "model.sentiment@S3-previous": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3",
+   "S2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3",
+   "S2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5",
+   "S3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2",
+   "S3-T3 Arun: metric.primary = macro-F1 \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\" | sources=S3-T3",
+   "S3-T4 Mei: metric.primary = macro-F1 \"Agreed, macro-F1 is the primary metric from now on.\" | sources=S3-T4",
+   "S4-T1 Mei: model.sentiment = DistilBERT \"For the write-up: we're on DistilBERT, scored with macro-F1.\" | sources=S4-T1",
+   "S4-T1 Mei: metric.primary = macro-F1 \"For the write-up: we're on DistilBERT, scored with macro-F1.\" | sources=S4-T1"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S2-T3",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.ner@S2-T5",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "spaCy",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S3-T2",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S3-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S3-T4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S4-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S4-T1",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S4": "S1-T2 Arun: metric.primary = accuracy \"Sounds good. What do we report, plain accuracy?\" | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy \"Yes, accuracy as the main metric for now.\" | sources=S1-T3\nS3-T3 Arun: metric.primary = macro-F1 \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\" | sources=S3-T3\nS3-T4 Mei: metric.primary = macro-F1 \"Agreed, macro-F1 is the primary metric from now on.\" | sources=S3-T4",
+   "model.ner@S4": "S2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy \"Separately, for the NER part we'll use a spaCy model.\" | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2\nS4-T1 Mei: model.sentiment = DistilBERT \"For the write-up: we're on DistilBERT, scored with macro-F1.\" | sources=S4-T1",
+   "model.sentiment@S4": "S1-T1 Mei: model.sentiment = BERT \"Let's go with BERT for the sentiment classifier. It's the safe choice.\" | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT \"Maybe we could try DistilBERT? It might be faster.\" | sources=S2-T3\nS3-T2 Mei: model.sentiment = DistilBERT \"Then we switch the sentiment classifier to DistilBERT, since BERT misses the latency limit.\" | sources=S3-T2\nS4-T1 Mei: model.sentiment = DistilBERT \"For the write-up: we're on DistilBERT, scored with macro-F1.\" | sources=S4-T1"
+  }
+ }
+}

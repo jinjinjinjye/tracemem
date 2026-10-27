@@ -1,0 +1,95 @@
+# Development scenario. Blind-checked by the team (see `review` below).
+# It is a development-split fixture and never enters the test split.
+# Focal pattern: every change replaces the current choice without naming it.
+# The evaluation split changes twice (S2-T3, S4-T2), the model once (S3-T3) and
+# the metric once (S3-T7); each revising turn names only the new value, and the
+# old value is referred to, if at all, only indirectly ("the model", "our
+# headline number"). No trap is planned: the newest statement is always right.
+scenario_id: dev-07
+title: Readmission choices changed without naming the old ones
+category: implicit_revision
+split: dev
+author: mace2305
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, following benchmark/blind-check/dev-batch-1/GUIDE.md, which asked for answers only, not turn labels."}
+project_id: readmission-risk
+
+items:
+  - key: model.risk
+    kind: decision
+    description: classifier that predicts 30-day readmission from the discharge table
+    ask: Which model are we using to predict readmissions?
+    values:
+      logistic regression: [logreg, logistic regression model]
+      XGBoost: [xgb, xgboost classifier]
+  - key: split.eval
+    kind: decision
+    description: how discharges are divided into training and test data
+    ask: How are we splitting the data for evaluation?
+    values:
+      random split: [random 80/20 split, random holdout, random train-test split]
+      patient-grouped split: [split by patient, patient-level split, grouped by patient]
+      time-based split: [split by discharge date, temporal split, chronological split]
+  - key: metric.primary
+    kind: decision
+    description: the headline number we report for model quality
+    ask: What is our primary evaluation metric?
+    values:
+      AUROC: [roc auc, roc-auc, area under the roc curve]
+      AUPRC: [pr auc, pr-auc, average precision, area under the precision-recall curve]
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Ines, text: "Right, so for the readmission model, let's start with logistic regression. Clinicians can actually read the coefficients, which is rather important."}
+      - {id: S1-T2, speaker: Omar, text: "Uh, yes, that sounds fine by me. For the evaluation, we'll just do a standard random 80/20 split of the discharges, nothing too complicated."}
+      - {id: S1-T3, speaker: Greta, text: "And AUROC is our headline metric. That's what all the standard readmission papers report."}
+      - {id: S1-T4, speaker: Ines, text: "Brilliant. Greta, are you alright with cleaning up the discharge table this week?"}
+      - {id: S1-T5, speaker: Greta, text: "Yep, definitely. Should have it done by Friday."}
+      - {id: S1-T6, speaker: Omar, text: "I'll go ahead and get the training script going in the meantime, then."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Greta, text: "The table's clean. Just a heads up though, a lot of patients come back more than once. Some even have six or seven separate stays."}
+      - {id: S2-T2, speaker: Omar, text: "Oh, right... that's actually a bit of a problem for our test numbers. The same person could end up on both sides."}
+      - {id: S2-T3, speaker: Ines, text: "Exactly. So from now on, we split by patient. All of one person's stays have to go to the same side."}
+      - {id: S2-T4, speaker: Omar, text: "Yes, that makes total sense. I'll redo the folds tonight and rerun everything for you."}
+      - {id: S2-T5, speaker: Greta, text: "Sounds like a plan. I'll start drafting the cohort section in the meantime."}
+  - id: S3
+    date: 2026-10-13
+    turns:
+      - {id: S3-T1, speaker: Omar, text: "I've reran it with the new folds. The model is kind of stuck at about 0.68, and even when I pile on more features, it barely moves."}
+      - {id: S3-T2, speaker: Greta, text: "Makes sense, to be honest. A linear model can't really pick up things like age interacting with the number of prior stays."}
+      - {id: S3-T3, speaker: Ines, text: "Right, in that case, we're going with XGBoost for the model. Trees should naturally catch those interactions without us having to hand-build them."}
+      - {id: S3-T4, speaker: Omar, text: "Okay, sure. I'll port the pipeline over tonight."}
+      - {id: S3-T5, speaker: Greta, text: "One more thing to note. Only about 11% of discharges actually get readmitted within 30 days."}
+      - {id: S3-T6, speaker: Ines, text: "Hm. Which means our headline number could look perfectly decent even when the model is barely finding anyone. That won't do."}
+      - {id: S3-T7, speaker: Greta, text: "Exactly. So AUPRC is our main metric from now on. It actually tracks how well we catch the rare positives."}
+      - {id: S3-T8, speaker: Ines, text: "Completely agreed."}
+      - {id: S3-T9, speaker: Omar, text: "I'll make sure to put it first in the results table, then."}
+  - id: S4
+    date: 2026-10-16
+    turns:
+      - {id: S4-T1, speaker: Greta, text: "I touched base with the discharge team at the partner hospital. They'd be running this on next year's patients, so they really care how it performs on future discharges."}
+      - {id: S4-T2, speaker: Ines, text: "That's a very fair point. Then we split by discharge date instead: train on everything up to June, test on July to September."}
+      - {id: S4-T3, speaker: Omar, text: "Um, Ines... doesn't that put some patients on both sides again?"}
+      - {id: S4-T4, speaker: Ines, text: "A few, quite possibly. But that's exactly what it will look like once it's actually deployed on the wards, right?"}
+      - {id: S4-T5, speaker: Omar, text: "Ah, I see. Okay, I'll rebuild the train and test sets this afternoon."}
+      - {id: S4-T6, speaker: Ines, text: "Perfect. So for the presentation slides: we're on XGBoost, and we lead with AUPRC."}
+      - {id: S4-T7, speaker: Greta, text: "Got it. I'll handle the plots once Omar's numbers come in."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.risk, value: logistic regression}
+  - {turn: S1-T2, act: decide, item: split.eval, value: random split}
+  - {turn: S1-T3, act: decide, item: metric.primary, value: AUROC}
+  - {turn: S2-T3, act: revise, item: split.eval, value: patient-grouped split, reason: "repeat patients would land in both the training and the test data"}
+  - {turn: S3-T3, act: revise, item: model.risk, value: XGBoost, reason: "the linear model plateaus around 0.68 and cannot capture feature interactions"}
+  - {turn: S3-T7, act: revise, item: metric.primary, value: AUPRC, reason: "only about 11% of discharges are readmitted, so the old headline metric flatters the model"}
+  - {turn: S4-T2, act: revise, item: split.eval, value: time-based split, reason: "the hospital would apply the model to future discharges"}
+  - {turn: S4-T6, act: restate, item: model.risk, value: XGBoost}
+  - {turn: S4-T6, act: restate, item: metric.primary, value: AUPRC}
+
+questions:
+  - {id: metric.primary@S3-previous, after: S3, kind: previous, item: metric.primary, text: "Which primary evaluation metric, if any, did we use before the current one?"}
+  - {id: split.eval@S4-previous, after: S4, kind: previous, item: split.eval, text: "Which data split, if any, did we use for evaluation before the current one?"}
+  - {id: model.risk@S4-asof-S2, after: S4, kind: as_of, session: S2, item: model.risk, text: "What was the state of the readmission-model choice at the end of the second meeting?"}

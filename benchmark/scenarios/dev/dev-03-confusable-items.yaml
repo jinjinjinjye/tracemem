@@ -1,0 +1,91 @@
+# Development scenario. Blind-checked by the team (see `review` below).
+# It is a development-split scenario and never enters the test split.
+# Focal pattern: one movie recommender with two learning rates, one for the
+# embedding tables (decided in S1) and one for the MLP layers (decided later, in
+# S2, and lowered in S3), so the newest learning-rate decision is often about the
+# other item. In S4 the roles swap: the embedding rate changes after a suggestion
+# about the MLP rate, and a recollection names the old embedding rate.
+scenario_id: dev-03
+title: Two learning rates in one recommender
+category: confusable_items
+split: dev
+author: mace2305
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, following benchmark/blind-check/dev-batch-1/GUIDE.md, which asked for answers only, not turn labels."}
+project_id: movie-recommender
+
+items:
+  - key: lr.embedding
+    kind: decision
+    description: learning rate for the user and movie embedding tables
+    ask: What learning rate are we using for the embedding tables?
+    values:
+      "0.05": ["5e-2"]
+      "0.01": ["1e-2"]
+    confusable_with: [lr.mlp]
+  - key: lr.mlp
+    kind: decision
+    description: learning rate for the MLP layers on top of the embeddings
+    ask: What learning rate are we using for the MLP layers?
+    values:
+      "0.001": ["1e-3"]
+      "0.0003": ["3e-4"]
+    confusable_with: [lr.embedding]
+  - key: task.eval_script
+    kind: task
+    description: write the script that scores the top-10 recommendation lists
+    ask: What is the status of the evaluation script?
+
+sessions:
+  - id: S1
+    date: 2026-10-06
+    turns:
+      - {id: S1-T1, speaker: Clara, text: "Okay, plan is user and movie embeddings into a small MLP to predict rating."}
+      - {id: S1-T2, speaker: Jonathan, text: "Embedding tables only get sparse updates, so they need their own LR. Let's fix 0.05 for the embeddings."}
+      - {id: S1-T3, speaker: Mel, text: "What about the MLP layers on top?"}
+      - {id: S1-T4, speaker: Jonathan, text: "Hold off on those until the embeddings train properly without blowing up."}
+      - {id: S1-T5, speaker: Mel, text: "Noted. I'll write the eval script for the top-10 lists."}
+      - {id: S1-T6, speaker: Clara, text: "I'll clean up the ratings file tonight."}
+  - id: S2
+    date: 2026-10-09
+    turns:
+      - {id: S2-T1, speaker: Clara, text: "Embeddings training fine, loss going down smoothly."}
+      - {id: S2-T2, speaker: Mel, text: "Good. So what's the LR for the MLP layers?"}
+      - {id: S2-T3, speaker: Jonathan, text: "Dense layers usually require a much smaller rate. Let's set the MLP LR at 0.001."}
+      - {id: S2-T4, speaker: Clara, text: "Can. I'll update the config."}
+      - {id: S2-T5, speaker: Mel, text: "Eval script is stuck though. Not sure how to handle movies that only appear in the test set."}
+      - {id: S2-T6, speaker: Jonathan, text: "Good point. We'll check with the TA after Monday's tutorial."}
+  - id: S3
+    date: 2026-10-14
+    turns:
+      - {id: S3-T1, speaker: Mel, text: "Validation loss climbing after epoch three. MLP is definitely overfitting."}
+      - {id: S3-T2, speaker: Jonathan, text: "Then we drop the MLP LR to 0.0003 and add dropout."}
+      - {id: S3-T3, speaker: Clara, text: "Okay. Embedding rate stays the same, right?"}
+      - {id: S3-T4, speaker: Jonathan, text: "Yeah, no change."}
+      - {id: S3-T5, speaker: Mel, text: "Also, TA said to just drop movies not in training, so eval script is done."}
+      - {id: S3-T6, speaker: Clara, text: "Great. I'll start a long training run tonight."}
+  - id: S4
+    date: 2026-10-20
+    turns:
+      - {id: S4-T1, speaker: Mel, text: "Since the MLP has dropout now, maybe bump its LR back to 0.001? Might converge faster."}
+      - {id: S4-T2, speaker: Clara, text: "Maybe, but bigger issue now. The long run is very noisy, jumps are coming from the embedding tables."}
+      - {id: S4-T3, speaker: Jonathan, text: "Then we cut the embedding LR to 0.01. That will stabilize it."}
+      - {id: S4-T4, speaker: Mel, text: "Agreed. Frankly, 0.05 was always a bit high for embeddings."}
+      - {id: S4-T5, speaker: Clara, text: "I'll rerun tonight and send the curves."}
+      - {id: S4-T6, speaker: Jonathan, text: "Noted. See you guys Friday."}
+
+script:
+  - {turn: S1-T2, act: decide, item: lr.embedding, value: "0.05"}
+  - {turn: S1-T5, act: task_open, item: task.eval_script}
+  - {turn: S2-T3, act: decide, item: lr.mlp, value: "0.001"}
+  - {turn: S2-T5, act: task_progress, item: task.eval_script, progress: blocked}
+  - {turn: S3-T2, act: revise, item: lr.mlp, value: "0.0003", reason: "validation loss climbs after epoch three, so the MLP is overfitting"}
+  - {turn: S3-T5, act: task_progress, item: task.eval_script, progress: completed}
+  - {turn: S4-T1, act: suggest, item: lr.mlp, value: "0.001"}
+  - {turn: S4-T3, act: revise, item: lr.embedding, value: "0.01", reason: "the long run is noisy and the jumps come from the embedding tables"}
+  - {turn: S4-T4, act: mention, item: lr.embedding, value: "0.05"}
+
+questions:
+  - {id: lr.embedding@S4-previous, after: S4, kind: previous, item: lr.embedding, text: "Which learning rate, if any, did we use for the embedding tables before the current one?"}
+  - {id: lr.mlp@S4-previous, after: S4, kind: previous, item: lr.mlp, text: "Which learning rate, if any, did we use for the MLP layers before the current one?"}
+  - {id: lr.embedding@S4-asof-S3, after: S4, kind: as_of, session: S3, item: lr.embedding, text: "What was the state of the embedding learning-rate choice at the end of the third meeting?"}
+  - {id: lr.mlp@S4-asof-S1, after: S4, kind: as_of, session: S1, item: lr.mlp, text: "What was the state of the MLP learning-rate choice at the end of the first meeting?"}

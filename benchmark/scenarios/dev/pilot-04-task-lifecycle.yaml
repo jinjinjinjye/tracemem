@@ -1,4 +1,4 @@
-# Example scenario that shows the format. Not yet reviewed by the team.
+# Example scenario that shows the format. Blind-checked by the team (see `review` below).
 # It is a development-split fixture and never enters the test split.
 # Focal pattern: one task goes open -> blocked -> open -> completed; another is
 # cancelled and later suggested for reopening, which leaves it cancelled.
@@ -7,7 +7,7 @@ title: Two tasks with changing progress
 category: task_lifecycle
 split: dev
 author: pilot
-review: {status: unreviewed}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, in an earlier round that asked for answers only, not turn labels."}
 project_id: churn-prediction
 
 items:

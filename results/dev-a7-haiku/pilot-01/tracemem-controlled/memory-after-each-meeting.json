@@ -1,0 +1,518 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy [active] | sources=S1-T3,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": "It's the safe choice."
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [
+     "metric.primary@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S1": "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [active] | sources=S1-T3,S1-T2",
+   "model.sentiment@S1": "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [active] | sources=S1-T3,S1-T2"
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy [active] | sources=S1-T3,S1-T2",
+   "S2-T3 Arun: model.sentiment = DistilBERT [proposed] | sources=S2-T3",
+   "S2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": "It's the safe choice."
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [
+     "metric.primary@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S2-T3",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.ner@S2-T5",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "spaCy",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S2": "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [active] | sources=S1-T3,S1-T2\nS2-T3 Arun: model.sentiment = DistilBERT [proposed] | sources=S2-T3",
+   "model.ner@S2": "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS2-T3 Arun: model.sentiment = DistilBERT [proposed] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5",
+   "model.sentiment@S2": "S1-T1 Mei: model.sentiment = BERT [active] | sources=S1-T1\nS1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS2-T3 Arun: model.sentiment = DistilBERT [proposed] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5"
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy [superseded] | sources=S1-T3,S1-T2",
+   "S2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3",
+   "S2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5",
+   "S3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3",
+   "S3-T3 Arun: metric.primary = macro-F1 [superseded] | sources=S3-T3",
+   "S3-T4 Mei: metric.primary = macro-F1 [active] | sources=S3-T4,S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": "It's the safe choice."
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [
+     "metric.primary@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S2-T3",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.ner@S2-T5",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "spaCy",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S3-T2",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [
+     "model.sentiment@S1-T1",
+     "model.sentiment@S2-T3"
+    ],
+    "reason": "BERT misses the latency limit."
+   },
+   {
+    "record_id": "metric.primary@S3-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S3-T4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T4",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [
+     "metric.primary@S1-T3",
+     "metric.primary@S3-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S3": "S1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [superseded] | sources=S1-T3,S1-T2\nS3-T3 Arun: metric.primary = macro-F1 [superseded] | sources=S3-T3\nS3-T4 Mei: metric.primary = macro-F1 [active] | sources=S3-T4,S3-T3",
+   "model.ner@S3": "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3",
+   "model.sentiment@S3": "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3",
+   "model.sentiment@S3-previous": "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3"
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1",
+   "S1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2",
+   "S1-T3 Mei: metric.primary = accuracy [superseded] | sources=S1-T3,S1-T2",
+   "S2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3",
+   "S2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5",
+   "S3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3,S4-T1",
+   "S3-T3 Arun: metric.primary = macro-F1 [superseded] | sources=S3-T3",
+   "S3-T4 Mei: metric.primary = macro-F1 [active] | sources=S3-T4,S3-T3,S4-T1"
+  ],
+  "records": [
+   {
+    "record_id": "model.sentiment@S1-T1",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "BERT",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": "It's the safe choice."
+   },
+   {
+    "record_id": "metric.primary@S1-T2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S1-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [
+     "metric.primary@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S2-T3",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-08T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.ner@S2-T5",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "spaCy",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "model.sentiment@S3-T2",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "DistilBERT",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S2-T3",
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [
+     "model.sentiment@S1-T1",
+     "model.sentiment@S2-T3"
+    ],
+    "reason": "BERT misses the latency limit."
+   },
+   {
+    "record_id": "metric.primary@S3-T3",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.primary@S3-T4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "macro-F1",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T4",
+     "S3-T3",
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Arun",
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [
+     "metric.primary@S1-T3",
+     "metric.primary@S3-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "metric.primary@S4": "S1-T2 Arun: metric.primary = accuracy [superseded] | sources=S1-T2\nS1-T3 Mei: metric.primary = accuracy [superseded] | sources=S1-T3,S1-T2\nS3-T3 Arun: metric.primary = macro-F1 [superseded] | sources=S3-T3\nS3-T4 Mei: metric.primary = macro-F1 [active] | sources=S3-T4,S3-T3,S4-T1",
+   "model.ner@S4": "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3,S4-T1",
+   "model.sentiment@S4": "S1-T1 Mei: model.sentiment = BERT [superseded] | sources=S1-T1\nS2-T3 Arun: model.sentiment = DistilBERT [superseded] | sources=S2-T3\nS2-T5 Mei: model.ner = spaCy [active] | sources=S2-T5\nS3-T2 Mei: model.sentiment = DistilBERT [active] | sources=S3-T2,S2-T3,S4-T1"
+  }
+ }
+}

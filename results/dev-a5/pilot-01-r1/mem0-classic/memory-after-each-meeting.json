@@ -1,0 +1,782 @@
+{
+ "S1": {
+  "records": [
+   {
+    "record_id": "mem0-current:255cadad-9efd-46e1-926a-8ff24be4e956",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Decided to use BERT for the sentiment classifier because it is the safe choice.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:e8a07de4-d6b1-4fac-8136-61ca7c4d5912",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:4ef46c62-3c35-46d8-bb88-7217e369bda8",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7d438ef7-fc4e-4488-a6ea-24cef83b4534",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:33fa7c3f-a3b3-441e-afc2-3aa4a93cb209",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:237213f5-ac03-4182-bc11-5afe2f1ef1e2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T1 Mei: model.sentiment = Current Mem0 memory: Decided to use BERT for the sentiment classifier because it is the safe choice. | sources=S1-T1\nS1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n} | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T3",
+  "same_for_every_question": true
+ },
+ "S2": {
+  "records": [
+   {
+    "record_id": "mem0-current:255cadad-9efd-46e1-926a-8ff24be4e956",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Decided to use BERT for the sentiment classifier because it is the safe choice.",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:e8a07de4-d6b1-4fac-8136-61ca7c4d5912",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:4ef46c62-3c35-46d8-bb88-7217e369bda8",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7d438ef7-fc4e-4488-a6ea-24cef83b4534",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:33fa7c3f-a3b3-441e-afc2-3aa4a93cb209",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:237213f5-ac03-4182-bc11-5afe2f1ef1e2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2e84e240-e068-49ea-bea4-e312c8e1fc58",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: Separately, for the NER part we'll use a spaCy model.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:fb2aef2a-a8c5-4366-8105-6f64896f890b",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Separately, for the NER part we'll use a spaCy model.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T1 Mei: model.sentiment = Current Mem0 memory: Decided to use BERT for the sentiment classifier because it is the safe choice. | sources=S1-T1\nS1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n} | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: Separately, for the NER part we'll use a spaCy model. | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Separately, for the NER part we'll use a spaCy model.\"} | sources=S2-T5",
+  "same_for_every_question": true
+ },
+ "S3": {
+  "records": [
+   {
+    "record_id": "mem0-history:e8a07de4-d6b1-4fac-8136-61ca7c4d5912",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:4ef46c62-3c35-46d8-bb88-7217e369bda8",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7d438ef7-fc4e-4488-a6ea-24cef83b4534",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:33fa7c3f-a3b3-441e-afc2-3aa4a93cb209",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:237213f5-ac03-4182-bc11-5afe2f1ef1e2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2e84e240-e068-49ea-bea4-e312c8e1fc58",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: Separately, for the NER part we'll use a spaCy model.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:fb2aef2a-a8c5-4366-8105-6f64896f890b",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Separately, for the NER part we'll use a spaCy model.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:255cadad-9efd-46e1-926a-8ff24be4e956",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b2189523-6649-4096-8acc-b2f8edc39306",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\", \"after\": \"Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e316d95b-5c98-4cb5-8ed9-862a8afe988f",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T3\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\",\n  \"value\": \"macro-F1\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:ad0894ad-7ca3-41c6-b1f6-dffd173cd679",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T3\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e64ebad5-abfc-48a7-b8c7-e163738d18d5",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T4\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T4\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Agreed, macro-F1 is the primary metric from now on.\",\n  \"value\": \"macro-F1\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:dc8a7438-5bc3-482e-a949-888240b45271",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T4\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n} | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: Separately, for the NER part we'll use a spaCy model. | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Separately, for the NER part we'll use a spaCy model.\"} | sources=S2-T5\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit. | sources=S3-T2,S1-T1\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\", \"after\": \"Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit.\"} | sources=S3-T2,S1-T1\nS3-T3 Arun: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T3\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\",\n  \"value\": \"macro-F1\"\n} | sources=S3-T3\nS3-T3 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T3\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"} | sources=S3-T3\nS3-T4 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T4\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T4\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Agreed, macro-F1 is the primary metric from now on.\",\n  \"value\": \"macro-F1\"\n} | sources=S3-T4\nS3-T4 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T4\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"} | sources=S3-T4",
+  "same_for_every_question": true
+ },
+ "S4": {
+  "records": [
+   {
+    "record_id": "mem0-history:e8a07de4-d6b1-4fac-8136-61ca7c4d5912",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:4ef46c62-3c35-46d8-bb88-7217e369bda8",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:7d438ef7-fc4e-4488-a6ea-24cef83b4534",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:33fa7c3f-a3b3-441e-afc2-3aa4a93cb209",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:237213f5-ac03-4182-bc11-5afe2f1ef1e2",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-05T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:2e84e240-e068-49ea-bea4-e312c8e1fc58",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "Current Mem0 memory: Separately, for the NER part we'll use a spaCy model.",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:fb2aef2a-a8c5-4366-8105-6f64896f890b",
+    "project_id": "sentiment-project",
+    "item": "model.ner",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Separately, for the NER part we'll use a spaCy model.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-10-08T11:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:255cadad-9efd-46e1-926a-8ff24be4e956",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit.",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:b2189523-6649-4096-8acc-b2f8edc39306",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"UPDATE\", \"before\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\", \"after\": \"Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mei",
+     "Mei"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-12T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e316d95b-5c98-4cb5-8ed9-862a8afe988f",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T3\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\",\n  \"value\": \"macro-F1\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:ad0894ad-7ca3-41c6-b1f6-dffd173cd679",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T3\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-12T12:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e64ebad5-abfc-48a7-b8c7-e163738d18d5",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T4\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T4\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Agreed, macro-F1 is the primary metric from now on.\",\n  \"value\": \"macro-F1\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:dc8a7438-5bc3-482e-a949-888240b45271",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T4\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-12T12:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:1ae245b7-a746-4251-9d58-53891742f7b0",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "Current Mem0 memory: For the write-up: we're on DistilBERT, scored with macro-F1.",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-current:e17ae658-cfab-4acf-96b9-c64683d546f0",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S4-T1\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S4-T1\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"For the write-up: we're on DistilBERT, scored with macro-F1.\",\n  \"value\": \"macro-F1\"\n}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:921260fb-ceb6-465e-9cf0-4c91487ceed4",
+    "project_id": "sentiment-project",
+    "item": "metric.primary",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S4-T1\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S4-T1\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"For the write-up: we're on DistilBERT, scored with macro-F1.\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "mem0-history:e86d2fc1-4b75-4eff-a013-39b30e9f2de6",
+    "project_id": "sentiment-project",
+    "item": "model.sentiment",
+    "value": "{\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the write-up: we're on DistilBERT, scored with macro-F1.\"}",
+    "status": null,
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Mei"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-10-15T13:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "context": "S1-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\"} | sources=S1-T1\nS1-T2 Arun: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T2\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T2\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"Sounds good. What do we report, plain accuracy?\",\n  \"value\": \"accuracy\"\n} | sources=S1-T2\nS1-T2 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T2\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T2\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"Sounds good. What do we report, plain accuracy?\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T2\nS1-T3 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S1-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S1-T3\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Yes, accuracy as the main metric for now.\",\n  \"value\": \"accuracy\"\n} | sources=S1-T3\nS1-T3 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S1-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S1-T3\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Yes, accuracy as the main metric for now.\\\",\\n  \\\"value\\\": \\\"accuracy\\\"\\n}\"} | sources=S1-T3\nS2-T5 Mei: model.ner = Current Mem0 memory: Separately, for the NER part we'll use a spaCy model. | sources=S2-T5\nS2-T5 Mei: model.ner = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"Separately, for the NER part we'll use a spaCy model.\"} | sources=S2-T5\nS3-T2 Mei: model.sentiment = Current Mem0 memory: Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit. | sources=S3-T2,S1-T1\nS3-T2 Mei: model.sentiment = {\"mem0_history\": \"UPDATE\", \"before\": \"Decided to use BERT for the sentiment classifier because it is the safe choice.\", \"after\": \"Changed the sentiment classifier from BERT to DistilBERT, as BERT misses the latency limit.\"} | sources=S3-T2,S1-T1\nS3-T3 Arun: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T3\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T3\"],\n  \"speaker\": \"Arun\",\n  \"text\": \"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\",\n  \"value\": \"macro-F1\"\n} | sources=S3-T3\nS3-T3 Arun: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T3\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T3\\\"],\\n  \\\"speaker\\\": \\\"Arun\\\",\\n  \\\"text\\\": \\\"With an 80/20 split, accuracy will flatter us. Should we use macro-F1?\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"} | sources=S3-T3\nS3-T4 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S3-T4\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S3-T4\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"Agreed, macro-F1 is the primary metric from now on.\",\n  \"value\": \"macro-F1\"\n} | sources=S3-T4\nS3-T4 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S3-T4\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S3-T4\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"Agreed, macro-F1 is the primary metric from now on.\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"} | sources=S3-T4\nS4-T1 Mei: metric.primary = Current Mem0 memory: {\n  \"candidate_id\": \"metric.primary@S4-T1\",\n  \"item\": \"metric.primary\",\n  \"project_id\": \"sentiment-project\",\n  \"source_turn_ids\": [\"S4-T1\"],\n  \"speaker\": \"Mei\",\n  \"text\": \"For the write-up: we're on DistilBERT, scored with macro-F1.\",\n  \"value\": \"macro-F1\"\n} | sources=S4-T1\nS4-T1 Mei: metric.primary = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"{\\n  \\\"candidate_id\\\": \\\"metric.primary@S4-T1\\\",\\n  \\\"item\\\": \\\"metric.primary\\\",\\n  \\\"project_id\\\": \\\"sentiment-project\\\",\\n  \\\"source_turn_ids\\\": [\\\"S4-T1\\\"],\\n  \\\"speaker\\\": \\\"Mei\\\",\\n  \\\"text\\\": \\\"For the write-up: we're on DistilBERT, scored with macro-F1.\\\",\\n  \\\"value\\\": \\\"macro-F1\\\"\\n}\"} | sources=S4-T1\nS4-T1 Mei: model.sentiment = Current Mem0 memory: For the write-up: we're on DistilBERT, scored with macro-F1. | sources=S4-T1\nS4-T1 Mei: model.sentiment = {\"mem0_history\": \"ADD\", \"before\": null, \"after\": \"For the write-up: we're on DistilBERT, scored with macro-F1.\"} | sources=S4-T1",
+  "same_for_every_question": true
+ }
+}

@@ -74,26 +74,32 @@ evaluation alongside successful writes.
 
 ## Choose the model adapter explicitly
 
-`LLMResolver.from_env()` and the default comparison factory use
+`LLMResolver.from_env()`, and so `pipeline-resolver-dev`, use
 `OpenAICompletionClient`, whose endpoint is fixed to `https://api.openai.com/v1`.
 Changing a base-URL environment variable does not redirect it. The package does
-not load `.env` automatically; `.env.example` documents the configuration names.
+not load `.env` automatically, except for `OPENROUTER_API_KEY`
+([paid runs](local-model.md#paid-runs-haiku-through-openrouter));
+`.env.example` documents the configuration names.
 
-OpenRouter, Claude or a local Ollama backend needs an explicit `CompletionClient`
-adapter and a compatibility check for structured responses, usage, timeouts and
-error handling. Inject the same adapter/configuration into every comparison arm.
+The default comparison factory takes its client from `model_client.from_env()`:
+`TRACEMEM_PROVIDER` selects the same OpenAI client, OpenRouter or a local Ollama
+server, and every arm gets the same reply cache and spending cap
+([local model guide](local-model.md)). Another backend needs its own
+`CompletionClient` adapter and a compatibility check for structured responses, usage,
+timeouts and error handling. Inject the same adapter/configuration into every comparison arm.
 The private runner used for earlier OpenRouter experiments is not included here.
 Agree on the exact provider, model/version, request limits and budget before
 running paid commands in [the comparison guide](memory-comparison.md).
 
 ## Review scope and remaining work
 
-The included comparison is the earlier three-system setup: `tracemem-controlled`,
-`tracemem-no-versions` and native `mem0-classic` 1.0.11 with history. It uses the same
-gold candidates and model settings with a shared answerer. It is a component
-experiment, not the newer five-system plan or an end-to-end product evaluation.
-Alignment with that plan remains a team decision. `pipeline-resolver-dev` is a
-separate diagnostic using gold stand-ins.
+The included comparison registers the five-system plan: `similarity`,
+`similarity-recency`, native `mem0-classic` 1.0.11 with history, `mem0-instructions`
+and `tracemem-controlled`, with `tracemem-no-versions` kept as a diagnostic. They use
+the same gold candidates and model settings with a shared answerer and retriever
+([the comparison guide](memory-comparison.md)). It is a component experiment, not an
+end-to-end product evaluation. Its settings are proposed, not agreed; they remain a
+team decision. `pipeline-resolver-dev` is a separate diagnostic using gold stand-ins.
 
 Before integration, agree on the receiving branch, integration owner and reviewer;
 check a real extractor candidate and matcher result against the public types;

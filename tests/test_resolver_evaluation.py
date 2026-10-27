@@ -303,7 +303,12 @@ def test_cli_run_writes_resolver_artifacts_for_gold_candidate_condition(tmp_path
     info = json.loads((folder / "manifest.json").read_text(encoding="utf-8"))
     assert info["condition"] == "gold_candidates" and info["uses_gold_labels"] is True
     summary = json.loads((folder / "resolver_metrics.json").read_text(encoding="utf-8"))
-    assert summary["counts"]["gold_candidates"] == sum(gold_count(sid) for sid in PILOT_IDS)
+    # The run reads every scenario in the development folder, not only the pilots.
+    from tracemem.bench.load import load_scenario
+    from tracemem.bench.replay import replay
+    expected = sum(len(ops) for path in sorted(DEV.glob("*.yaml"))
+                   for ops in replay(load_scenario(path)).ops_by_turn.values())
+    assert summary["counts"]["gold_candidates"] == expected
     capsys.readouterr()
     assert cli.main(["resolver-report", str(folder)]) == 0
     assert "1.000" in capsys.readouterr().out

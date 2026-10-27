@@ -1,7 +1,10 @@
 """Controlled gold-candidate comparison with one model, reader and answer prompt.
 
-The factories never receive benchmark labels. Only memory management differs:
-TraceMem's version log, its current-only ablation, or the pinned Mem0 OSS updater.
+The factories never receive benchmark labels. Only memory management and the
+retriever's two settings differ: TraceMem's version log, its current-only ablation,
+the pinned Mem0 OSS updater with or without project instructions, or no write path
+at all, where every candidate is kept as one record ranked by similarity to the
+question, alone or mixed with recency.
 """
 
 from __future__ import annotations
@@ -10,22 +13,30 @@ import hashlib
 import json
 import os
 import re
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, ValidationError
 
+from tracemem import model_client
 from tracemem.components import GoldMatcher, render_records
-from tracemem.ops import OpLog
+from tracemem.ops import OpLog, flat_records
 from tracemem.pipeline import TraceMemPipeline
 from tracemem.resolver import (
-    CompletionClient, LLMResolver, OpenAICompletionClient, ResolverConfig,
+    CompletionClient, LLMResolver, ResolverConfig,
     ResolverConfigError, ResolverError, ResolverInputError, RetryableModelError,
 )
-from tracemem.schema import Answer, Candidate, Record, ScenarioMeta, SystemQuestion, Usage
+from tracemem.retrieval import DEFAULT_HALF_LIFE_DAYS, Embedder, OllamaEmbeddings, SharedRetriever
+from tracemem.schema import Answer, Candidate, Record, ScenarioMeta, SystemQuestion, Turn, Usage
 from tracemem.systems.no_versions import CurrentOnlyStore
 
 
-NAMES = ("tracemem-controlled", "tracemem-no-versions", "mem0-classic")
+NAMES = ("tracemem-controlled", "tracemem-no-versions", "mem0-classic",
+         "similarity", "similarity-recency", "mem0-instructions")
+MEM0_NAMES = ("mem0-classic", "mem0-instructions")
+# (alpha, half_life_days) of the systems without a write path; every other system
+# ranks by recency alone. The similarity + recency weight and half-life are provisional.
+SIMILARITY_RETRIEVERS = {"similarity": (0.0, DEFAULT_HALF_LIFE_DAYS), "similarity-recency": (0.3, 7.0)}
 DEFAULT_BUDGET_BYTES = 12000
 ANSWER_VALIDATION_POLICY = {
     "version": "visible-origin-and-dispute-v1",
@@ -36,6 +47,23 @@ ANSWER_VALIDATION_POLICY = {
     "retry": "bounded_feedback_then_abstain_no_automatic_repair",
     "feedback_max_sources": 12, "feedback_max_source_chars": 64,
 }
+# The labelling conventions of docs/benchmark.md section 5 that decide answers, in
+# the parts the rest of the prompt does not already state.
+ANSWER_CONVENTIONS = """Read each turn by what it does. A turn that states a choice for the plan without
+hedging, such as "Let's use Postgres for the database.", is a decision and settles the
+value, even when nobody replies; a suggestion is tentative, such as "Could we try SQLite
+instead?". Any other turn that puts a value forward for the plan is a suggestion, even
+when it is phrased as a question; a turn that only names a value, such
+as a recollection, a question about the past or a report, is a mention, which neither
+suggests nor decides anything. A dispute is settled only when someone states a value as
+final or the other side agrees; repeating what one remembers, or putting the decision
+off, leaves it open. On a decision, a turn that adopts the value of an earlier open
+suggestion accepts that suggestion, even when it gives reasons of its own and even when
+the suggestion was made sessions before; the suggestion's turn is then part of the
+evidence for the answer. A task's progress changes when someone announces
+the change, such as saying they will restart a blocked task; taking on a task that is
+already open changes nothing.
+"""
 ANSWER_STATE_GUIDE = """Interpret state at the time asked about, for the relevant item only.
 The value and the bracketed record status are different concepts. For example,
 'cancelled [active]' means cancellation is the current settled task state; active
@@ -70,8 +98,15 @@ For CURRENT questions about records with explicit statuses:
 For PREVIOUS / AS_OF questions, reconstruct the requested earlier state from retained
 history and the requested session. Today's active value does not override the past,
 and a proposal does not create a new settled version. A superseded record can support
-an earlier value; distinguish a past dispute from a current one. If the necessary
-history is absent, abstain instead of treating the current value as its own predecessor.
+an earlier value; distinguish a past dispute from a current one. Never treat the
+current value as its own predecessor. For PREVIOUS, answer none when the current settled
+value is the first settled value the evidence shows for the item: no earlier settled
+value of the item is visible, and the decision that set the current value does not
+describe replacing another value. An unadopted proposal is not a predecessor. Abstain
+only when the evidence indicates that an earlier settled value existed but does not
+show it. For AS_OF, answer none when the evidence shows no settled value of the item at
+the requested session, for example when the item's only records at that time are
+proposals, or when the item has no record at that time.
 
 Native Mem0 entries do not carry these explicit TraceMem statuses. Interpret their
 stored text and before/after events as evidence of proposals, decisions and disputes;
@@ -179,7 +214,7 @@ disputed information. For previous/as_of questions use retained historical evide
 do not treat today's value as the past value. Native memory events may describe
 updates/deletions; their text is evidence, not a TraceMem status assignment.
 
-""" + ANSWER_STATE_GUIDE + "\n" + ANSWER_CITATION_GUIDE + """
+""" + ANSWER_CONVENTIONS + "\n" + ANSWER_STATE_GUIDE + "\n" + ANSWER_CITATION_GUIDE + """
 
 Return a JSON object with status (answer, none, conflict, abstain), value, cited_turn_ids
 and text. value is the value alone and is non-null exactly for status=answer.
@@ -191,6 +226,20 @@ Use none when the evidence establishes nothing settled; abstain when evidence is
 insufficient. Cite only source turn IDs included in the context. Do not use knowledge
 outside this context. Free-text explanations are not additional evidence.
 """ + "\n" + ANSWER_EVIDENCE_CHECK
+
+
+# Decision record 0016. A previous or as_of question is not capped by top_k: it reads
+# every record that fits the byte budget, closest first. When the budget still leaves
+# records out, its context ends with HISTORY_LEFT_OUT_LINE and its request alone carries
+# HISTORY_LEFT_OUT_RULE. A current question gets neither, so its request is unchanged.
+HISTORY_KINDS = ("previous", "as_of")
+HISTORY_CONTEXT_POLICY = "history_questions_all_that_fit_closest_first_left_out_line_v1"
+HISTORY_LEFT_OUT_LINE = "{shown} of {total} records shown; {left_out} left out to fit the context budget."
+HISTORY_LEFT_OUT_RULE = (
+    "Records were left out of this context, as its last line says, so the settled value this previous/as_of "
+    "question asks about may exist without being shown. Answer none only when nothing was left out: here, if "
+    "the context does not show that value, abstain instead of answering none."
+)
 
 
 class _AnswerDecision(BaseModel):
@@ -211,7 +260,14 @@ def _hash(value: object) -> str:
 
 
 def make_client() -> CompletionClient:
-    return OpenAICompletionClient()
+    # One client per scenario, chosen by TRACEMEM_PROVIDER, with the reply cache and cap.
+    return model_client.from_env()
+
+
+def make_embedder() -> Embedder:
+    # One embedder per scenario for the similarity systems: the local server of
+    # TRACEMEM_LOCAL_BASE_URL and the model TRACEMEM_EMBED_MODEL, with its disk cache.
+    return OllamaEmbeddings.from_env()
 
 
 def _budget(value: int | None) -> int:
@@ -224,28 +280,77 @@ def _budget(value: int | None) -> int:
         raise ResolverConfigError("TRACEMEM_CONTEXT_BUDGET_BYTES must be an integer from 256 to 1000000") from None
 
 
-def comparison_settings(config: ResolverConfig, budget_bytes: int, client: CompletionClient) -> dict:
+def _top_k(value: int | None = None) -> int | None:
+    # How many records each answer may show (decision record 0011, question 4). Unset
+    # or empty, every system selects as before: everything that fits the byte budget.
+    raw = value if value is not None else os.environ.get("TRACEMEM_CONTEXT_TOP_K", "").strip()
+    if raw in ("", None):
+        return None
+    try:
+        result = raw if isinstance(raw, int) and not isinstance(raw, bool) else int(str(raw), 10)
+        if not 1 <= result <= 1000:
+            raise ValueError
+        return result
+    except (ValueError, TypeError):
+        raise ResolverConfigError("TRACEMEM_CONTEXT_TOP_K must be an integer from 1 to 1000") from None
+
+
+def _client_settings(client: CompletionClient) -> object:
+    # Provider, endpoint, thinking switch, token field, and a local server's context
+    # and model digest change replies, so arms must share them. The reply cache's
+    # folder and switch and the cost log do not; no key is recorded.
+    inner = client.inner if isinstance(client, model_client.CachedClient) else client
+    describe = getattr(inner, "describe", None)
+    return describe() if callable(describe) else type(inner).__name__
+
+
+def _cache_usage(client: CompletionClient) -> dict | None:
+    # Saved replies report zero tokens; these counts show how many calls they served.
+    if not isinstance(client, model_client.CachedClient):
+        return None
+    return {key: client.stats[key] for key in ("calls", "hits", "misses")}
+
+
+def comparison_settings(config: ResolverConfig, budget_bytes: int, client: CompletionClient,
+                        retriever: SharedRetriever | None = None, top_k: int | None = None) -> dict:
     # Record the same TraceMem reference in every arm's manifest. Constructing a
     # resolver with the existing client only describes the prompt/schema; it
     # makes no provider calls and does not change Mem0's native update behavior.
     reference = LLMResolver(config, client).describe()
+    # Arms may differ in the retriever's alpha and half-life, never in the rest.
+    retriever = retriever if retriever is not None else SharedRetriever(1.0, DEFAULT_HALF_LIFE_DAYS)
     return {
         "protocol": "gold-candidate-memory-v1", "input_policy": "gold_candidates_only",
-        "model_config": config.model_dump(), "answer_prompt_hash": _hash(ANSWER_PROMPT),
+        "model_config": config.model_dump(), "model_client": _client_settings(client),
+        "answer_prompt_hash": _hash(ANSWER_PROMPT),
         "answer_schema_hash": _hash(ANSWER_FORMAT), "context_budget_bytes": budget_bytes,
+        "context_top_k": top_k,
         "answer_validation_policy_hash": _hash(ANSWER_VALIDATION_POLICY),
+        # How history questions are read (decision record 0016): runs before and after differ here.
+        "history_context_policy": HISTORY_CONTEXT_POLICY,
+        "history_rule_hash": _hash({"left_out_line": HISTORY_LEFT_OUT_LINE, "rule": HISTORY_LEFT_OUT_RULE}),
         "write_matching": "all_same_item", "reader": "retained_memory_asof_oplog_snapshot_whole_entries_v2",
         "temporal_read_policy": "observed_session_oplog_prefix_other_stores_retained_only_v1",
-        "context_format": "shared_record_renderer_with_sources_no_raw_dialogue_v1",
+        # Whether a line also quotes its record's source turn is a per-system setting,
+        # recorded as quote_source_turns in each system's description.
+        "context_format": "shared_record_renderer_with_sources_v2",
         "resolver_reference_prompt_hash": reference["prompt_hash"],
         "resolver_reference_schema_hash": reference["output_schema_hash"],
         "resolver_reference_policy_hash": reference["decision_policy_hash"],
+        "retriever": retriever.shared_settings(),
     }
 
 
 def _line(record: Record) -> str:
     # Never append raw dialogue: discarded versions cannot re-enter through turn text.
     return render_records([record], {}, show_status=True) + " | sources=" + ",".join(record.source_turn_ids)
+
+
+def _quoted_line(record: Record, turns: dict[str, Turn]) -> str:
+    # _line plus the quoted text of the record's first source turn, as render_records
+    # writes it. Only for stores that are the candidate text and keep every candidate,
+    # so the quote shows what was stored and restores nothing that was discarded.
+    return render_records([record], turns, show_status=True) + " | sources=" + ",".join(record.source_turn_ids)
 
 
 def _selected_context(records: list[Record], budget_bytes: int) -> tuple[str, list[str], list[Record]]:
@@ -352,20 +457,45 @@ def _evidence_feedback(question: SystemQuestion, decision: _AnswerDecision, visi
 
 
 class SharedAnswerer:
-    def __init__(self, config: ResolverConfig, client: CompletionClient, budget_bytes: int = DEFAULT_BUDGET_BYTES):
+    def __init__(self, config: ResolverConfig, client: CompletionClient, budget_bytes: int = DEFAULT_BUDGET_BYTES,
+                 retriever: SharedRetriever | None = None, quote_source_turns: bool = False,
+                 top_k: int | None = None):
         self.config, self.client, self.budget_bytes = config, client, _budget(budget_bytes)
+        # alpha 1 ranks by time alone, so the default selects exactly as answer_context does.
+        self.retriever = retriever if retriever is not None else SharedRetriever(1.0, DEFAULT_HALF_LIFE_DAYS)
+        # At most top_k records per answer; None keeps every record that fits the budget.
+        self.top_k = _top_k(top_k) if top_k is not None else None
+        # On, each line also quotes its record's source turn from the turns given to answer().
+        self.quote_source_turns = quote_source_turns
         self._usage = Usage()
 
     def usage(self) -> Usage:
         """All attempted answer calls, including retries and a final aborted question."""
         return self._usage
 
-    def answer(self, question: SystemQuestion, records: list[Record], turns: dict) -> Answer:
-        context, sources, visible = _selected_context(records, self.budget_bytes)
-        initial_messages = [{"role": "system", "content": ANSWER_PROMPT}, {"role": "user", "content": json.dumps({
-            "question": {"text": question.text, "kind": question.kind, "session": question.session},
-            "context": context, "allowed_source_turn_ids": sources,
-        }, ensure_ascii=False)}]
+    def answer(self, question: SystemQuestion, records: list[Record], turns: dict,
+               latest: datetime | None = None) -> Answer:
+        # latest, the time of the latest observed turn, matters only to a recency mix.
+        # The line read is also the line budgeted and embedded.
+        line = (lambda record: _quoted_line(record, turns)) if self.quote_source_turns else _line
+        # Select once: rendering and validation must see exactly the same records.
+        # top_k does not cap a history question: it reads every record that fits the budget.
+        history = question.kind in HISTORY_KINDS
+        visible = self.retriever.select(question.text, records, latest, self.budget_bytes, line,
+                                        top_k=None if history else self.top_k)
+        context = "\n".join(line(record) for record in visible)
+        sources = sorted({source for record in visible for source in record.source_turn_ids})
+        request = {"question": {"text": question.text, "kind": question.kind, "session": question.session},
+                   "context": context, "allowed_source_turn_ids": sources}
+        if history and len(visible) < len(records):
+            # The budget left records out of a history question: say how many, and give it
+            # the rule. The line is not a record, so it is neither budgeted nor citable.
+            left_out = HISTORY_LEFT_OUT_LINE.format(shown=len(visible), total=len(records),
+                                                    left_out=len(records) - len(visible))
+            request["context"] = context + "\n" + left_out if context else left_out
+            request["history_rule"] = HISTORY_LEFT_OUT_RULE
+        initial_messages = [{"role": "system", "content": ANSWER_PROMPT},
+                            {"role": "user", "content": json.dumps(request, ensure_ascii=False)}]
         messages = initial_messages
         calls = input_tokens = output_tokens = 0
         for _ in range(self.config.max_attempts):
@@ -441,10 +571,12 @@ def _check_batch(meta, turn, candidates, observed):
 
 class ControlledTraceMem(TraceMemPipeline):
     def __init__(self, name: str, meta: ScenarioMeta, config: ResolverConfig,
-                 client: CompletionClient, budget_bytes: int):
-        super().__init__(meta, _CandidatesOnly(), GoldMatcher(), LLMResolver(config, client),
-                         _AllMemory(), SharedAnswerer(config, client, budget_bytes), name=name)
-        self.comparison = comparison_settings(config, budget_bytes, client)
+                 client: CompletionClient, budget_bytes: int, retriever: SharedRetriever | None = None,
+                 top_k: int | None = None):
+        super().__init__(meta, _CandidatesOnly(), GoldMatcher(), LLMResolver(config, client), _AllMemory(),
+                         SharedAnswerer(config, client, budget_bytes, retriever=retriever, top_k=top_k), name=name)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever,
+                                              self.answerer.top_k)
         if name == "tracemem-no-versions":
             self.log = CurrentOnlyStore(meta.project_id)
 
@@ -455,23 +587,32 @@ class ControlledTraceMem(TraceMemPipeline):
     def describe(self):
         return {**super().describe(), "comparison": self.comparison,
                 "memory_policy": "live_records_only" if self.name == "tracemem-no-versions" else "versioned_oplog",
-                "context_budget_unit": "utf8_bytes"}
+                "context_budget_unit": "utf8_bytes", "shared_retriever": self.answerer.retriever.describe(),
+                "quote_source_turns": self.answerer.quote_source_turns}
 
     def answer_usage(self):
         return self.answerer.usage()
+
+    def model_cache_usage(self):
+        return _cache_usage(self.answerer.client)
 
 
 class ControlledMem0:
     accepts_gold_candidates = True
     name = "mem0-classic"
 
-    def __init__(self, meta, config, client, budget_bytes):
-        from tracemem.systems.mem0_baseline import Mem0Backend
+    def __init__(self, meta, config, client, budget_bytes, name="mem0-classic", retriever=None, top_k=None):
+        from tracemem.systems.mem0_baseline import PROJECT_RULES, Mem0Backend
 
-        self.meta = meta
-        self.backend = Mem0Backend(meta, config, client)
-        self.answerer = SharedAnswerer(config, client, budget_bytes)
-        self.comparison = comparison_settings(config, budget_bytes, client)
+        if name not in MEM0_NAMES:
+            raise ValueError("unknown controlled Mem0 system")
+        self.name, self.meta = name, meta
+        # mem0-instructions adds the project rules after Mem0's own update prompt.
+        self.backend = Mem0Backend(meta, config, client,
+                                   instructions=PROJECT_RULES if name == "mem0-instructions" else None)
+        self.answerer = SharedAnswerer(config, client, budget_bytes, retriever=retriever, top_k=top_k)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever,
+                                              self.answerer.top_k)
         self._candidates = []
         self._observed = set()
 
@@ -500,27 +641,101 @@ class ControlledMem0:
     def answer_usage(self):
         return self.answerer.usage()
 
+    def model_cache_usage(self):
+        return _cache_usage(self.answerer.client)
+
     def fingerprint(self):
         return self.backend.fingerprint()
 
     def describe(self):
-        return {"comparison": self.comparison, "memory_policy": "mem0_classic_with_native_history",
-                "backend": self.backend.describe(), "context_budget_unit": "utf8_bytes"}
+        policy = "mem0_classic_with_native_history"
+        return {"comparison": self.comparison,
+                "memory_policy": policy if self.backend.instructions is None else policy + "_and_project_rules",
+                "backend": self.backend.describe(), "context_budget_unit": "utf8_bytes",
+                "shared_retriever": self.answerer.retriever.describe(),
+                "quote_source_turns": self.answerer.quote_source_turns}
 
     def close(self):
         self.backend.close()
 
 
+class ControlledSimilarity:
+    """No write path: every observed candidate is one status-less record (ops.flat_records).
+
+    The model is called only to answer. Each context line quotes its record's source
+    turn, because the store is the candidate text itself.
+    """
+
+    accepts_gold_candidates = True
+
+    def __init__(self, name: str, meta: ScenarioMeta, config: ResolverConfig, client: CompletionClient,
+                 budget_bytes: int, retriever: SharedRetriever, top_k: int | None = None):
+        self.name, self.meta = name, meta
+        self.answerer = SharedAnswerer(config, client, budget_bytes, retriever=retriever, quote_source_turns=True,
+                                       top_k=top_k)
+        self.comparison = comparison_settings(config, budget_bytes, client, self.answerer.retriever,
+                                              self.answerer.top_k)
+        self._candidates: list[Candidate] = []
+        self._turns: dict[str, Turn] = {}
+        self._times: dict[str, datetime] = {}
+
+    def observe(self, turn, when, gold_candidates=None):
+        _check_batch(self.meta, turn, gold_candidates, self._turns)
+        self._turns[turn.id] = turn.model_copy(deep=True)
+        self._times[turn.id] = when
+        self._candidates.extend(candidate.model_copy(deep=True) for candidate in gold_candidates)
+
+    def answer(self, question):
+        records = flat_records(self.meta.project_id, self._candidates, self._times)
+        cited = {turn for record in records for turn in record.source_turn_ids}
+        # Recency is measured to the latest observed turn; turns arrive in time order.
+        latest = max(self._times.values(), default=None)
+        return self.answerer.answer(question, records, {turn: self._turns[turn] for turn in cited}, latest)
+
+    def candidates(self):
+        return [candidate.model_copy(deep=True) for candidate in self._candidates]
+
+    def resolver_usage(self):
+        return Usage()  # no write path, so no write calls
+
+    def answer_usage(self):
+        return self.answerer.usage()
+
+    def model_cache_usage(self):
+        return _cache_usage(self.answerer.client)
+
+    def fingerprint(self):
+        return _hash({"candidates": [candidate.model_dump(mode="json") for candidate in self._candidates],
+                      "turns": {turn: [when.isoformat(), self._turns[turn].model_dump(mode="json")]
+                                for turn, when in self._times.items()}})
+
+    def describe(self):
+        return {"comparison": self.comparison, "memory_policy": "flat_candidate_records", "write_path": "none",
+                "context_budget_unit": "utf8_bytes", "shared_retriever": self.answerer.retriever.describe(),
+                "quote_source_turns": self.answerer.quote_source_turns}
+
+
 def make_system(name: str, meta: ScenarioMeta, config: ResolverConfig | None = None,
-                client: CompletionClient | None = None, budget_bytes: int | None = None):
+                client: CompletionClient | None = None, budget_bytes: int | None = None,
+                embedder: Embedder | None = None):
     if name not in NAMES:
         raise ValueError("unknown controlled memory system")
     config = config if config is not None else ResolverConfig.from_env()
     budget_bytes = _budget(budget_bytes)
+    top_k = _top_k()
     client = client if client is not None else make_client()
-    if name == "mem0-classic":
-        return ControlledMem0(meta, config, client, budget_bytes)
-    return ControlledTraceMem(name, meta, config, client, budget_bytes)
+    if name in SIMILARITY_RETRIEVERS:
+        alpha, half_life_days = SIMILARITY_RETRIEVERS[name]
+        retriever = SharedRetriever(alpha, half_life_days, embedder if embedder is not None else make_embedder())
+        return ControlledSimilarity(name, meta, config, client, budget_bytes, retriever, top_k=top_k)
+    # With a fixed number of records per answer, Mem0 and TraceMem also take the
+    # records closest to the question (decision record 0011, question 4); without
+    # it they keep PR #4's newest-first selection.
+    retriever = None if top_k is None else SharedRetriever(
+        0.0, DEFAULT_HALF_LIFE_DAYS, embedder if embedder is not None else make_embedder())
+    if name in MEM0_NAMES:
+        return ControlledMem0(meta, config, client, budget_bytes, name=name, retriever=retriever, top_k=top_k)
+    return ControlledTraceMem(name, meta, config, client, budget_bytes, retriever=retriever, top_k=top_k)
 
 
 def factory(name: str):
