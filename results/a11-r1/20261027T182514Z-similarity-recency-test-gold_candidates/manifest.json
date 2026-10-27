@@ -1,0 +1,182 @@
+{
+  "created_at": "20261027T182514Z",
+  "system": "similarity-recency",
+  "uses_gold_labels": false,
+  "split": "test",
+  "condition": "gold_candidates",
+  "item_vocabulary_given_to_systems": "keys",
+  "system_config": {
+    "comparison": {
+      "protocol": "gold-candidate-memory-v1",
+      "input_policy": "gold_candidates_only",
+      "model_config": {
+        "model": "anthropic/claude-haiku-5.5",
+        "timeout_seconds": 60.0,
+        "max_attempts": 2,
+        "max_completion_tokens": 2048,
+        "temperature": null
+      },
+      "model_client": {
+        "label": "openrouter",
+        "base_url": "https://openrouter.ai/api/v1",
+        "extra_body": {
+          "provider": {
+            "require_parameters": true
+          }
+        },
+        "token_field": "max_completion_tokens"
+      },
+      "answer_prompt_hash": "67e86c7f78db79dd91f3c8dbdc62a725956da792699e5ed2ca2f240b85b22429",
+      "answer_schema_hash": "cfaf98fde41edf86e5aa0573280012b197c09a1c2a9fb5f6f806a7373ea5e889",
+      "context_budget_bytes": 12000,
+      "context_top_k": 4,
+      "answer_validation_policy_hash": "5fed17249c67a63ad7dc85e89378b8d546d495e699c6787d2b8f8094d6b14e6b",
+      "history_context_policy": "history_questions_all_that_fit_closest_first_left_out_line_v1",
+      "history_rule_hash": "8caa16216d3e9938dec0609978f776c9ac46b1007d2f92431adf6c474e5f65d0",
+      "write_matching": "all_same_item",
+      "reader": "retained_memory_asof_oplog_snapshot_whole_entries_v2",
+      "temporal_read_policy": "observed_session_oplog_prefix_other_stores_retained_only_v1",
+      "context_format": "shared_record_renderer_with_sources_v2",
+      "resolver_reference_prompt_hash": "05df7eb37f79a0e54204a3a0be74d1c7670b39eab43530430ec2d5e3b663ae5c",
+      "resolver_reference_schema_hash": "35fc9af8343eacdd6ce5653b0092c22518a5031b33853f9a625da27993735048",
+      "resolver_reference_policy_hash": "9389af673fdfb23c5be75b625f4c68027babde78a42da6d0b87af47138f396ca",
+      "retriever": {
+        "policy": "similarity_recency_newest_tiebreak_whole_lines_v1",
+        "recency_age": "record_created_at_to_latest_observed_turn",
+        "document_text": "context_line",
+        "embedding": {
+          "api": "openai_compatible_embeddings",
+          "model": "nomic-embed-text",
+          "query_prefix": "search_query: ",
+          "document_prefix": "search_document: "
+        }
+      }
+    },
+    "memory_policy": "flat_candidate_records",
+    "write_path": "none",
+    "context_budget_unit": "utf8_bytes",
+    "shared_retriever": {
+      "ranking": "similarity_and_recency",
+      "alpha": 0.3,
+      "half_life_days": 7.0,
+      "embedder": {
+        "api": "openai_compatible_embeddings",
+        "model": "nomic-embed-text",
+        "query_prefix": "search_query: ",
+        "document_prefix": "search_document: ",
+        "base_url": "http://127.0.0.1:11434/v1"
+      }
+    },
+    "quote_source_turns": true
+  },
+  "status": "completed",
+  "failure": null,
+  "git_commit": "c68a204fb559e2c6379bc9067eb248da43b4e270",
+  "git_dirty": true,
+  "freeze_tag": "freeze-v1",
+  "scenarios": {
+    "report-b11": "dac0dcb589a70bff",
+    "report-b12": "cf201dc408e00569",
+    "report-b13": "904db2b3a052bf6c",
+    "report-b14": "7b5f6b293a157cc2",
+    "report-b15": "bf33851e19b2e891",
+    "report-b16": "0c8e86d7d747497a",
+    "report-b17": "25432eee240238b4",
+    "report-b18": "29bf16182d1e9893",
+    "report-b19": "34aba3485faa9aed",
+    "report-b20": "bd89b1c22ba8872d",
+    "report-c11": "acb37f22f6c4cabb",
+    "report-c12": "d4e4c8ea78815f24",
+    "report-c13": "c242fe22e0902076",
+    "report-c14": "ce48572ae91f2a31",
+    "report-c15": "1bf497858d238f01",
+    "report-c16": "66814012f3db6054",
+    "report-c17": "5fbf586fd616a05c",
+    "report-c18": "b5bddc1f5ca8b973",
+    "report-c19": "44438145521f15f1",
+    "report-c20": "ed911bdc16bbae4b"
+  },
+  "tracemem_version": "0.1.0",
+  "python": "3.12.15",
+  "command": [
+    "tracemem",
+    "run",
+    "--system",
+    "similarity-recency",
+    "--split",
+    "test",
+    "--condition",
+    "gold_candidates",
+    "--out",
+    "runs/a11/r1"
+  ],
+  "comparison": {
+    "protocol": "gold-candidate-memory-v1",
+    "input_policy": "gold_candidates_only",
+    "model_config": {
+      "model": "anthropic/claude-haiku-5.5",
+      "timeout_seconds": 60.0,
+      "max_attempts": 2,
+      "max_completion_tokens": 2048,
+      "temperature": null
+    },
+    "model_client": {
+      "label": "openrouter",
+      "base_url": "https://openrouter.ai/api/v1",
+      "extra_body": {
+        "provider": {
+          "require_parameters": true
+        }
+      },
+      "token_field": "max_completion_tokens"
+    },
+    "answer_prompt_hash": "67e86c7f78db79dd91f3c8dbdc62a725956da792699e5ed2ca2f240b85b22429",
+    "answer_schema_hash": "cfaf98fde41edf86e5aa0573280012b197c09a1c2a9fb5f6f806a7373ea5e889",
+    "context_budget_bytes": 12000,
+    "context_top_k": 4,
+    "answer_validation_policy_hash": "5fed17249c67a63ad7dc85e89378b8d546d495e699c6787d2b8f8094d6b14e6b",
+    "history_context_policy": "history_questions_all_that_fit_closest_first_left_out_line_v1",
+    "history_rule_hash": "8caa16216d3e9938dec0609978f776c9ac46b1007d2f92431adf6c474e5f65d0",
+    "write_matching": "all_same_item",
+    "reader": "retained_memory_asof_oplog_snapshot_whole_entries_v2",
+    "temporal_read_policy": "observed_session_oplog_prefix_other_stores_retained_only_v1",
+    "context_format": "shared_record_renderer_with_sources_v2",
+    "resolver_reference_prompt_hash": "05df7eb37f79a0e54204a3a0be74d1c7670b39eab43530430ec2d5e3b663ae5c",
+    "resolver_reference_schema_hash": "35fc9af8343eacdd6ce5653b0092c22518a5031b33853f9a625da27993735048",
+    "resolver_reference_policy_hash": "9389af673fdfb23c5be75b625f4c68027babde78a42da6d0b87af47138f396ca",
+    "retriever": {
+      "policy": "similarity_recency_newest_tiebreak_whole_lines_v1",
+      "recency_age": "record_created_at_to_latest_observed_turn",
+      "document_text": "context_line",
+      "embedding": {
+        "api": "openai_compatible_embeddings",
+        "model": "nomic-embed-text",
+        "query_prefix": "search_query: ",
+        "document_prefix": "search_document: "
+      }
+    },
+    "candidate_hashes": {
+      "report-b11": "1f71b59b66490a347fa9c6bfb6138bdc5fd6aa5e3a00936310ee43f6fe52e44d",
+      "report-b12": "084b62477d260c15d1d87bfbb4ab23bcd697fb7e0a2ea85061ffaf5f1705e3dc",
+      "report-b13": "b23b9520048eb86613e4a8e6374bcb44e7cde0eefc28f674c2de689e28a161c4",
+      "report-b14": "bad86671164c7b204552b7f7bae1ef5b9bc83757801ac2e2e6ca0cd65640c55a",
+      "report-b15": "6e6f1b5c4b37b12c5b72cd135d2e806313af21d1d3e0aae0b792b66131fedfff",
+      "report-b16": "1a368ebe1c7a52530e130291736f484701af17d7e7cc17151877e946fc185da1",
+      "report-b17": "e1870984914da198116937f806ff3e191ee23c6731f8082abd00921b31fc6654",
+      "report-b18": "a31096e6567bee5a6013ba43ee067e03e28bc00619c827bc29d6c76145c9b1d0",
+      "report-b19": "d6cc352873228c13c11ab3e024c2ebedd341434c0ca70cbcda636f75aeb6abf1",
+      "report-b20": "f34e1c4cbc7a640860aae8030812807737b94719d2f41706132bb5a4173f0e5f",
+      "report-c11": "8590189dedcf77b83f129e08ced18522ddf64d5d0e08e35dce36fa08b6424ec5",
+      "report-c12": "b2474425dccbbb1cdcc0564c136eb9423e61aa2092714da21582088f2f94d35c",
+      "report-c13": "766961ef75abf9dcceb101196e53106a6b54ab23a0a1cf6f9b4cc2b2a1ec2186",
+      "report-c14": "d67a34a6322479255912bc5ef291768148a355c550c8bf6fd9cd33c5f9062271",
+      "report-c15": "97b477a5ea83c8970655e536a45a2a5e209cca03e0d577fa3b806f6035504a90",
+      "report-c16": "2e188bb06d7ba01733aa0b2d36c70ad8d07b3a283ef8af931224c902a04c746f",
+      "report-c17": "aaf275e772231f90a00caab966de68491fccf93b2acfa9da87aee1e4d16647a9",
+      "report-c18": "1edaae665f23685a44ead4befb05295b8e95dff1be8ec0af55074044b089648c",
+      "report-c19": "8cc02129e7fd2b2eb1bb29ab32343d44fc4485ec2a8b647c41c77642313392f9",
+      "report-c20": "bf57953f7690b935858d073f6197a58a09075b3784fb74cea052298eef3b3d06"
+    }
+  },
+  "freeze": "freeze-v1"
+}

@@ -1,0 +1,348 @@
+{
+  "current_accuracy": {
+    "all": {
+      "value": 0.896551724137931,
+      "n": 174
+    },
+    "trap_candidate": {
+      "value": 0.6470588235294118,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.8,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.8888888888888888,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.75,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.9347826086956522,
+      "n": 138
+    }
+  },
+  "stale_answer_rate": {
+    "all": {
+      "value": 0.023255813953488372,
+      "n": 43
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 1
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 4
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 4
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 9
+    },
+    "no_trap": {
+      "value": 0.029411764705882353,
+      "n": 34
+    }
+  },
+  "incorrect_replacement_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 49
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 11
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 2
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 22
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 27
+    }
+  },
+  "presented_as_current_rate": {
+    "all": {
+      "value": 0.028735632183908046,
+      "n": 174
+    },
+    "trap_candidate": {
+      "value": 0.23529411764705882,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.1111111111111111,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.007246376811594203,
+      "n": 138
+    }
+  },
+  "false_certainty_rate": {
+    "all": {
+      "value": 0.8,
+      "n": 5
+    },
+    "trap_candidate": {
+      "value": 0.8,
+      "n": 5
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": 0.8,
+      "n": 5
+    },
+    "no_trap": {
+      "value": null,
+      "n": 0
+    }
+  },
+  "false_conflict_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 169
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 12
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 31
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 138
+    }
+  },
+  "non_answer_rate": {
+    "all": {
+      "value": 0.05847953216374269,
+      "n": 171
+    },
+    "trap_candidate": {
+      "value": 0.11764705882352941,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.2,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.1111111111111111,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.1388888888888889,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.037037037037037035,
+      "n": 135
+    }
+  },
+  "abstention_rate": {
+    "all": {
+      "value": 0.040229885057471264,
+      "n": 174
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.2,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.1111111111111111,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.08333333333333333,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.028985507246376812,
+      "n": 138
+    }
+  },
+  "historical_accuracy": {
+    "all": {
+      "value": 1.0,
+      "n": 20
+    },
+    "trap_candidate": {
+      "value": null,
+      "n": 0
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": null,
+      "n": 0
+    },
+    "no_trap": {
+      "value": 1.0,
+      "n": 20
+    }
+  },
+  "citation_validity": {
+    "all": {
+      "value": 1.0,
+      "n": 189
+    },
+    "trap_candidate": {
+      "value": 1.0,
+      "n": 15
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 1.0,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 1.0,
+      "n": 34
+    },
+    "no_trap": {
+      "value": 1.0,
+      "n": 155
+    }
+  },
+  "supported_answer_rate": {
+    "all": {
+      "value": 0.9214659685863874,
+      "n": 191
+    },
+    "trap_candidate": {
+      "value": 0.6470588235294118,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.8,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.8888888888888888,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.75,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.9612903225806452,
+      "n": 155
+    }
+  },
+  "citation_coverage": {
+    "all": {
+      "value": 0.8848167539267016,
+      "n": 191
+    },
+    "trap_candidate": {
+      "value": 0.6470588235294118,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.8,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.7777777777777778,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.7222222222222222,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.9225806451612903,
+      "n": 155
+    }
+  },
+  "evidence_recall": {
+    "all": {
+      "value": 0.9764397905759162,
+      "n": 191
+    },
+    "trap_candidate": {
+      "value": 1.0,
+      "n": 17
+    },
+    "trap_mention": {
+      "value": 0.8,
+      "n": 10
+    },
+    "trap_confusable": {
+      "value": 0.9444444444444444,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.9305555555555556,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 0.9870967741935484,
+      "n": 155
+    }
+  },
+  "weighting": "question",
+  "outcome_counts": {
+    "missed": 6,
+    "correct": 176,
+    "abstained": 7,
+    "stale": 1,
+    "false_certainty": 4
+  }
+}
