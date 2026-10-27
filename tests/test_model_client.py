@@ -277,7 +277,7 @@ def test_blank_local_address_and_cache_folder_fall_back_to_the_defaults(sdk):
     assert client.inner.base_url == "http://127.0.0.1:11434/v1"
     assert sdk.OpenAI.call_args.kwargs["base_url"] == "http://127.0.0.1:11434/v1"
     assert sdk.digest_lookups == [("http://127.0.0.1:11434/v1", "test-model")]
-    assert str(client.cache_dir) == "cache/llm"
+    assert client.cache_dir.as_posix() == "cache/llm"
     assert client.log_path.as_posix() == "cache/costs.jsonl"
 
 
@@ -835,7 +835,7 @@ def test_from_env_defaults_to_the_built_in_openai_client_with_cache_and_cap(sdk)
     client = from_env({"OPENAI_API_KEY": "synthetic-openai-key"})
     assert isinstance(client, CachedClient) and isinstance(client.inner, OpenAICompletionClient)
     assert sdk.OpenAI.call_args.kwargs["base_url"] == "https://api.openai.com/v1"
-    assert (str(client.cache_dir), client.budget_usd, client.use_cache) == ("cache/llm", 12.0, True)
+    assert (client.cache_dir.as_posix(), client.budget_usd, client.use_cache) == ("cache/llm", 12.0, True)
     # The cost log is not in the cache folder, so a fresh folder does not reset the cap.
     assert client.log_path.as_posix() == "cache/costs.jsonl"
     sdk.create.assert_not_called()
