@@ -18,8 +18,8 @@ from support import pilot_timeline
 from tracemem.resolver import ModelReply, ResolverConfig
 from tracemem.schema import Record, SystemQuestion, Turn
 from tracemem.systems.comparison import (
-    ANSWER_CITATION_GUIDE, ANSWER_FORMAT, ANSWER_PROMPT, ANSWER_STATE_GUIDE,
-    SharedAnswerer, answer_context, comparison_settings,
+    ANSWER_CITATION_GUIDE, ANSWER_FORMAT, ANSWER_PROMPT, ANSWER_STATE_GUIDE, HISTORY_LEFT_OUT_RULE,
+    SharedAnswerer, _selected_context, answer_context, comparison_settings,
 )
 
 
@@ -68,10 +68,17 @@ def check_answer(records, decision, *, asked=None, budget=12000, expected_payloa
     assert ANSWER_STATE_GUIDE in ANSWER_PROMPT and ANSWER_CITATION_GUIDE in ANSWER_PROMPT
     context, sources = answer_context(records, budget)
     payload = json.loads(request["messages"][1]["content"])
-    assert payload == {
+    expected = {
         "question": {"text": asked.text, "kind": asked.kind, "session": asked.session},
         "context": context, "allowed_source_turn_ids": sources,
     }
+    shown = len(_selected_context(records, budget)[2])
+    if asked.kind in ("previous", "as_of") and shown < len(records):
+        # Decision record 0016: a history question is told how many records the budget left out.
+        line = f"{shown} of {len(records)} records shown; {len(records) - shown} left out to fit the context budget."
+        expected["context"] = context + "\n" + line if context else line
+        expected["history_rule"] = HISTORY_LEFT_OUT_RULE
+    assert payload == expected
     if expected_payload is not None:
         assert payload == expected_payload
     assert "RAW_DIALOGUE_MUST_STAY_HIDDEN" not in payload["context"]
@@ -172,6 +179,7 @@ def test_budget_omitted_history_produces_no_fabricated_support():
     }, budget=256)
     assert payload["allowed_source_turn_ids"] == ["S3-T1"]
     assert "old classifier" not in payload["context"]
+    assert payload["context"].endswith("\n1 of 2 records shown; 1 left out to fit the context budget.")
     assert answer.cited_turn_ids == []
 
 

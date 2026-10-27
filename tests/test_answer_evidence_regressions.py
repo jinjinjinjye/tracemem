@@ -71,10 +71,17 @@ def answer(records, reply, *, asked=None, budget=12000, expected_payload=None, r
     }
     context, sources = comparison.answer_context(records, budget)
     payload = json.loads(request["messages"][1]["content"])
-    assert payload == {
+    expected = {
         "question": {"text": asked.text, "kind": asked.kind, "session": asked.session},
         "context": context, "allowed_source_turn_ids": sources,
     }
+    shown = len(comparison._selected_context(records, budget)[2])
+    if asked.kind in ("previous", "as_of") and shown < len(records):
+        # Decision record 0016: a history question is told how many records the budget left out.
+        line = f"{shown} of {len(records)} records shown; {len(records) - shown} left out to fit the context budget."
+        expected["context"] = context + "\n" + line if context else line
+        expected["history_rule"] = comparison.HISTORY_LEFT_OUT_RULE
+    assert payload == expected
     if expected_payload is not None:
         assert payload == expected_payload
     assert "RAW_TURN_MUST_NOT_ENTER_CONTEXT" not in context
@@ -177,6 +184,8 @@ def test_current_only_or_budget_omitted_history_cannot_support_a_previous_value(
         records.insert(0, record("S1-T1", "omitted old choice " * 60, "superseded"))
     result, payload = answer(records, decision(status="abstain"), asked=question("previous"), budget=budget)
     assert "omitted old choice" not in payload["context"]
+    if budget == 256:
+        assert payload["context"].endswith("\n1 of 2 records shown; 1 left out to fit the context budget.")
     assert "S1-T1" in payload["allowed_source_turn_ids"]
     assert result.status == "abstain" and result.cited_turn_ids == []
 

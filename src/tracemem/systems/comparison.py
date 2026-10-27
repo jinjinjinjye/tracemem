@@ -228,6 +228,20 @@ outside this context. Free-text explanations are not additional evidence.
 """ + "\n" + ANSWER_EVIDENCE_CHECK
 
 
+# Decision record 0016. A previous or as_of question is not capped by top_k: it reads
+# every record that fits the byte budget, closest first. When the budget still leaves
+# records out, its context ends with HISTORY_LEFT_OUT_LINE and its request alone carries
+# HISTORY_LEFT_OUT_RULE. A current question gets neither, so its request is unchanged.
+HISTORY_KINDS = ("previous", "as_of")
+HISTORY_CONTEXT_POLICY = "history_questions_all_that_fit_closest_first_left_out_line_v1"
+HISTORY_LEFT_OUT_LINE = "{shown} of {total} records shown; {left_out} left out to fit the context budget."
+HISTORY_LEFT_OUT_RULE = (
+    "Records were left out of this context, as its last line says, so the settled value this previous/as_of "
+    "question asks about may exist without being shown. Answer none only when nothing was left out: here, if "
+    "the context does not show that value, abstain instead of answering none."
+)
+
+
 class _AnswerDecision(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
     status: Literal["answer", "none", "conflict", "abstain"]
@@ -312,6 +326,9 @@ def comparison_settings(config: ResolverConfig, budget_bytes: int, client: Compl
         "answer_schema_hash": _hash(ANSWER_FORMAT), "context_budget_bytes": budget_bytes,
         "context_top_k": top_k,
         "answer_validation_policy_hash": _hash(ANSWER_VALIDATION_POLICY),
+        # How history questions are read (decision record 0016): runs before and after differ here.
+        "history_context_policy": HISTORY_CONTEXT_POLICY,
+        "history_rule_hash": _hash({"left_out_line": HISTORY_LEFT_OUT_LINE, "rule": HISTORY_LEFT_OUT_RULE}),
         "write_matching": "all_same_item", "reader": "retained_memory_asof_oplog_snapshot_whole_entries_v2",
         "temporal_read_policy": "observed_session_oplog_prefix_other_stores_retained_only_v1",
         # Whether a line also quotes its record's source turn is a per-system setting,
@@ -462,13 +479,23 @@ class SharedAnswerer:
         # The line read is also the line budgeted and embedded.
         line = (lambda record: _quoted_line(record, turns)) if self.quote_source_turns else _line
         # Select once: rendering and validation must see exactly the same records.
-        visible = self.retriever.select(question.text, records, latest, self.budget_bytes, line, top_k=self.top_k)
+        # top_k does not cap a history question: it reads every record that fits the budget.
+        history = question.kind in HISTORY_KINDS
+        visible = self.retriever.select(question.text, records, latest, self.budget_bytes, line,
+                                        top_k=None if history else self.top_k)
         context = "\n".join(line(record) for record in visible)
         sources = sorted({source for record in visible for source in record.source_turn_ids})
-        initial_messages = [{"role": "system", "content": ANSWER_PROMPT}, {"role": "user", "content": json.dumps({
-            "question": {"text": question.text, "kind": question.kind, "session": question.session},
-            "context": context, "allowed_source_turn_ids": sources,
-        }, ensure_ascii=False)}]
+        request = {"question": {"text": question.text, "kind": question.kind, "session": question.session},
+                   "context": context, "allowed_source_turn_ids": sources}
+        if history and len(visible) < len(records):
+            # The budget left records out of a history question: say how many, and give it
+            # the rule. The line is not a record, so it is neither budgeted nor citable.
+            left_out = HISTORY_LEFT_OUT_LINE.format(shown=len(visible), total=len(records),
+                                                    left_out=len(records) - len(visible))
+            request["context"] = context + "\n" + left_out if context else left_out
+            request["history_rule"] = HISTORY_LEFT_OUT_RULE
+        initial_messages = [{"role": "system", "content": ANSWER_PROMPT},
+                            {"role": "user", "content": json.dumps(request, ensure_ascii=False)}]
         messages = initial_messages
         calls = input_tokens = output_tokens = 0
         for _ in range(self.config.max_attempts):
