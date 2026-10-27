@@ -7,7 +7,7 @@ title: Two tasks with changing progress
 category: task_lifecycle
 split: dev
 author: pilot
-review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone (decision #40's round), which asked for answers only, not turn labels."}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, in an earlier round that asked for answers only, not turn labels."}
 project_id: churn-prediction
 
 items:

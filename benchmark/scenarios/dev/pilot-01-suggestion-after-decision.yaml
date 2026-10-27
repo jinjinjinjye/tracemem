@@ -7,7 +7,7 @@ title: Classifier choice with a late suggestion
 category: suggestion_after_decision
 split: dev
 author: pilot
-review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone (decision #40's round), which asked for answers only, not turn labels."}
+review: {status: blind_checked, reviewer: member B, notes: "Blind-checked from the dialogue alone, in an earlier round that asked for answers only, not turn labels."}
 project_id: sentiment-project
 
 items:

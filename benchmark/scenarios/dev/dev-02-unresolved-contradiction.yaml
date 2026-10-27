@@ -8,7 +8,7 @@ title: A disputed backbone for the leaf classifier
 category: unresolved_contradiction
 split: dev
 author: mace2305
-review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, following the A6 guide, which asked for answers only, not turn labels."}
+review: {status: blind_checked, reviewer: member C, notes: "Blind-checked from the dialogue alone, following benchmark/blind-check/dev-batch-1/GUIDE.md, which asked for answers only, not turn labels."}
 project_id: leaf-disease-classifier
 
 items:
