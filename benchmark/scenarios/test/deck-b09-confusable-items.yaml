@@ -1,0 +1,94 @@
+# Deck test scenario deck-b09 (task A8): written by member B in plain English as scenario 09, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T3 ("Meeting room is still on the original date.") claims the current value is the old one, so it is
+#     a contest; S3-T5 ("It should be on 21st.") settles it in the same meeting.
+#   - The author's single question asks for both dates; it becomes the two questions after meeting 5.
+scenario_id: deck-b09
+title: "Two office rooms have different delivery dates"
+category: confusable_items
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: office-move
+
+items:
+  - key: delivery.meeting_room
+    kind: decision
+    description: "delivery date of the meeting-room furniture"
+    ask: "What is the meeting-room furniture delivery date?"
+    values:
+      "10 November": ["10 Nov", "November 10", "Nov 10", "10th November", "November 10th", "10th"]
+      "20 November": ["20 Nov", "November 20", "Nov 20", "20th November", "November 20th", "20th"]
+      "21 November": ["21 Nov", "November 21", "Nov 21", "21st November", "November 21st", "21st"]
+      "25 November": ["25 Nov", "November 25", "Nov 25", "25th November", "November 25th", "25th"]
+      "17 November": ["17 Nov", "November 17", "Nov 17", "17th November", "November 17th", "17th"]
+    confusable_with: [delivery.training_room]
+  - key: delivery.training_room
+    kind: decision
+    description: "delivery date of the training-room furniture"
+    ask: "What is the training-room furniture delivery date?"
+    values:
+      "12 November": ["12 Nov", "November 12", "Nov 12", "12th November", "November 12th", "12th"]
+      "15 November": ["15 Nov", "November 15", "Nov 15", "15th November", "November 15th", "15th", "the fifteenth"]
+    confusable_with: [delivery.meeting_room]
+
+sessions:
+  - id: S1
+    date: 2026-10-01
+    turns:
+      - {id: S1-T1, speaker: "Uma", text: "Meeting-room furniture is coming on 10 November. And training-room furniture on 12 November."}
+      - {id: S1-T2, speaker: "Wen", text: "Okay, I've got both deliveries in the calendar."}
+      - {id: S1-T3, speaker: "Xia", text: "Can we move the meeting room to 20 November?"}
+      - {id: S1-T4, speaker: "Yuri", text: "Let me see the calendar. It is full, how about 21 November?"}
+      - {id: S1-T5, speaker: "Xia", text: "Yes, let's set the move for the 21st."}
+      - {id: S1-T6, speaker: "Uma", text: "Please put the room names in the calendar titles. We've got too many deliveries."}
+  - id: S2
+    date: 2026-10-04
+    turns:
+      - {id: S2-T1, speaker: "Vik", text: "The training-room supplier needs more time. We've rescheduled to 15 November."}
+      - {id: S2-T2, speaker: "Wen", text: "Okay, I'll change that one to the fifteenth."}
+      - {id: S2-T3, speaker: "Xia", text: "Sorry—which room? Training?"}
+      - {id: S2-T4, speaker: "Vik", text: "Yes, training."}
+  - id: S3
+    date: 2026-10-07
+    turns:
+      - {id: S3-T1, speaker: "Wen", text: "Why there are two 'room delivery' in the calendar."}
+      - {id: S3-T2, speaker: "Uma", text: "That might have been me. Sorry. I'll put the names back."}
+      - {id: S3-T3, speaker: "Yuri", text: "Training is the one we pushed back. Meeting room is still on the original date."}
+      - {id: S3-T4, speaker: "Vik", text: "No meeting room was also postponed."}
+      - {id: S3-T5, speaker: "Yuri", text: "yes yes, I forgot about it. It should be on 21st."}
+  - id: S4
+    date: 2026-10-10
+    turns:
+      - {id: S4-T1, speaker: "Xia", text: "Oh I realized 21 Nov is a public holiday, there will be no one in the office."}
+      - {id: S4-T2, speaker: "Yuri", text: "Right, we need to contact the vendor and change it."}
+      - {id: S4-T3, speaker: "Uma", text: "How about 25th then?"}
+      - {id: S4-T4, speaker: "Vik", text: "Sure, lets do it then."}
+      - {id: S4-T5, speaker: "Xia", text: "Haiz this is so annoying. Hope we don’t have to rearrange everything."}
+  - id: S5
+    date: 2026-10-13
+    turns:
+      - {id: S5-T1, speaker: "Yuri", text: "Meeting-room delivery has been moved earlier. We've settled on 17 November."}
+      - {id: S5-T2, speaker: "Uma", text: "Right. This might be better, as it’s before the public holiday."}
+      - {id: S5-T3, speaker: "Wen", text: "Any more changes"}
+      - {id: S5-T4, speaker: "Xia", text: "No more no more."}
+
+script:
+  - {turn: S1-T1, act: decide, item: delivery.meeting_room, value: "10 November"}
+  - {turn: S1-T1, act: decide, item: delivery.training_room, value: "12 November"}
+  - {turn: S1-T3, act: suggest, item: delivery.meeting_room, value: "20 November"}
+  - {turn: S1-T4, act: suggest, item: delivery.meeting_room, value: "21 November"}
+  - {turn: S1-T5, act: accept, item: delivery.meeting_room, accepts: S1-T4}
+  - {turn: S2-T1, act: revise, item: delivery.training_room, value: "15 November"}
+  - {turn: S2-T2, act: restate, item: delivery.training_room, value: "15 November"}
+  - {turn: S3-T3, act: contest, item: delivery.meeting_room, value: "10 November"}
+  - {turn: S3-T5, act: restate, item: delivery.meeting_room, value: "21 November"}
+  - {turn: S4-T3, act: suggest, item: delivery.meeting_room, value: "25 November"}
+  - {turn: S4-T4, act: accept, item: delivery.meeting_room, accepts: S4-T3}
+  - {turn: S5-T1, act: revise, item: delivery.meeting_room, value: "17 November"}
+
+questions:
+  - {id: delivery.meeting_room@S5-previous, after: S5, kind: previous, item: delivery.meeting_room, text: "Which meeting-room delivery date, if any, did we have before the current one?"}
+  - {id: delivery.training_room@S5-previous, after: S5, kind: previous, item: delivery.training_room, text: "Which training-room delivery date, if any, did we have before the current one?"}

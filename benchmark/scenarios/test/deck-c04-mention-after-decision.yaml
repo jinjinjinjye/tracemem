@@ -1,0 +1,69 @@
+# Deck test scenario deck-c04 (task A8): written by member C in plain English as scenario 04, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - The author's Q3 ("What main dish did Lily include in the restaurant order?") asks for the current main
+#     dish after meeting 3, so it is the automatic question dinner.main_dish@S3.
+scenario_id: deck-c04
+title: "Dinner After the Museum"
+category: mention_after_decision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: beijing-dinner
+
+items:
+  - key: dinner.main_dish
+    kind: decision
+    description: "main dish for the group dinner after the museum"
+    ask: "What main dish have we chosen for this dinner?"
+    values:
+      "Beijing roast duck": ["roast duck", "Peking duck", "Peking roast duck", "Beijing duck", "duck"]
+      "hotpot": ["hot pot"]
+  - key: dinner.vegetable_side
+    kind: decision
+    description: "vegetable side dish for the group dinner"
+    ask: "What vegetable side are we ordering?"
+    values:
+      "smashed cucumber": ["cucumber", "smashed cucumber salad", "cucumber salad"]
+      "vinegar cabbage": ["cabbage", "the cabbage dish", "vinegar-glazed cabbage"]
+
+sessions:
+  - id: S1
+    date: 2026-07-20
+    turns:
+      - {id: S1-T1, speaker: "Lily", text: "For dinner after the museum, shall we order Beijing roast duck?"}
+      - {id: S1-T2, speaker: "Mark", text: "Yes, let’s have roast duck as the main dish."}
+      - {id: S1-T3, speaker: "Chen", text: "We should get a vegetable side too."}
+      - {id: S1-T4, speaker: "Lily", text: "Smashed cucumber?"}
+      - {id: S1-T5, speaker: "Chen", text: "Perfect. Roast duck and smashed cucumber it is."}
+  - id: S2
+    date: 2026-07-21
+    turns:
+      - {id: S2-T1, speaker: "Mark", text: "Did you two have hotpot when you visited Beijing last year?"}
+      - {id: S2-T2, speaker: "Chen", text: "Yes, but that was a different trip."}
+      - {id: S2-T3, speaker: "Lily", text: "I remember the photos. You looked completely exhausted."}
+      - {id: S2-T4, speaker: "Mark", text: "We were. The hotpot was the only thing that woke us up."}
+      - {id: S2-T5, speaker: "Chen", text: "I still have a picture of that enormous hotpot on my phone."}
+  - id: S3
+    date: 2026-07-24
+    turns:
+      - {id: S3-T1, speaker: "Lily", text: "I’ve sent our roast-duck and cucumber order to the restaurant."}
+      - {id: S3-T2, speaker: "Mark", text: "Thanks. Does anyone remember the cabbage dish we had last year?"}
+      - {id: S3-T3, speaker: "Chen", text: "The vinegar cabbage? It was surprisingly good."}
+      - {id: S3-T4, speaker: "Mark", text: "That’s the one. I was trying to remember its name."}
+      - {id: S3-T5, speaker: "Lily", text: "I liked it too, but today’s vegetable side is already sorted."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: dinner.main_dish, value: "Beijing roast duck"}
+  - {turn: S1-T2, act: accept, item: dinner.main_dish, accepts: S1-T1}
+  - {turn: S1-T4, act: suggest, item: dinner.vegetable_side, value: "smashed cucumber"}
+  - {turn: S1-T5, act: restate, item: dinner.main_dish, value: "Beijing roast duck"}
+  - {turn: S1-T5, act: accept, item: dinner.vegetable_side, accepts: S1-T4}
+  - {turn: S2-T1, act: mention, item: dinner.main_dish, value: "hotpot"}
+  - {turn: S2-T4, act: mention, item: dinner.main_dish, value: "hotpot"}
+  - {turn: S2-T5, act: mention, item: dinner.main_dish, value: "hotpot"}
+  - {turn: S3-T1, act: restate, item: dinner.main_dish, value: "Beijing roast duck"}
+  - {turn: S3-T1, act: restate, item: dinner.vegetable_side, value: "smashed cucumber"}
+  - {turn: S3-T2, act: mention, item: dinner.vegetable_side, value: "vinegar cabbage"}
+  - {turn: S3-T3, act: mention, item: dinner.vegetable_side, value: "vinegar cabbage"}

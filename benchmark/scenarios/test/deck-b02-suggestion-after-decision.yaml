@@ -1,0 +1,67 @@
+# Deck test scenario deck-b02 (task A8): written by member B in plain English as scenario 02, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S1-T2 ("Sure, any cities...") agrees to Japan; S1-T4 ("Agreed.") narrows it to Kyoto and agrees to the
+#     budget.
+#   - The budget is not asked about by the author; it is an item because S1-T4 agrees to it.
+scenario_id: deck-b02
+title: "A cheaper family holiday is suggested"
+category: suggestion_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: family-holiday
+
+items:
+  - key: trip.destination
+    kind: decision
+    description: "where the family goes for the holiday"
+    ask: "Which destination is currently agreed for the family holiday?"
+    values:
+      "Japan": []
+      "Kyoto": ["Kyoto, Japan", "Kyoto Japan"]
+      "Taipei": ["Taipei, Taiwan"]
+  - key: trip.budget
+    kind: decision
+    description: "spending limit for the family holiday"
+    ask: "What budget have we set for the family holiday?"
+    values:
+      "SGD 1,200": ["SGD 1200", "SGD1,200", "SGD1200", "1,200 SGD", "1200 SGD", "S$1,200", "S$1200", "$1,200", "$1200", "1,200", "1200"]
+
+sessions:
+  - id: S1
+    date: 2026-10-02
+    turns:
+      - {id: S1-T1, speaker: "Nora", text: "It’s almost Christmas, I really need to take a break. This year, shall we go to Japan for our family holiday?"}
+      - {id: S1-T2, speaker: "Eli", text: "Sure, any cities that you want to go, Tokyo, Osaka or Kyoto?"}
+      - {id: S1-T3, speaker: "Nora", text: "Maybe Kyoto; I have visited the other two cities before. How about we set the budget at SGD 1,200?"}
+      - {id: S1-T4, speaker: "Eli", text: "Agreed. Let me look through the website for flights and accommodations."}
+  - id: S2
+    date: 2026-10-05
+    turns:
+      - {id: S2-T1, speaker: "Eli", text: "Ei News said there is earthquake recently in Tokyo, have you booked the flight, if not, maybe we could go to Taipei instead."}
+      - {id: S2-T2, speaker: "Nora", text: "It is a good suggestion but let me think about it."}
+      - {id: S2-T3, speaker: "Eli", text: "I only meant it as an alternative to investigate. You let me know how do you feel ya?"}
+  - id: S3
+    date: 2026-10-08
+    turns:
+      - {id: S3-T1, speaker: "Nora", text: "Have you finished comparing the destinations?"}
+      - {id: S3-T2, speaker: "Eli", text: "Emmmm Not yet, I still not sure ya."}
+      - {id: S3-T3, speaker: "Nora", text: "Lets decide today, otherwise the flight price will go higher and higher, I really think it is not safe to go Japan now, we can consider going next summer."}
+      - {id: S3-T4, speaker: "Eli", text: "Agreed, then lets take the alternative choice then."}
+      - {id: S3-T5, speaker: "Nora", text: "Sure, ill go source for the flight and hotels."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: trip.destination, value: "Japan"}
+  - {turn: S1-T2, act: accept, item: trip.destination, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: trip.destination, value: "Kyoto"}
+  - {turn: S1-T3, act: suggest, item: trip.budget, value: "SGD 1,200"}
+  - {turn: S1-T4, act: accept, item: trip.destination, accepts: S1-T3}
+  - {turn: S1-T4, act: accept, item: trip.budget, accepts: S1-T3}
+  - {turn: S2-T1, act: suggest, item: trip.destination, value: "Taipei"}
+  - {turn: S3-T3, act: mention, item: trip.destination, value: "Japan"}
+  - {turn: S3-T4, act: accept, item: trip.destination, accepts: S2-T1}
+
+questions:
+  - {id: trip.destination@S3-previous, after: S3, kind: previous, item: trip.destination, text: "Which destination, if any, did we agree on for the family holiday before the current one?"}

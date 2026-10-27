@@ -1,0 +1,64 @@
+# Deck test scenario deck-c05 (task A8): written by member C in plain English as scenario 05, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T3 ("Should we reopen the blanket collection...?") is a suggestion with the progress word open, as in
+#     pilot-04 S4-T2; S3-T4 defers it.
+scenario_id: deck-c05
+title: "Getting Ready for the Cat Adoption Day"
+category: task_lifecycle
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: cat-adoption-day
+
+items:
+  - key: task.posters
+    kind: task
+    description: "making the adoption posters for the event"
+    ask: "What is the status of the adoption posters?"
+  - key: task.blanket_collection
+    kind: task
+    description: "organising a collection of spare blankets"
+    ask: "What is the status of the blanket collection?"
+
+sessions:
+  - id: S1
+    date: 2026-06-05
+    turns:
+      - {id: S1-T1, speaker: "Alice", text: "I’ll make the adoption posters for the event on Saturday, 13 June."}
+      - {id: S1-T2, speaker: "Dan", text: "Great. I’ll organise a collection of spare blankets."}
+      - {id: S1-T3, speaker: "Mina", text: "I can help you check the posters before they go out."}
+      - {id: S1-T4, speaker: "Alice", text: "Thanks. I’ll start once the shelter sends the cat photos."}
+      - {id: S1-T5, speaker: "Dan", text: "I’ll draft a message asking neighbours for blankets."}
+  - id: S2
+    date: 2026-06-07
+    turns:
+      - {id: S2-T1, speaker: "Alice", text: "The posters are blocked. The shelter hasn’t sent any photos."}
+      - {id: S2-T2, speaker: "Mina", text: "I’ll remind them this afternoon."}
+      - {id: S2-T3, speaker: "Dan", text: "The shelter says it already has enough blankets."}
+      - {id: S2-T4, speaker: "Mina", text: "Then cancel the blanket collection. We don’t need to ask people."}
+      - {id: S2-T5, speaker: "Dan", text: "Agreed. I’ll drop that task and delete my draft message."}
+  - id: S3
+    date: 2026-06-09
+    turns:
+      - {id: S3-T1, speaker: "Alice", text: "The photos arrived this morning, so I got back to the posters."}
+      - {id: S3-T2, speaker: "Alice", text: "They’re now finished, and the shelter has the print-ready files."}
+      - {id: S3-T3, speaker: "Dan", text: "Should we reopen the blanket collection for another shelter?"}
+      - {id: S3-T4, speaker: "Mina", text: "Let’s discuss that next week. Don’t restart it yet."}
+      - {id: S3-T5, speaker: "Dan", text: "Fair enough. Restarting the collection for another shelter is just an idea for now."}
+
+script:
+  - {turn: S1-T1, act: task_open, item: task.posters}
+  - {turn: S1-T2, act: task_open, item: task.blanket_collection}
+  - {turn: S2-T1, act: task_progress, item: task.posters, progress: blocked}
+  - {turn: S2-T4, act: task_progress, item: task.blanket_collection, progress: cancelled}
+  - {turn: S2-T5, act: restate, item: task.blanket_collection, value: "cancelled"}
+  - {turn: S3-T1, act: task_progress, item: task.posters, progress: open}
+  - {turn: S3-T2, act: task_progress, item: task.posters, progress: completed}
+  - {turn: S3-T3, act: suggest, item: task.blanket_collection, value: "open"}
+  - {turn: S3-T5, act: mention, item: task.blanket_collection, value: "open"}
+
+questions:
+  - {id: task.posters@S3-previous, after: S3, kind: previous, item: task.posters, text: "What status, if any, did the adoption posters have before the current one?"}
+  - {id: task.blanket_collection@S3-previous, after: S3, kind: previous, item: task.blanket_collection, text: "What status, if any, did the blanket collection have before the current one?"}

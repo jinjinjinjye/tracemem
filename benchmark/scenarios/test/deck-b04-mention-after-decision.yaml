@@ -1,0 +1,64 @@
+# Deck test scenario deck-b04 (task A8): written by member B in plain English as scenario 04, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S1-T1 offers two restaurants in one question, so it carries no event; S1-T2 decides.
+#   - S2-T4 ("I'm looking forward to Cedar Kitchen") restates the choice, so the mention of Lantern Bistro in
+#     S2-T1 is followed by the right value within the same meeting.
+scenario_id: deck-b04
+title: "A restaurant question is mistaken for a booking change"
+category: mention_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: birthday-dinner
+
+items:
+  - key: dinner.restaurant
+    kind: decision
+    description: "restaurant chosen for the birthday dinner"
+    ask: "Which restaurant is selected for the birthday dinner?"
+    values:
+      "Cedar Kitchen": ["Cedar"]
+      "Lantern Bistro": ["Lantern"]
+  - key: dinner.time
+    kind: decision
+    description: "time the birthday dinner starts"
+    ask: "What time is the birthday dinner?"
+    values:
+      "7 pm": ["7pm", "7 p.m.", "7:00 pm", "19:00", "seven", "seven o'clock", "seven in the evening"]
+
+sessions:
+  - id: S1
+    date: 2026-10-04
+    turns:
+      - {id: S1-T1, speaker: "Lina", text: "Max, where do you want to go for birthday, how about Cedar Kitchen or Lantern Bistro?"}
+      - {id: S1-T2, speaker: "Max", text: "Yes please. Cedar Kitchen looks good. We can go for it."}
+      - {id: S1-T3, speaker: "Lina", text: "Seven in the evening?"}
+      - {id: S1-T4, speaker: "Max", text: "Perfect, 7 pm."}
+      - {id: S1-T5, speaker: "Lina", text: "Okay, one less thing to organise."}
+  - id: S2
+    date: 2026-10-07
+    turns:
+      - {id: S2-T1, speaker: "Max", text: "What was that other place—Lantern Bistro? Did we look at it?"}
+      - {id: S2-T2, speaker: "Lina", text: "Yeah, before we picked Cedar Kitchen."}
+      - {id: S2-T3, speaker: "Max", text: "ok ok, just checking on it."}
+      - {id: S2-T4, speaker: "Lina", text: "Good, because I'm looking forward to Cedar Kitchen."}
+      - {id: S2-T5, speaker: "Max", text: "Me too. I just double check on it."}
+  - id: S3
+    date: 2026-10-10
+    turns:
+      - {id: S3-T1, speaker: "Lina", text: "Still meeting at the same time?"}
+      - {id: S3-T2, speaker: "Max", text: "Yep, seven."}
+      - {id: S3-T3, speaker: "Lina", text: "And you haven't secretly changed the restaurant on me?"}
+      - {id: S3-T4, speaker: "Max", text: "No! Cedar Kitchen, as planned."}
+      - {id: S3-T5, speaker: "Lina", text: "Just checking. You do send a lot of restaurant links."}
+
+script:
+  - {turn: S1-T2, act: decide, item: dinner.restaurant, value: "Cedar Kitchen"}
+  - {turn: S1-T3, act: suggest, item: dinner.time, value: "7 pm"}
+  - {turn: S1-T4, act: accept, item: dinner.time, accepts: S1-T3}
+  - {turn: S2-T1, act: mention, item: dinner.restaurant, value: "Lantern Bistro"}
+  - {turn: S2-T4, act: restate, item: dinner.restaurant, value: "Cedar Kitchen"}
+  - {turn: S3-T2, act: restate, item: dinner.time, value: "7 pm"}
+  - {turn: S3-T4, act: restate, item: dinner.restaurant, value: "Cedar Kitchen"}

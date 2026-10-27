@@ -1,0 +1,75 @@
+# Deck test scenario deck-b08 (task A8): written by member B in plain English as scenario 08, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Dinner (cook or buy) is not an item: the author does not ask about it, and S3-T5 leaves the plan unclear
+#     (one member opts out).
+#   - The author's single question asks for both times; it becomes the two questions after meeting 4.
+scenario_id: deck-b08
+title: "A bus time changes but cabin access does not"
+category: confusable_items
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: camping-weekend
+
+items:
+  - key: bus.departure
+    kind: decision
+    description: "time the bus leaves for the camping weekend"
+    ask: "What is the bus departure time?"
+    values:
+      "7 am": ["7am", "7 a.m.", "7:00 am", "07:00", "seven", "seven o'clock", "seven in the morning"]
+      "8 am": ["8am", "8 a.m.", "8:00 am", "08:00", "eight", "eight o'clock", "eight in the morning"]
+    confusable_with: [cabin.access]
+  - key: cabin.access
+    kind: decision
+    description: "earliest time the group can get into the cabin"
+    ask: "When can the group access the cabin?"
+    values:
+      "3 pm": ["3pm", "3 p.m.", "3:00 pm", "15:00", "three", "three o'clock", "three in the afternoon"]
+    confusable_with: [bus.departure]
+
+sessions:
+  - id: S1
+    date: 2026-10-04
+    turns:
+      - {id: S1-T1, speaker: "Quinn", text: "Seven in the morning for the bus?"}
+      - {id: S1-T2, speaker: "Rosa", text: "Okay. We can't get into the cabin until 3 pm, though."}
+      - {id: S1-T3, speaker: "Sam", text: "That's fine with me."}
+      - {id: S1-T4, speaker: "Tess", text: "Shall we cook our own dinner there?"}
+      - {id: S1-T5, speaker: "Quinn", text: "Yeah, let's cook."}
+  - id: S2
+    date: 2026-10-07
+    turns:
+      - {id: S2-T1, speaker: "Rosa", text: "We've moved the bus to 8 am. Everyone was struggling with seven."}
+      - {id: S2-T2, speaker: "Sam", text: "Much better, more flexible for us."}
+      - {id: S2-T3, speaker: "Tess", text: "Do we get the cabin later as well?"}
+      - {id: S2-T4, speaker: "Quinn", text: "No, we can still get in at three."}
+      - {id: S2-T5, speaker: "Rosa", text: "The bus is the only thing I changed."}
+  - id: S3
+    date: 2026-10-10
+    turns:
+      - {id: S3-T1, speaker: "Sam", text: "I've written '8 / 3' and now it looks like a date. I cannot remember why I wrote it."}
+      - {id: S3-T2, speaker: "Tess", text: "It is the timing that bus need to prepared and we need to come."}
+      - {id: S3-T3, speaker: "Quinn", text: "We're still cooking dinner, right?"}
+      - {id: S3-T4, speaker: "Rosa", text: "Yes. I don't want another restaurant bill."}
+      - {id: S3-T5, speaker: "Sam", text: "But I am bit lazy in cooking. I will buy my own food, plz help yourself out."}
+  - id: S4
+    date: 2026-10-13
+    turns:
+      - {id: S4-T1, speaker: "Tess", text: "What time should I actually be ready for the bus?"}
+      - {id: S4-T2, speaker: "Sam", text: "It leaves at eight. Don't be the last one again."}
+      - {id: S4-T3, speaker: "Rosa", text: "Remember, cabin should follow the other timing."}
+      - {id: S4-T4, speaker: "Tess", text: "Fine. I'm setting several alarms."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: bus.departure, value: "7 am"}
+  - {turn: S1-T2, act: accept, item: bus.departure, accepts: S1-T1}
+  - {turn: S1-T2, act: decide, item: cabin.access, value: "3 pm"}
+  - {turn: S2-T1, act: revise, item: bus.departure, value: "8 am"}
+  - {turn: S2-T4, act: restate, item: cabin.access, value: "3 pm"}
+  - {turn: S4-T2, act: restate, item: bus.departure, value: "8 am"}
+
+questions:
+  - {id: bus.departure@S4-previous, after: S4, kind: previous, item: bus.departure, text: "Which bus departure time, if any, did we have before the current one?"}

@@ -1,0 +1,66 @@
+# Deck test scenario deck-b10 (task A8): written by member B in plain English as scenario 10, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - The two tasks are linked as confusable, as the title says: a finished backdrop does not finish the
+#     programmes.
+#   - Starting a task that is open changes nothing (S2-T1, S3-T3); "not started" and "in progress" are both
+#     the progress word open. S2-T4 ("the design is not confirmed") is read as not started, not as blocked.
+#   - The rehearsal and finish dates are not items: S1-T5 ("let's keep that date") does not say which of the
+#     two dates it keeps, and the author does not ask about them.
+#   - The author's single question asks for both tasks; it becomes the two questions.
+scenario_id: deck-b10
+title: "A finished backdrop does not finish the play"
+category: task_lifecycle
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: community-play
+
+items:
+  - key: task.backdrop
+    kind: task
+    description: "painting the stage backdrop"
+    ask: "What is the status of the backdrop task?"
+    confusable_with: [task.programme_printing]
+  - key: task.programme_printing
+    kind: task
+    description: "printing the programmes"
+    ask: "What is the status of the programme printing?"
+    confusable_with: [task.backdrop]
+
+sessions:
+  - id: S1
+    date: 2026-10-02
+    turns:
+      - {id: S1-T1, speaker: "Alia", text: "I haven't started the backdrop yet. Sorry."}
+      - {id: S1-T2, speaker: "Bram", text: "I haven't started printing the programmes either."}
+      - {id: S1-T3, speaker: "Cora", text: "Okay, better to know now."}
+      - {id: S1-T4, speaker: "Dale", text: "Can we aim to finish by 17 October and rehearse on 18 November?"}
+      - {id: S1-T5, speaker: "Alia", text: "Yes, let's keep that date."}
+  - id: S2
+    date: 2026-10-05
+    turns:
+      - {id: S2-T1, speaker: "Cora", text: "We just started painting the backdrop. It's nowhere near finished."}
+      - {id: S2-T2, speaker: "Alia", text: "Yeah, there's still a whole side to do."}
+      - {id: S2-T3, speaker: "Dale", text: "Has programme printing started?"}
+      - {id: S2-T4, speaker: "Bram", text: "No. Haven't got that going yet, the design is not confirmed."}
+      - {id: S2-T5, speaker: "Cora", text: "We're still working towards the same rehearsal date?"}
+      - {id: S2-T6, speaker: "Alia", text: "Yes."}
+  - id: S3
+    date: 2026-10-08
+    turns:
+      - {id: S3-T1, speaker: "Dale", text: "Backdrop's done!"}
+      - {id: S3-T2, speaker: "Alia", text: "I checked it this morning. Looks good; we can tick that off."}
+      - {id: S3-T3, speaker: "Bram", text: "I've started the programmes, but the printing isn't finished."}
+      - {id: S3-T4, speaker: "Cora", text: "Okay, so we've still got those to get through."}
+      - {id: S3-T5, speaker: "Dale", text: "Rehearsal's still the same."}
+      - {id: S3-T6, speaker: "Alia", text: "Right. Let's not celebrate finishing everything quite yet."}
+
+script:
+  - {turn: S1-T1, act: task_open, item: task.backdrop}
+  - {turn: S1-T2, act: task_open, item: task.programme_printing}
+  - {turn: S3-T1, act: task_progress, item: task.backdrop, progress: completed}
+
+questions:
+  - {id: task.backdrop@S3-previous, after: S3, kind: previous, item: task.backdrop, text: "What status, if any, did the backdrop task have before the current one?"}

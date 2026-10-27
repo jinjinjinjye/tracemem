@@ -1,0 +1,66 @@
+# Deck test scenario deck-b03 (task A8): written by member B in plain English as scenario 03, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - No venue is ever settled: S1-T5 only asks Zoe to check Willow Hall, and S4-T2 and S4-T4 agree to visit,
+#     not to book.
+#   - The category is the author's; no decision precedes the suggestions, so every answer is none.
+#   - The guest count (60, then 70) and the SGD 3,000 ceiling are requirements, not items: nobody agrees to
+#     them and the author does not ask about them.
+scenario_id: deck-b03
+title: "A wedding venue remains only an alternative"
+category: suggestion_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: wedding-reception
+
+items:
+  - key: reception.venue
+    kind: decision
+    description: "where the wedding reception will be held"
+    ask: "Which reception venue is currently selected?"
+    values:
+      "Willow Hall": ["Willow"]
+      "Lake Pavilion": ["the Lake Pavilion", "Pavilion", "the Pavilion"]
+      "Lake Pavilion's partner hotel": ["the partner hotel", "partner hotel", "the partnering hotel", "partnering hotel", "Pavilion's partner hotel"]
+
+sessions:
+  - id: S1
+    date: 2026-10-03
+    turns:
+      - {id: S1-T1, speaker: "Isha", text: "Zoe, come and plan the wedding venue with me and Ravi.I propose Willow Hall for the reception."}
+      - {id: S1-T2, speaker: "Zoe", text: "Sure sure, any current ideas do you have?"}
+      - {id: S1-T3, speaker: "Isha", text: "Ravi and I have been visiting a few, some are really really expensive and we cannot afford it. I am looking for something affordable with nice quality."}
+      - {id: S1-T4, speaker: "Zoe", text: "Oh icic, have you considered Willow Hall? It is near the town area with quite good reputation."}
+      - {id: S1-T5, speaker: "Isha", text: "Yes, I visited it last time, can you help me check whether they can accommodate 60 guests and with a SGD 3,000 ceiling budget."}
+      - {id: S1-T6, speaker: "Zoe", text: "Sure I will check for you."}
+      - {id: S1-T7, speaker: "Ravi", text: "Thank you. If this is overbudget, we would like to consider alternative choices"}
+  - id: S2
+    date: 2026-10-06
+    turns:
+      - {id: S2-T1, speaker: "Zoe", text: "The Willow Hall is not giving extra discounts. They are charging 4,000 in total. What about Lake Pavilion instead of Willow Hall?"}
+      - {id: S2-T2, speaker: "Ravi", text: "It could be an option, but I need to see its accessibility details."}
+      - {id: S2-T3, speaker: "Isha", text: "Put it on the alternatives list first, we need to visit the venue before deciding."}
+      - {id: S2-T4, speaker: "Zoe", text: "Sure sure, I will arrange it for you."}
+  - id: S3
+    date: 2026-10-09
+    turns:
+      - {id: S3-T1, speaker: "Isha", text: "The guest count is now expected 70 because more relatives are coming."}
+      - {id: S3-T2, speaker: "Zoe", text: "Oh then it quires more budget for Willow Hall. Could that make Lake Pavilion worth another look?"}
+      - {id: S3-T3, speaker: "Isha", text: "I don’t really like the venue there, the design is too old-school and not suitable for our wedding style"}
+      - {id: S3-T4, speaker: "Zoe", text: "Let me do more research about that."}
+  - id: S4
+    date: 2026-10-12
+    turns:
+      - {id: S4-T1, speaker: "Zoe", text: "Pavilion said they have another partnering hotel gives a better price, would you like to consider that."}
+      - {id: S4-T2, speaker: "Ravi", text: "Yes, we can go visit the venue and please let us know the price."}
+      - {id: S4-T3, speaker: "Zoe", text: "No problem, they are charging 3,500 SGD for 70 people which is similar to your expectation."}
+      - {id: S4-T4, speaker: "Isha", text: "Ok, we can do a site-visit to the venue."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: reception.venue, value: "Willow Hall"}
+  - {turn: S1-T4, act: suggest, item: reception.venue, value: "Willow Hall"}
+  - {turn: S2-T1, act: suggest, item: reception.venue, value: "Lake Pavilion"}
+  - {turn: S3-T2, act: suggest, item: reception.venue, value: "Lake Pavilion"}
+  - {turn: S4-T1, act: suggest, item: reception.venue, value: "Lake Pavilion's partner hotel"}
