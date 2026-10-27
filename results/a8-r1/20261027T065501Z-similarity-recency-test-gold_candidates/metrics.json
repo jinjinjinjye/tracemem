@@ -1,0 +1,350 @@
+{
+  "current_accuracy": {
+    "all": {
+      "value": 0.8985507246376812,
+      "n": 138
+    },
+    "trap_candidate": {
+      "value": 0.7692307692307693,
+      "n": 13
+    },
+    "trap_mention": {
+      "value": 0.9230769230769231,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.8,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.8205128205128205,
+      "n": 39
+    },
+    "no_trap": {
+      "value": 0.9292929292929293,
+      "n": 99
+    }
+  },
+  "stale_answer_rate": {
+    "all": {
+      "value": 0.05405405405405406,
+      "n": 37
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 2
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 4
+    },
+    "trap_confusable": {
+      "value": 0.1111111111111111,
+      "n": 9
+    },
+    "any_trap": {
+      "value": 0.07692307692307693,
+      "n": 13
+    },
+    "no_trap": {
+      "value": 0.041666666666666664,
+      "n": 24
+    }
+  },
+  "incorrect_replacement_rate": {
+    "all": {
+      "value": 0.017241379310344827,
+      "n": 58
+    },
+    "trap_candidate": {
+      "value": 0.1,
+      "n": 10
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 5
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.03571428571428571,
+      "n": 28
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 30
+    }
+  },
+  "presented_as_current_rate": {
+    "all": {
+      "value": 0.036231884057971016,
+      "n": 138
+    },
+    "trap_candidate": {
+      "value": 0.23076923076923078,
+      "n": 13
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.06666666666666667,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.10256410256410256,
+      "n": 39
+    },
+    "no_trap": {
+      "value": 0.010101010101010102,
+      "n": 99
+    }
+  },
+  "false_certainty_rate": {
+    "all": {
+      "value": 1.0,
+      "n": 2
+    },
+    "trap_candidate": {
+      "value": 1.0,
+      "n": 2
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": 1.0,
+      "n": 2
+    },
+    "no_trap": {
+      "value": null,
+      "n": 0
+    }
+  },
+  "false_conflict_rate": {
+    "all": {
+      "value": 0.0,
+      "n": 136
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 11
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.0,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.0,
+      "n": 37
+    },
+    "no_trap": {
+      "value": 0.0,
+      "n": 99
+    }
+  },
+  "non_answer_rate": {
+    "all": {
+      "value": 0.061068702290076333,
+      "n": 131
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 0.07692307692307693,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.13333333333333333,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.08571428571428572,
+      "n": 35
+    },
+    "no_trap": {
+      "value": 0.052083333333333336,
+      "n": 96
+    }
+  },
+  "abstention_rate": {
+    "all": {
+      "value": 0.021739130434782608,
+      "n": 138
+    },
+    "trap_candidate": {
+      "value": 0.0,
+      "n": 13
+    },
+    "trap_mention": {
+      "value": 0.0,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.13333333333333333,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.05128205128205128,
+      "n": 39
+    },
+    "no_trap": {
+      "value": 0.010101010101010102,
+      "n": 99
+    }
+  },
+  "historical_accuracy": {
+    "all": {
+      "value": 0.5555555555555556,
+      "n": 18
+    },
+    "trap_candidate": {
+      "value": null,
+      "n": 0
+    },
+    "trap_mention": {
+      "value": null,
+      "n": 0
+    },
+    "trap_confusable": {
+      "value": null,
+      "n": 0
+    },
+    "any_trap": {
+      "value": null,
+      "n": 0
+    },
+    "no_trap": {
+      "value": 0.5555555555555556,
+      "n": 18
+    }
+  },
+  "citation_validity": {
+    "all": {
+      "value": 1.0,
+      "n": 147
+    },
+    "trap_candidate": {
+      "value": 1.0,
+      "n": 10
+    },
+    "trap_mention": {
+      "value": 1.0,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 1.0,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 1.0,
+      "n": 36
+    },
+    "no_trap": {
+      "value": 1.0,
+      "n": 111
+    }
+  },
+  "supported_answer_rate": {
+    "all": {
+      "value": 0.8590604026845637,
+      "n": 149
+    },
+    "trap_candidate": {
+      "value": 0.6666666666666666,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 0.9230769230769231,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.8,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.8,
+      "n": 35
+    },
+    "no_trap": {
+      "value": 0.8771929824561403,
+      "n": 114
+    }
+  },
+  "citation_coverage": {
+    "all": {
+      "value": 0.8087248322147651,
+      "n": 149
+    },
+    "trap_candidate": {
+      "value": 0.6111111111111112,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 0.7692307692307693,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.8,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.7285714285714285,
+      "n": 35
+    },
+    "no_trap": {
+      "value": 0.8333333333333334,
+      "n": 114
+    }
+  },
+  "evidence_recall": {
+    "all": {
+      "value": 0.8926174496644296,
+      "n": 149
+    },
+    "trap_candidate": {
+      "value": 0.9444444444444444,
+      "n": 9
+    },
+    "trap_mention": {
+      "value": 0.8846153846153846,
+      "n": 13
+    },
+    "trap_confusable": {
+      "value": 0.8,
+      "n": 15
+    },
+    "any_trap": {
+      "value": 0.8571428571428571,
+      "n": 35
+    },
+    "no_trap": {
+      "value": 0.9035087719298246,
+      "n": 114
+    }
+  },
+  "weighting": "question",
+  "outcome_counts": {
+    "correct": 134,
+    "unconfirmed_as_current": 1,
+    "missed": 10,
+    "abstained": 6,
+    "stale": 2,
+    "wrong_other": 1,
+    "false_certainty": 2
+  }
+}
