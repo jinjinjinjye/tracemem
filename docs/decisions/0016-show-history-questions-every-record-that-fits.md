@@ -52,7 +52,25 @@ Every request that changed now shows more records. TraceMem's other 9 questions 
 
 ## Check on Haiku
 
-To follow. All six systems are to be run on the 13 development scenarios with Claude Haiku, reusing the A7 run's saved replies so that only the changed requests are paid for. The results will be added here.
+The check ran on 27 Oct 2026 from 17:43:58 to 17:53:36 SGT. All six systems answered the 13 development scenarios on Claude Haiku 5.5 at the `freeze-deck` settings, with the code of commit `bcb34a4`. A copy of the A7 run's saved replies was reused, so unchanged requests were not paid for again; the check cost US$0.23. The comparison is the A7 run of 27 Oct, 00:01 to 00:17 SGT (code `d26cd50`), one run each.
+
+| System | Questions about now (140), A7 / check | Questions about the past (30), A7 / check | Earlier record left out (22), A7 / check |
+|---|---|---|---|
+| similarity | 0.957 / 0.964 | 0.867 / 1.000 | 0 / 0 |
+| similarity-recency | 0.936 / 0.936 | 0.500 / 0.933 | 13 / 0 |
+| tracemem-controlled | 0.986 / 0.986 | 1.000 / 1.000 | 0 / 0 |
+| mem0-classic | 0.814 / 0.814 | 0.733 / 0.733 | 0 / 0 |
+| mem0-instructions | 0.750 / 0.750 | 0.600 / 0.767 | 1 / 0 |
+| tracemem-no-versions | not run in A7 / 0.993 | not run in A7 / 0.233 | not run in A7 / 20 |
+
+- Similarity + recency gains the most. Its earlier record is no longer left out (13 of 22 questions before, none now), and its score on questions about the past rises from 0.500 to 0.933. On two questions whose answer is an open dispute (dev-02 `model.backbone` as of S3, pilot-02 `dataset.train` as of S2), it now names one side instead of answering none or abstaining.
+- Similarity rises from 0.867 to 1.000 on questions about the past: four "as of" questions that it had answered with none or an abstention are now right.
+- Mem0 + instructions rises from 0.600 to 0.767. Mem0 stays at 0.733: two answers improve, and two get worse (an answer with extra words, "fine-tuned BERT", and the value of a similar item, "LDA" for a metric).
+- TraceMem stays at 1.000.
+- TraceMem without versions keeps no replaced records, so its earlier record is missing by design (20 of 22), not because of the budget.
+- Answers about now are unchanged for every system except one: similarity's answer to dev-01 `task.weather_join` after S1 went from none to the right "open". Its request was identical to A7's. The saved reply it received had been written by similarity + recency, which sent the same request at the same time in the A7 run, so this change comes from the reply cache, not from this record. It also shows that Haiku can answer an identical request in two ways.
+- The line "k of N records shown" never appeared: no history question in the development scenarios had a record cut by the budget. The rule to abstain instead of answering none is therefore tested only by the unit tests.
+- One run on 13 scenarios gives no interval. These numbers show that the change works as intended on the development scenarios, not how large its effect will be on unseen scenarios.
 
 ## Consequences
 
