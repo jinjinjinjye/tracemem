@@ -1,0 +1,72 @@
+# Report test scenario report-b15 (task A11): written by member B in plain English as scenario 15, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Genuine revision"; format category explicit_revision: S2-T1 ("Let's use cardboard boxes
+#     instead.").
+#   - S3-T2 ("Let's go back to paper bags.") is a suggestion, as S2-T1's "Let's use cardboard boxes instead"
+#     was; S3-T4 ("plastic bag seems a better choice") accepts S3-T3's plastic instead. The title ("changes
+#     twice") agrees: paper bags, cardboard boxes, plastic bags.
+#   - S2-T3 ("keeping the same collection window") names no time, so it gets no label.
+#   - The author's Q4 asks after a meeting 4 that does not exist, and for reasons, which the format cannot
+#     ask; the previous-value question covers its last packaging.
+scenario_id: report-b15
+title: "A pop-up packaging choice changes twice"
+category: explicit_revision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: bakery-popup
+
+items:
+  - key: packaging.type
+    kind: decision
+    description: "packaging used for the pop-up orders"
+    ask: "What packaging are we using for the pop-up orders?"
+    values:
+      "paper bags": ["paper bag", "paper"]
+      "cardboard boxes": ["cardboard box", "cardboard", "boxes"]
+      "plastic bags": ["plastic bag", "plastic"]
+  - key: collection.window
+    kind: decision
+    description: "hours when customers collect their orders"
+    ask: "When do customers collect their orders?"
+    values:
+      "2 to 4 pm": ["2-4 pm", "2–4 pm", "2-4pm", "2–4pm", "between 2 and 4 pm", "2 pm to 4 pm", "2pm to 4pm", "2pm-4pm", "2 pm - 4 pm", "14:00 to 16:00", "14:00-16:00", "from 2 to 4 pm", "between 2 and 4", "2 to 4", "2 to 4pm"]
+
+sessions:
+  - id: S1
+    date: 2026-10-03
+    turns:
+      - {id: S1-T1, speaker: "Rhea", text: "What kind of packaging shall we use for the popup orders? Paper bags?"}
+      - {id: S1-T2, speaker: "Sol", text: "Yeah, let's use those."}
+      - {id: S1-T3, speaker: "Tariq", text: "Customers collect between 2 and 4 pm?"}
+      - {id: S1-T4, speaker: "Rhea, Sol", text: "Works."}
+  - id: S2
+    date: 2026-10-06
+    turns:
+      - {id: S2-T1, speaker: "Sol", text: "The paper bag is to thin, cannot take heavy stuff. Let's use cardboard boxes instead. The pastries need more protection."}
+      - {id: S2-T2, speaker: "Tariq", text: "Yes, I was about to say that also."}
+      - {id: S2-T3, speaker: "Rhea", text: "We're keeping the same collection window. We cannot delay too much, as we have to pack things up."}
+      - {id: S2-T4, speaker: "Tariq", text: "Okay. We can work within that."}
+  - id: S3
+    date: 2026-10-09
+    turns:
+      - {id: S3-T1, speaker: "Tariq", text: "These sample boxes don't fit on the display. Look at the overhang."}
+      - {id: S3-T2, speaker: "Rhea", text: "Ugh. Let's go back to paper bags."}
+      - {id: S3-T3, speaker: "Sol", text: "How about plastic, I really scare paper bags will tear."}
+      - {id: S3-T4, speaker: "Tariq", text: "Sure sure, plastic bag seems a better choice"}
+
+script:
+  - {turn: S1-T1, act: suggest, item: packaging.type, value: "paper bags"}
+  - {turn: S1-T2, act: accept, item: packaging.type, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: collection.window, value: "2 to 4 pm"}
+  - {turn: S1-T4, act: accept, item: collection.window, accepts: S1-T3}
+  - {turn: S2-T1, act: suggest, item: packaging.type, value: "cardboard boxes"}
+  - {turn: S2-T2, act: accept, item: packaging.type, accepts: S2-T1}
+  - {turn: S3-T2, act: suggest, item: packaging.type, value: "paper bags"}
+  - {turn: S3-T3, act: suggest, item: packaging.type, value: "plastic bags"}
+  - {turn: S3-T4, act: accept, item: packaging.type, accepts: S3-T3}
+
+questions:
+  - {id: packaging.type@S3-previous, after: S3, kind: previous, item: packaging.type, text: "Which packaging, if any, did we use for the pop-up orders before the current one?"}

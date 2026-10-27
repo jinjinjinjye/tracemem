@@ -1,0 +1,74 @@
+# Report test scenario report-c14 (task A11): written by member C in plain English as scenario 14, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T1 and S4-T2 recall last year's school fair: mentions.
+#   - S2-T3 ("Yes, let's use it to close the fair.") accepts S2-T1; S2-T2 approves without settling.
+#   - The author asks about the closing song after meeting 1, before any event on it, so that question is
+#     written by hand; its computed answer is none.
+scenario_id: report-c14
+title: "Music for the Charity Fair"
+category: mention_after_decision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: charity-fair-music
+
+items:
+  - key: song.opening
+    kind: decision
+    description: "song that opens the charity fair"
+    ask: "What song will open our charity fair?"
+    values:
+      "Here Comes the Sun": ["“Here Comes the Sun”", "“Here Comes the Sun.”", "“Here Comes the Sun,”", "Here Comes the Sun by the Beatles"]
+      "Viva la Vida": ["“Viva la Vida”", "“Viva la Vida.”", "“Viva la Vida,”"]
+  - key: song.closing
+    kind: decision
+    description: "song that closes the charity fair"
+    ask: "What song will close our charity fair?"
+    values:
+      "Lean on Me": ["“Lean on Me”", "“Lean on Me.”", "“Lean on Me,”"]
+      "Count on Me": ["“Count on Me”", "“Count on Me.”", "“Count on Me,”"]
+
+sessions:
+  - id: S1
+    date: 2025-05-07
+    turns:
+      - {id: S1-T1, speaker: "Ruby", text: "Let’s open the fair with “Here Comes the Sun.” It feels welcoming without being too loud."}
+      - {id: S1-T2, speaker: "Caleb", text: "Agreed. I’ll put it first in the playlist."}
+      - {id: S1-T3, speaker: "Farah", text: "What should we play at the end?"}
+      - {id: S1-T4, speaker: "Ruby", text: "I’m not sure. Let’s leave the closing song undecided for now."}
+  - id: S2
+    date: 2025-05-10
+    turns:
+      - {id: S2-T1, speaker: "Farah", text: "How about “Lean on Me” as the closing song?"}
+      - {id: S2-T2, speaker: "Caleb", text: "That fits the event nicely."}
+      - {id: S2-T3, speaker: "Ruby", text: "Yes, let’s use it to close the fair."}
+      - {id: S2-T4, speaker: "Farah", text: "Great. I’ll add “Lean on Me” at the end."}
+  - id: S3
+    date: 2025-05-13
+    turns:
+      - {id: S3-T1, speaker: "Caleb", text: "What did the school fair open with last year? Was it “Viva la Vida”?"}
+      - {id: S3-T2, speaker: "Farah", text: "Yes, I remember everyone singing along."}
+      - {id: S3-T3, speaker: "Ruby", text: "That was the fair in the school gym, wasn’t it?"}
+      - {id: S3-T4, speaker: "Caleb", text: "Exactly. I found a video of that “Viva la Vida” opening yesterday."}
+  - id: S4
+    date: 2025-05-16
+    turns:
+      - {id: S4-T1, speaker: "Farah", text: "The opening and closing tracks we selected are both ready."}
+      - {id: S4-T2, speaker: "Ruby", text: "Thanks. Did the school fair also finish with “Count on Me”?"}
+      - {id: S4-T3, speaker: "Caleb", text: "I think so. That song was playing while we packed up the chairs."}
+      - {id: S4-T4, speaker: "Farah", text: "Right, I remember “Count on Me” from that evening too."}
+
+script:
+  - {turn: S1-T1, act: decide, item: song.opening, value: "Here Comes the Sun"}
+  - {turn: S2-T1, act: suggest, item: song.closing, value: "Lean on Me"}
+  - {turn: S2-T3, act: accept, item: song.closing, accepts: S2-T1}
+  - {turn: S2-T4, act: restate, item: song.closing, value: "Lean on Me"}
+  - {turn: S3-T1, act: mention, item: song.opening, value: "Viva la Vida"}
+  - {turn: S3-T4, act: mention, item: song.opening, value: "Viva la Vida"}
+  - {turn: S4-T2, act: mention, item: song.closing, value: "Count on Me"}
+  - {turn: S4-T4, act: mention, item: song.closing, value: "Count on Me"}
+
+questions:
+  - {id: song.closing@S1, after: S1, kind: current, item: song.closing, text: "What closing song have we chosen?"}

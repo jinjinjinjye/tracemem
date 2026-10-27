@@ -1,0 +1,87 @@
+# Report test scenario report-c13 (task A11): written by member C in plain English as scenario 13, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - The two pots are linked as confusable: the mint's change (S3-T2) does not change the basil.
+#   - S4-T2 offers the cobalt-blue pot and S4-T3 ("Let's put the basil in that one.") accepts it.
+#   - The author's Q3 is reworded to the guide's standard history wording (section 6).
+scenario_id: report-c13
+title: "Two Herbs on the Balcony"
+category: confusable_items
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: balcony-herbs
+
+items:
+  - key: pot.basil
+    kind: decision
+    description: "pot assigned to the basil"
+    ask: "Which pot is assigned to the basil?"
+    values:
+      "terracotta pot": ["terracotta", "the terracotta pot", "the terracotta one"]
+      "cobalt-blue pot": ["cobalt blue", "cobalt-blue", "the cobalt-blue pot", "the cobalt blue pot", "cobalt blue pot", "the larger cobalt-blue pot", "blue pot", "the blue pot"]
+    confusable_with: [pot.mint]
+  - key: pot.mint
+    kind: decision
+    description: "pot assigned to the mint"
+    ask: "Which pot is assigned to the mint?"
+    values:
+      "green pot": ["green", "the green pot", "the green one"]
+      "white pot": ["white", "the white pot", "the white one"]
+    confusable_with: [pot.basil]
+
+sessions:
+  - id: S1
+    date: 2025-03-14
+    turns:
+      - {id: S1-T1, speaker: "Elena", text: "The basil can go in the terracotta pot. It has a drainage hole underneath."}
+      - {id: S1-T2, speaker: "Marcus", text: "Agreed. What about the mint?"}
+      - {id: S1-T3, speaker: "Yuki", text: "Let’s use the green pot for the mint."}
+      - {id: S1-T4, speaker: "Elena", text: "Good. Terracotta for basil, green for mint."}
+  - id: S2
+    date: 2025-03-17
+    turns:
+      - {id: S2-T1, speaker: "Marcus", text: "I’ve washed both pots, but I noticed a crack in the green one."}
+      - {id: S2-T2, speaker: "Yuki", text: "Does it go all the way through?"}
+      - {id: S2-T3, speaker: "Marcus", text: "I’m not sure yet. I’ll check before we put anything in it."}
+      - {id: S2-T4, speaker: "Elena", text: "Okay. We haven’t changed either pot assignment at this point."}
+  - id: S3
+    date: 2025-03-20
+    turns:
+      - {id: S3-T1, speaker: "Marcus", text: "Water leaks through the crack in the green pot."}
+      - {id: S3-T2, speaker: "Yuki", text: "Then use the white pot for the mint instead."}
+      - {id: S3-T3, speaker: "Elena", text: "Agreed. I’ll update the plant labels."}
+      - {id: S3-T4, speaker: "Marcus", text: "Right, the mint is going in the white pot."}
+  - id: S4
+    date: 2025-03-23
+    turns:
+      - {id: S4-T1, speaker: "Elena", text: "The terracotta pot is smaller than I remembered. The basil roots barely fit."}
+      - {id: S4-T2, speaker: "Marcus", text: "We have a larger cobalt-blue pot that would give them more room."}
+      - {id: S4-T3, speaker: "Yuki", text: "Let’s put the basil in that one."}
+      - {id: S4-T4, speaker: "Elena", text: "Agreed. Cobalt blue replaces terracotta for the basil."}
+  - id: S5
+    date: 2025-03-26
+    turns:
+      - {id: S5-T1, speaker: "Yuki", text: "I’ve put the mint beside the balcony door in its white pot."}
+      - {id: S5-T2, speaker: "Marcus", text: "Thanks. Have we finished sorting out the basil pot too?"}
+      - {id: S5-T3, speaker: "Elena", text: "Yes, it’s now in the cobalt-blue one."}
+      - {id: S5-T4, speaker: "Marcus", text: "Perfect. I’ll write “basil” on the cobalt-blue pot so nobody mixes them up."}
+
+script:
+  - {turn: S1-T1, act: decide, item: pot.basil, value: "terracotta pot"}
+  - {turn: S1-T3, act: decide, item: pot.mint, value: "green pot"}
+  - {turn: S1-T4, act: restate, item: pot.basil, value: "terracotta pot"}
+  - {turn: S1-T4, act: restate, item: pot.mint, value: "green pot"}
+  - {turn: S3-T2, act: revise, item: pot.mint, value: "white pot"}
+  - {turn: S3-T4, act: restate, item: pot.mint, value: "white pot"}
+  - {turn: S4-T2, act: suggest, item: pot.basil, value: "cobalt-blue pot"}
+  - {turn: S4-T3, act: accept, item: pot.basil, accepts: S4-T2}
+  - {turn: S4-T4, act: restate, item: pot.basil, value: "cobalt-blue pot"}
+  - {turn: S5-T1, act: restate, item: pot.mint, value: "white pot"}
+  - {turn: S5-T3, act: restate, item: pot.basil, value: "cobalt-blue pot"}
+  - {turn: S5-T4, act: restate, item: pot.basil, value: "cobalt-blue pot"}
+
+questions:
+  - {id: pot.basil@S5-previous, after: S5, kind: previous, item: pot.basil, text: "Which pot, if any, did we use for the basil before the current one?"}
+  - {id: pot.mint@S5-previous, after: S5, kind: previous, item: pot.mint, text: "Which pot, if any, did we use for the mint before the current one?"}

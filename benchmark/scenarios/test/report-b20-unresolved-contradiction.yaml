@@ -1,0 +1,97 @@
+# Report test scenario report-b20 (task A11): written by member B in plain English as scenario 20, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Conflicting recollection followed by a new agreement"; format category
+#     unresolved_contradiction: S2-T1 ("I've got 10°C in my notes.") disputes 25°C, S2-T4 leaves it open, and
+#     S3-T2 ("let's choose 10°C now") settles it.
+#   - The meetings are dated "19 October" and so on, with no year; read as 2026, like B's other files.
+#   - S3-T2 also keeps 25°C as a secondary analysis, which is its own item, linked as confusable with the
+#     primary temperature.
+scenario_id: report-b20
+title: "The mysterious low-temperature peak"
+category: unresolved_contradiction
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: electrode-comparison
+
+items:
+  - key: comparison.primary_temperature
+    kind: decision
+    description: "measurement temperature of the primary comparison"
+    ask: "Which temperature are we using for the primary comparison?"
+    values:
+      "25°C": ["25 °C", "25 C", "25C", "25 degrees", "25 degrees C", "25 degrees Celsius", "25°", "twenty-five degrees", "25", "the 25°C measurements"]
+      "10°C": ["10 °C", "10 C", "10C", "10 degrees", "10 degrees C", "10 degrees Celsius", "10°", "ten degrees", "10", "10°C, with 25°C as a secondary analysis", "10°C, with 25°C retained as a secondary analysis", "10°C (25°C as secondary)", "10°C, with 25°C as secondary", "10°C (with 25°C as a secondary analysis)"]
+    confusable_with: [comparison.secondary_temperature]
+  - key: comparison.secondary_temperature
+    kind: decision
+    description: "measurement temperature of the secondary analysis"
+    ask: "Which temperature are we using for the secondary analysis?"
+    values:
+      "25°C": ["25 °C", "25 C", "25C", "25 degrees", "25 degrees C", "25 degrees Celsius", "25°", "twenty-five degrees", "25", "the 25°C measurements"]
+    confusable_with: [comparison.primary_temperature]
+  - key: outcome.main
+    kind: decision
+    description: "main outcome measure of the comparison"
+    ask: "What is our main outcome measure?"
+    values:
+      "capacity retention after 100 cycles": ["retention after 100 cycles", "capacity retention after a hundred cycles", "retention after a hundred cycles", "capacity retention at 100 cycles", "100-cycle capacity retention", "capacity retention"]
+      "initial capacity": []
+  - key: data.batch
+    kind: decision
+    description: "measurement batch used for both materials"
+    ask: "Which batch are we using for both materials?"
+    values:
+      "batch B": ["B"]
+
+sessions:
+  - id: S1
+    date: 2026-10-19
+    turns:
+      - {id: S1-T1, speaker: "Lin", text: "For the first comparison, let's use the 25°C measurements. Both materials have complete records there."}
+      - {id: S1-T2, speaker: "Sam", text: "Okay. Initial capacity as the main outcome?"}
+      - {id: S1-T3, speaker: "Noor", text: "I'd rather use capacity retention after 100 cycles. That's the comparison we said we cared about."}
+      - {id: S1-T4, speaker: "Alex", text: "Yes, retention after 100 cycles."}
+      - {id: S1-T5, speaker: "Lin", text: "Fine. And use batch B for both materials. Batch A has too many missing files."}
+      - {id: S1-T6, speaker: "Sam", text: "Got it. Batch B, 25°C, retention after a hundred cycles."}
+  - id: S2
+    date: 2026-10-21
+    turns:
+      - {id: S2-T1, speaker: "Sam", text: "I've got 10°C in my notes. Didn't we switch after seeing that peak in the plot?"}
+      - {id: S2-T2, speaker: "Lin", text: "I remember discussing it, but I thought we were staying at 25."}
+      - {id: S2-T3, speaker: "Noor", text: "I wasn't on that call. Please don't make me choose whose memory is better."}
+      - {id: S2-T4, speaker: "Alex", text: "Leave the primary temperature blank in the draft for now. We need to sort this out."}
+      - {id: S2-T5, speaker: "Sam", text: "Okay. The files I prepared are all batch B, at least."}
+      - {id: S2-T6, speaker: "Lin", text: "That's fine. And the outcome is still retention after 100 cycles."}
+  - id: S3
+    date: 2026-10-23
+    turns:
+      - {id: S3-T1, speaker: "Noor", text: "I checked the archive. Batch B has complete 10°C records for both materials too."}
+      - {id: S3-T2, speaker: "Lin", text: "Then let's choose 10°C now for the primary comparison. Keep 25°C as a secondary analysis."}
+      - {id: S3-T3, speaker: "Alex", text: "Yes, I'm happy with that."}
+      - {id: S3-T4, speaker: "Sam", text: "Okay. Though we still don't know whether my earlier note was right."}
+      - {id: S3-T5, speaker: "Lin", text: "We don't. Say we settled this today, not that everyone agreed last time."}
+      - {id: S3-T6, speaker: "Noor", text: "I'll update the draft: batch B, retention after 100 cycles, primary comparison at ten degrees."}
+
+script:
+  - {turn: S1-T1, act: decide, item: comparison.primary_temperature, value: "25°C"}
+  - {turn: S1-T2, act: suggest, item: outcome.main, value: "initial capacity"}
+  - {turn: S1-T3, act: suggest, item: outcome.main, value: "capacity retention after 100 cycles"}
+  - {turn: S1-T4, act: accept, item: outcome.main, accepts: S1-T3}
+  - {turn: S1-T5, act: decide, item: data.batch, value: "batch B"}
+  - {turn: S1-T6, act: restate, item: data.batch, value: "batch B"}
+  - {turn: S1-T6, act: restate, item: comparison.primary_temperature, value: "25°C"}
+  - {turn: S1-T6, act: restate, item: outcome.main, value: "capacity retention after 100 cycles"}
+  - {turn: S2-T1, act: contest, item: comparison.primary_temperature, value: "10°C"}
+  - {turn: S2-T2, act: mention, item: comparison.primary_temperature, value: "25°C"}
+  - {turn: S2-T6, act: restate, item: outcome.main, value: "capacity retention after 100 cycles"}
+  - {turn: S3-T2, act: revise, item: comparison.primary_temperature, value: "10°C"}
+  - {turn: S3-T2, act: decide, item: comparison.secondary_temperature, value: "25°C"}
+  - {turn: S3-T6, act: restate, item: data.batch, value: "batch B"}
+  - {turn: S3-T6, act: restate, item: outcome.main, value: "capacity retention after 100 cycles"}
+  - {turn: S3-T6, act: restate, item: comparison.primary_temperature, value: "10°C"}
+
+questions:
+  - {id: comparison.primary_temperature@S3-previous, after: S3, kind: previous, item: comparison.primary_temperature, text: "Which temperature, if any, did we use for the primary comparison before the current one?"}

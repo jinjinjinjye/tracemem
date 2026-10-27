@@ -1,0 +1,73 @@
+# Report test scenario report-b12 (task A11): written by member B in plain English as scenario 12, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Stable confirmation"; format category suggestion_after_decision: SGD 200 (S2-T3) and
+#     the Cinnamon room (S3-T1) are suggested after the decisions and never accepted (S2-T4 "let me try",
+#     S3-T2 "No", S3-T3 "no extra budget").
+#   - S1-T4 ("Sure. I will ask the president to approve for it.") accepts SGD 80 for the team; the approval in
+#     S2-T1 changes nothing.
+#   - The date is never discussed, so its question is written by hand after the last meeting; its computed
+#     answer is none.
+scenario_id: report-b12
+title: "A club agreement survives repeated paraphrases"
+category: suggestion_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: board-game-club
+
+items:
+  - key: gathering.venue
+    kind: decision
+    description: "room used for the board-game gathering"
+    ask: "Which room are we using for the board-game gathering?"
+    values:
+      "Maple Room": ["the Maple Room", "Maple"]
+      "Cinnamon Room": ["Cinnmon room", "the Cinnamon Room", "the Cinnmon room", "Cinnamon", "the bigger Cinnamon room"]
+  - key: refreshments.budget
+    kind: decision
+    description: "amount set aside for refreshments"
+    ask: "What is the refreshment budget for the gathering?"
+    values:
+      "SGD 80": ["SGD80", "S$80", "$80", "80 SGD", "80 dollars", "SGD 80 for refreshments", "80"]
+      "SGD 200": ["SGD200", "S$200", "$200", "200 SGD", "200 dollars", "SGD 200 for refreshments", "200"]
+  - key: gathering.date
+    kind: decision
+    description: "date of the board-game gathering"
+    ask: "What date has been chosen for the gathering?"
+    values: {}
+
+sessions:
+  - id: S1
+    date: 2026-10-04
+    turns:
+      - {id: S1-T1, speaker: "Gus", text: "Shall we use maple Room for board games?"}
+      - {id: S1-T2, speaker: "Holly", text: "Yes, let's use it."}
+      - {id: S1-T3, speaker: "Idris", text: "Can we put SGD 80 aside for refreshments?"}
+      - {id: S1-T4, speaker: "Juno", text: "Sure. I will ask the president to approve for it."}
+      - {id: S1-T5, speaker: "Kian", text: "Happy with both. Now we just need people who read the game rules."}
+  - id: S2
+    date: 2026-10-07
+    turns:
+      - {id: S2-T1, speaker: "Juno", text: "And I've got the budget approved for drinks and snacks, but no proper meal will be provided."}
+      - {id: S2-T2, speaker: "Idris", text: "That's right. Try not to spend it all on fancy crisps."}
+      - {id: S2-T3, speaker: "Kian", text: "No promises about the crisps. Maybe we should ask for more like SGD 200? Then we can settle bento for participants as well."}
+      - {id: S2-T4, speaker: "Juno", text: "Haiz, let me try. This is gonna be difficult."}
+  - id: S3
+    date: 2026-10-10
+    turns:
+      - {id: S3-T1, speaker: "Idris", text: "I found a bigger Cinnmon room. Shall we change to that?"}
+      - {id: S3-T2, speaker: "Kian", text: "No we have already sent out the messages."}
+      - {id: S3-T3, speaker: "Juno", text: "Btw, no extra budget for bentos, only chips and coke then."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: gathering.venue, value: "Maple Room"}
+  - {turn: S1-T2, act: accept, item: gathering.venue, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: refreshments.budget, value: "SGD 80"}
+  - {turn: S1-T4, act: accept, item: refreshments.budget, accepts: S1-T3}
+  - {turn: S2-T3, act: suggest, item: refreshments.budget, value: "SGD 200"}
+  - {turn: S3-T1, act: suggest, item: gathering.venue, value: "Cinnamon Room"}
+
+questions:
+  - {id: gathering.date@S3, after: S3, kind: current, item: gathering.date, text: "What date has been chosen for the gathering?"}

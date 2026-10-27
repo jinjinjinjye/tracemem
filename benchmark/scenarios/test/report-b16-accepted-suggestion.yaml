@@ -1,0 +1,82 @@
+# Report test scenario report-b16 (task A11): written by member B in plain English as scenario 16, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Acceptance or clarification"; format category accepted_suggestion.
+#   - S3-T2 ("Let's use his suggestion.") accepts S2-T1's guitar track by reference, a meeting later.
+#   - S1-T5 ("Yes to both.") accepts the deadline; the studio was already accepted in S1-T4.
+#   - S4-T2 ("Shall we consider somewhere nearer?") names no place, so it gets no label.
+scenario_id: report-b16
+title: "A film team accepts an option by reference"
+category: accepted_suggestion
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: student-film
+
+items:
+  - key: film.soundtrack
+    kind: decision
+    description: "music track used in the film"
+    ask: "Which soundtrack are we using for the film?"
+    values:
+      "piano track": ["the piano track", "piano"]
+      "acoustic-guitar track": ["acoustic guitar track", "the acoustic-guitar track", "the acoustic guitar track", "guitar track", "the guitar track", "acoustic guitar", "guitar", "Vik's guitar track", "Vik's acoustic-guitar track", "Vik's acoustic guitar track"]
+  - key: film.location
+    kind: decision
+    description: "where the film is shot"
+    ask: "Where are we filming?"
+    values:
+      "community studio": ["the community studio", "a community studio", "at the community studio"]
+  - key: film.final_edit_deadline
+    kind: decision
+    description: "date the final edit is due"
+    ask: "When is the final edit due?"
+    values:
+      "28 November": ["28 Nov", "November 28", "Nov 28", "28th November", "November 28th", "28th"]
+
+sessions:
+  - id: S1
+    date: 2026-10-04
+    turns:
+      - {id: S1-T1, speaker: "Uma", text: "Let's try the piano track."}
+      - {id: S1-T2, speaker: "Vik", text: "Yes, I like that one. We can use this one."}
+      - {id: S1-T3, speaker: "Wen", text: "We use community studio for filming?"}
+      - {id: S1-T4, speaker: "Xia", text: "Works for me. How about we set final edit by 28 November?"}
+      - {id: S1-T5, speaker: "Uma", text: "Yes to both. Let's put that in the schedule."}
+  - id: S2
+    date: 2026-10-07
+    turns:
+      - {id: S2-T1, speaker: "Vik", text: "I've found an acoustic-guitar track. Could use that instead?"}
+      - {id: S2-T2, speaker: "Wen", text: "Send to me first, I'd like to hear it first."}
+      - {id: S2-T3, speaker: "Xia", text: "Me too. Let me listen and decide."}
+      - {id: S2-T4, speaker: "Vik", text: "Sure. I'll send you the link."}
+  - id: S3
+    date: 2026-10-10
+    turns:
+      - {id: S3-T1, speaker: "Wen", text: "Okay, we've all heard Vik's alternative now. How do yall think?"}
+      - {id: S3-T2, speaker: "Uma", text: "I prefer that. Let's use his suggestion."}
+      - {id: S3-T3, speaker: "Xia", text: "Yes, the one he sent last meeting."}
+      - {id: S3-T4, speaker: "Vik", text: "My guitar one? Great."}
+      - {id: S3-T5, speaker: "Wen", text: "Yep, swap it in."}
+  - id: S4
+    date: 2026-10-13
+    turns:
+      - {id: S4-T1, speaker: "Wen", text: "Where is the community studio?"}
+      - {id: S4-T2, speaker: "Vik", text: "It is 30 min drive from here. Shall we consider somewhere nearer?"}
+      - {id: S4-T3, speaker: "Wen", text: "I think 30 min is acceptable, lazy changing around."}
+      - {id: S4-T4, speaker: "Uma", text: "For the date, do we need any extension?"}
+      - {id: S4-T5, speaker: "Xia", text: "No need; we should be able to finish on time."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: film.soundtrack, value: "piano track"}
+  - {turn: S1-T2, act: accept, item: film.soundtrack, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: film.location, value: "community studio"}
+  - {turn: S1-T4, act: accept, item: film.location, accepts: S1-T3}
+  - {turn: S1-T4, act: suggest, item: film.final_edit_deadline, value: "28 November"}
+  - {turn: S1-T5, act: accept, item: film.final_edit_deadline, accepts: S1-T4}
+  - {turn: S2-T1, act: suggest, item: film.soundtrack, value: "acoustic-guitar track"}
+  - {turn: S3-T2, act: accept, item: film.soundtrack, accepts: S2-T1}
+
+questions:
+  - {id: film.soundtrack@S4-previous, after: S4, kind: previous, item: film.soundtrack, text: "Which soundtrack, if any, did we use for the film before the current one?"}

@@ -1,0 +1,75 @@
+# Report test scenario report-c16 (task A11): written by member C in plain English as scenario 16, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S1-T3 reports a ten o'clock slot and S1-T4 ("Let's book 10 a.m.") accepts it.
+#   - S2-T2 and S4-T2 are revisions ("change the packing plan to reusable plastic crates", "move the van
+#     pickup from ten to two"); the turn after each restates it.
+#   - The author's Q3 is reworded to the guide's standard history wording (section 6).
+scenario_id: report-c16
+title: "Moving to the New Flat"
+category: explicit_revision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: flat-move
+
+items:
+  - key: move.containers
+    kind: decision
+    description: "containers used to pack belongings"
+    ask: "What are we using to pack our belongings?"
+    values:
+      "cardboard boxes": ["cardboard", "cardboard box", "boxes"]
+      "reusable plastic crates": ["plastic crates", "crates", "reusable crates", "plastic crate", "reusable plastic crate"]
+  - key: van.pickup
+    kind: decision
+    description: "time of the van pickup"
+    ask: "What time is the van pickup?"
+    values:
+      "10 am": ["10am", "10 a.m.", "10:00 am", "10:00", "ten", "ten o'clock", "ten in the morning", "10 in the morning"]
+      "2 pm": ["2pm", "2 p.m.", "2:00 pm", "14:00", "two", "two o'clock", "two in the afternoon", "2 in the afternoon"]
+
+sessions:
+  - id: S1
+    date: 2025-08-04
+    turns:
+      - {id: S1-T1, speaker: "Bianca", text: "Let’s pack everything in cardboard boxes. I can get some from the shop downstairs."}
+      - {id: S1-T2, speaker: "Theo", text: "Agreed. That should cover our books and kitchen things."}
+      - {id: S1-T3, speaker: "Ravi", text: "The van company has a ten-in-the-morning pickup available."}
+      - {id: S1-T4, speaker: "Bianca", text: "Let’s book 10 a.m."}
+  - id: S2
+    date: 2025-08-07
+    turns:
+      - {id: S2-T1, speaker: "Theo", text: "Several of the cardboard boxes are damp, and the bottoms don’t feel strong enough."}
+      - {id: S2-T2, speaker: "Bianca", text: "Then change the packing plan to reusable plastic crates."}
+      - {id: S2-T3, speaker: "Ravi", text: "I can borrow enough crates from my office."}
+      - {id: S2-T4, speaker: "Theo", text: "Great. Plastic crates instead of cardboard boxes."}
+  - id: S3
+    date: 2025-08-10
+    turns:
+      - {id: S3-T1, speaker: "Ravi", text: "I’ve confirmed that we can borrow the crates for the move."}
+      - {id: S3-T2, speaker: "Bianca", text: "Thanks. I’ll start packing the books tonight."}
+      - {id: S3-T3, speaker: "Theo", text: "Is the van still booked for ten?"}
+      - {id: S3-T4, speaker: "Ravi", text: "Yes, the pickup is still 10 a.m."}
+  - id: S4
+    date: 2025-08-12
+    turns:
+      - {id: S4-T1, speaker: "Bianca", text: "We can’t collect the new keys until midday. A ten-o’clock pickup would leave us waiting outside."}
+      - {id: S4-T2, speaker: "Theo", text: "Then move the van pickup from ten to two in the afternoon."}
+      - {id: S4-T3, speaker: "Ravi", text: "I’ve called them. They’ve changed our booking to 2 p.m."}
+      - {id: S4-T4, speaker: "Bianca", text: "Perfect. That gives us time to collect the keys first."}
+
+script:
+  - {turn: S1-T1, act: decide, item: move.containers, value: "cardboard boxes"}
+  - {turn: S1-T3, act: suggest, item: van.pickup, value: "10 am"}
+  - {turn: S1-T4, act: accept, item: van.pickup, accepts: S1-T3}
+  - {turn: S2-T2, act: revise, item: move.containers, value: "reusable plastic crates"}
+  - {turn: S2-T4, act: restate, item: move.containers, value: "reusable plastic crates"}
+  - {turn: S3-T4, act: restate, item: van.pickup, value: "10 am"}
+  - {turn: S4-T2, act: revise, item: van.pickup, value: "2 pm"}
+  - {turn: S4-T3, act: restate, item: van.pickup, value: "2 pm"}
+
+questions:
+  - {id: van.pickup@S4-previous, after: S4, kind: previous, item: van.pickup, text: "Which pickup time, if any, did we book before the current one?"}
+  - {id: move.containers@S4-previous, after: S4, kind: previous, item: move.containers, text: "Which containers, if any, did we use to pack our belongings before the current ones?"}

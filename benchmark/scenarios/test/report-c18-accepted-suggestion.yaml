@@ -1,0 +1,81 @@
+# Report test scenario report-c18 (task A11): written by member C in plain English as scenario 18, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S4-T3 ("Yes, let's do that.") accepts Oscar's S2-T1 two meetings later; S4-T2 proposes accepting it and
+#     is not labelled.
+#   - S2-T3 ("So the online form is a suggestion for now?") and S3-T1 (the desk staff can fill in an online
+#     form) name the suggestion without settling it: mentions.
+scenario_id: report-c18
+title: "Booking a Slot at the Repair Café"
+category: accepted_suggestion
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: repair-cafe
+
+items:
+  - key: booking.method
+    kind: decision
+    description: "how visitors book repair appointments"
+    ask: "What visitor booking method is currently confirmed?"
+    values:
+      "paper signup sheet": ["paper sign-up sheet", "a paper signup sheet", "paper sheet", "paper signup", "paper sign-up", "signup sheet", "sign-up sheet", "paper signup sheet at the community desk", "a paper signup sheet at the community desk"]
+      "online booking form": ["online form", "an online booking form", "online booking", "online booking link", "online"]
+  - key: shift.length
+    kind: decision
+    description: "length of each volunteer shift"
+    ask: "How long is each volunteer shift?"
+    values:
+      "2 hours": ["two hours", "2 hours each", "two hours each", "2-hour shifts", "two-hour shifts", "2-hour", "two-hour", "2h"]
+
+sessions:
+  - id: S1
+    date: 2024-11-03
+    turns:
+      - {id: S1-T1, speaker: "Imani", text: "Let’s use a paper signup sheet at the community desk for repair appointments."}
+      - {id: S1-T2, speaker: "Oscar", text: "Agreed. The desk staff can show it to people who ask."}
+      - {id: S1-T3, speaker: "Luca", text: "How long should each volunteer shift be?"}
+      - {id: S1-T4, speaker: "Beatrice", text: "Two hours. Everyone’s happy with that, so let’s put two-hour shifts on the rota."}
+  - id: S2
+    date: 2024-11-06
+    turns:
+      - {id: S2-T1, speaker: "Oscar", text: "Could we use an online booking form instead of the paper sheet?"}
+      - {id: S2-T2, speaker: "Imani", text: "Maybe. We’d need to check whether the desk staff could help visitors who don’t use the internet."}
+      - {id: S2-T3, speaker: "Luca", text: "So the online form is a suggestion for now?"}
+      - {id: S2-T4, speaker: "Imani", text: "Yes. Keep the paper signup method until we’ve checked."}
+  - id: S3
+    date: 2024-11-08
+    turns:
+      - {id: S3-T1, speaker: "Beatrice", text: "I spoke to the desk staff. They’re happy to fill in an online form on a visitor’s behalf."}
+      - {id: S3-T2, speaker: "Oscar", text: "That would solve the access problem."}
+      - {id: S3-T3, speaker: "Imani", text: "It sounds promising, but let’s look at the sample form before agreeing."}
+      - {id: S3-T4, speaker: "Luca", text: "I’ll send the preview around. No change to the booking method yet."}
+  - id: S4
+    date: 2024-11-10
+    turns:
+      - {id: S4-T1, speaker: "Imani", text: "I’ve tried the form. It’s simple enough, and the desk staff can help with it."}
+      - {id: S4-T2, speaker: "Beatrice", text: "Then shall we accept Oscar’s suggestion and use online booking?"}
+      - {id: S4-T3, speaker: "Imani", text: "Yes, let’s do that."}
+      - {id: S4-T4, speaker: "Oscar", text: "Great. I’ll remove the paper signup sheet once the online form is live."}
+  - id: S5
+    date: 2024-11-12
+    turns:
+      - {id: S5-T1, speaker: "Luca", text: "The online booking link is working, and the desk staff have tested it."}
+      - {id: S5-T2, speaker: "Beatrice", text: "Excellent. I’ve nearly finished the volunteer rota too."}
+      - {id: S5-T3, speaker: "Oscar", text: "Are the volunteer shifts still two hours each?"}
+      - {id: S5-T4, speaker: "Beatrice", text: "Yes, we haven’t changed the shift length."}
+
+script:
+  - {turn: S1-T1, act: decide, item: booking.method, value: "paper signup sheet"}
+  - {turn: S1-T4, act: decide, item: shift.length, value: "2 hours"}
+  - {turn: S2-T1, act: suggest, item: booking.method, value: "online booking form"}
+  - {turn: S2-T3, act: mention, item: booking.method, value: "online booking form"}
+  - {turn: S2-T4, act: restate, item: booking.method, value: "paper signup sheet"}
+  - {turn: S3-T1, act: mention, item: booking.method, value: "online booking form"}
+  - {turn: S4-T3, act: accept, item: booking.method, accepts: S2-T1}
+  - {turn: S4-T4, act: mention, item: booking.method, value: "paper signup sheet"}
+  - {turn: S5-T1, act: restate, item: booking.method, value: "online booking form"}
+
+questions:
+  - {id: booking.method@S5-previous, after: S5, kind: previous, item: booking.method, text: "Which visitor booking method, if any, did we use before the current one?"}

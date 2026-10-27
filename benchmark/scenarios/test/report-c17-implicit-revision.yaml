@@ -1,0 +1,77 @@
+# Report test scenario report-c17 (task A11): written by member C in plain English as scenario 17, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Each volunteer offers a shift (suggest) and the rota or the hand-over adopts it: S1-T4 writes Ewan and
+#     Malik in, S2-T3 hands Tessa the key, S4-T3 puts Vera's name in the Wednesday slot.
+#   - The two shifts are linked as confusable: Monday's change does not change Wednesday.
+scenario_id: report-c17
+title: "The Community Garden Watering Rota"
+category: implicit_revision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: garden-watering
+
+items:
+  - key: watering.monday
+    kind: decision
+    description: "volunteer responsible for Monday watering"
+    ask: "Who is responsible for Monday watering?"
+    values:
+      "Ewan": []
+      "Tessa": []
+    confusable_with: [watering.wednesday]
+  - key: watering.wednesday
+    kind: decision
+    description: "volunteer responsible for Wednesday watering"
+    ask: "Who is responsible for Wednesday watering?"
+    values:
+      "Malik": []
+      "Vera": []
+    confusable_with: [watering.monday]
+
+sessions:
+  - id: S1
+    date: 2024-09-02
+    turns:
+      - {id: S1-T1, speaker: "Ewan", text: "I can take the Monday watering shift."}
+      - {id: S1-T2, speaker: "Malik", text: "I’ll do Wednesday, then."}
+      - {id: S1-T3, speaker: "Tessa", text: "Good. We need one person responsible for each of those days."}
+      - {id: S1-T4, speaker: "Vera", text: "I’ve written Ewan under Monday and Malik under Wednesday."}
+  - id: S2
+    date: 2024-09-04
+    turns:
+      - {id: S2-T1, speaker: "Ewan", text: "My new work schedule means I’ll be away every Monday morning."}
+      - {id: S2-T2, speaker: "Tessa", text: "I’m free then. I can take care of the Monday watering."}
+      - {id: S2-T3, speaker: "Ewan", text: "Here’s my garden key. I’ve also shown you where the hose connects."}
+      - {id: S2-T4, speaker: "Tessa", text: "Got it. I’ll be there on Monday."}
+  - id: S3
+    date: 2024-09-06
+    turns:
+      - {id: S3-T1, speaker: "Vera", text: "Who should I contact if there’s a problem with Monday’s watering?"}
+      - {id: S3-T2, speaker: "Tessa", text: "Me. I’ve put the Monday shift in my calendar."}
+      - {id: S3-T3, speaker: "Ewan", text: "Yes, Tessa has the key and is handling Mondays now."}
+      - {id: S3-T4, speaker: "Malik", text: "Thanks. My Wednesday shift is still fine."}
+  - id: S4
+    date: 2024-09-09
+    turns:
+      - {id: S4-T1, speaker: "Malik", text: "I’ve been assigned a regular Wednesday meeting, so I won’t get to the garden."}
+      - {id: S4-T2, speaker: "Vera", text: "I’m free on Wednesdays. Give me the watering checklist."}
+      - {id: S4-T3, speaker: "Malik", text: "Here it is, along with my key. I’ve put your name in the Wednesday slot."}
+      - {id: S4-T4, speaker: "Vera", text: "Thanks. I’ll handle that shift."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: watering.monday, value: "Ewan"}
+  - {turn: S1-T2, act: suggest, item: watering.wednesday, value: "Malik"}
+  - {turn: S1-T4, act: accept, item: watering.monday, accepts: S1-T1}
+  - {turn: S1-T4, act: accept, item: watering.wednesday, accepts: S1-T2}
+  - {turn: S2-T2, act: suggest, item: watering.monday, value: "Tessa"}
+  - {turn: S2-T3, act: accept, item: watering.monday, accepts: S2-T2}
+  - {turn: S3-T3, act: restate, item: watering.monday, value: "Tessa"}
+  - {turn: S4-T2, act: suggest, item: watering.wednesday, value: "Vera"}
+  - {turn: S4-T3, act: accept, item: watering.wednesday, accepts: S4-T2}
+
+questions:
+  - {id: watering.monday@S4-previous, after: S4, kind: previous, item: watering.monday, text: "Who, if anyone, was responsible for Monday watering before the current volunteer?"}
+  - {id: watering.wednesday@S4-previous, after: S4, kind: previous, item: watering.wednesday, text: "Who, if anyone, was responsible for Wednesday watering before the current volunteer?"}

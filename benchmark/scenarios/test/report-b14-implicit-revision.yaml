@@ -1,0 +1,71 @@
+# Report test scenario report-b14 (task A11): written by member B in plain English as scenario 14, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Genuine revision"; format category implicit_revision: S2-T2 ("Let's go up to A2,
+#     then.") changes the size without naming A3.
+#   - S2-T4 ("Still opening on the same day") names no date, so it gets no label.
+scenario_id: report-b14
+title: "An exhibition print size is deliberately revised"
+category: implicit_revision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: photo-exhibition
+
+items:
+  - key: prints.size
+    kind: decision
+    description: "paper size of the exhibition prints"
+    ask: "What print size are we using for the exhibition?"
+    values:
+      "A3": ["A3 prints", "A3 size", "A3 paper"]
+      "A2": ["A2 prints", "A2 size", "A2 paper"]
+  - key: exhibition.opening_date
+    kind: decision
+    description: "date the exhibition opens"
+    ask: "When does the exhibition open?"
+    values:
+      "27 November": ["27 Nov", "November 27", "Nov 27", "27th November", "November 27th", "27th"]
+
+sessions:
+  - id: S1
+    date: 2026-10-02
+    turns:
+      - {id: S1-T1, speaker: "Ola", text: "A3 prints for the exhibition?"}
+      - {id: S1-T2, speaker: "Pavel", text: "Yes, let's use A3."}
+      - {id: S1-T3, speaker: "Ola", text: "And open on 27 November?"}
+      - {id: S1-T4, speaker: "Pavel", text: "That works."}
+      - {id: S1-T5, speaker: "Ola", text: "I'm excited to see these off my laptop screen."}
+      - {id: S1-T6, speaker: "Pavel", text: "Same."}
+  - id: S2
+    date: 2026-10-05
+    turns:
+      - {id: S2-T1, speaker: "Pavel", text: "I've measured the display. We could fit bigger prints after all."}
+      - {id: S2-T2, speaker: "Ola", text: "Let's go up to A2, then."}
+      - {id: S2-T3, speaker: "Pavel", text: "Yes, A2. It'll look much better from the doorway."}
+      - {id: S2-T4, speaker: "Ola", text: "Still opening on the same day, though."}
+      - {id: S2-T5, speaker: "Pavel", text: "Yep, no need to change that."}
+  - id: S3
+    date: 2026-10-08
+    turns:
+      - {id: S3-T1, speaker: "Ola", text: "Are we confirming A2?"}
+      - {id: S3-T2, speaker: "Pavel", text: "Yes."}
+      - {id: S3-T3, speaker: "Ola", text: "Okay. And I've put 27 November on the opening notice."}
+      - {id: S3-T4, speaker: "Pavel", text: "That's right. We're on the same schedule."}
+      - {id: S3-T5, speaker: "Ola", text: "Nearly sent the old A3 file. Glad I checked."}
+      - {id: S3-T6, speaker: "Pavel", text: "Please don't make us pay for both sizes."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: prints.size, value: "A3"}
+  - {turn: S1-T2, act: accept, item: prints.size, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: exhibition.opening_date, value: "27 November"}
+  - {turn: S1-T4, act: accept, item: exhibition.opening_date, accepts: S1-T3}
+  - {turn: S2-T2, act: suggest, item: prints.size, value: "A2"}
+  - {turn: S2-T3, act: accept, item: prints.size, accepts: S2-T2}
+  - {turn: S3-T1, act: restate, item: prints.size, value: "A2"}
+  - {turn: S3-T3, act: restate, item: exhibition.opening_date, value: "27 November"}
+  - {turn: S3-T5, act: mention, item: prints.size, value: "A3"}
+
+questions:
+  - {id: prints.size@S3-previous, after: S3, kind: previous, item: prints.size, text: "Which print size, if any, did we use for the exhibition before the current one?"}

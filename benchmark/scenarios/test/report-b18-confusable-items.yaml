@@ -1,0 +1,88 @@
+# Report test scenario report-b18 (task A11): written by member B in plain English as scenario 18, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Similar settings with different scopes"; format category confusable_items: the two
+#     timeouts are linked, and the rescue change (S2-T2) does not change mapping.
+#   - The meetings are dated "19 October" and so on, with no year; read as 2026, like B's other files.
+#   - S3-T1 ("The mapping summary says 180 seconds.") reports a wrong summary: a mention.
+#   - The author's Q2 is a yes/no question; it is read as the success question, whose answer the author states
+#     ("The robot must reach the target and return to the start.").
+scenario_id: report-b18
+title: "The robot that keeps getting “stuck”"
+category: confusable_items
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: rescue-robot
+
+items:
+  - key: timeout.rescue
+    kind: decision
+    description: "episode time limit for rescue runs"
+    ask: "What episode timeout are we using for rescue runs?"
+    values:
+      "120 seconds": ["120 s", "120s", "120 sec", "120 secs", "120 seconds per episode", "120", "one hundred and twenty seconds", "two minutes"]
+      "180 seconds": ["180 s", "180s", "180 sec", "180 secs", "180 seconds per episode", "180", "one hundred and eighty seconds", "three minutes"]
+    confusable_with: [timeout.mapping]
+  - key: timeout.mapping
+    kind: decision
+    description: "episode time limit for mapping-only runs"
+    ask: "What episode timeout are we using for mapping-only runs?"
+    values:
+      "60 seconds": ["60 s", "60s", "60 sec", "60 secs", "60 seconds per episode", "60", "sixty seconds", "one minute", "sixty"]
+      "180 seconds": ["180 s", "180s", "180 sec", "180 secs", "180 seconds per episode", "180", "one hundred and eighty seconds", "three minutes"]
+    confusable_with: [timeout.rescue]
+  - key: rescue.success
+    kind: decision
+    description: "what counts as a successful rescue"
+    ask: "What counts as a successful rescue?"
+    values:
+      "reach the target and return to the start": ["find the target and return to the start", "finding the target and getting back to the start", "reaching the target and returning to the start", "reach the target and return to start", "find the target and get back to the start", "finding the target and returning to the start", "reaching the target and getting back to the start", "reach the target and get back to the start", "both finding the target and returning to the start", "must reach the target and return to the start", "the robot must reach the target and return to the start"]
+      "reaching the target counts as partial success": ["partial success for reaching the target", "reaching the target is a partial success", "count reaching the target as partial success"]
+
+sessions:
+  - id: S1
+    date: 2026-10-19
+    turns:
+      - {id: S1-T1, speaker: "Maya", text: "For the rescue runs, stop an episode after 120 seconds. We can't leave the simulator running forever."}
+      - {id: S1-T2, speaker: "Joel", text: "Fine. Mapping-only runs get 60 seconds?"}
+      - {id: S1-T3, speaker: "Priya", text: "Yes. Different job, shorter run."}
+      - {id: S1-T4, speaker: "Maya", text: "And rescue success means finding the target and getting back to the start."}
+      - {id: S1-T5, speaker: "Joel", text: "Both? Finding it on its own doesn't count?"}
+      - {id: S1-T6, speaker: "Priya", text: "Both. Otherwise it could find someone and then get stuck trying to leave."}
+  - id: S2
+    date: 2026-10-21
+    turns:
+      - {id: S2-T1, speaker: "Joel", text: "The larger rescue maps are timing out while the robot is still moving. Can we give those runs 180 seconds?"}
+      - {id: S2-T2, speaker: "Maya", text: "Yes, use 180 for the rescue runs from now on."}
+      - {id: S2-T3, speaker: "Priya", text: "Mapping still gets sixty, though. I need those results comparable to the earlier batch."}
+      - {id: S2-T4, speaker: "Joel", text: "Okay. The script has one timeout field at the moment, so I'll separate it."}
+      - {id: S2-T5, speaker: "Maya", text: "Did any of the failed rescue runs reach the target?"}
+      - {id: S2-T6, speaker: "Joel", text: "Some did. They didn't make it back, so I've left them as failures."}
+  - id: S3
+    date: 2026-10-23
+    turns:
+      - {id: S3-T1, speaker: "Priya", text: "The mapping summary says 180 seconds. Did you rerun those with the longer limit?"}
+      - {id: S3-T2, speaker: "Joel", text: "No, I checked the logs. Mapping ran with 60. The report pulled the rescue setting into both rows."}
+      - {id: S3-T3, speaker: "Maya", text: "Fix the report, then. Rescue is 180, mapping is 60."}
+      - {id: S3-T4, speaker: "Joel", text: "Will do. Also, would it be fairer to count reaching the target as partial success?"}
+      - {id: S3-T5, speaker: "Priya", text: "We can discuss an extra measure later. For the current success rate, it still has to return to the start."}
+      - {id: S3-T6, speaker: "Maya", text: "Yes. Don't change the definition halfway through the table."}
+
+script:
+  - {turn: S1-T1, act: decide, item: timeout.rescue, value: "120 seconds"}
+  - {turn: S1-T2, act: suggest, item: timeout.mapping, value: "60 seconds"}
+  - {turn: S1-T3, act: accept, item: timeout.mapping, accepts: S1-T2}
+  - {turn: S1-T4, act: decide, item: rescue.success, value: "reach the target and return to the start"}
+  - {turn: S2-T1, act: suggest, item: timeout.rescue, value: "180 seconds"}
+  - {turn: S2-T2, act: accept, item: timeout.rescue, accepts: S2-T1}
+  - {turn: S2-T3, act: restate, item: timeout.mapping, value: "60 seconds"}
+  - {turn: S3-T1, act: mention, item: timeout.mapping, value: "180 seconds"}
+  - {turn: S3-T3, act: restate, item: timeout.rescue, value: "180 seconds"}
+  - {turn: S3-T3, act: restate, item: timeout.mapping, value: "60 seconds"}
+  - {turn: S3-T4, act: suggest, item: rescue.success, value: "reaching the target counts as partial success"}
+  - {turn: S3-T5, act: restate, item: rescue.success, value: "reach the target and return to the start"}
+
+questions:
+  - {id: timeout.rescue@S3-previous, after: S3, kind: previous, item: timeout.rescue, text: "Which rescue-run timeout, if any, did we use before the current one?"}

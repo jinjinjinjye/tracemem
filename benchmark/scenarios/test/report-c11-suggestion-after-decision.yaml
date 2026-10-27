@@ -1,0 +1,76 @@
+# Report test scenario report-c11 (task A11): written by member C in plain English as scenario 11, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T3 ("I still like the courtyard idea") puts the courtyard forward again; S3-T4 keeps it a suggestion.
+#   - S4-T1 offers the full pack of yellow labels, and S4-T2 ("let's use yellow instead of blue") accepts it.
+#   - Children's picture books (S3-T1, S3-T2) are not an item: the author does not ask about them.
+#   - The author's Q3 is reworded to the guide's standard history wording (section 6).
+scenario_id: report-c11
+title: "A Neighbourhood Book Swap"
+category: suggestion_after_decision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: book-swap
+
+items:
+  - key: swap.venue
+    kind: decision
+    description: "where the book swap is held"
+    ask: "Where are we holding the book swap?"
+    values:
+      "community lounge": ["the community lounge", "lounge", "the lounge"]
+      "courtyard": ["the courtyard", "in the courtyard", "outside", "outdoors"]
+  - key: swap.label_colour
+    kind: decision
+    description: "colour of the exchange labels"
+    ask: "What colour exchange labels are we using?"
+    values:
+      "blue": ["blue labels", "the blue labels", "blue ones"]
+      "yellow": ["yellow labels", "the yellow labels", "yellow ones"]
+
+sessions:
+  - id: S1
+    date: 2025-04-03
+    turns:
+      - {id: S1-T1, speaker: "Iris", text: "Let’s hold the book swap in the community lounge. There’s enough room for people to browse without blocking the entrance."}
+      - {id: S1-T2, speaker: "Felix", text: "Agreed. We can use the tables that are already there."}
+      - {id: S1-T3, speaker: "Dalia", text: "What colour should the exchange labels be? I have a pack of blue ones."}
+      - {id: S1-T4, speaker: "Iris", text: "Blue works. Let’s use those."}
+  - id: S2
+    date: 2025-04-06
+    turns:
+      - {id: S2-T1, speaker: "Felix", text: "I walked past the courtyard this morning. Maybe we could hold the swap outside instead?"}
+      - {id: S2-T2, speaker: "Dalia", text: "It would look nice, but we’d have nowhere to put the books if it started raining."}
+      - {id: S2-T3, speaker: "Iris", text: "Let’s not change the venue until we’ve thought that through."}
+      - {id: S2-T4, speaker: "Felix", text: "Sure. The courtyard is just another option."}
+  - id: S3
+    date: 2025-04-09
+    turns:
+      - {id: S3-T1, speaker: "Dalia", text: "A few neighbours asked whether children can bring picture books."}
+      - {id: S3-T2, speaker: "Iris", text: "Of course. They’re welcome to swap those too."}
+      - {id: S3-T3, speaker: "Felix", text: "I still like the courtyard idea, especially if the weather is good."}
+      - {id: S3-T4, speaker: "Dalia", text: "We haven’t agreed to move anything, but you can keep the courtyard on the list of suggestions."}
+  - id: S4
+    date: 2025-04-11
+    turns:
+      - {id: S4-T1, speaker: "Dalia", text: "I checked my cupboard. I only have six blue labels, but there’s a full pack of yellow ones."}
+      - {id: S4-T2, speaker: "Iris", text: "Then let’s use yellow instead of blue."}
+      - {id: S4-T3, speaker: "Felix", text: "Fine by me. They’ll be easier to spot on dark book covers anyway."}
+      - {id: S4-T4, speaker: "Dalia", text: "Great, I’ll bring the yellow labels."}
+
+script:
+  - {turn: S1-T1, act: decide, item: swap.venue, value: "community lounge"}
+  - {turn: S1-T3, act: suggest, item: swap.label_colour, value: "blue"}
+  - {turn: S1-T4, act: accept, item: swap.label_colour, accepts: S1-T3}
+  - {turn: S2-T1, act: suggest, item: swap.venue, value: "courtyard"}
+  - {turn: S2-T4, act: mention, item: swap.venue, value: "courtyard"}
+  - {turn: S3-T3, act: suggest, item: swap.venue, value: "courtyard"}
+  - {turn: S3-T4, act: mention, item: swap.venue, value: "courtyard"}
+  - {turn: S4-T1, act: suggest, item: swap.label_colour, value: "yellow"}
+  - {turn: S4-T2, act: accept, item: swap.label_colour, accepts: S4-T1}
+  - {turn: S4-T4, act: restate, item: swap.label_colour, value: "yellow"}
+
+questions:
+  - {id: swap.label_colour@S4-previous, after: S4, kind: previous, item: swap.label_colour, text: "Which label colour, if any, did we use before the current one?"}

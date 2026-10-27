@@ -1,0 +1,88 @@
+# Report test scenario report-b19 (task A11): written by member B in plain English as scenario 19, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Genuine revision followed by reversal"; format category explicit_revision: S3-T3 ("go
+#     back to dropping incomplete hourly records") names the value it returns to.
+#   - The meetings are dated "18 October" and so on, with no year; read as 2026, like B's other files.
+#   - S3-T3 keeps the interpolated version as a sensitivity check; the main analysis's value is the author's
+#     ("Drop incomplete hourly records").
+#   - S3-T5 ("We did use it in the second version.") recalls the interpolation: a mention.
+scenario_id: report-b19
+title: "The missing readings are changing the story"
+category: explicit_revision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: urban-temperature
+
+items:
+  - key: missing.handling
+    kind: decision
+    description: "how the main analysis treats missing temperature data"
+    ask: "How are we handling missing temperature data in the main analysis?"
+    values:
+      "drop incomplete hourly records": ["drop incomplete records", "drop records with missing data", "drop missing records", "drop any hourly record with missing temperature data", "drop hourly records with missing temperature data", "dropping incomplete hourly records", "drop rows with missing temperature", "exclude incomplete hourly records", "remove incomplete hourly records", "complete-case analysis", "listwise deletion", "drop incomplete hourly records; keep the interpolated version as a sensitivity check", "drop incomplete hourly records, with the interpolated version as a sensitivity check", "drop incomplete hourly records. keep the interpolated version only as a sensitivity check", "drop incomplete hourly records (interpolated version as a sensitivity check)"]
+      "linear interpolation of short gaps": ["linear interpolation", "interpolation", "short-gap interpolation", "interpolate short gaps", "linear interpolation for short gaps", "linear interpolation of gaps up to two hours", "linear interpolation for gaps of up to two hours", "linear interpolation for gaps of at most two consecutive hours", "interpolate gaps of at most two consecutive hours", "interpolate gaps of up to two hours", "linear interpolation for gaps of at most two hours, then drop the rest", "linear interpolation of short gaps, then drop anything still missing", "linear interpolation for gaps of at most two hours", "linear interpolation for gaps of at most two consecutive hours, then drop anything still missing"]
+      "interpolation of gaps up to one hour": ["interpolate gaps of at most one hour", "linear interpolation for gaps of up to one hour", "one-hour interpolation", "shorten the maximum gap to one hour"]
+  - key: data.resolution
+    kind: decision
+    description: "time resolution of the temperature measurements"
+    ask: "What time resolution are we using for the temperature measurements?"
+    values:
+      "hourly": ["hourly measurements", "hourly records", "hourly data", "hourly values", "hour-level"]
+      "daily averages": ["daily", "daily values", "daily average", "daily means"]
+  - key: comparison.main
+    kind: decision
+    description: "locations compared in the main comparison"
+    ask: "Which locations are we comparing in the main comparison?"
+    values:
+      "rooftop versus street-level sensors": ["rooftop vs street-level sensors", "rooftop vs. street-level sensors", "rooftop versus street", "rooftop vs street", "rooftop sensors against street-level sensors", "rooftop sensors versus street-level sensors", "rooftop sensors vs street-level sensors", "rooftop-versus-street", "rooftop and street-level sensors", "rooftop versus street-level"]
+
+sessions:
+  - id: S1
+    date: 2026-10-18
+    turns:
+      - {id: S1-T1, speaker: "Researcher", text: "For this first analysis, drop any hourly record with missing temperature data. Keep a count of what we lose."}
+      - {id: S1-T2, speaker: "Agent", text: "Okay. Keep the measurements hourly, or combine them into daily values?"}
+      - {id: S1-T3, speaker: "Researcher", text: "Hourly. Daily averages will hide the afternoon pattern I'm interested in."}
+      - {id: S1-T4, speaker: "Agent", text: "Which locations should I compare first?"}
+      - {id: S1-T5, speaker: "Researcher", text: "Rooftop sensors against street-level sensors. That's the main comparison."}
+      - {id: S1-T6, speaker: "Agent", text: "I'll prepare that version and include the missing-record counts."}
+  - id: S2
+    date: 2026-10-20
+    turns:
+      - {id: S2-T1, speaker: "Researcher", text: "We're losing more hours than I expected. What would filling the short gaps involve?"}
+      - {id: S2-T2, speaker: "Agent", text: "One option is linear interpolation for gaps of at most two consecutive hours, leaving longer gaps missing."}
+      - {id: S2-T3, speaker: "Researcher", text: "Okay, use that for the next version. Drop anything still missing afterwards."}
+      - {id: S2-T4, speaker: "Agent", text: "Understood. I can also switch to daily averages to make the plots less crowded."}
+      - {id: S2-T5, speaker: "Researcher", text: "Keep hourly. Just show a shorter date range in the example plot."}
+      - {id: S2-T6, speaker: "Agent", text: "Okay. Same rooftop-versus-street comparison, with short-gap interpolation."}
+  - id: S3
+    date: 2026-10-22
+    turns:
+      - {id: S3-T1, speaker: "Researcher", text: "I've looked at the filled sections. Some overlap the afternoon peaks we actually care about."}
+      - {id: S3-T2, speaker: "Agent", text: "Do you want to shorten the maximum gap to one hour?"}
+      - {id: S3-T3, speaker: "Researcher", text: "No, go back to dropping incomplete hourly records for the main analysis. Keep the interpolated version as a sensitivity check."}
+      - {id: S3-T4, speaker: "Agent", text: "Okay. I'll keep both outputs and label which one is primary."}
+      - {id: S3-T5, speaker: "Researcher", text: "And don't write that interpolation was never used. We did use it in the second version."}
+      - {id: S3-T6, speaker: "Agent", text: "Right. I'll describe the sequence and leave the hourly rooftop-versus-street comparison in place."}
+
+script:
+  - {turn: S1-T1, act: decide, item: missing.handling, value: "drop incomplete hourly records"}
+  - {turn: S1-T3, act: decide, item: data.resolution, value: "hourly"}
+  - {turn: S1-T5, act: decide, item: comparison.main, value: "rooftop versus street-level sensors"}
+  - {turn: S2-T2, act: suggest, item: missing.handling, value: "linear interpolation of short gaps"}
+  - {turn: S2-T3, act: accept, item: missing.handling, accepts: S2-T2}
+  - {turn: S2-T4, act: suggest, item: data.resolution, value: "daily averages"}
+  - {turn: S2-T5, act: restate, item: data.resolution, value: "hourly"}
+  - {turn: S2-T6, act: restate, item: missing.handling, value: "linear interpolation of short gaps"}
+  - {turn: S2-T6, act: restate, item: comparison.main, value: "rooftop versus street-level sensors"}
+  - {turn: S3-T2, act: suggest, item: missing.handling, value: "interpolation of gaps up to one hour"}
+  - {turn: S3-T3, act: revise, item: missing.handling, value: "drop incomplete hourly records"}
+  - {turn: S3-T5, act: mention, item: missing.handling, value: "linear interpolation of short gaps"}
+  - {turn: S3-T6, act: restate, item: data.resolution, value: "hourly"}
+  - {turn: S3-T6, act: restate, item: comparison.main, value: "rooftop versus street-level sensors"}
+
+questions:
+  - {id: missing.handling@S3-previous, after: S3, kind: previous, item: missing.handling, text: "Which way of handling missing temperature data, if any, did we use before the current one?"}

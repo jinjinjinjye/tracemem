@@ -1,0 +1,87 @@
+# Report test scenario report-c20 (task A11): written by member C in plain English as scenario 20, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T1 recalls last year's linen cushion covers and S5-T1 the red handles of the December gift bags:
+#     mentions.
+#   - The author's Q3 ("originally chosen") becomes a previous-value question in the guide's standard wording;
+#     with one change, the first and the previous value are the same.
+scenario_id: report-c20
+title: "Tote Bags for the Community Stall"
+category: mention_after_decision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: tote-bags
+
+items:
+  - key: tote.fabric
+    kind: decision
+    description: "fabric of the tote bags"
+    ask: "What fabric are we using for the tote bags?"
+    values:
+      "lightweight cotton": ["cotton", "light cotton", "lightweight cotton fabric"]
+      "canvas": ["canvas fabric"]
+      "linen": []
+  - key: tote.handle_colour
+    kind: decision
+    description: "colour of the tote-bag handles"
+    ask: "What colour handles are we using for the tote bags?"
+    values:
+      "navy blue": ["navy", "navy-blue", "navy blue handles", "navy-blue handles"]
+      "red": ["red handles", "bright red"]
+
+sessions:
+  - id: S1
+    date: 2026-02-05
+    turns:
+      - {id: S1-T1, speaker: "Sienna", text: "Let’s use lightweight cotton for the tote bags. It should be easy for everyone to sew."}
+      - {id: S1-T2, speaker: "Pavel", text: "Agreed. What colour should the handles be?"}
+      - {id: S1-T3, speaker: "Rosa", text: "Navy blue would go with the fabric without showing every little mark."}
+      - {id: S1-T4, speaker: "Sienna", text: "Good. Lightweight cotton with navy-blue handles."}
+  - id: S2
+    date: 2026-02-08
+    turns:
+      - {id: S2-T1, speaker: "Pavel", text: "I tested the cotton with a few books inside, and it feels too thin for these bags."}
+      - {id: S2-T2, speaker: "Rosa", text: "Then let’s use canvas instead."}
+      - {id: S2-T3, speaker: "Sienna", text: "Agreed. Canvas replaces the lightweight cotton."}
+      - {id: S2-T4, speaker: "Pavel", text: "I’ll set aside the cotton and cut the canvas pieces."}
+  - id: S3
+    date: 2026-02-11
+    turns:
+      - {id: S3-T1, speaker: "Rosa", text: "Did we use linen for the cushion covers at last year’s workshop?"}
+      - {id: S3-T2, speaker: "Sienna", text: "Yes, the pale fabric that kept slipping off the table."}
+      - {id: S3-T3, speaker: "Pavel", text: "I remember having to pin every edge before sewing it."}
+      - {id: S3-T4, speaker: "Rosa", text: "That linen looked lovely once the cushion covers were finished, though."}
+  - id: S4
+    date: 2026-02-14
+    turns:
+      - {id: S4-T1, speaker: "Sienna", text: "The canvas pieces are cut, and the navy-blue handles are ready."}
+      - {id: S4-T2, speaker: "Pavel", text: "Great. I can start attaching the handles this afternoon."}
+      - {id: S4-T3, speaker: "Rosa", text: "I’ll check the finished bags for loose threads."}
+      - {id: S4-T4, speaker: "Sienna", text: "Thanks. We’re finally getting somewhere."}
+  - id: S5
+    date: 2026-02-17
+    turns:
+      - {id: S5-T1, speaker: "Pavel", text: "I found a photo of the red handles we used on the holiday gift bags."}
+      - {id: S5-T2, speaker: "Rosa", text: "Those were bright. They matched the wrapping paper."}
+      - {id: S5-T3, speaker: "Sienna", text: "Yes, that was a separate batch for the December event."}
+      - {id: S5-T4, speaker: "Pavel", text: "I remember now. The red handles stood out in every photo."}
+
+script:
+  - {turn: S1-T1, act: decide, item: tote.fabric, value: "lightweight cotton"}
+  - {turn: S1-T3, act: suggest, item: tote.handle_colour, value: "navy blue"}
+  - {turn: S1-T4, act: restate, item: tote.fabric, value: "lightweight cotton"}
+  - {turn: S1-T4, act: accept, item: tote.handle_colour, accepts: S1-T3}
+  - {turn: S2-T2, act: revise, item: tote.fabric, value: "canvas"}
+  - {turn: S2-T3, act: restate, item: tote.fabric, value: "canvas"}
+  - {turn: S2-T4, act: restate, item: tote.fabric, value: "canvas"}
+  - {turn: S3-T1, act: mention, item: tote.fabric, value: "linen"}
+  - {turn: S3-T4, act: mention, item: tote.fabric, value: "linen"}
+  - {turn: S4-T1, act: restate, item: tote.fabric, value: "canvas"}
+  - {turn: S4-T1, act: restate, item: tote.handle_colour, value: "navy blue"}
+  - {turn: S5-T1, act: mention, item: tote.handle_colour, value: "red"}
+  - {turn: S5-T4, act: mention, item: tote.handle_colour, value: "red"}
+
+questions:
+  - {id: tote.fabric@S5-previous, after: S5, kind: previous, item: tote.fabric, text: "Which fabric, if any, did we use for the tote bags before the current one?"}

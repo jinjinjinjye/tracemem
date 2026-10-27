@@ -1,0 +1,76 @@
+# Report test scenario report-b11 (task A11): written by member B in plain English as scenario 11, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Task progress"; format category task_lifecycle.
+#   - S1-T1 ("I haven't bought the pet food yet.") and S1-T2 ("we haven't even started sorting out the keys")
+#     open the two tasks. Ordering the food (S2-T1) and arranging the handover (S3-T2) leave them open: "not
+#     started" and "in progress" are both the progress word open.
+#   - The author's single question asks for both tasks; it becomes the two questions.
+scenario_id: report-b11
+title: "Pet-sitting preparation progresses unevenly"
+category: task_lifecycle
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: pet-sitting
+
+items:
+  - key: task.pet_food
+    kind: task
+    description: "buying the pet food"
+    ask: "What is the status of the pet-food purchase?"
+  - key: task.key_handover
+    kind: task
+    description: "arranging the key handover"
+    ask: "What is the status of the key handover?"
+  - key: visit.first_date
+    kind: decision
+    description: "date of the first pet-sitting visit"
+    ask: "When is the first pet-sitting visit?"
+    values:
+      "15 November": ["15 Nov", "November 15", "Nov 15", "15th November", "November 15th", "15th"]
+
+sessions:
+  - id: S1
+    date: 2026-10-03
+    turns:
+      - {id: S1-T1, speaker: "Emi", text: "I haven't bought the pet food yet."}
+      - {id: S1-T2, speaker: "Farid", text: "And we haven't even started sorting out the keys."}
+      - {id: S1-T3, speaker: "Emi", text: "Your first visit will be 15 November, right?"}
+      - {id: S1-T4, speaker: "Farid", text: "Yes."}
+      - {id: S1-T5, speaker: "Emi", text: "Good thing we've got a bit of time."}
+  - id: S2
+    date: 2026-10-08
+    turns:
+      - {id: S2-T1, speaker: "Farid", text: "Food's ordered. But not arrived yet."}
+      - {id: S2-T2, speaker: "Emi", text: "Okay, let's tick that off when it's actually here."}
+      - {id: S2-T3, speaker: "Farid", text: "Still haven't done anything about the keys."}
+      - {id: S2-T4, speaker: "Emi", text: "Yeah, you won't get very far without those."}
+      - {id: S2-T5, speaker: "Farid", text: "I'm still free for the first visit as planned."}
+  - id: S3
+    date: 2026-10-10
+    turns:
+      - {id: S3-T1, speaker: "Emi", text: "Food arrived! I've checked it; it's the right stuff."}
+      - {id: S3-T2, speaker: "Emi", text: "We're arranging the key handover now. No keys have changed hands yet."}
+  - id: S4
+    date: 2026-10-12
+    turns:
+      - {id: S4-T1, speaker: "Farid", text: "Are we all set, then?"}
+      - {id: S4-T2, speaker: "Emi", text: "Food, yes. Keys, not yet—we're still arranging that."}
+      - {id: S4-T3, speaker: "Farid", text: "Right, please arrange it asap."}
+      - {id: S4-T4, speaker: "Emi", text: "No change to when you start, right?"}
+      - {id: S4-T5, speaker: "Farid", text: "Yep, 15 November. I've kept it free."}
+
+script:
+  - {turn: S1-T1, act: task_open, item: task.pet_food}
+  - {turn: S1-T2, act: task_open, item: task.key_handover}
+  - {turn: S1-T3, act: suggest, item: visit.first_date, value: "15 November"}
+  - {turn: S1-T4, act: accept, item: visit.first_date, accepts: S1-T3}
+  - {turn: S3-T1, act: task_progress, item: task.pet_food, progress: completed}
+  - {turn: S4-T2, act: restate, item: task.pet_food, value: "completed"}
+  - {turn: S4-T2, act: restate, item: task.key_handover, value: "open"}
+  - {turn: S4-T5, act: restate, item: visit.first_date, value: "15 November"}
+
+questions:
+  - {id: task.pet_food@S4-previous, after: S4, kind: previous, item: task.pet_food, text: "What status, if any, did the pet-food purchase have before the current one?"}

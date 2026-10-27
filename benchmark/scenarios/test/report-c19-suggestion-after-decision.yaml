@@ -1,0 +1,74 @@
+# Report test scenario report-c19 (task A11): written by member C in plain English as scenario 19, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T3 ("I still think five-minute games could make the event more lively.") puts five minutes forward
+#     again; S3-T4 keeps it for a later meeting.
+#   - The author's Q3 is reworded to the guide's standard history wording (section 6).
+scenario_id: report-c19
+title: "A Friendly Chess Tournament"
+category: suggestion_after_decision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: chess-tournament
+
+items:
+  - key: chess.time_limit
+    kind: decision
+    description: "time each player gets per game"
+    ask: "How much time does each player get per game?"
+    values:
+      "10 minutes": ["ten minutes", "10 minutes per player", "ten minutes per player", "10 minutes each", "ten minutes each", "10 minutes per game", "ten minutes per game", "10-minute games", "ten-minute games", "10 min"]
+      "5 minutes": ["five minutes", "5 minutes per player", "five minutes per player", "five-minute games", "5-minute games", "5 min"]
+  - key: chess.pairing
+    kind: decision
+    description: "how players are paired in the first round"
+    ask: "How are players being paired for the first round?"
+    values:
+      "random draw": ["randomly", "random", "random pairing", "random pairings", "drawing names from a bowl", "draw names from a bowl", "names drawn from a bowl", "random draw from a bowl", "random pairing by drawing names from a bowl", "random draw (names drawn from a bowl)"]
+      "similar club ratings": ["by similar club ratings", "similar ratings", "by similar ratings", "by rating", "rating-based pairing", "pairing by similar club ratings", "pair players with similar club ratings", "pair people with similar club ratings"]
+
+sessions:
+  - id: S1
+    date: 2026-01-15
+    turns:
+      - {id: S1-T1, speaker: "Marta", text: "Let’s give each player ten minutes per game. That should be manageable for the newer members."}
+      - {id: S1-T2, speaker: "Kofi", text: "Agreed, ten minutes each."}
+      - {id: S1-T3, speaker: "Anya", text: "How should we pair people for the first round?"}
+      - {id: S1-T4, speaker: "Marta", text: "Randomly. Let’s draw names from a bowl."}
+  - id: S2
+    date: 2026-01-18
+    turns:
+      - {id: S2-T1, speaker: "Kofi", text: "We’ve had more entries than expected. Maybe five minutes per player would help us finish sooner."}
+      - {id: S2-T2, speaker: "Anya", text: "It might, but some beginners would find that stressful."}
+      - {id: S2-T3, speaker: "Marta", text: "Don’t change the time limit yet. Let’s see whether the room booking gives us enough time."}
+      - {id: S2-T4, speaker: "Kofi", text: "Sure. Five-minute games are just an option."}
+  - id: S3
+    date: 2026-01-20
+    turns:
+      - {id: S3-T1, speaker: "Anya", text: "We have the room for the whole afternoon, so there’s less pressure to rush."}
+      - {id: S3-T2, speaker: "Marta", text: "Good. We haven’t approved any change to the game length."}
+      - {id: S3-T3, speaker: "Kofi", text: "Understood. I still think five-minute games could make the event more lively."}
+      - {id: S3-T4, speaker: "Anya", text: "You can suggest five minutes again at the next planning meeting."}
+  - id: S4
+    date: 2026-01-22
+    turns:
+      - {id: S4-T1, speaker: "Anya", text: "Drawing names randomly could put our strongest player against someone who learned last week."}
+      - {id: S4-T2, speaker: "Marta", text: "Let’s pair people with similar club ratings in the first round instead."}
+      - {id: S4-T3, speaker: "Kofi", text: "Agreed. That should give everyone a more balanced first game."}
+      - {id: S4-T4, speaker: "Anya", text: "I’ll prepare the first-round pairings using similar ratings."}
+
+script:
+  - {turn: S1-T1, act: decide, item: chess.time_limit, value: "10 minutes"}
+  - {turn: S1-T2, act: restate, item: chess.time_limit, value: "10 minutes"}
+  - {turn: S1-T4, act: decide, item: chess.pairing, value: "random draw"}
+  - {turn: S2-T1, act: suggest, item: chess.time_limit, value: "5 minutes"}
+  - {turn: S2-T4, act: mention, item: chess.time_limit, value: "5 minutes"}
+  - {turn: S3-T3, act: suggest, item: chess.time_limit, value: "5 minutes"}
+  - {turn: S3-T4, act: mention, item: chess.time_limit, value: "5 minutes"}
+  - {turn: S4-T2, act: revise, item: chess.pairing, value: "similar club ratings"}
+  - {turn: S4-T4, act: restate, item: chess.pairing, value: "similar club ratings"}
+
+questions:
+  - {id: chess.pairing@S4-previous, after: S4, kind: previous, item: chess.pairing, text: "Which first-round pairing method, if any, did we use before the current one?"}

@@ -1,0 +1,84 @@
+# Report test scenario report-b17 (task A11): written by member B in plain English as scenario 17, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Suggested change versus approved change"; format category suggestion_after_decision:
+#     the vision transformer (S2-T4) is suggested and refused (S2-T5).
+#   - The meetings are dated "19 October" and so on, with no year; read as 2026, like B's other files.
+#   - S2-T3 ("Yes. Use Hospital C for testing...") accepts S2-T2's held-out hospital and names it; the value
+#     is the one the author's answer gives.
+#   - S3-T1 reports the draft's vision transformer, a mention; S3-T4 puts ResNet-18 back in the draft.
+#   - A full answer after meeting 2 says hospitals A and B are split by patient, which the second score's
+#     guard reads as the earlier value; the accepted spellings therefore list the full phrasings.
+scenario_id: report-b17
+title: "The model might be recognising the hospital"
+category: suggestion_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: chest-xray
+
+items:
+  - key: model.architecture
+    kind: decision
+    description: "model architecture of the X-ray classifier"
+    ask: "Which model architecture are we using for the X-ray classifier?"
+    values:
+      "ResNet-18": ["ResNet18", "ResNet 18", "a ResNet-18"]
+      "vision transformer": ["ViT", "a vision transformer", "vision transformer (ViT)", "ViT (vision transformer)"]
+  - key: data.split
+    kind: decision
+    description: "how images are divided into training, validation and test sets"
+    ask: "How are we splitting the X-ray images into training, validation and test sets?"
+    values:
+      "by patient": ["split by patient", "patient-level split", "a patient-level split", "patient-wise split", "per patient", "patient-level", "all scans from the same patient in one split", "all scans from the same person in one split", "by patient, keeping all scans from the same person in one split"]
+      "Hospital C held out for testing": ["hold out Hospital C", "Hospital C held out", "held-out Hospital C", "Hospital C as the test set", "Hospital C is the test set", "Hospital C test set", "Hospital C for testing", "test on Hospital C", "hold out an entire hospital", "a held-out hospital", "hospital-level split", "Hospital C for testing; A and B split by patient", "Hospital C for testing, A and B split by patient", "Hospital C for testing, A and B split into training and validation by patient", "Hospital C for testing, and split A and B into training and validation by patient", "Hospital C is the test set; Hospitals A and B are divided into training and validation by patient", "Hospital C as the test set; Hospitals A and B split by patient into training and validation", "Hospital C held out for testing; A and B split by patient", "hold out Hospital C for testing; split Hospitals A and B into training and validation by patient", "hold out Hospital C for testing; split A and B into training and validation by patient", "Hospital C held out for testing; Hospitals A and B split into training and validation by patient", "Hospital C for testing; Hospitals A and B split into training and validation by patient", "Hospital C as the test set; Hospitals A and B split by patient", "Hospital C held out; A and B split by patient into training and validation"]
+  - key: metric.lead
+    kind: decision
+    description: "metric that leads the results table"
+    ask: "Which metric leads the results table?"
+    values:
+      "AUROC": ["AUC", "ROC AUC", "ROC-AUC", "AUC-ROC", "area under the ROC curve"]
+
+sessions:
+  - id: S1
+    date: 2026-10-19
+    turns:
+      - {id: S1-T1, speaker: "Researcher", text: "I've got the image folders organised. Let's start with ResNet-18; I already have that training code working."}
+      - {id: S1-T2, speaker: "Agent", text: "Okay. How are you dividing the images?"}
+      - {id: S1-T3, speaker: "Researcher", text: "By patient. All scans from the same person have to stay in one split."}
+      - {id: S1-T4, speaker: "Agent", text: "Got it. And which metric should lead the results table?"}
+      - {id: S1-T5, speaker: "Researcher", text: "AUROC. We can show accuracy too, but AUROC is the main one."}
+      - {id: S1-T6, speaker: "Agent", text: "I'll put those settings into the experiment configuration."}
+  - id: S2
+    date: 2026-10-21
+    turns:
+      - {id: S2-T1, speaker: "Researcher", text: "The validation result looks suspiciously good. Can you check whether the hospital labels are unevenly distributed?"}
+      - {id: S2-T2, speaker: "Agent", text: "In the metadata you gave me, Hospital A contributes most of the positive cases. We could hold out an entire hospital instead."}
+      - {id: S2-T3, speaker: "Researcher", text: "Yes. Use Hospital C for testing, and split A and B into training and validation by patient."}
+      - {id: S2-T4, speaker: "Agent", text: "Okay. I could also replace ResNet-18 with a vision transformer while preparing that run."}
+      - {id: S2-T5, speaker: "Researcher", text: "No, leave the model alone. I want to see what changing the split does first."}
+      - {id: S2-T6, speaker: "Agent", text: "Understood. I'll update the split and keep the other settings."}
+  - id: S3
+    date: 2026-10-23
+    turns:
+      - {id: S3-T1, speaker: "Researcher", text: "Your draft methods section says we used a vision transformer. Where did that come from?"}
+      - {id: S3-T2, speaker: "Agent", text: "I carried over my suggestion from the previous session. That was my mistake."}
+      - {id: S3-T3, speaker: "Researcher", text: "Please fix it. We haven't run that model."}
+      - {id: S3-T4, speaker: "Agent", text: "I'll change the architecture back to ResNet-18 in the draft. Should I keep AUROC first in the table?"}
+      - {id: S3-T5, speaker: "Researcher", text: "Yes. Accuracy can stay underneath. And don't move Hospital C into training just because the score dropped."}
+      - {id: S3-T6, speaker: "Agent", text: "Okay. I'll explain the split change beside the results so the two runs aren't presented as directly equivalent."}
+
+script:
+  - {turn: S1-T1, act: decide, item: model.architecture, value: "ResNet-18"}
+  - {turn: S1-T3, act: decide, item: data.split, value: "by patient"}
+  - {turn: S1-T5, act: decide, item: metric.lead, value: "AUROC"}
+  - {turn: S2-T2, act: suggest, item: data.split, value: "Hospital C held out for testing"}
+  - {turn: S2-T3, act: accept, item: data.split, accepts: S2-T2}
+  - {turn: S2-T4, act: suggest, item: model.architecture, value: "vision transformer"}
+  - {turn: S3-T1, act: mention, item: model.architecture, value: "vision transformer"}
+  - {turn: S3-T4, act: restate, item: model.architecture, value: "ResNet-18"}
+  - {turn: S3-T4, act: restate, item: metric.lead, value: "AUROC"}
+
+questions:
+  - {id: data.split@S3-previous, after: S3, kind: previous, item: data.split, text: "Which way of splitting the X-ray images, if any, did we use before the current one?"}

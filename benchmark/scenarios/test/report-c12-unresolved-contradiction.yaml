@@ -1,0 +1,86 @@
+# Report test scenario report-c12 (task A11): written by member C in plain English as scenario 12, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S2-T1 ("I've changed my mind about the cake.") is labelled contest, not suggest: the group treats it as
+#     a dispute (S2-T3, "We don't currently agree on the flavour"), and nobody settles it.
+#   - S1-T3 asks whether the card is paper or digital and S1-T4 leaves it open, so neither is labelled.
+#   - The author asks about the card after meeting 1, before any event on it, so that question is written by
+#     hand; its computed answer is none.
+scenario_id: report-c12
+title: "A Birthday Surprise for Grandma"
+category: unresolved_contradiction
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: grandma-birthday
+
+items:
+  - key: cake.flavour
+    kind: decision
+    description: "flavour of Grandma's birthday cake"
+    ask: "What cake flavour has the family settled on?"
+    values:
+      "lemon": ["lemon cake", "a lemon cake"]
+      "chocolate": ["chocolate cake", "a chocolate cake"]
+  - key: card.format
+    kind: decision
+    description: "format of the birthday card"
+    ask: "What birthday-card format are we using?"
+    values:
+      "digital card": ["a digital card", "digital", "digital birthday card", "a digital birthday card", "e-card"]
+      "paper card": ["a paper card", "paper"]
+
+sessions:
+  - id: S1
+    date: 2025-06-02
+    turns:
+      - {id: S1-T1, speaker: "Hugo", text: "Shall we get Grandma a lemon cake? She enjoyed the one we brought last summer."}
+      - {id: S1-T2, speaker: "Nora", text: "Yes, lemon sounds good."}
+      - {id: S1-T3, speaker: "Sanjay", text: "Are we making a paper card or sending a digital one?"}
+      - {id: S1-T4, speaker: "Hugo", text: "Let’s leave the card format undecided until we know who wants to contribute."}
+  - id: S2
+    date: 2025-06-05
+    turns:
+      - {id: S2-T1, speaker: "Nora", text: "I’ve changed my mind about the cake. I think chocolate would be better for the whole family."}
+      - {id: S2-T2, speaker: "Hugo", text: "I disagree. It’s Grandma’s birthday, and I still want to get lemon."}
+      - {id: S2-T3, speaker: "Sanjay", text: "Then we need to pause the cake order. We don’t currently agree on the flavour."}
+      - {id: S2-T4, speaker: "Nora", text: "Fine, but I’d like us to consider chocolate properly."}
+  - id: S3
+    date: 2025-06-08
+    turns:
+      - {id: S3-T1, speaker: "Hugo", text: "Have we settled the cake disagreement? My preference is still lemon."}
+      - {id: S3-T2, speaker: "Nora", text: "Mine is still chocolate."}
+      - {id: S3-T3, speaker: "Sanjay", text: "Neither of you has agreed to the other option, so I’m leaving the order unplaced."}
+      - {id: S3-T4, speaker: "Nora", text: "Understood. I’m still voting for chocolate."}
+  - id: S4
+    date: 2025-06-10
+    turns:
+      - {id: S4-T1, speaker: "Sanjay", text: "Everyone can send me a short message for a digital birthday card. Would that work?"}
+      - {id: S4-T2, speaker: "Hugo", text: "Yes. It means our cousins overseas can add something too."}
+      - {id: S4-T3, speaker: "Nora", text: "Agreed, let’s make a digital card."}
+      - {id: S4-T4, speaker: "Sanjay", text: "Great. I’ll collect the messages without making any decision about the cake."}
+  - id: S5
+    date: 2025-06-12
+    turns:
+      - {id: S5-T1, speaker: "Hugo", text: "The cake still needs a decision before we can order it."}
+      - {id: S5-T2, speaker: "Nora", text: "I know. I haven’t changed my position."}
+      - {id: S5-T3, speaker: "Sanjay", text: "Let’s ask Grandma’s sister tomorrow. Until then, the disagreement stays open."}
+      - {id: S5-T4, speaker: "Hugo", text: "Okay. For now, I’m still in favour of lemon."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: cake.flavour, value: "lemon"}
+  - {turn: S1-T2, act: accept, item: cake.flavour, accepts: S1-T1}
+  - {turn: S2-T1, act: contest, item: cake.flavour, value: "chocolate"}
+  - {turn: S2-T2, act: mention, item: cake.flavour, value: "lemon"}
+  - {turn: S2-T4, act: mention, item: cake.flavour, value: "chocolate"}
+  - {turn: S3-T1, act: mention, item: cake.flavour, value: "lemon"}
+  - {turn: S3-T2, act: mention, item: cake.flavour, value: "chocolate"}
+  - {turn: S3-T4, act: mention, item: cake.flavour, value: "chocolate"}
+  - {turn: S4-T1, act: suggest, item: card.format, value: "digital card"}
+  - {turn: S4-T2, act: accept, item: card.format, accepts: S4-T1}
+  - {turn: S4-T3, act: restate, item: card.format, value: "digital card"}
+  - {turn: S5-T4, act: mention, item: cake.flavour, value: "lemon"}
+
+questions:
+  - {id: card.format@S1, after: S1, kind: current, item: card.format, text: "What birthday-card format have we chosen?"}

@@ -1,0 +1,75 @@
+# Report test scenario report-c15 (task A11): written by member C in plain English as scenario 15, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T2 ("I'm back on that task.") sets the blocked cards back to open.
+#   - S4-T2 ("Should we reopen our ingredient check?") is a suggestion; S4-T3 and S4-T4 leave it one.
+#   - Starting a task that is open changes nothing (S1-T4, S2-T3).
+scenario_id: report-c15
+title: "Preparing a Dumpling Workshop"
+category: task_lifecycle
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B9), who gave answers only, not turn labels; the author then amended the scenario (task C11)."}
+project_id: dumpling-workshop
+
+items:
+  - key: task.recipe_cards
+    kind: task
+    description: "preparing the printed recipe cards"
+    ask: "What is the status of the recipe-card task?"
+  - key: task.ingredient_check
+    kind: task
+    description: "checking ingredients against the kitchen supplies"
+    ask: "What is the status of our ingredient-check task?"
+
+sessions:
+  - id: S1
+    date: 2025-07-01
+    turns:
+      - {id: S1-T1, speaker: "Aisha", text: "I’ll prepare the printed recipe cards for the workshop."}
+      - {id: S1-T2, speaker: "Dmitri", text: "I’ll take the ingredient-check task and compare what we need with the kitchen supplies."}
+      - {id: S1-T3, speaker: "Leah", text: "Thanks. I can ask the host about anything we’re missing."}
+      - {id: S1-T4, speaker: "Aisha", text: "Good. Both tasks are on our list, and I’ll start with the recipe layout."}
+  - id: S2
+    date: 2025-07-04
+    turns:
+      - {id: S2-T1, speaker: "Aisha", text: "The recipe cards are blocked. The kitchen hasn’t confirmed which filling we’re teaching, so I can’t finish them."}
+      - {id: S2-T2, speaker: "Leah", text: "I’ll ask the host to send the final recipe."}
+      - {id: S2-T3, speaker: "Dmitri", text: "I’ve started checking ingredients, but I haven’t finished counting everything."}
+      - {id: S2-T4, speaker: "Leah", text: "Okay. Keep working on that while we wait for the recipe."}
+  - id: S3
+    date: 2025-07-07
+    turns:
+      - {id: S3-T1, speaker: "Leah", text: "The final recipe has arrived, so you have everything you need for the cards now."}
+      - {id: S3-T2, speaker: "Aisha", text: "Great, I’m back on that task."}
+      - {id: S3-T3, speaker: "Leah", text: "The host also says the kitchen staff will handle all ingredient checks. Cancel our separate checking task."}
+      - {id: S3-T4, speaker: "Dmitri", text: "Understood. I’ll stop our ingredient check."}
+  - id: S4
+    date: 2025-07-09
+    turns:
+      - {id: S4-T1, speaker: "Aisha", text: "The recipe layout is ready, but I still need to print the cards."}
+      - {id: S4-T2, speaker: "Dmitri", text: "Should we reopen our ingredient check just to be safe?"}
+      - {id: S4-T3, speaker: "Leah", text: "Don’t restart it yet. We’d need to speak to the kitchen staff first."}
+      - {id: S4-T4, speaker: "Dmitri", text: "Fair enough. Reopening the ingredient check is only a suggestion."}
+  - id: S5
+    date: 2025-07-11
+    turns:
+      - {id: S5-T1, speaker: "Aisha", text: "The recipe cards are printed, counted and packed. That task is finished."}
+      - {id: S5-T2, speaker: "Leah", text: "Excellent. I’ve checked a copy, and the instructions are readable."}
+      - {id: S5-T3, speaker: "Dmitri", text: "The kitchen staff have confirmed they’re handling the ingredients themselves."}
+      - {id: S5-T4, speaker: "Leah", text: "Good. There’s no reason to reopen our cancelled checking task."}
+
+script:
+  - {turn: S1-T1, act: task_open, item: task.recipe_cards}
+  - {turn: S1-T2, act: task_open, item: task.ingredient_check}
+  - {turn: S2-T1, act: task_progress, item: task.recipe_cards, progress: blocked}
+  - {turn: S3-T2, act: task_progress, item: task.recipe_cards, progress: open}
+  - {turn: S3-T3, act: task_progress, item: task.ingredient_check, progress: cancelled}
+  - {turn: S4-T2, act: suggest, item: task.ingredient_check, value: "open"}
+  - {turn: S5-T1, act: task_progress, item: task.recipe_cards, progress: completed}
+  - {turn: S5-T4, act: restate, item: task.ingredient_check, value: "cancelled"}
+
+questions:
+  - {id: task.recipe_cards@S5-previous, after: S5, kind: previous, item: task.recipe_cards, text: "What status, if any, did the recipe-card task have before the current one?"}
+  - {id: task.ingredient_check@S5-previous, after: S5, kind: previous, item: task.ingredient_check, text: "What status, if any, did the ingredient-check task have before the current one?"}

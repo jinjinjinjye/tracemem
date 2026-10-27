@@ -1,0 +1,70 @@
+# Report test scenario report-b13 (task A11): written by member B in plain English as scenario 13, and converted
+# to this format after freeze-v1 (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - Author category "Stable confirmation"; format category mention_after_decision: S3-T1 ("I am at the south
+#     exit") names another place on the day.
+#   - S1-T2 answers S1-T1 with the north entrance and relays Mr Lai's 8:30 am, which S1-T3 ("Works for me.")
+#     accepts.
+#   - S2-T1 ("He suggested we come ealier") names no time, so it gets no label; S2-T5 ("lets stay the same")
+#     names none either.
+#   - The finish time is not an item: the author does not ask about it, and S3-T6 ("I think we can finish by
+#     12", then "Okay") reads as an estimate or as a plan; the independent check split on it (A8 left such
+#     items out the same way).
+scenario_id: report-b13
+title: "A cleanup briefing repeats the same arrangements"
+category: mention_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C9), who gave answers only, not turn labels; the author then amended the scenario (task B11)."}
+project_id: beach-cleanup
+
+items:
+  - key: cleanup.meeting_point
+    kind: decision
+    description: "where participants meet for the cleanup"
+    ask: "Where should participants meet for the beach cleanup?"
+    values:
+      "north entrance": ["the north entrance", "at the north entrance", "north"]
+      "south exit": ["the south exit", "at the south exit", "south"]
+  - key: cleanup.start_time
+    kind: decision
+    description: "time the beach cleanup starts"
+    ask: "What is the agreed start time for the beach cleanup?"
+    values:
+      "8:30 am": ["8:30am", "8.30 am", "8.30am", "8:30 a.m.", "08:30", "8:30", "half past eight", "8:30 in the morning"]
+
+sessions:
+  - id: S1
+    date: 2026-10-01
+    turns:
+      - {id: S1-T1, speaker: "Lara", text: "Where shall we meet for the beach volunteering event?"}
+      - {id: S1-T2, speaker: "Moe", text: "North entrance. Mr Lai suggested 8:30 am, does everyone feel ok?"}
+      - {id: S1-T3, speaker: "Nia", text: "Works for me. Can we finish at eleven?"}
+      - {id: S1-T4, speaker: "Lara", text: "Eiii, a bit hard, I think the total cleaning will last for at least four hours. But feel free to leave first, if you have anything on."}
+      - {id: S1-T5, speaker: "Nia", text: "Sure."}
+      - {id: S1-T6, speaker: "Moe", text: "We can have lunch together for those who don’t have to go first."}
+  - id: S2
+    date: 2026-10-04
+    turns:
+      - {id: S2-T1, speaker: "Nia", text: "Mr Lai asked whether we want to change the timing. He suggested we come ealier so that it wont be that hot."}
+      - {id: S2-T2, speaker: "Lara", text: "Nope, I cannot wake up that early."}
+      - {id: S2-T3, speaker: "Moe", text: "I stay very far also, impossible"}
+      - {id: S2-T4, speaker: "Lara", text: "This is the ealiest I can commit. I've set my alarm. Several alarms, actually."}
+      - {id: S2-T5, speaker: "Nia", text: "Nvm, lets stay the same."}
+  - id: S3
+    date: 2026-10-07
+    turns:
+      - {id: S3-T1, speaker: "Moe", text: "I am at the south exit, anyone want to go with me."}
+      - {id: S3-T2, speaker: "Nia", text: "Are you on the opposite side."}
+      - {id: S3-T3, speaker: "Moe", text: "Yes, I find my way wrong, I will walk back in the MRT."}
+      - {id: S3-T4, speaker: "Lara", text: "Faster, we are here already."}
+      - {id: S3-T5, speaker: "Nia", text: "My later booking got cancelled. We can have lunch together."}
+      - {id: S3-T6, speaker: "Moe", text: "Sure, lets go to the mall and eat, I think we can finish by 12. Lets do things more quickly"}
+      - {id: S3-T7, speaker: "Lara", text: "Okay"}
+
+script:
+  - {turn: S1-T2, act: decide, item: cleanup.meeting_point, value: "north entrance"}
+  - {turn: S1-T2, act: suggest, item: cleanup.start_time, value: "8:30 am"}
+  - {turn: S1-T3, act: accept, item: cleanup.start_time, accepts: S1-T2}
+  - {turn: S3-T1, act: mention, item: cleanup.meeting_point, value: "south exit"}
