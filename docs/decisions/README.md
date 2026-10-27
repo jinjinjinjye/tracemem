@@ -37,3 +37,4 @@ Never rewrite the substance of an accepted record. In one pull request:
 | 0013 | [Embed records with nomic-embed-text on the local model server](0013-embed-with-nomic-embed-text.md) | proposed |
 | 0014 | [Freeze the deck as freeze-deck and keep tuning on development scenarios until freeze-v1](0014-freeze-the-deck-and-keep-tuning-for-the-report.md) | proposed |
 | 0015 | [Report a second score that accepts extra words around the value, beside the strict score](0015-report-a-second-score-for-extra-words.md) | proposed |
+| 0016 | [Show a question about the past every record that fits, and say when records are left out](0016-show-history-questions-every-record-that-fits.md) | proposed |

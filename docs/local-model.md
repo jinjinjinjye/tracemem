@@ -209,7 +209,7 @@ paid commands, and with which budget, before starting them.
 | `TRACEMEM_COST_LOG` | `cache/costs.jsonl` | The cost log: every completed call with its cost, whatever the cache folder |
 | `TRACEMEM_BUDGET_USD` | `12` | Spending cap over the whole cost log; counts only priced calls, so not the default `openai` provider |
 | `TRACEMEM_EMBED_MODEL` | `nomic-embed-text` | Embedding model on the local server, for similarity retrieval |
-| `TRACEMEM_CONTEXT_TOP_K` | unset (no limit) | Records each answer shows: the `k` closest to the question, for every system; the comparison uses `4` ([decision 0011](decisions/0011-compare-five-memory-systems.md), question 4). Needs the embedding model for Mem0 and TraceMem too |
+| `TRACEMEM_CONTEXT_TOP_K` | unset (no limit) | Records each answer about the present shows: the `k` closest to the question, for every system; the comparison uses `4` ([decision 0011](decisions/0011-compare-five-memory-systems.md), question 4). A question about the past shows every record that fits the budget ([decision 0016](decisions/0016-show-history-questions-every-record-that-fits.md)). Needs the embedding model for Mem0 and TraceMem too |
 
 The model itself and its request limits are the existing `TRACEMEM_RESOLVER_*`
 settings in [`.env.example`](../.env.example).

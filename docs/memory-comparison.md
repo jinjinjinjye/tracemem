@@ -131,7 +131,12 @@ question 4): every system shows the answering model the `k` records closest to t
 question, and `similarity-recency` adds recency. Mem0 and TraceMem then rank by
 similarity too, instead of newest first. `k = 4` on the development scenarios of
 26 Oct, chosen by `scripts/choose_top_k.py`; set it for every system of a run, or
-the runs cannot be reported together.
+the runs cannot be reported together. The limit applies to questions about the
+present only. A question about the past (`previous` or `as_of`) is shown every
+record that fits the byte budget, closest first; when the budget still leaves
+records out, its context ends with a line such as "8 of 11 records shown; 3 left
+out to fit the context budget." and that question alone gets a rule to abstain
+rather than answer none ([decision 0016](decisions/0016-show-history-questions-every-record-that-fits.md)).
 
 ## Shared inputs and answering
 
@@ -535,6 +540,8 @@ older decisions no longer fitted in the budget.
 **What do the systems do instead?** Each system shows the answering model the `k` memories
 closest in meaning to the question (setting `TRACEMEM_CONTEXT_TOP_K`). Similarity + recency
 also gives newer memories a higher score. All five systems choose memories in the same way.
+A question about the past is not limited to `k`: it is shown every memory that fits the
+budget, so that an earlier decision is not cut off ([decision 0016](decisions/0016-show-history-questions-every-record-that-fits.md)).
 Mem0's own search works the same way: it turns the question into an embedding (a list of
 numbers that represents the question's meaning) and returns the closest memories, up to a
 limit.
