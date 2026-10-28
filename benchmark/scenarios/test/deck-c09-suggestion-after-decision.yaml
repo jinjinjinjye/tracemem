@@ -1,0 +1,69 @@
+# Deck test scenario deck-c09 (task A8): written by member C in plain English as scenario 09, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T2 ("I found a public dataset") reports on the suggested value without proposing it again, so it is a
+#     mention.
+#   - The author asks about the criterion after meeting 1, before any event on it, so that question is written
+#     by hand; its computed answer is none.
+scenario_id: deck-c09
+title: "Testing an AI Revision Helper"
+category: suggestion_after_decision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: revision-helper-test
+
+items:
+  - key: test.material
+    kind: decision
+    description: "material the revision helper is tested on this round"
+    ask: "What material are we using for this round of testing?"
+    values:
+      "cleaned-up lecture notes": ["lecture notes", "our lecture notes", "the cleaned-up lecture notes", "our own cleaned-up lecture notes", "our own lecture notes", "cleaned up lecture notes"]
+      "public question-and-answer dataset": ["public dataset", "a public dataset", "public QA dataset", "public Q&A dataset", "a public question-and-answer dataset"]
+  - key: eval.main_criterion
+    kind: decision
+    description: "main measure of a good answer from the helper"
+    ask: "What is the main evaluation criterion?"
+    values:
+      "factual accuracy": ["accuracy", "factuality", "factual correctness"]
+
+sessions:
+  - id: S1
+    date: 2026-03-03
+    turns:
+      - {id: S1-T1, speaker: "Nina", text: "Let’s test the revision helper on our own cleaned-up lecture notes."}
+      - {id: S1-T2, speaker: "Arun", text: "Agreed. We know those notes well enough to spot mistakes."}
+      - {id: S1-T3, speaker: "Beth", text: "What should we use as the main measure of a good answer?"}
+      - {id: S1-T4, speaker: "Nina", text: "I’m not sure yet. We need to discuss that separately."}
+      - {id: S1-T5, speaker: "Arun", text: "Fine. The notes are settled, but the main measure is still open."}
+  - id: S2
+    date: 2026-03-05
+    turns:
+      - {id: S2-T1, speaker: "Beth", text: "Could we use a public question-and-answer dataset instead?"}
+      - {id: S2-T2, speaker: "Arun", text: "Maybe later. I’d keep our lecture notes for this round."}
+      - {id: S2-T3, speaker: "Nina", text: "Agreed. Don’t change the test material yet."}
+      - {id: S2-T4, speaker: "Beth", text: "For the main measure, how about factual accuracy?"}
+      - {id: S2-T5, speaker: "Nina", text: "Yes, let’s use factual accuracy as our main criterion."}
+  - id: S3
+    date: 2026-03-07
+    turns:
+      - {id: S3-T1, speaker: "Arun", text: "I’ve put the cleaned-up lecture notes in the shared folder."}
+      - {id: S3-T2, speaker: "Beth", text: "I found a public dataset with thousands of questions."}
+      - {id: S3-T3, speaker: "Nina", text: "Save the link for a later study. This round stays as agreed."}
+      - {id: S3-T4, speaker: "Arun", text: "And we’re still judging factual accuracy first?"}
+      - {id: S3-T5, speaker: "Beth", text: "Yes. I’ll use that when I check the answers."}
+
+script:
+  - {turn: S1-T1, act: decide, item: test.material, value: "cleaned-up lecture notes"}
+  - {turn: S1-T5, act: restate, item: test.material, value: "cleaned-up lecture notes"}
+  - {turn: S2-T1, act: suggest, item: test.material, value: "public question-and-answer dataset"}
+  - {turn: S2-T2, act: restate, item: test.material, value: "cleaned-up lecture notes"}
+  - {turn: S2-T4, act: suggest, item: eval.main_criterion, value: "factual accuracy"}
+  - {turn: S2-T5, act: accept, item: eval.main_criterion, accepts: S2-T4}
+  - {turn: S3-T1, act: restate, item: test.material, value: "cleaned-up lecture notes"}
+  - {turn: S3-T2, act: mention, item: test.material, value: "public question-and-answer dataset"}
+
+questions:
+  - {id: eval.main_criterion@S1, after: S1, kind: current, item: eval.main_criterion, text: "What is the main evaluation criterion?"}

@@ -1,0 +1,89 @@
+# Deck test scenario deck-b07 (task A8): written by member B in plain English as scenario 07, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T1 ("Is it 6th?") names the craft booth's replaced deadline while asking about the food booth, so it
+#     is a mention on the craft item, whose value it is.
+#   - The author's Q4 asks for both fees at once; it becomes the two fee questions.
+#   - The author's Q3 is a yes/no question, which the format does not ask (benchmark guide, section 6); its
+#     content is covered by Q1 and Q2.
+scenario_id: deck-b07
+title: "Two school fair deadlines must stay separate"
+category: confusable_items
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: school-fair-booths
+
+items:
+  - key: deadline.food_booth
+    kind: decision
+    description: "registration-form deadline for the food booth"
+    ask: "What is the food-booth form deadline?"
+    values:
+      "4 November": ["4 Nov", "November 4", "Nov 4", "4th November", "November 4th", "4th"]
+    confusable_with: [deadline.craft_booth]
+  - key: deadline.craft_booth
+    kind: decision
+    description: "registration-form deadline for the craft booth"
+    ask: "What is the craft-booth form deadline?"
+    values:
+      "6 November": ["6 Nov", "November 6", "Nov 6", "6th November", "November 6th", "6th", "the sixth"]
+      "9 November": ["9 Nov", "November 9", "Nov 9", "9th November", "November 9th", "9th", "the ninth"]
+    confusable_with: [deadline.food_booth]
+  - key: fee.food_booth
+    kind: decision
+    description: "price charged per session at the food booth"
+    ask: "What is the fee per session for the food booth?"
+    values:
+      "SGD 20": ["20 dollars", "twenty dollars", "$20", "S$20", "SGD20", "20"]
+      "SGD 30": ["30 dollars", "thirty dollars", "$30", "S$30", "SGD30", "30"]
+    confusable_with: [fee.craft_booth]
+  - key: fee.craft_booth
+    kind: decision
+    description: "price charged per session at the craft booth"
+    ask: "What is the fee per session for the craft booth?"
+    values:
+      "SGD 20": ["20 dollars", "twenty dollars", "$20", "S$20", "SGD20", "20"]
+    confusable_with: [fee.food_booth]
+
+sessions:
+  - id: S1
+    date: 2026-10-03
+    turns:
+      - {id: S1-T1, speaker: "Mira", text: "Our group will be organizing two booths during the annual school fair. We have to set up a registration link for both food booth and craft booth. The food booth needs to be prepared by 4 November."}
+      - {id: S1-T2, speaker: "Noah", text: "Okay. For craft booths, let's keep to 6 November. Because we need more time to buy the materials."}
+      - {id: S1-T3, speaker: "Pia", text: "Works for me. I'll let the volunteers know."}
+      - {id: S1-T4, speaker: "Mira", text: "How much are we charging per session? Twenty dollars?"}
+      - {id: S1-T5, speaker: "Noah", text: "Yes, same price for both stalls."}
+  - id: S2
+    date: 2026-10-06
+    turns:
+      - {id: S2-T1, speaker: "Noah", text: "I've moved the craft deadline to 9 November, since a lot of items are still on the way."}
+      - {id: S2-T2, speaker: "Pia", text: "Sure. Those craft volunteers needed the extra days."}
+      - {id: S2-T3, speaker: "Mira", text: "Remember to settle the food booth by 4 November."}
+      - {id: S2-T4, speaker: "Noah", text: "Yup, only crafts got more time."}
+  - id: S3
+    date: 2026-10-09
+    turns:
+      - {id: S3-T1, speaker: "Pia", text: "A food volunteer asked which deadline applies to them. Is it 6th?"}
+      - {id: S3-T2, speaker: "Mira", text: "No it is two days earlier, we did not change the deadline for the food stall."}
+      - {id: S3-T3, speaker: "Pia", text: "Should we increase the price, I think we are charging too little."}
+      - {id: S3-T4, speaker: "Mira", text: "Yes, we should increase the price for food stall to 30 dollars. Craft can stay the same"}
+      - {id: S3-T5, speaker: "Noah", text: "I'll update the form to inform the participants."}
+
+script:
+  - {turn: S1-T1, act: decide, item: deadline.food_booth, value: "4 November"}
+  - {turn: S1-T2, act: decide, item: deadline.craft_booth, value: "6 November"}
+  - {turn: S1-T4, act: suggest, item: fee.food_booth, value: "SGD 20"}
+  - {turn: S1-T4, act: suggest, item: fee.craft_booth, value: "SGD 20"}
+  - {turn: S1-T5, act: accept, item: fee.food_booth, accepts: S1-T4}
+  - {turn: S1-T5, act: accept, item: fee.craft_booth, accepts: S1-T4}
+  - {turn: S2-T1, act: revise, item: deadline.craft_booth, value: "9 November"}
+  - {turn: S2-T3, act: restate, item: deadline.food_booth, value: "4 November"}
+  - {turn: S3-T1, act: mention, item: deadline.craft_booth, value: "6 November"}
+  - {turn: S3-T4, act: revise, item: fee.food_booth, value: "SGD 30"}
+
+questions:
+  - {id: deadline.craft_booth@S3-previous, after: S3, kind: previous, item: deadline.craft_booth, text: "Which craft-booth form deadline, if any, did we have before the current one?"}
+  - {id: fee.food_booth@S3-previous, after: S3, kind: previous, item: fee.food_booth, text: "Which food-booth fee, if any, did we charge before the current one?"}

@@ -1,0 +1,55 @@
+# Deck test scenario deck-b01 (task A8): written by member B in plain English as scenario 01, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T2 ("we can just change our venue then") is a suggestion, not a change: S3-T3 defers it to Grace, who
+#     agreed to Orchard Café.
+scenario_id: deck-b01
+title: "Planning a team dinner"
+category: suggestion_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: team-dinner
+
+items:
+  - key: dinner.venue
+    kind: decision
+    description: "where the team dinner will be held"
+    ask: "Which venue is currently confirmed for the team dinner?"
+    values:
+      "Orchard Café": ["Orchard Cafe", "Orchard"]
+      "Harbour Café": ["Harbour Cafe", "Harbor Cafe", "Harbour"]
+      "Korean restaurant": ["a Korean restaurant", "Korean"]
+
+sessions:
+  - id: S1
+    date: 2024-10-05
+    turns:
+      - {id: S1-T1, speaker: "Grace", text: "It has been a while since our last team meeting, we should plan for something, guys, any suggestions?"}
+      - {id: S1-T2, speaker: "Maya", text: "I am craving Western food and something fancy. How do you all think about Orchard Café."}
+      - {id: S1-T3, speaker: "Leo", text: "Emmmm, Orchard Café might be a bit over budget; let’s think of something else, bah, such as a Korean restaurant."}
+      - {id: S1-T4, speaker: "Maya", text: "But they have a recent promotion though, which only cost 100 SGD/pax with really good food."}
+      - {id: S1-T5, speaker: "Leo", text: "OHHHH icic. Grace, shall we go for it?"}
+      - {id: S1-T6, speaker: "Grace", text: "Agreed. We should go for this promotion! Are the rest ok?"}
+      - {id: S1-T7, speaker: "Rest of the team", text: "Sure, lets go for it!"}
+  - id: S2
+    date: 2024-10-07
+    turns:
+      - {id: S2-T1, speaker: "Leo", text: "Hey, I saw another good buffet store at Harbour Café and they also have a discount price."}
+      - {id: S2-T2, speaker: "Maya", text: "Let’s check whether the room size can fit all of the team member in?"}
+      - {id: S2-T3, speaker: "Leo", text: "I’ll contact them tomorrow."}
+  - id: S3
+    date: 2024-10-08
+    turns:
+      - {id: S3-T1, speaker: "Maya", text: "Harbour Café can fit us and the food looks so nice."}
+      - {id: S3-T2, speaker: "Leo", text: "Greate, that’s nice, we can just change our venue then."}
+      - {id: S3-T3, speaker: "Maya", text: "Let me ask Grace and check whether she is happy with the change."}
+
+script:
+  - {turn: S1-T2, act: suggest, item: dinner.venue, value: "Orchard Café"}
+  - {turn: S1-T3, act: suggest, item: dinner.venue, value: "Korean restaurant"}
+  - {turn: S1-T6, act: accept, item: dinner.venue, accepts: S1-T2}
+  - {turn: S2-T1, act: suggest, item: dinner.venue, value: "Harbour Café"}
+  - {turn: S3-T1, act: mention, item: dinner.venue, value: "Harbour Café"}
+  - {turn: S3-T2, act: suggest, item: dinner.venue, value: "Harbour Café"}

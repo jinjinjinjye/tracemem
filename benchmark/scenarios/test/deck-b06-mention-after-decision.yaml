@@ -1,0 +1,83 @@
+# Deck test scenario deck-b06 (task A8): written by member B in plain English as scenario 06, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S2-T2 ("do you want to switch to that?") puts Zoom forward; S2-T3 declines, so it stays an open
+#     suggestion until S4-T3 adopts it.
+scenario_id: deck-b06
+title: "Podcast alternatives are discussed as history"
+category: mention_after_decision
+split: test
+author: member B
+review: {status: blind_checked, reviewer: "member C", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task C5), who gave answers only, not turn labels; the author then amended the scenario (task B6)."}
+project_id: podcast-episode
+
+items:
+  - key: recording.platform
+    kind: decision
+    description: "tool used to record the podcast episode"
+    ask: "Which recording platform have we selected?"
+    values:
+      "Riverside": ["Riverside.fm", "Riverside FM"]
+      "Zoom": ["Zoom Meetings"]
+  - key: episode.topic
+    kind: decision
+    description: "subject of the podcast episode"
+    ask: "What is the selected episode topic?"
+    values:
+      "urban gardening": ["gardening", "urban gardens"]
+      "remote work": ["working remotely", "remote working"]
+
+sessions:
+  - id: S1
+    date: 2026-10-02
+    turns:
+      - {id: S1-T1, speaker: "Jae", text: "Guys, which platform shall we use for this episode? How about Riverside?"}
+      - {id: S1-T2, speaker: "Kira", text: "Yeah, works for me."}
+      - {id: S1-T3, speaker: "Luis", text: "As for the topic, can we do urban gardening? I've got loads of questions about it."}
+      - {id: S1-T4, speaker: "Jae", text: "Sure, let’s do urban gardening with Riverside."}
+  - id: S2
+    date: 2026-10-05
+    turns:
+      - {id: S2-T1, speaker: "Luis", text: "Did we ever try Zoom for recording?"}
+      - {id: S2-T2, speaker: "Kira", text: "We can try to do you want to switch to that?"}
+      - {id: S2-T3, speaker: "Luis", text: "No, just suggesting an alternative platform. We can still use the current platform."}
+      - {id: S2-T4, speaker: "Jae", text: "Oh, okay. Don’t forget to prepare the one we selected."}
+      - {id: S2-T5, speaker: "Kira", text: "Sorry I forgot it, is it Riverside?"}
+      - {id: S2-T6, speaker: "Luis", text: "Yes."}
+  - id: S3
+    date: 2026-10-08
+    turns:
+      - {id: S3-T1, speaker: "Kira", text: "Was remote work on our first topic list?"}
+      - {id: S3-T2, speaker: "Luis", text: "Yep, pretty early on."}
+      - {id: S3-T3, speaker: "Jae", text: "We didn't end up picking it, though."}
+      - {id: S3-T4, speaker: "Kira", text: "Yeah, I am just brainstorming for future ideas."}
+      - {id: S3-T5, speaker: "Luis", text: "Lets stop changing ideas, and focus on what we are doing now. My balcony is still a disaster, by the way."}
+  - id: S4
+    date: 2026-10-11
+    turns:
+      - {id: S4-T1, speaker: "Jae", text: "Have we decided whether to try Zoom?"}
+      - {id: S4-T2, speaker: "Kira", text: "Nope, but we should try to use it this time round, as a lot of people are recommending it."}
+      - {id: S4-T3, speaker: "Luis", text: "Sure, let’s use Zoom for recording."}
+  - id: S5
+    date: 2026-10-14
+    turns:
+      - {id: S5-T1, speaker: "Luis", text: "This platform is so difficult to use."}
+      - {id: S5-T2, speaker: "Kira", text: "I also don’t like Zoom, but this topic is interesting to discuss."}
+      - {id: S5-T3, speaker: "Jae", text: "Yes, this is a nice topic, and people are into it."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: recording.platform, value: "Riverside"}
+  - {turn: S1-T2, act: accept, item: recording.platform, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: episode.topic, value: "urban gardening"}
+  - {turn: S1-T4, act: accept, item: episode.topic, accepts: S1-T3}
+  - {turn: S1-T4, act: restate, item: recording.platform, value: "Riverside"}
+  - {turn: S2-T1, act: mention, item: recording.platform, value: "Zoom"}
+  - {turn: S2-T2, act: suggest, item: recording.platform, value: "Zoom"}
+  - {turn: S3-T1, act: mention, item: episode.topic, value: "remote work"}
+  - {turn: S4-T1, act: mention, item: recording.platform, value: "Zoom"}
+  - {turn: S4-T2, act: suggest, item: recording.platform, value: "Zoom"}
+  - {turn: S4-T3, act: accept, item: recording.platform, accepts: S4-T2}
+
+questions:
+  - {id: recording.platform@S5-previous, after: S5, kind: previous, item: recording.platform, text: "Which recording platform, if any, did we use before the current one?"}

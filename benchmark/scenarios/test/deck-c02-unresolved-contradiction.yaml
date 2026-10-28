@@ -1,0 +1,69 @@
+# Deck test scenario deck-c02 (task A8): written by member C in plain English as scenario 02, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S2-T1 ("rising rents should be the main story instead") is labelled contest, not suggest: the group
+#     treats it as a dispute (S2-T3, "the topic is now disputed"), and nobody settles it.
+#   - The author asks about the format after meeting 1, before any event on it, so that question is written by
+#     hand; its computed answer is none.
+scenario_id: deck-c02
+title: "The Neighbourhood News Update"
+category: unresolved_contradiction
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: neighbourhood-news
+
+items:
+  - key: update.topic
+    kind: decision
+    description: "subject of this week's neighbourhood update"
+    ask: "What topic has the team settled on for the update?"
+    values:
+      "hot weather": ["the hot weather", "heat", "the heat", "hot-weather story", "the hot-weather story", "hot weather story"]
+      "rising rents": ["rents", "rising rent", "rent increases", "rising-rents story", "rising rents story"]
+  - key: update.format
+    kind: decision
+    description: "form the neighbourhood update takes"
+    ask: "What format have we chosen for the update?"
+    values:
+      "audio update": ["audio", "an audio update", "audio recording", "an audio recording"]
+
+sessions:
+  - id: S1
+    date: 2026-09-01
+    turns:
+      - {id: S1-T1, speaker: "Nadia", text: "Let’s make this week’s update about the hot weather."}
+      - {id: S1-T2, speaker: "Owen", text: "Agreed. People keep asking where they can cool down."}
+      - {id: S1-T3, speaker: "Priya", text: "Are we writing a post or recording something?"}
+      - {id: S1-T4, speaker: "Nadia", text: "I haven’t decided. Let’s leave the format open today."}
+      - {id: S1-T5, speaker: "Owen", text: "Fine. I’ll collect a few local stories about the heat."}
+  - id: S2
+    date: 2026-09-02
+    turns:
+      - {id: S2-T1, speaker: "Priya", text: "I think rising rents should be the main story instead."}
+      - {id: S2-T2, speaker: "Nadia", text: "I disagree. We agreed on the hot weather, and I still want that."}
+      - {id: S2-T3, speaker: "Owen", text: "We haven’t agreed on a replacement, so the topic is now disputed."}
+      - {id: S2-T4, speaker: "Priya", text: "Could we at least settle the format? I’d prefer an audio update."}
+      - {id: S2-T5, speaker: "Nadia", text: "Audio works for me. Let’s use that regardless of the topic."}
+  - id: S3
+    date: 2026-09-03
+    turns:
+      - {id: S3-T1, speaker: "Owen", text: "We need to settle the topic before anyone starts recording."}
+      - {id: S3-T2, speaker: "Nadia", text: "My vote is still for the hot weather."}
+      - {id: S3-T3, speaker: "Priya", text: "Mine is still for rising rents."}
+      - {id: S3-T4, speaker: "Owen", text: "We’re still split. Let’s leave the topic unresolved and talk tomorrow."}
+      - {id: S3-T5, speaker: "Priya", text: "Fine. I still think rising rents matter more this week."}
+
+script:
+  - {turn: S1-T1, act: decide, item: update.topic, value: "hot weather"}
+  - {turn: S2-T1, act: contest, item: update.topic, value: "rising rents"}
+  - {turn: S2-T2, act: mention, item: update.topic, value: "hot weather"}
+  - {turn: S2-T4, act: suggest, item: update.format, value: "audio update"}
+  - {turn: S2-T5, act: accept, item: update.format, accepts: S2-T4}
+  - {turn: S3-T2, act: mention, item: update.topic, value: "hot weather"}
+  - {turn: S3-T3, act: mention, item: update.topic, value: "rising rents"}
+  - {turn: S3-T5, act: mention, item: update.topic, value: "rising rents"}
+
+questions:
+  - {id: update.format@S1, after: S1, kind: current, item: update.format, text: "What format have we chosen for the update?"}

@@ -1,0 +1,74 @@
+# Deck test scenario deck-c03 (task A8): written by member C in plain English as scenario 03, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T1 relays someone's idea (the Esplanade) for the group to consider, so it is a suggestion; S3-T2
+#     keeps Merlion Park.
+#   - The author's Q3 ("originally planned") becomes a previous-value question in the guide's standard
+#     wording; with one change, the first and the previous value are the same.
+scenario_id: deck-c03
+title: "Two Meetups in Singapore"
+category: confusable_items
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: singapore-meetups
+
+items:
+  - key: meetup.photo_walk
+    kind: decision
+    description: "meeting point for Saturday's photo walk"
+    ask: "Where are we meeting for Saturday's photo walk?"
+    values:
+      "Merlion Park": ["the Merlion Park", "Merlion"]
+      "Esplanade": ["the Esplanade"]
+    confusable_with: [meetup.lunch]
+  - key: meetup.lunch
+    kind: decision
+    description: "meeting place for Sunday lunch with the relatives"
+    ask: "Where are we meeting for Sunday lunch?"
+    values:
+      "Lau Pa Sat": ["Lau Pa Sat hawker centre", "Telok Ayer Market"]
+      "Maxwell Food Centre": ["Maxwell", "Maxwell Food Center", "Maxwell hawker centre"]
+    confusable_with: [meetup.photo_walk]
+
+sessions:
+  - id: S1
+    date: 2026-08-23
+    turns:
+      - {id: S1-T1, speaker: "Rachel", text: "For Saturday’s photo walk, let’s meet at Merlion Park."}
+      - {id: S1-T2, speaker: "Ben", text: "Agreed. My parents really want a photo with the Merlion."}
+      - {id: S1-T3, speaker: "Chloe", text: "Where should everyone meet for Sunday lunch?"}
+      - {id: S1-T4, speaker: "Ben", text: "Lau Pa Sat would be easy."}
+      - {id: S1-T5, speaker: "Rachel", text: "Good. Saturday at Merlion Park, Sunday at Lau Pa Sat."}
+  - id: S2
+    date: 2026-08-25
+    turns:
+      - {id: S2-T1, speaker: "Chloe", text: "My aunt would rather have Sunday lunch at Maxwell Food Centre."}
+      - {id: S2-T2, speaker: "Ben", text: "That works. Let’s meet at Maxwell for lunch instead."}
+      - {id: S2-T3, speaker: "Rachel", text: "Maxwell for Sunday, then. I’ll update the family chat."}
+      - {id: S2-T4, speaker: "Chloe", text: "Does everyone know how to get to Maxwell?"}
+      - {id: S2-T5, speaker: "Rachel", text: "I’ll send a map with the Sunday lunch message."}
+  - id: S3
+    date: 2026-08-26
+    turns:
+      - {id: S3-T1, speaker: "Ben", text: "Someone suggested meeting at the Esplanade for Saturday’s photos."}
+      - {id: S3-T2, speaker: "Rachel", text: "Let’s keep Merlion Park. Everyone already has that location."}
+      - {id: S3-T3, speaker: "Chloe", text: "Fine. I’ll tell the late arrivals to find us there."}
+      - {id: S3-T4, speaker: "Ben", text: "And the lunch meetup is still Maxwell, right?"}
+      - {id: S3-T5, speaker: "Rachel", text: "Yes. I’ve already corrected the old Lau Pa Sat message."}
+
+script:
+  - {turn: S1-T1, act: decide, item: meetup.photo_walk, value: "Merlion Park"}
+  - {turn: S1-T4, act: suggest, item: meetup.lunch, value: "Lau Pa Sat"}
+  - {turn: S1-T5, act: restate, item: meetup.photo_walk, value: "Merlion Park"}
+  - {turn: S1-T5, act: accept, item: meetup.lunch, accepts: S1-T4}
+  - {turn: S2-T1, act: suggest, item: meetup.lunch, value: "Maxwell Food Centre"}
+  - {turn: S2-T2, act: accept, item: meetup.lunch, accepts: S2-T1}
+  - {turn: S2-T3, act: restate, item: meetup.lunch, value: "Maxwell Food Centre"}
+  - {turn: S3-T1, act: suggest, item: meetup.photo_walk, value: "Esplanade"}
+  - {turn: S3-T2, act: restate, item: meetup.photo_walk, value: "Merlion Park"}
+  - {turn: S3-T5, act: mention, item: meetup.lunch, value: "Lau Pa Sat"}
+
+questions:
+  - {id: meetup.lunch@S3-previous, after: S3, kind: previous, item: meetup.lunch, text: "Which place, if any, did we plan to meet at for Sunday lunch before the current one?"}

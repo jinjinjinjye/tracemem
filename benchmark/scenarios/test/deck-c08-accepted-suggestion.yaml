@@ -1,0 +1,66 @@
+# Deck test scenario deck-c08 (task A8): written by member C in plain English as scenario 08, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S3-T5 ("Same format, new topic.") names no value, so it carries no event.
+scenario_id: deck-c08
+title: "Choosing a Class Project"
+category: accepted_suggestion
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: class-project
+
+items:
+  - key: project.topic
+    kind: decision
+    description: "subject of the class project on city life"
+    ask: "What is the confirmed project topic?"
+    values:
+      "metro accessibility": ["accessibility at metro stations", "metro-station accessibility", "metro station accessibility"]
+      "canteen food waste": ["food waste", "food waste in the campus canteen", "campus canteen food waste", "food waste in the canteen"]
+  - key: project.format
+    kind: decision
+    description: "how the class project is presented"
+    ask: "What presentation format are we using?"
+    values:
+      "poster": ["a poster"]
+
+sessions:
+  - id: S1
+    date: 2026-04-06
+    turns:
+      - {id: S1-T1, speaker: "Zoe", text: "Let’s do our project on accessibility at metro stations."}
+      - {id: S1-T2, speaker: "Hannah", text: "Agreed. We could look at lifts and signs."}
+      - {id: S1-T3, speaker: "Ethan", text: "What format should we use for the presentation?"}
+      - {id: S1-T4, speaker: "Omar", text: "A poster would be easier to show in class."}
+      - {id: S1-T5, speaker: "Zoe", text: "Okay, a poster about metro accessibility."}
+  - id: S2
+    date: 2026-04-08
+    turns:
+      - {id: S2-T1, speaker: "Hannah", text: "What about food waste in the campus canteen instead?"}
+      - {id: S2-T2, speaker: "Ethan", text: "That might be easier to observe between classes."}
+      - {id: S2-T3, speaker: "Zoe", text: "Maybe, but let’s check whether we can get permission first."}
+      - {id: S2-T4, speaker: "Omar", text: "So we haven’t changed the topic yet?"}
+      - {id: S2-T5, speaker: "Zoe", text: "Right. Keep metro accessibility until we’ve checked."}
+  - id: S3
+    date: 2026-04-10
+    turns:
+      - {id: S3-T1, speaker: "Hannah", text: "The canteen manager said we can observe the tray-return area."}
+      - {id: S3-T2, speaker: "Zoe", text: "Great. Let’s take your suggestion and do canteen food waste."}
+      - {id: S3-T3, speaker: "Ethan", text: "Agreed. I’ll stop working on the metro-station notes."}
+      - {id: S3-T4, speaker: "Omar", text: "Are we keeping the poster format?"}
+      - {id: S3-T5, speaker: "Zoe", text: "Yes. Same format, new topic."}
+
+script:
+  - {turn: S1-T1, act: decide, item: project.topic, value: "metro accessibility"}
+  - {turn: S1-T4, act: suggest, item: project.format, value: "poster"}
+  - {turn: S1-T5, act: accept, item: project.format, accepts: S1-T4}
+  - {turn: S1-T5, act: restate, item: project.topic, value: "metro accessibility"}
+  - {turn: S2-T1, act: suggest, item: project.topic, value: "canteen food waste"}
+  - {turn: S2-T5, act: restate, item: project.topic, value: "metro accessibility"}
+  - {turn: S3-T2, act: accept, item: project.topic, accepts: S2-T1}
+  - {turn: S3-T3, act: mention, item: project.topic, value: "metro accessibility"}
+
+questions:
+  - {id: project.topic@S3-previous, after: S3, kind: previous, item: project.topic, text: "Which project topic, if any, did we have before the current one?"}

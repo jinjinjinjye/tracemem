@@ -1,0 +1,75 @@
+# Deck test scenario deck-c07 (task A8): written by member C in plain English as scenario 07, and converted
+# to this format after freeze-deck (decision record 0014, item 6). The turns are the author's text,
+# verbatim. The items, aliases, script and question wording are the conversion's; the author's own
+# answers are compared with `tracemem replay` before any run. Conversion notes:
+#   - S2-T2 offers the indoor court while the east field is unusable, so it is a suggestion and S2-T3 ("I've
+#     booked that slot") accepts it without naming it.
+#   - S3-T1 reports the hall's new time and S3-T2 adopts it ("I've accepted their seven-o'clock slot").
+scenario_id: deck-c07
+title: "Friday Football"
+category: implicit_revision
+split: test
+author: member C
+review: {status: blind_checked, reviewer: "member B", notes: "Blind-checked from the plain-English dialogue alone by the other test author (task B5), who gave answers only, not turn labels; the author then amended the scenario (task C6)."}
+project_id: friday-football
+
+items:
+  - key: game.venue
+    kind: decision
+    description: "where the Friday football game is played"
+    ask: "Where is the football game planned to take place?"
+    values:
+      "east field": ["the east field"]
+      "indoor court at the sports hall": ["the indoor court at the sports hall", "the indoor court", "indoor court", "the sports hall", "sports hall", "sports hall indoor court", "sports hall (indoor court)", "indoor court (sports hall)"]
+  - key: game.start_time
+    kind: decision
+    description: "time the Friday football game starts"
+    ask: "What time is the game starting?"
+    values:
+      "6 pm": ["6pm", "6 p.m.", "6:00 pm", "18:00", "six", "six o'clock"]
+      "7 pm": ["7pm", "7 p.m.", "7:00 pm", "19:00", "seven", "seven o'clock"]
+
+sessions:
+  - id: S1
+    date: 2026-05-25
+    turns:
+      - {id: S1-T1, speaker: "Amir", text: "Friday football at the east field?"}
+      - {id: S1-T2, speaker: "Joel", text: "Yes, let’s use the east field."}
+      - {id: S1-T3, speaker: "Sofia", text: "Can we start at six?"}
+      - {id: S1-T4, speaker: "Amir", text: "Six works for me."}
+      - {id: S1-T5, speaker: "Joel", text: "Great. I’ll tell everyone: east field, six o’clock."}
+  - id: S2
+    date: 2026-05-27
+    turns:
+      - {id: S2-T1, speaker: "Joel", text: "The east field is waterlogged, and the gate is locked."}
+      - {id: S2-T2, speaker: "Sofia", text: "The indoor court at the sports hall is available at six."}
+      - {id: S2-T3, speaker: "Amir", text: "I’ve booked that slot for our game."}
+      - {id: S2-T4, speaker: "Joel", text: "Booking received. I’ll send everyone directions to the sports hall."}
+      - {id: S2-T5, speaker: "Sofia", text: "I’ll bring the indoor ball, then."}
+  - id: S3
+    date: 2026-05-29
+    turns:
+      - {id: S3-T1, speaker: "Sofia", text: "The sports hall called. Our court won’t be ready until seven."}
+      - {id: S3-T2, speaker: "Amir", text: "I’ve accepted their seven-o’clock slot."}
+      - {id: S3-T3, speaker: "Joel", text: "I’ve updated the team message to say we start at seven."}
+      - {id: S3-T4, speaker: "Sofia", text: "Good. I’ll come straight from class."}
+      - {id: S3-T5, speaker: "Amir", text: "See you both at the sports hall."}
+
+script:
+  - {turn: S1-T1, act: suggest, item: game.venue, value: "east field"}
+  - {turn: S1-T2, act: accept, item: game.venue, accepts: S1-T1}
+  - {turn: S1-T3, act: suggest, item: game.start_time, value: "6 pm"}
+  - {turn: S1-T4, act: accept, item: game.start_time, accepts: S1-T3}
+  - {turn: S1-T5, act: restate, item: game.venue, value: "east field"}
+  - {turn: S1-T5, act: restate, item: game.start_time, value: "6 pm"}
+  - {turn: S2-T2, act: suggest, item: game.venue, value: "indoor court at the sports hall"}
+  - {turn: S2-T3, act: accept, item: game.venue, accepts: S2-T2}
+  - {turn: S2-T4, act: restate, item: game.venue, value: "indoor court at the sports hall"}
+  - {turn: S3-T1, act: mention, item: game.start_time, value: "7 pm"}
+  - {turn: S3-T2, act: revise, item: game.start_time, value: "7 pm"}
+  - {turn: S3-T3, act: restate, item: game.start_time, value: "7 pm"}
+  - {turn: S3-T5, act: restate, item: game.venue, value: "indoor court at the sports hall"}
+
+questions:
+  - {id: game.venue@S3-previous, after: S3, kind: previous, item: game.venue, text: "Which venue, if any, did we plan for the football game before the current one?"}
+  - {id: game.start_time@S3-previous, after: S3, kind: previous, item: game.start_time, text: "Which start time, if any, did we plan for the game before the current one?"}
