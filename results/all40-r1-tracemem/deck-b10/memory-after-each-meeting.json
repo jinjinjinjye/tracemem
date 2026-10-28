@@ -1,0 +1,189 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Alia: task.backdrop = open [active] | sources=S1-T1",
+   "S1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "task.backdrop@S1-T1",
+    "project_id": "community-play",
+    "item": "task.backdrop",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Alia"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.programme_printing@S1-T2",
+    "project_id": "community-play",
+    "item": "task.programme_printing",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Bram"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.backdrop@S1": {
+    "question": "What is the status of the backdrop task?",
+    "kind": "current",
+    "lines": "S1-T1 Alia: task.backdrop = open [active] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2"
+   },
+   "task.programme_printing@S1": {
+    "question": "What is the status of the programme printing?",
+    "kind": "current",
+    "lines": "S1-T1 Alia: task.backdrop = open [active] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Alia: task.backdrop = open [active] | sources=S1-T1",
+   "S1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "task.backdrop@S1-T1",
+    "project_id": "community-play",
+    "item": "task.backdrop",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Alia"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.programme_printing@S1-T2",
+    "project_id": "community-play",
+    "item": "task.programme_printing",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Bram"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.backdrop@S2": {
+    "question": "What is the status of the backdrop task?",
+    "kind": "current",
+    "lines": "S1-T1 Alia: task.backdrop = open [active] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2"
+   },
+   "task.programme_printing@S2": {
+    "question": "What is the status of the programme printing?",
+    "kind": "current",
+    "lines": "S1-T1 Alia: task.backdrop = open [active] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Alia: task.backdrop = open [superseded] | sources=S1-T1",
+   "S1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2",
+   "S3-T1 Dale: task.backdrop = completed [active] | sources=S3-T1"
+  ],
+  "records": [
+   {
+    "record_id": "task.backdrop@S1-T1",
+    "project_id": "community-play",
+    "item": "task.backdrop",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Alia"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.programme_printing@S1-T2",
+    "project_id": "community-play",
+    "item": "task.programme_printing",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Bram"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.backdrop@S3-T1",
+    "project_id": "community-play",
+    "item": "task.backdrop",
+    "value": "completed",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Dale"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-08T12:00:00",
+    "supersedes": [
+     "task.backdrop@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.backdrop@S3": {
+    "question": "What is the status of the backdrop task?",
+    "kind": "current",
+    "lines": "S1-T1 Alia: task.backdrop = open [superseded] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2\nS3-T1 Dale: task.backdrop = completed [active] | sources=S3-T1"
+   },
+   "task.backdrop@S3-previous": {
+    "question": "What status, if any, did the backdrop task have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Alia: task.backdrop = open [superseded] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2\nS3-T1 Dale: task.backdrop = completed [active] | sources=S3-T1"
+   },
+   "task.programme_printing@S3": {
+    "question": "What is the status of the programme printing?",
+    "kind": "current",
+    "lines": "S1-T1 Alia: task.backdrop = open [superseded] | sources=S1-T1\nS1-T2 Bram: task.programme_printing = open [active] | sources=S1-T2\nS3-T1 Dale: task.backdrop = completed [active] | sources=S3-T1"
+   }
+  }
+ }
+}

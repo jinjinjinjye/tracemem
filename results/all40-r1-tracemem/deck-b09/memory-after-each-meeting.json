@@ -1,0 +1,833 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1",
+   "S1-T1 Uma: delivery.training_room = 12 November [active] | sources=S1-T1",
+   "S1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3",
+   "S1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4",
+   "S1-T5 Xia: delivery.meeting_room = 21 November [active] | sources=S1-T5,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "delivery.meeting_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "12 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "20 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Xia"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T5",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Xia",
+     "Yuri"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T1",
+     "delivery.meeting_room@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "delivery.meeting_room@S1": {
+    "question": "What is the meeting-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4\nS1-T5 Xia: delivery.meeting_room = 21 November [active] | sources=S1-T5,S1-T4"
+   },
+   "delivery.training_room@S1": {
+    "question": "What is the training-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [active] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1",
+   "S1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1",
+   "S1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3",
+   "S1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4",
+   "S1-T5 Xia: delivery.meeting_room = 21 November [active] | sources=S1-T5,S1-T4",
+   "S2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2"
+  ],
+  "records": [
+   {
+    "record_id": "delivery.meeting_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "12 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "20 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Xia"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T5",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Xia",
+     "Yuri"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T1",
+     "delivery.meeting_room@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S2-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Vik",
+     "Wen"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-04T11:00:00",
+    "supersedes": [
+     "delivery.training_room@S1-T1"
+    ],
+    "reason": "The training-room supplier needs more time."
+   }
+  ],
+  "shown": {
+   "delivery.meeting_room@S2": {
+    "question": "What is the meeting-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4\nS1-T5 Xia: delivery.meeting_room = 21 November [active] | sources=S1-T5,S1-T4"
+   },
+   "delivery.training_room@S2": {
+    "question": "What is the training-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1",
+   "S1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1",
+   "S1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3",
+   "S1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4",
+   "S1-T5 Xia: delivery.meeting_room = 21 November [active] | sources=S1-T5,S1-T4,S3-T5",
+   "S2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2",
+   "S3-T3 Yuri: delivery.meeting_room = 10 November [declined] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "delivery.meeting_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "12 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "20 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Xia"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T5",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Xia",
+     "Yuri",
+     "Yuri"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T1",
+     "delivery.meeting_room@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S2-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Vik",
+     "Wen"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-04T11:00:00",
+    "supersedes": [
+     "delivery.training_room@S1-T1"
+    ],
+    "reason": "The training-room supplier needs more time."
+   },
+   {
+    "record_id": "delivery.meeting_room@S3-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "declined",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-07T12:02:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T5"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "delivery.meeting_room@S3": {
+    "question": "What is the meeting-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4\nS1-T5 Xia: delivery.meeting_room = 21 November [active] | sources=S1-T5,S1-T4,S3-T5"
+   },
+   "delivery.training_room@S3": {
+    "question": "What is the training-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1",
+   "S1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1",
+   "S1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3",
+   "S1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4",
+   "S1-T5 Xia: delivery.meeting_room = 21 November [superseded] | sources=S1-T5,S1-T4,S3-T5",
+   "S2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2",
+   "S3-T3 Yuri: delivery.meeting_room = 10 November [declined] | sources=S3-T3",
+   "S4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3",
+   "S4-T4 Vik: delivery.meeting_room = 25 November [active] | sources=S4-T4,S4-T3"
+  ],
+  "records": [
+   {
+    "record_id": "delivery.meeting_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "12 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "20 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Xia"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T5",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Xia",
+     "Yuri",
+     "Yuri"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T1",
+     "delivery.meeting_room@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S2-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Vik",
+     "Wen"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-04T11:00:00",
+    "supersedes": [
+     "delivery.training_room@S1-T1"
+    ],
+    "reason": "The training-room supplier needs more time."
+   },
+   {
+    "record_id": "delivery.meeting_room@S3-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "declined",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-07T12:02:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T5"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S4-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "25 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T3"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-10T13:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S4-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "25 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T4",
+     "S4-T3"
+    ],
+    "speakers": [
+     "Vik",
+     "Uma"
+    ],
+    "created_turn": "S4-T4",
+    "created_at": "2026-10-10T13:03:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T5",
+     "delivery.meeting_room@S4-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "delivery.meeting_room@S4": {
+    "question": "What is the meeting-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T5 Xia: delivery.meeting_room = 21 November [superseded] | sources=S1-T5,S1-T4,S3-T5\nS4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3"
+   },
+   "delivery.training_room@S4": {
+    "question": "What is the training-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1\nS2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2\nS4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1",
+   "S1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1",
+   "S1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3",
+   "S1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4",
+   "S1-T5 Xia: delivery.meeting_room = 21 November [superseded] | sources=S1-T5,S1-T4,S3-T5",
+   "S2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2",
+   "S3-T3 Yuri: delivery.meeting_room = 10 November [declined] | sources=S3-T3",
+   "S4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3",
+   "S4-T4 Vik: delivery.meeting_room = 25 November [superseded] | sources=S4-T4,S4-T3",
+   "S5-T1 Yuri: delivery.meeting_room = 17 November [active] | sources=S5-T1"
+  ],
+  "records": [
+   {
+    "record_id": "delivery.meeting_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S1-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "12 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "20 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Xia"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S1-T5",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "21 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Xia",
+     "Yuri",
+     "Yuri"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T1",
+     "delivery.meeting_room@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.training_room@S2-T1",
+    "project_id": "office-move",
+    "item": "delivery.training_room",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Vik",
+     "Wen"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-04T11:00:00",
+    "supersedes": [
+     "delivery.training_room@S1-T1"
+    ],
+    "reason": "The training-room supplier needs more time."
+   },
+   {
+    "record_id": "delivery.meeting_room@S3-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "10 November",
+    "status": "declined",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-07T12:02:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T5"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S4-T3",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "25 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T3"
+    ],
+    "speakers": [
+     "Uma"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-10T13:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S4-T4",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "25 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T4",
+     "S4-T3"
+    ],
+    "speakers": [
+     "Vik",
+     "Uma"
+    ],
+    "created_turn": "S4-T4",
+    "created_at": "2026-10-10T13:03:00",
+    "supersedes": [
+     "delivery.meeting_room@S1-T5",
+     "delivery.meeting_room@S4-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "delivery.meeting_room@S5-T1",
+    "project_id": "office-move",
+    "item": "delivery.meeting_room",
+    "value": "17 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S5-T1"
+    ],
+    "speakers": [
+     "Yuri"
+    ],
+    "created_turn": "S5-T1",
+    "created_at": "2026-10-13T14:00:00",
+    "supersedes": [
+     "delivery.meeting_room@S4-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "delivery.meeting_room@S5": {
+    "question": "What is the meeting-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3\nS4-T4 Vik: delivery.meeting_room = 25 November [superseded] | sources=S4-T4,S4-T3"
+   },
+   "delivery.meeting_room@S5-previous": {
+    "question": "Which meeting-room delivery date, if any, did we have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4\nS1-T5 Xia: delivery.meeting_room = 21 November [superseded] | sources=S1-T5,S1-T4,S3-T5\nS2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2\nS3-T3 Yuri: delivery.meeting_room = 10 November [declined] | sources=S3-T3\nS4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3\nS4-T4 Vik: delivery.meeting_room = 25 November [superseded] | sources=S4-T4,S4-T3\nS5-T1 Yuri: delivery.meeting_room = 17 November [active] | sources=S5-T1"
+   },
+   "delivery.training_room@S5": {
+    "question": "What is the training-room furniture delivery date?",
+    "kind": "current",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1\nS2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2\nS4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3"
+   },
+   "delivery.training_room@S5-previous": {
+    "question": "Which training-room delivery date, if any, did we have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Uma: delivery.meeting_room = 10 November [superseded] | sources=S1-T1\nS1-T1 Uma: delivery.training_room = 12 November [superseded] | sources=S1-T1\nS1-T3 Xia: delivery.meeting_room = 20 November [proposed] | sources=S1-T3\nS1-T4 Yuri: delivery.meeting_room = 21 November [superseded] | sources=S1-T4\nS1-T5 Xia: delivery.meeting_room = 21 November [superseded] | sources=S1-T5,S1-T4,S3-T5\nS2-T1 Vik: delivery.training_room = 15 November [active] | sources=S2-T1,S2-T2\nS3-T3 Yuri: delivery.meeting_room = 10 November [declined] | sources=S3-T3\nS4-T3 Uma: delivery.meeting_room = 25 November [superseded] | sources=S4-T3\nS4-T4 Vik: delivery.meeting_room = 25 November [superseded] | sources=S4-T4,S4-T3\nS5-T1 Yuri: delivery.meeting_room = 17 November [active] | sources=S5-T1"
+   }
+  }
+ }
+}

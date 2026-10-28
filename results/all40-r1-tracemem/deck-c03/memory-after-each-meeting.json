@@ -1,0 +1,347 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5",
+   "S1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4",
+   "S1-T5 Rachel: meetup.lunch = Lau Pa Sat [active] | sources=S1-T5,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "meetup.photo_walk@S1-T1",
+    "project_id": "singapore-meetups",
+    "item": "meetup.photo_walk",
+    "value": "Merlion Park",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Rachel",
+     "Rachel"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-08-23T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S1-T4",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Lau Pa Sat",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ben"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-08-23T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S1-T5",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Lau Pa Sat",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rachel",
+     "Ben"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-08-23T10:04:00",
+    "supersedes": [
+     "meetup.lunch@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "meetup.lunch@S1": {
+    "question": "Where are we meeting for Sunday lunch?",
+    "kind": "current",
+    "lines": "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5\nS1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS1-T5 Rachel: meetup.lunch = Lau Pa Sat [active] | sources=S1-T5,S1-T4"
+   },
+   "meetup.photo_walk@S1": {
+    "question": "Where are we meeting for Saturday's photo walk?",
+    "kind": "current",
+    "lines": "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5\nS1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS1-T5 Rachel: meetup.lunch = Lau Pa Sat [active] | sources=S1-T5,S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5",
+   "S1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4",
+   "S1-T5 Rachel: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T5,S1-T4",
+   "S2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1",
+   "S2-T2 Ben: meetup.lunch = Maxwell Food Centre [active] | sources=S2-T2,S2-T1,S2-T3"
+  ],
+  "records": [
+   {
+    "record_id": "meetup.photo_walk@S1-T1",
+    "project_id": "singapore-meetups",
+    "item": "meetup.photo_walk",
+    "value": "Merlion Park",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Rachel",
+     "Rachel"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-08-23T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S1-T4",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Lau Pa Sat",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ben"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-08-23T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S1-T5",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Lau Pa Sat",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rachel",
+     "Ben"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-08-23T10:04:00",
+    "supersedes": [
+     "meetup.lunch@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S2-T1",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Maxwell Food Centre",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Chloe"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-08-25T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S2-T2",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Maxwell Food Centre",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T1",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ben",
+     "Chloe",
+     "Rachel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-08-25T11:01:00",
+    "supersedes": [
+     "meetup.lunch@S1-T5",
+     "meetup.lunch@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "meetup.lunch@S2": {
+    "question": "Where are we meeting for Sunday lunch?",
+    "kind": "current",
+    "lines": "S1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS1-T5 Rachel: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T5,S1-T4\nS2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1\nS2-T2 Ben: meetup.lunch = Maxwell Food Centre [active] | sources=S2-T2,S2-T1,S2-T3"
+   },
+   "meetup.photo_walk@S2": {
+    "question": "Where are we meeting for Saturday's photo walk?",
+    "kind": "current",
+    "lines": "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5\nS1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS1-T5 Rachel: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T5,S1-T4\nS2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5,S3-T2",
+   "S1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4",
+   "S1-T5 Rachel: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T5,S1-T4",
+   "S2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1",
+   "S2-T2 Ben: meetup.lunch = Maxwell Food Centre [active] | sources=S2-T2,S2-T1,S2-T3",
+   "S3-T1 Ben: meetup.photo_walk = Esplanade [proposed] | sources=S3-T1"
+  ],
+  "records": [
+   {
+    "record_id": "meetup.photo_walk@S1-T1",
+    "project_id": "singapore-meetups",
+    "item": "meetup.photo_walk",
+    "value": "Merlion Park",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5",
+     "S3-T2"
+    ],
+    "speakers": [
+     "Rachel",
+     "Rachel",
+     "Rachel"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-08-23T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S1-T4",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Lau Pa Sat",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ben"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-08-23T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S1-T5",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Lau Pa Sat",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Rachel",
+     "Ben"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-08-23T10:04:00",
+    "supersedes": [
+     "meetup.lunch@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S2-T1",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Maxwell Food Centre",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Chloe"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-08-25T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.lunch@S2-T2",
+    "project_id": "singapore-meetups",
+    "item": "meetup.lunch",
+    "value": "Maxwell Food Centre",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T1",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ben",
+     "Chloe",
+     "Rachel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-08-25T11:01:00",
+    "supersedes": [
+     "meetup.lunch@S1-T5",
+     "meetup.lunch@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "meetup.photo_walk@S3-T1",
+    "project_id": "singapore-meetups",
+    "item": "meetup.photo_walk",
+    "value": "Esplanade",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Ben"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-08-26T12:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "meetup.lunch@S3": {
+    "question": "Where are we meeting for Sunday lunch?",
+    "kind": "current",
+    "lines": "S1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS1-T5 Rachel: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T5,S1-T4\nS2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1\nS2-T2 Ben: meetup.lunch = Maxwell Food Centre [active] | sources=S2-T2,S2-T1,S2-T3"
+   },
+   "meetup.lunch@S3-previous": {
+    "question": "Which place, if any, did we plan to meet at for Sunday lunch before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5,S3-T2\nS1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS1-T5 Rachel: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T5,S1-T4\nS2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1\nS2-T2 Ben: meetup.lunch = Maxwell Food Centre [active] | sources=S2-T2,S2-T1,S2-T3\nS3-T1 Ben: meetup.photo_walk = Esplanade [proposed] | sources=S3-T1"
+   },
+   "meetup.photo_walk@S3": {
+    "question": "Where are we meeting for Saturday's photo walk?",
+    "kind": "current",
+    "lines": "S1-T1 Rachel: meetup.photo_walk = Merlion Park [active] | sources=S1-T1,S1-T5,S3-T2\nS1-T4 Ben: meetup.lunch = Lau Pa Sat [superseded] | sources=S1-T4\nS2-T1 Chloe: meetup.lunch = Maxwell Food Centre [superseded] | sources=S2-T1\nS3-T1 Ben: meetup.photo_walk = Esplanade [proposed] | sources=S3-T1"
+   }
+  }
+ }
+}

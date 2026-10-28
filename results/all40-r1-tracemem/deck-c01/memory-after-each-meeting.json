@@ -1,0 +1,280 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5",
+   "S1-T4 Wang: trip.meeting_time = 5 pm [active] | sources=S1-T4,S1-T5"
+  ],
+  "records": [
+   {
+    "record_id": "trip.transport@S1-T1",
+    "project_id": "pagoda-visit",
+    "item": "trip.transport",
+    "value": "metro",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.meeting_time@S1-T4",
+    "project_id": "pagoda-visit",
+    "item": "trip.meeting_time",
+    "value": "5 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-05T10:03:00",
+    "supersedes": [],
+    "reason": "so we can walk around before dinner"
+   }
+  ],
+  "shown": {
+   "trip.meeting_time@S1": {
+    "question": "What time are we meeting on Saturday?",
+    "kind": "current",
+    "lines": "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5\nS1-T4 Wang: trip.meeting_time = 5 pm [active] | sources=S1-T4,S1-T5"
+   },
+   "trip.transport@S1": {
+    "question": "How are we travelling to the Giant Wild Goose Pagoda?",
+    "kind": "current",
+    "lines": "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5\nS1-T4 Wang: trip.meeting_time = 5 pm [active] | sources=S1-T4,S1-T5"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5",
+   "S1-T4 Wang: trip.meeting_time = 5 pm [active] | sources=S1-T4,S1-T5",
+   "S2-T1 Zhou: trip.transport = taxi [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "trip.transport@S1-T1",
+    "project_id": "pagoda-visit",
+    "item": "trip.transport",
+    "value": "metro",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.meeting_time@S1-T4",
+    "project_id": "pagoda-visit",
+    "item": "trip.meeting_time",
+    "value": "5 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-05T10:03:00",
+    "supersedes": [],
+    "reason": "so we can walk around before dinner"
+   },
+   {
+    "record_id": "trip.transport@S2-T1",
+    "project_id": "pagoda-visit",
+    "item": "trip.transport",
+    "value": "taxi",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Zhou"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-08T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "trip.meeting_time@S2": {
+    "question": "What time are we meeting on Saturday?",
+    "kind": "current",
+    "lines": "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5\nS1-T4 Wang: trip.meeting_time = 5 pm [active] | sources=S1-T4,S1-T5\nS2-T1 Zhou: trip.transport = taxi [proposed] | sources=S2-T1"
+   },
+   "trip.transport@S2": {
+    "question": "How are we travelling to the Giant Wild Goose Pagoda?",
+    "kind": "current",
+    "lines": "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5\nS1-T4 Wang: trip.meeting_time = 5 pm [active] | sources=S1-T4,S1-T5\nS2-T1 Zhou: trip.transport = taxi [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5,S3-T5",
+   "S1-T4 Wang: trip.meeting_time = 5 pm [superseded] | sources=S1-T4,S1-T5",
+   "S2-T1 Zhou: trip.transport = taxi [proposed] | sources=S2-T1",
+   "S3-T1 Sun: trip.meeting_time = 6 pm [superseded] | sources=S3-T1",
+   "S3-T2 Wang: trip.meeting_time = 6 pm [active] | sources=S3-T2,S3-T1,S3-T3",
+   "S3-T3 Zhou: trip.transport = taxi [proposed] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "trip.transport@S1-T1",
+    "project_id": "pagoda-visit",
+    "item": "trip.transport",
+    "value": "metro",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun",
+     "Wang"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.meeting_time@S1-T4",
+    "project_id": "pagoda-visit",
+    "item": "trip.meeting_time",
+    "value": "5 pm",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-05T10:03:00",
+    "supersedes": [],
+    "reason": "so we can walk around before dinner"
+   },
+   {
+    "record_id": "trip.transport@S2-T1",
+    "project_id": "pagoda-visit",
+    "item": "trip.transport",
+    "value": "taxi",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Zhou"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-08T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.meeting_time@S3-T1",
+    "project_id": "pagoda-visit",
+    "item": "trip.meeting_time",
+    "value": "6 pm",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Sun"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-09T12:00:00",
+    "supersedes": [],
+    "reason": "My Saturday class finishes later than I expected."
+   },
+   {
+    "record_id": "trip.meeting_time@S3-T2",
+    "project_id": "pagoda-visit",
+    "item": "trip.meeting_time",
+    "value": "6 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S3-T1",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Wang",
+     "Sun",
+     "Zhou"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-09T12:01:00",
+    "supersedes": [
+     "trip.meeting_time@S1-T4",
+     "trip.meeting_time@S3-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "trip.transport@S3-T3",
+    "project_id": "pagoda-visit",
+    "item": "trip.transport",
+    "value": "taxi",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Zhou"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-09T12:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "trip.meeting_time@S3": {
+    "question": "What time are we meeting on Saturday?",
+    "kind": "current",
+    "lines": "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5,S3-T5\nS1-T4 Wang: trip.meeting_time = 5 pm [superseded] | sources=S1-T4,S1-T5\nS3-T1 Sun: trip.meeting_time = 6 pm [superseded] | sources=S3-T1\nS3-T2 Wang: trip.meeting_time = 6 pm [active] | sources=S3-T2,S3-T1,S3-T3"
+   },
+   "trip.meeting_time@S3-previous": {
+    "question": "Which meeting time, if any, did we agree on before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Wang: trip.transport = metro [active] | sources=S1-T1,S1-T5,S3-T5\nS1-T4 Wang: trip.meeting_time = 5 pm [superseded] | sources=S1-T4,S1-T5\nS2-T1 Zhou: trip.transport = taxi [proposed] | sources=S2-T1\nS3-T1 Sun: trip.meeting_time = 6 pm [superseded] | sources=S3-T1\nS3-T2 Wang: trip.meeting_time = 6 pm [active] | sources=S3-T2,S3-T1,S3-T3\nS3-T3 Zhou: trip.transport = taxi [proposed] | sources=S3-T3"
+   },
+   "trip.transport@S3": {
+    "question": "How are we travelling to the Giant Wild Goose Pagoda?",
+    "kind": "current",
+    "lines": "S1-T4 Wang: trip.meeting_time = 5 pm [superseded] | sources=S1-T4,S1-T5\nS2-T1 Zhou: trip.transport = taxi [proposed] | sources=S2-T1\nS3-T2 Wang: trip.meeting_time = 6 pm [active] | sources=S3-T2,S3-T1,S3-T3\nS3-T3 Zhou: trip.transport = taxi [proposed] | sources=S3-T3"
+   }
+  }
+ }
+}

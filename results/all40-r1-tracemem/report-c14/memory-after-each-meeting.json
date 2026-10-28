@@ -1,0 +1,272 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1"
+  ],
+  "records": [
+   {
+    "record_id": "song.opening@S1-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.opening",
+    "value": "Here Comes the Sun",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ruby"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-05-07T10:00:00",
+    "supersedes": [],
+    "reason": "It feels welcoming without being too loud."
+   }
+  ],
+  "shown": {
+   "song.closing@S1": {
+    "question": "What closing song have we chosen?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1"
+   },
+   "song.opening@S1": {
+    "question": "What song will open our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1",
+   "S2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1",
+   "S2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "song.opening@S1-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.opening",
+    "value": "Here Comes the Sun",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ruby"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-05-07T10:00:00",
+    "supersedes": [],
+    "reason": "It feels welcoming without being too loud."
+   },
+   {
+    "record_id": "song.closing@S2-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.closing",
+    "value": "Lean on Me",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Farah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-05-10T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "song.closing@S2-T3",
+    "project_id": "charity-fair-music",
+    "item": "song.closing",
+    "value": "Lean on Me",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Ruby",
+     "Farah",
+     "Farah"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2025-05-10T11:02:00",
+    "supersedes": [
+     "song.closing@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "song.closing@S2": {
+    "question": "What song will close our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1\nS2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1\nS2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+   },
+   "song.opening@S2": {
+    "question": "What song will open our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1\nS2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1\nS2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1",
+   "S2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1",
+   "S2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "song.opening@S1-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.opening",
+    "value": "Here Comes the Sun",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ruby"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-05-07T10:00:00",
+    "supersedes": [],
+    "reason": "It feels welcoming without being too loud."
+   },
+   {
+    "record_id": "song.closing@S2-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.closing",
+    "value": "Lean on Me",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Farah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-05-10T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "song.closing@S2-T3",
+    "project_id": "charity-fair-music",
+    "item": "song.closing",
+    "value": "Lean on Me",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Ruby",
+     "Farah",
+     "Farah"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2025-05-10T11:02:00",
+    "supersedes": [
+     "song.closing@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "song.closing@S3": {
+    "question": "What song will close our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1\nS2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1\nS2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+   },
+   "song.opening@S3": {
+    "question": "What song will open our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1\nS2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1\nS2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1",
+   "S2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1",
+   "S2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "song.opening@S1-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.opening",
+    "value": "Here Comes the Sun",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ruby"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-05-07T10:00:00",
+    "supersedes": [],
+    "reason": "It feels welcoming without being too loud."
+   },
+   {
+    "record_id": "song.closing@S2-T1",
+    "project_id": "charity-fair-music",
+    "item": "song.closing",
+    "value": "Lean on Me",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Farah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-05-10T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "song.closing@S2-T3",
+    "project_id": "charity-fair-music",
+    "item": "song.closing",
+    "value": "Lean on Me",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Ruby",
+     "Farah",
+     "Farah"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2025-05-10T11:02:00",
+    "supersedes": [
+     "song.closing@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "song.closing@S4": {
+    "question": "What song will close our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1\nS2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1\nS2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+   },
+   "song.opening@S4": {
+    "question": "What song will open our charity fair?",
+    "kind": "current",
+    "lines": "S1-T1 Ruby: song.opening = Here Comes the Sun [active] | sources=S1-T1\nS2-T1 Farah: song.closing = Lean on Me [superseded] | sources=S2-T1\nS2-T3 Ruby: song.closing = Lean on Me [active] | sources=S2-T3,S2-T1,S2-T4"
+   }
+  }
+ }
+}

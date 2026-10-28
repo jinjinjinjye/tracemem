@@ -1,0 +1,401 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1",
+   "S1-T2 Sol: packaging.type = paper bags [active] | sources=S1-T2,S1-T1",
+   "S1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3",
+   "S1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "packaging.type@S1-T1",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "packaging.type@S1-T2",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Sol",
+     "Rhea"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [
+     "packaging.type@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "collection.window@S1-T3",
+    "project_id": "bakery-popup",
+    "item": "collection.window",
+    "value": "2 to 4 pm",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Tariq"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "collection.window@S1-T4",
+    "project_id": "bakery-popup",
+    "item": "collection.window",
+    "value": "2 to 4 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rhea, Sol",
+     "Tariq"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "collection.window@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "collection.window@S1": {
+    "question": "When do customers collect their orders?",
+    "kind": "current",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T2 Sol: packaging.type = paper bags [active] | sources=S1-T2,S1-T1\nS1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3\nS1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3"
+   },
+   "packaging.type@S1": {
+    "question": "What packaging are we using for the pop-up orders?",
+    "kind": "current",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T2 Sol: packaging.type = paper bags [active] | sources=S1-T2,S1-T1\nS1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3\nS1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1",
+   "S1-T2 Sol: packaging.type = paper bags [superseded] | sources=S1-T2,S1-T1",
+   "S1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3",
+   "S1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3",
+   "S2-T1 Sol: packaging.type = cardboard boxes [active] | sources=S2-T1,S2-T2"
+  ],
+  "records": [
+   {
+    "record_id": "packaging.type@S1-T1",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "packaging.type@S1-T2",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Sol",
+     "Rhea"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [
+     "packaging.type@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "collection.window@S1-T3",
+    "project_id": "bakery-popup",
+    "item": "collection.window",
+    "value": "2 to 4 pm",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Tariq"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "collection.window@S1-T4",
+    "project_id": "bakery-popup",
+    "item": "collection.window",
+    "value": "2 to 4 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rhea, Sol",
+     "Tariq"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "collection.window@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "packaging.type@S2-T1",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "cardboard boxes",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Sol",
+     "Tariq"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-06T11:00:00",
+    "supersedes": [
+     "packaging.type@S1-T2"
+    ],
+    "reason": "The paper bag is too thin and cannot take heavy stuff; the pastries need more protection."
+   }
+  ],
+  "shown": {
+   "collection.window@S2": {
+    "question": "When do customers collect their orders?",
+    "kind": "current",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3\nS1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3\nS2-T1 Sol: packaging.type = cardboard boxes [active] | sources=S2-T1,S2-T2"
+   },
+   "packaging.type@S2": {
+    "question": "What packaging are we using for the pop-up orders?",
+    "kind": "current",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T2 Sol: packaging.type = paper bags [superseded] | sources=S1-T2,S1-T1\nS1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3\nS2-T1 Sol: packaging.type = cardboard boxes [active] | sources=S2-T1,S2-T2"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1",
+   "S1-T2 Sol: packaging.type = paper bags [superseded] | sources=S1-T2,S1-T1",
+   "S1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3",
+   "S1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3",
+   "S2-T1 Sol: packaging.type = cardboard boxes [superseded] | sources=S2-T1,S2-T2",
+   "S3-T2 Rhea: packaging.type = paper bags [active] | sources=S3-T2",
+   "S3-T3 Sol: packaging.type = plastic bags [proposed] | sources=S3-T3",
+   "S3-T4 Tariq: packaging.type = plastic bags [proposed] | sources=S3-T4"
+  ],
+  "records": [
+   {
+    "record_id": "packaging.type@S1-T1",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "packaging.type@S1-T2",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Sol",
+     "Rhea"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [
+     "packaging.type@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "collection.window@S1-T3",
+    "project_id": "bakery-popup",
+    "item": "collection.window",
+    "value": "2 to 4 pm",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Tariq"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "collection.window@S1-T4",
+    "project_id": "bakery-popup",
+    "item": "collection.window",
+    "value": "2 to 4 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rhea, Sol",
+     "Tariq"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "collection.window@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "packaging.type@S2-T1",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "cardboard boxes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Sol",
+     "Tariq"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-06T11:00:00",
+    "supersedes": [
+     "packaging.type@S1-T2"
+    ],
+    "reason": "The paper bag is too thin and cannot take heavy stuff; the pastries need more protection."
+   },
+   {
+    "record_id": "packaging.type@S3-T2",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "paper bags",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Rhea"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-09T12:01:00",
+    "supersedes": [
+     "packaging.type@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "packaging.type@S3-T3",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "plastic bags",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Sol"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-09T12:02:00",
+    "supersedes": [],
+    "reason": "paper bags will tear"
+   },
+   {
+    "record_id": "packaging.type@S3-T4",
+    "project_id": "bakery-popup",
+    "item": "packaging.type",
+    "value": "plastic bags",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Tariq"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-09T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "collection.window@S3": {
+    "question": "When do customers collect their orders?",
+    "kind": "current",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3\nS1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3\nS3-T2 Rhea: packaging.type = paper bags [active] | sources=S3-T2"
+   },
+   "packaging.type@S3": {
+    "question": "What packaging are we using for the pop-up orders?",
+    "kind": "current",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T2 Sol: packaging.type = paper bags [superseded] | sources=S1-T2,S1-T1\nS2-T1 Sol: packaging.type = cardboard boxes [superseded] | sources=S2-T1,S2-T2\nS3-T2 Rhea: packaging.type = paper bags [active] | sources=S3-T2"
+   },
+   "packaging.type@S3-previous": {
+    "question": "Which packaging, if any, did we use for the pop-up orders before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Rhea: packaging.type = paper bags [superseded] | sources=S1-T1\nS1-T2 Sol: packaging.type = paper bags [superseded] | sources=S1-T2,S1-T1\nS1-T3 Tariq: collection.window = 2 to 4 pm [superseded] | sources=S1-T3\nS1-T4 Rhea, Sol: collection.window = 2 to 4 pm [active] | sources=S1-T4,S1-T3\nS2-T1 Sol: packaging.type = cardboard boxes [superseded] | sources=S2-T1,S2-T2\nS3-T2 Rhea: packaging.type = paper bags [active] | sources=S3-T2\nS3-T3 Sol: packaging.type = plastic bags [proposed] | sources=S3-T3\nS3-T4 Tariq: packaging.type = plastic bags [proposed] | sources=S3-T4"
+   }
+  }
+ }
+}

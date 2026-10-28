@@ -1,0 +1,405 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1",
+   "S1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "booking.method@S1-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "paper signup sheet",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Imani"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-11-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "shift.length@S1-T4",
+    "project_id": "repair-cafe",
+    "item": "shift.length",
+    "value": "2 hours",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Beatrice"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2024-11-03T10:03:00",
+    "supersedes": [],
+    "reason": "Everyone's happy with that"
+   }
+  ],
+  "shown": {
+   "booking.method@S1": {
+    "question": "What visitor booking method is currently confirmed?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4"
+   },
+   "shift.length@S1": {
+    "question": "How long is each volunteer shift?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1,S2-T4",
+   "S1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4",
+   "S2-T1 Oscar: booking.method = online booking form [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "booking.method@S1-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "paper signup sheet",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Imani",
+     "Imani"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-11-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "shift.length@S1-T4",
+    "project_id": "repair-cafe",
+    "item": "shift.length",
+    "value": "2 hours",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Beatrice"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2024-11-03T10:03:00",
+    "supersedes": [],
+    "reason": "Everyone's happy with that"
+   },
+   {
+    "record_id": "booking.method@S2-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "online booking form",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Oscar"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2024-11-06T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "booking.method@S2": {
+    "question": "What visitor booking method is currently confirmed?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [proposed] | sources=S2-T1"
+   },
+   "shift.length@S2": {
+    "question": "How long is each volunteer shift?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1,S2-T4",
+   "S1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4",
+   "S2-T1 Oscar: booking.method = online booking form [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "booking.method@S1-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "paper signup sheet",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Imani",
+     "Imani"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-11-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "shift.length@S1-T4",
+    "project_id": "repair-cafe",
+    "item": "shift.length",
+    "value": "2 hours",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Beatrice"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2024-11-03T10:03:00",
+    "supersedes": [],
+    "reason": "Everyone's happy with that"
+   },
+   {
+    "record_id": "booking.method@S2-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "online booking form",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Oscar"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2024-11-06T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "booking.method@S3": {
+    "question": "What visitor booking method is currently confirmed?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [proposed] | sources=S2-T1"
+   },
+   "shift.length@S3": {
+    "question": "How long is each volunteer shift?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [active] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4",
+   "S1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4",
+   "S2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1",
+   "S4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "booking.method@S1-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "paper signup sheet",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Imani",
+     "Imani"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-11-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "shift.length@S1-T4",
+    "project_id": "repair-cafe",
+    "item": "shift.length",
+    "value": "2 hours",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Beatrice"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2024-11-03T10:03:00",
+    "supersedes": [],
+    "reason": "Everyone's happy with that"
+   },
+   {
+    "record_id": "booking.method@S2-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "online booking form",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Oscar"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2024-11-06T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "booking.method@S4-T3",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "online booking form",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S2-T1"
+    ],
+    "speakers": [
+     "Imani",
+     "Oscar"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2024-11-10T13:02:00",
+    "supersedes": [
+     "booking.method@S1-T1",
+     "booking.method@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "booking.method@S4": {
+    "question": "What visitor booking method is currently confirmed?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1\nS4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1"
+   },
+   "shift.length@S4": {
+    "question": "How long is each volunteer shift?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1\nS4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4",
+   "S1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4",
+   "S2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1",
+   "S4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1,S5-T1"
+  ],
+  "records": [
+   {
+    "record_id": "booking.method@S1-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "paper signup sheet",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Imani",
+     "Imani"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-11-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "shift.length@S1-T4",
+    "project_id": "repair-cafe",
+    "item": "shift.length",
+    "value": "2 hours",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Beatrice"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2024-11-03T10:03:00",
+    "supersedes": [],
+    "reason": "Everyone's happy with that"
+   },
+   {
+    "record_id": "booking.method@S2-T1",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "online booking form",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Oscar"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2024-11-06T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "booking.method@S4-T3",
+    "project_id": "repair-cafe",
+    "item": "booking.method",
+    "value": "online booking form",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S2-T1",
+     "S5-T1"
+    ],
+    "speakers": [
+     "Imani",
+     "Oscar",
+     "Luca"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2024-11-10T13:02:00",
+    "supersedes": [
+     "booking.method@S1-T1",
+     "booking.method@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "booking.method@S5": {
+    "question": "What visitor booking method is currently confirmed?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1\nS4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1,S5-T1"
+   },
+   "booking.method@S5-previous": {
+    "question": "Which visitor booking method, if any, did we use before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1\nS4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1,S5-T1"
+   },
+   "shift.length@S5": {
+    "question": "How long is each volunteer shift?",
+    "kind": "current",
+    "lines": "S1-T1 Imani: booking.method = paper signup sheet [superseded] | sources=S1-T1,S2-T4\nS1-T4 Beatrice: shift.length = 2 hours [active] | sources=S1-T4\nS2-T1 Oscar: booking.method = online booking form [superseded] | sources=S2-T1\nS4-T3 Imani: booking.method = online booking form [active] | sources=S4-T3,S2-T1,S5-T1"
+   }
+  }
+ }
+}

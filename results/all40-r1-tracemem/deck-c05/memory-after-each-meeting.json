@@ -1,0 +1,316 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Alice: task.posters = open [active] | sources=S1-T1",
+   "S1-T2 Dan: task.blanket_collection = open [active] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "task.posters@S1-T1",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-06-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.blanket_collection@S1-T2",
+    "project_id": "cat-adoption-day",
+    "item": "task.blanket_collection",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dan"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-06-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.blanket_collection@S1": {
+    "question": "What is the status of the blanket collection?",
+    "kind": "current",
+    "lines": "S1-T1 Alice: task.posters = open [active] | sources=S1-T1\nS1-T2 Dan: task.blanket_collection = open [active] | sources=S1-T2"
+   },
+   "task.posters@S1": {
+    "question": "What is the status of the adoption posters?",
+    "kind": "current",
+    "lines": "S1-T1 Alice: task.posters = open [active] | sources=S1-T1\nS1-T2 Dan: task.blanket_collection = open [active] | sources=S1-T2"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1",
+   "S1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2",
+   "S2-T1 Alice: task.posters = blocked [active] | sources=S2-T1",
+   "S2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5"
+  ],
+  "records": [
+   {
+    "record_id": "task.posters@S1-T1",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-06-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.blanket_collection@S1-T2",
+    "project_id": "cat-adoption-day",
+    "item": "task.blanket_collection",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dan"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-06-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.posters@S2-T1",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "blocked",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-06-07T11:00:00",
+    "supersedes": [
+     "task.posters@S1-T1"
+    ],
+    "reason": "The shelter hasn’t sent any photos."
+   },
+   {
+    "record_id": "task.blanket_collection@S2-T4",
+    "project_id": "cat-adoption-day",
+    "item": "task.blanket_collection",
+    "value": "cancelled",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T4",
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mina",
+     "Dan"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-06-07T11:03:00",
+    "supersedes": [
+     "task.blanket_collection@S1-T2"
+    ],
+    "reason": "We don’t need to ask people."
+   }
+  ],
+  "shown": {
+   "task.blanket_collection@S2": {
+    "question": "What is the status of the blanket collection?",
+    "kind": "current",
+    "lines": "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1\nS1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2\nS2-T1 Alice: task.posters = blocked [active] | sources=S2-T1\nS2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5"
+   },
+   "task.posters@S2": {
+    "question": "What is the status of the adoption posters?",
+    "kind": "current",
+    "lines": "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1\nS1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2\nS2-T1 Alice: task.posters = blocked [active] | sources=S2-T1\nS2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1",
+   "S1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2",
+   "S2-T1 Alice: task.posters = blocked [superseded] | sources=S2-T1",
+   "S2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5",
+   "S3-T1 Alice: task.posters = open [superseded] | sources=S3-T1",
+   "S3-T2 Alice: task.posters = completed [active] | sources=S3-T2",
+   "S3-T3 Dan: task.blanket_collection = open [proposed] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "task.posters@S1-T1",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-06-05T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.blanket_collection@S1-T2",
+    "project_id": "cat-adoption-day",
+    "item": "task.blanket_collection",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dan"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-06-05T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.posters@S2-T1",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "blocked",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-06-07T11:00:00",
+    "supersedes": [
+     "task.posters@S1-T1"
+    ],
+    "reason": "The shelter hasn’t sent any photos."
+   },
+   {
+    "record_id": "task.blanket_collection@S2-T4",
+    "project_id": "cat-adoption-day",
+    "item": "task.blanket_collection",
+    "value": "cancelled",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T4",
+     "S2-T5"
+    ],
+    "speakers": [
+     "Mina",
+     "Dan"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-06-07T11:03:00",
+    "supersedes": [
+     "task.blanket_collection@S1-T2"
+    ],
+    "reason": "We don’t need to ask people."
+   },
+   {
+    "record_id": "task.posters@S3-T1",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-06-09T12:00:00",
+    "supersedes": [
+     "task.posters@S2-T1"
+    ],
+    "reason": "The photos arrived this morning."
+   },
+   {
+    "record_id": "task.posters@S3-T2",
+    "project_id": "cat-adoption-day",
+    "item": "task.posters",
+    "value": "completed",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Alice"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-06-09T12:01:00",
+    "supersedes": [
+     "task.posters@S3-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.blanket_collection@S3-T3",
+    "project_id": "cat-adoption-day",
+    "item": "task.blanket_collection",
+    "value": "open",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Dan"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-06-09T12:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.blanket_collection@S3": {
+    "question": "What is the status of the blanket collection?",
+    "kind": "current",
+    "lines": "S1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2\nS2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5\nS3-T2 Alice: task.posters = completed [active] | sources=S3-T2\nS3-T3 Dan: task.blanket_collection = open [proposed] | sources=S3-T3"
+   },
+   "task.blanket_collection@S3-previous": {
+    "question": "What status, if any, did the blanket collection have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1\nS1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2\nS2-T1 Alice: task.posters = blocked [superseded] | sources=S2-T1\nS2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5\nS3-T1 Alice: task.posters = open [superseded] | sources=S3-T1\nS3-T2 Alice: task.posters = completed [active] | sources=S3-T2\nS3-T3 Dan: task.blanket_collection = open [proposed] | sources=S3-T3"
+   },
+   "task.posters@S3": {
+    "question": "What is the status of the adoption posters?",
+    "kind": "current",
+    "lines": "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1\nS2-T1 Alice: task.posters = blocked [superseded] | sources=S2-T1\nS3-T1 Alice: task.posters = open [superseded] | sources=S3-T1\nS3-T2 Alice: task.posters = completed [active] | sources=S3-T2"
+   },
+   "task.posters@S3-previous": {
+    "question": "What status, if any, did the adoption posters have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Alice: task.posters = open [superseded] | sources=S1-T1\nS1-T2 Dan: task.blanket_collection = open [superseded] | sources=S1-T2\nS2-T1 Alice: task.posters = blocked [superseded] | sources=S2-T1\nS2-T4 Mina: task.blanket_collection = cancelled [active] | sources=S2-T4,S2-T5\nS3-T1 Alice: task.posters = open [superseded] | sources=S3-T1\nS3-T2 Alice: task.posters = completed [active] | sources=S3-T2\nS3-T3 Dan: task.blanket_collection = open [proposed] | sources=S3-T3"
+   }
+  }
+ }
+}

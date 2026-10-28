@@ -1,0 +1,540 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Aisha: task.recipe_cards = open [active] | sources=S1-T1",
+   "S1-T2 Dmitri: task.ingredient_check = open [active] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "task.recipe_cards@S1-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-07-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S1-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-07-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.ingredient_check@S1": {
+    "question": "What is the status of our ingredient-check task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [active] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [active] | sources=S1-T2"
+   },
+   "task.recipe_cards@S1": {
+    "question": "What is the status of the recipe-card task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [active] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [active] | sources=S1-T2"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1",
+   "S1-T2 Dmitri: task.ingredient_check = open [active] | sources=S1-T2",
+   "S2-T1 Aisha: task.recipe_cards = blocked [active] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "task.recipe_cards@S1-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-07-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S1-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-07-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.recipe_cards@S2-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "blocked",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-07-04T11:00:00",
+    "supersedes": [
+     "task.recipe_cards@S1-T1"
+    ],
+    "reason": "The kitchen hasn’t confirmed which filling we’re teaching, so I can’t finish them."
+   }
+  ],
+  "shown": {
+   "task.ingredient_check@S2": {
+    "question": "What is the status of our ingredient-check task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [active] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [active] | sources=S2-T1"
+   },
+   "task.recipe_cards@S2": {
+    "question": "What is the status of the recipe-card task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [active] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [active] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1",
+   "S1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2",
+   "S2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1",
+   "S3-T2 Aisha: task.recipe_cards = open [active] | sources=S3-T2",
+   "S3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "task.recipe_cards@S1-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-07-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S1-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-07-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.recipe_cards@S2-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "blocked",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-07-04T11:00:00",
+    "supersedes": [
+     "task.recipe_cards@S1-T1"
+    ],
+    "reason": "The kitchen hasn’t confirmed which filling we’re teaching, so I can’t finish them."
+   },
+   {
+    "record_id": "task.recipe_cards@S3-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2025-07-07T12:01:00",
+    "supersedes": [
+     "task.recipe_cards@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S3-T3",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "cancelled",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Leah"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2025-07-07T12:02:00",
+    "supersedes": [
+     "task.ingredient_check@S1-T2"
+    ],
+    "reason": "The host also says the kitchen staff will handle all ingredient checks."
+   }
+  ],
+  "shown": {
+   "task.ingredient_check@S3": {
+    "question": "What is the status of our ingredient-check task?",
+    "kind": "current",
+    "lines": "S1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T2 Aisha: task.recipe_cards = open [active] | sources=S3-T2\nS3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3"
+   },
+   "task.recipe_cards@S3": {
+    "question": "What is the status of the recipe-card task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T2 Aisha: task.recipe_cards = open [active] | sources=S3-T2"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1",
+   "S1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2",
+   "S2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1",
+   "S3-T2 Aisha: task.recipe_cards = open [active] | sources=S3-T2",
+   "S3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3",
+   "S4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2"
+  ],
+  "records": [
+   {
+    "record_id": "task.recipe_cards@S1-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-07-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S1-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-07-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.recipe_cards@S2-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "blocked",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-07-04T11:00:00",
+    "supersedes": [
+     "task.recipe_cards@S1-T1"
+    ],
+    "reason": "The kitchen hasn’t confirmed which filling we’re teaching, so I can’t finish them."
+   },
+   {
+    "record_id": "task.recipe_cards@S3-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2025-07-07T12:01:00",
+    "supersedes": [
+     "task.recipe_cards@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S3-T3",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "cancelled",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Leah"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2025-07-07T12:02:00",
+    "supersedes": [
+     "task.ingredient_check@S1-T2"
+    ],
+    "reason": "The host also says the kitchen staff will handle all ingredient checks."
+   },
+   {
+    "record_id": "task.ingredient_check@S4-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-07-09T13:01:00",
+    "supersedes": [],
+    "reason": "just to be safe"
+   }
+  ],
+  "shown": {
+   "task.ingredient_check@S4": {
+    "question": "What is the status of our ingredient-check task?",
+    "kind": "current",
+    "lines": "S1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3\nS4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2"
+   },
+   "task.recipe_cards@S4": {
+    "question": "What is the status of the recipe-card task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T2 Aisha: task.recipe_cards = open [active] | sources=S3-T2\nS4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1",
+   "S1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2",
+   "S2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1",
+   "S3-T2 Aisha: task.recipe_cards = open [superseded] | sources=S3-T2",
+   "S3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3,S5-T4",
+   "S4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2",
+   "S5-T1 Aisha: task.recipe_cards = completed [active] | sources=S5-T1"
+  ],
+  "records": [
+   {
+    "record_id": "task.recipe_cards@S1-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-07-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S1-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-07-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.recipe_cards@S2-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "blocked",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-07-04T11:00:00",
+    "supersedes": [
+     "task.recipe_cards@S1-T1"
+    ],
+    "reason": "The kitchen hasn’t confirmed which filling we’re teaching, so I can’t finish them."
+   },
+   {
+    "record_id": "task.recipe_cards@S3-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2025-07-07T12:01:00",
+    "supersedes": [
+     "task.recipe_cards@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.ingredient_check@S3-T3",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "cancelled",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T3",
+     "S5-T4"
+    ],
+    "speakers": [
+     "Leah",
+     "Leah"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2025-07-07T12:02:00",
+    "supersedes": [
+     "task.ingredient_check@S1-T2"
+    ],
+    "reason": "The host also says the kitchen staff will handle all ingredient checks."
+   },
+   {
+    "record_id": "task.ingredient_check@S4-T2",
+    "project_id": "dumpling-workshop",
+    "item": "task.ingredient_check",
+    "value": "open",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Dmitri"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-07-09T13:01:00",
+    "supersedes": [],
+    "reason": "just to be safe"
+   },
+   {
+    "record_id": "task.recipe_cards@S5-T1",
+    "project_id": "dumpling-workshop",
+    "item": "task.recipe_cards",
+    "value": "completed",
+    "status": "active",
+    "source_turn_ids": [
+     "S5-T1"
+    ],
+    "speakers": [
+     "Aisha"
+    ],
+    "created_turn": "S5-T1",
+    "created_at": "2025-07-11T14:00:00",
+    "supersedes": [
+     "task.recipe_cards@S3-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.ingredient_check@S5": {
+    "question": "What is the status of our ingredient-check task?",
+    "kind": "current",
+    "lines": "S1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2\nS3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3,S5-T4\nS4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2\nS5-T1 Aisha: task.recipe_cards = completed [active] | sources=S5-T1"
+   },
+   "task.ingredient_check@S5-previous": {
+    "question": "What status, if any, did the ingredient-check task have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T2 Aisha: task.recipe_cards = open [superseded] | sources=S3-T2\nS3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3,S5-T4\nS4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2\nS5-T1 Aisha: task.recipe_cards = completed [active] | sources=S5-T1"
+   },
+   "task.recipe_cards@S5": {
+    "question": "What is the status of the recipe-card task?",
+    "kind": "current",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T2 Aisha: task.recipe_cards = open [superseded] | sources=S3-T2\nS5-T1 Aisha: task.recipe_cards = completed [active] | sources=S5-T1"
+   },
+   "task.recipe_cards@S5-previous": {
+    "question": "What status, if any, did the recipe-card task have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Aisha: task.recipe_cards = open [superseded] | sources=S1-T1\nS1-T2 Dmitri: task.ingredient_check = open [superseded] | sources=S1-T2\nS2-T1 Aisha: task.recipe_cards = blocked [superseded] | sources=S2-T1\nS3-T2 Aisha: task.recipe_cards = open [superseded] | sources=S3-T2\nS3-T3 Leah: task.ingredient_check = cancelled [active] | sources=S3-T3,S5-T4\nS4-T2 Dmitri: task.ingredient_check = open [proposed] | sources=S4-T2\nS5-T1 Aisha: task.recipe_cards = completed [active] | sources=S5-T1"
+   }
+  }
+ }
+}

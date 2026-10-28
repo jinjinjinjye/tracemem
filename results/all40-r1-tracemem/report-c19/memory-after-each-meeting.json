@@ -1,0 +1,343 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2",
+   "S1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "chess.time_limit@S1-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "10 minutes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Marta",
+     "Kofi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-01-15T10:00:00",
+    "supersedes": [],
+    "reason": "That should be manageable for the newer members."
+   },
+   {
+    "record_id": "chess.pairing@S1-T4",
+    "project_id": "chess-tournament",
+    "item": "chess.pairing",
+    "value": "random draw",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Marta"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-01-15T10:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "chess.pairing@S1": {
+    "question": "How are players being paired for the first round?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4"
+   },
+   "chess.time_limit@S1": {
+    "question": "How much time does each player get per game?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2",
+   "S1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4",
+   "S2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "chess.time_limit@S1-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "10 minutes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Marta",
+     "Kofi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-01-15T10:00:00",
+    "supersedes": [],
+    "reason": "That should be manageable for the newer members."
+   },
+   {
+    "record_id": "chess.pairing@S1-T4",
+    "project_id": "chess-tournament",
+    "item": "chess.pairing",
+    "value": "random draw",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Marta"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-01-15T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "chess.time_limit@S2-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "5 minutes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Kofi"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-01-18T11:00:00",
+    "supersedes": [],
+    "reason": "We've had more entries than expected."
+   }
+  ],
+  "shown": {
+   "chess.pairing@S2": {
+    "question": "How are players being paired for the first round?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1"
+   },
+   "chess.time_limit@S2": {
+    "question": "How much time does each player get per game?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2",
+   "S1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4",
+   "S2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1",
+   "S3-T3 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "chess.time_limit@S1-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "10 minutes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Marta",
+     "Kofi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-01-15T10:00:00",
+    "supersedes": [],
+    "reason": "That should be manageable for the newer members."
+   },
+   {
+    "record_id": "chess.pairing@S1-T4",
+    "project_id": "chess-tournament",
+    "item": "chess.pairing",
+    "value": "random draw",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Marta"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-01-15T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "chess.time_limit@S2-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "5 minutes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Kofi"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-01-18T11:00:00",
+    "supersedes": [],
+    "reason": "We've had more entries than expected."
+   },
+   {
+    "record_id": "chess.time_limit@S3-T3",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "5 minutes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Kofi"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-01-20T12:02:00",
+    "supersedes": [],
+    "reason": "could make the event more lively"
+   }
+  ],
+  "shown": {
+   "chess.pairing@S3": {
+    "question": "How are players being paired for the first round?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1\nS3-T3 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S3-T3"
+   },
+   "chess.time_limit@S3": {
+    "question": "How much time does each player get per game?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [active] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1\nS3-T3 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S3-T3"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2",
+   "S1-T4 Marta: chess.pairing = random draw [superseded] | sources=S1-T4",
+   "S2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1",
+   "S3-T3 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S3-T3",
+   "S4-T2 Marta: chess.pairing = similar club ratings [active] | sources=S4-T2,S4-T4"
+  ],
+  "records": [
+   {
+    "record_id": "chess.time_limit@S1-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "10 minutes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Marta",
+     "Kofi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-01-15T10:00:00",
+    "supersedes": [],
+    "reason": "That should be manageable for the newer members."
+   },
+   {
+    "record_id": "chess.pairing@S1-T4",
+    "project_id": "chess-tournament",
+    "item": "chess.pairing",
+    "value": "random draw",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Marta"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-01-15T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "chess.time_limit@S2-T1",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "5 minutes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Kofi"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-01-18T11:00:00",
+    "supersedes": [],
+    "reason": "We've had more entries than expected."
+   },
+   {
+    "record_id": "chess.time_limit@S3-T3",
+    "project_id": "chess-tournament",
+    "item": "chess.time_limit",
+    "value": "5 minutes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Kofi"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-01-20T12:02:00",
+    "supersedes": [],
+    "reason": "could make the event more lively"
+   },
+   {
+    "record_id": "chess.pairing@S4-T2",
+    "project_id": "chess-tournament",
+    "item": "chess.pairing",
+    "value": "similar club ratings",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T2",
+     "S4-T4"
+    ],
+    "speakers": [
+     "Marta",
+     "Anya"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2026-01-22T13:01:00",
+    "supersedes": [
+     "chess.pairing@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "chess.pairing@S4": {
+    "question": "How are players being paired for the first round?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [superseded] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1\nS4-T2 Marta: chess.pairing = similar club ratings [active] | sources=S4-T2,S4-T4"
+   },
+   "chess.pairing@S4-previous": {
+    "question": "Which first-round pairing method, if any, did we use before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [superseded] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1\nS3-T3 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S3-T3\nS4-T2 Marta: chess.pairing = similar club ratings [active] | sources=S4-T2,S4-T4"
+   },
+   "chess.time_limit@S4": {
+    "question": "How much time does each player get per game?",
+    "kind": "current",
+    "lines": "S1-T1 Marta: chess.time_limit = 10 minutes [active] | sources=S1-T1,S1-T2\nS1-T4 Marta: chess.pairing = random draw [superseded] | sources=S1-T4\nS2-T1 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S2-T1\nS3-T3 Kofi: chess.time_limit = 5 minutes [proposed] | sources=S3-T3"
+   }
+  }
+ }
+}

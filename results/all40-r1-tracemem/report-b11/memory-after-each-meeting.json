@@ -1,0 +1,469 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1",
+   "S1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2",
+   "S1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3",
+   "S1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "task.pet_food@S1-T1",
+    "project_id": "pet-sitting",
+    "item": "task.pet_food",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.key_handover@S1-T2",
+    "project_id": "pet-sitting",
+    "item": "task.key_handover",
+    "value": "open",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Farid"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T3",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T4",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Farid",
+     "Emi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "visit.first_date@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.key_handover@S1": {
+    "question": "What is the status of the key handover?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   },
+   "task.pet_food@S1": {
+    "question": "What is the status of the pet-food purchase?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   },
+   "visit.first_date@S1": {
+    "question": "When is the first pet-sitting visit?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1",
+   "S1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2",
+   "S1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3",
+   "S1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "task.pet_food@S1-T1",
+    "project_id": "pet-sitting",
+    "item": "task.pet_food",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.key_handover@S1-T2",
+    "project_id": "pet-sitting",
+    "item": "task.key_handover",
+    "value": "open",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Farid"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T3",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T4",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Farid",
+     "Emi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "visit.first_date@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.key_handover@S2": {
+    "question": "What is the status of the key handover?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   },
+   "task.pet_food@S2": {
+    "question": "What is the status of the pet-food purchase?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   },
+   "visit.first_date@S2": {
+    "question": "When is the first pet-sitting visit?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [active] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1",
+   "S1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2",
+   "S1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3",
+   "S1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3",
+   "S3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1"
+  ],
+  "records": [
+   {
+    "record_id": "task.pet_food@S1-T1",
+    "project_id": "pet-sitting",
+    "item": "task.pet_food",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.key_handover@S1-T2",
+    "project_id": "pet-sitting",
+    "item": "task.key_handover",
+    "value": "open",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Farid"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T3",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T4",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Farid",
+     "Emi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "visit.first_date@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.pet_food@S3-T1",
+    "project_id": "pet-sitting",
+    "item": "task.pet_food",
+    "value": "completed",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-10T12:00:00",
+    "supersedes": [
+     "task.pet_food@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.key_handover@S3": {
+    "question": "What is the status of the key handover?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [proposed] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3"
+   },
+   "task.pet_food@S3": {
+    "question": "What is the status of the pet-food purchase?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3\nS3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1"
+   },
+   "visit.first_date@S3": {
+    "question": "When is the first pet-sitting visit?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3\nS3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1",
+   "S1-T2 Farid: task.key_handover = open [superseded] | sources=S1-T2",
+   "S1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3",
+   "S1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3,S4-T5",
+   "S3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1,S4-T2",
+   "S4-T2 Emi: task.key_handover = open [active] | sources=S4-T2,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "task.pet_food@S1-T1",
+    "project_id": "pet-sitting",
+    "item": "task.pet_food",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "task.key_handover@S1-T2",
+    "project_id": "pet-sitting",
+    "item": "task.key_handover",
+    "value": "open",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Farid"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T3",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Emi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-03T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "visit.first_date@S1-T4",
+    "project_id": "pet-sitting",
+    "item": "visit.first_date",
+    "value": "15 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S4-T5"
+    ],
+    "speakers": [
+     "Farid",
+     "Emi",
+     "Farid"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [
+     "visit.first_date@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.pet_food@S3-T1",
+    "project_id": "pet-sitting",
+    "item": "task.pet_food",
+    "value": "completed",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T1",
+     "S4-T2"
+    ],
+    "speakers": [
+     "Emi",
+     "Emi"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-10T12:00:00",
+    "supersedes": [
+     "task.pet_food@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "task.key_handover@S4-T2",
+    "project_id": "pet-sitting",
+    "item": "task.key_handover",
+    "value": "open",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T2",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Emi",
+     "Farid"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2026-10-12T13:01:00",
+    "supersedes": [
+     "task.key_handover@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "task.key_handover@S4": {
+    "question": "What is the status of the key handover?",
+    "kind": "current",
+    "lines": "S1-T2 Farid: task.key_handover = open [superseded] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3,S4-T5\nS4-T2 Emi: task.key_handover = open [active] | sources=S4-T2,S1-T2"
+   },
+   "task.pet_food@S4": {
+    "question": "What is the status of the pet-food purchase?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3,S4-T5\nS3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1,S4-T2"
+   },
+   "task.pet_food@S4-previous": {
+    "question": "What status, if any, did the pet-food purchase have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1\nS1-T2 Farid: task.key_handover = open [superseded] | sources=S1-T2\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3,S4-T5\nS3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1,S4-T2\nS4-T2 Emi: task.key_handover = open [active] | sources=S4-T2,S1-T2"
+   },
+   "visit.first_date@S4": {
+    "question": "When is the first pet-sitting visit?",
+    "kind": "current",
+    "lines": "S1-T1 Emi: task.pet_food = open [superseded] | sources=S1-T1\nS1-T3 Emi: visit.first_date = 15 November [superseded] | sources=S1-T3\nS1-T4 Farid: visit.first_date = 15 November [active] | sources=S1-T4,S1-T3,S4-T5\nS3-T1 Emi: task.pet_food = completed [active] | sources=S3-T1,S4-T2"
+   }
+  }
+ }
+}

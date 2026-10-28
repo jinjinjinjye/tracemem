@@ -1,0 +1,408 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Bianca: move.containers = cardboard boxes [active] | sources=S1-T1",
+   "S1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3",
+   "S1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "move.containers@S1-T1",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "cardboard boxes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Bianca"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-08-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T3",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ravi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-08-04T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T4",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Bianca",
+     "Ravi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2025-08-04T10:03:00",
+    "supersedes": [
+     "van.pickup@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "move.containers@S1": {
+    "question": "What are we using to pack our belongings?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [active] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3"
+   },
+   "van.pickup@S1": {
+    "question": "What time is the van pickup?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [active] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1",
+   "S1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3",
+   "S1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "move.containers@S1-T1",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "cardboard boxes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Bianca"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-08-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T3",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ravi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-08-04T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T4",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Bianca",
+     "Ravi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2025-08-04T10:03:00",
+    "supersedes": [
+     "van.pickup@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "move.containers@S2-T2",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "reusable plastic crates",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Bianca",
+     "Theo"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2025-08-07T11:01:00",
+    "supersedes": [
+     "move.containers@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "move.containers@S2": {
+    "question": "What are we using to pack our belongings?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4"
+   },
+   "van.pickup@S2": {
+    "question": "What time is the van pickup?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1",
+   "S1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3",
+   "S1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3,S3-T4",
+   "S2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "move.containers@S1-T1",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "cardboard boxes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Bianca"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-08-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T3",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ravi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-08-04T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T4",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S3-T4"
+    ],
+    "speakers": [
+     "Bianca",
+     "Ravi",
+     "Ravi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2025-08-04T10:03:00",
+    "supersedes": [
+     "van.pickup@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "move.containers@S2-T2",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "reusable plastic crates",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Bianca",
+     "Theo"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2025-08-07T11:01:00",
+    "supersedes": [
+     "move.containers@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "move.containers@S3": {
+    "question": "What are we using to pack our belongings?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3,S3-T4\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4"
+   },
+   "van.pickup@S3": {
+    "question": "What time is the van pickup?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [active] | sources=S1-T4,S1-T3,S3-T4\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1",
+   "S1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3",
+   "S1-T4 Bianca: van.pickup = 10 am [superseded] | sources=S1-T4,S1-T3,S3-T4",
+   "S2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4",
+   "S4-T2 Theo: van.pickup = 2 pm [active] | sources=S4-T2,S4-T3"
+  ],
+  "records": [
+   {
+    "record_id": "move.containers@S1-T1",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "cardboard boxes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Bianca"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-08-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T3",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ravi"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-08-04T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S1-T4",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "10 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S3-T4"
+    ],
+    "speakers": [
+     "Bianca",
+     "Ravi",
+     "Ravi"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2025-08-04T10:03:00",
+    "supersedes": [
+     "van.pickup@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "move.containers@S2-T2",
+    "project_id": "flat-move",
+    "item": "move.containers",
+    "value": "reusable plastic crates",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Bianca",
+     "Theo"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2025-08-07T11:01:00",
+    "supersedes": [
+     "move.containers@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "van.pickup@S4-T2",
+    "project_id": "flat-move",
+    "item": "van.pickup",
+    "value": "2 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T2",
+     "S4-T3"
+    ],
+    "speakers": [
+     "Theo",
+     "Ravi"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-08-12T13:01:00",
+    "supersedes": [
+     "van.pickup@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "move.containers@S4": {
+    "question": "What are we using to pack our belongings?",
+    "kind": "current",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T4 Bianca: van.pickup = 10 am [superseded] | sources=S1-T4,S1-T3,S3-T4\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4\nS4-T2 Theo: van.pickup = 2 pm [active] | sources=S4-T2,S4-T3"
+   },
+   "move.containers@S4-previous": {
+    "question": "Which containers, if any, did we use to pack our belongings before the current ones?",
+    "kind": "previous",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [superseded] | sources=S1-T4,S1-T3,S3-T4\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4\nS4-T2 Theo: van.pickup = 2 pm [active] | sources=S4-T2,S4-T3"
+   },
+   "van.pickup@S4": {
+    "question": "What time is the van pickup?",
+    "kind": "current",
+    "lines": "S1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [superseded] | sources=S1-T4,S1-T3,S3-T4\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4\nS4-T2 Theo: van.pickup = 2 pm [active] | sources=S4-T2,S4-T3"
+   },
+   "van.pickup@S4-previous": {
+    "question": "Which pickup time, if any, did we book before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Bianca: move.containers = cardboard boxes [superseded] | sources=S1-T1\nS1-T3 Ravi: van.pickup = 10 am [superseded] | sources=S1-T3\nS1-T4 Bianca: van.pickup = 10 am [superseded] | sources=S1-T4,S1-T3,S3-T4\nS2-T2 Bianca: move.containers = reusable plastic crates [active] | sources=S2-T2,S2-T4\nS4-T2 Theo: van.pickup = 2 pm [active] | sources=S4-T2,S4-T3"
+   }
+  }
+ }
+}

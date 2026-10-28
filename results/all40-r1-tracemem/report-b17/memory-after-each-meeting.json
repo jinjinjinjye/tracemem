@@ -1,0 +1,376 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1",
+   "S1-T3 Researcher: data.split = by patient [active] | sources=S1-T3",
+   "S1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5"
+  ],
+  "records": [
+   {
+    "record_id": "model.architecture@S1-T1",
+    "project_id": "chest-xray",
+    "item": "model.architecture",
+    "value": "ResNet-18",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "I already have that training code working."
+   },
+   {
+    "record_id": "data.split@S1-T3",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "by patient",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.lead@S1-T5",
+    "project_id": "chest-xray",
+    "item": "metric.lead",
+    "value": "AUROC",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-19T10:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "data.split@S1": {
+    "question": "How are we splitting the X-ray images into training, validation and test sets?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1\nS1-T3 Researcher: data.split = by patient [active] | sources=S1-T3\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5"
+   },
+   "metric.lead@S1": {
+    "question": "Which metric leads the results table?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1\nS1-T3 Researcher: data.split = by patient [active] | sources=S1-T3\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5"
+   },
+   "model.architecture@S1": {
+    "question": "Which model architecture are we using for the X-ray classifier?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1\nS1-T3 Researcher: data.split = by patient [active] | sources=S1-T3\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1",
+   "S1-T3 Researcher: data.split = by patient [superseded] | sources=S1-T3",
+   "S1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5",
+   "S2-T2 Agent: data.split = Hospital C held out for testing [superseded] | sources=S2-T2",
+   "S2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2",
+   "S2-T4 Agent: model.architecture = vision transformer [proposed] | sources=S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "model.architecture@S1-T1",
+    "project_id": "chest-xray",
+    "item": "model.architecture",
+    "value": "ResNet-18",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "I already have that training code working."
+   },
+   {
+    "record_id": "data.split@S1-T3",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "by patient",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.lead@S1-T5",
+    "project_id": "chest-xray",
+    "item": "metric.lead",
+    "value": "AUROC",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-19T10:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.split@S2-T2",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "Hospital C held out for testing",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-21T11:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.split@S2-T3",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "Hospital C held out for testing",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-21T11:02:00",
+    "supersedes": [
+     "data.split@S1-T3",
+     "data.split@S2-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "model.architecture@S2-T4",
+    "project_id": "chest-xray",
+    "item": "model.architecture",
+    "value": "vision transformer",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-21T11:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "data.split@S2": {
+    "question": "How are we splitting the X-ray images into training, validation and test sets?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1\nS1-T3 Researcher: data.split = by patient [superseded] | sources=S1-T3\nS2-T2 Agent: data.split = Hospital C held out for testing [superseded] | sources=S2-T2\nS2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2"
+   },
+   "metric.lead@S2": {
+    "question": "Which metric leads the results table?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1\nS1-T3 Researcher: data.split = by patient [superseded] | sources=S1-T3\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5\nS2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2"
+   },
+   "model.architecture@S2": {
+    "question": "Which model architecture are we using for the X-ray classifier?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5\nS2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2\nS2-T4 Agent: model.architecture = vision transformer [proposed] | sources=S2-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1,S3-T4",
+   "S1-T3 Researcher: data.split = by patient [superseded] | sources=S1-T3",
+   "S1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5",
+   "S2-T2 Agent: data.split = Hospital C held out for testing [superseded] | sources=S2-T2",
+   "S2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2",
+   "S2-T4 Agent: model.architecture = vision transformer [proposed] | sources=S2-T4",
+   "S3-T4 Agent: metric.lead = AUROC [proposed] | sources=S3-T4"
+  ],
+  "records": [
+   {
+    "record_id": "model.architecture@S1-T1",
+    "project_id": "chest-xray",
+    "item": "model.architecture",
+    "value": "ResNet-18",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S3-T4"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "I already have that training code working."
+   },
+   {
+    "record_id": "data.split@S1-T3",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "by patient",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.lead@S1-T5",
+    "project_id": "chest-xray",
+    "item": "metric.lead",
+    "value": "AUROC",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-19T10:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.split@S2-T2",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "Hospital C held out for testing",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-21T11:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.split@S2-T3",
+    "project_id": "chest-xray",
+    "item": "data.split",
+    "value": "Hospital C held out for testing",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-21T11:02:00",
+    "supersedes": [
+     "data.split@S1-T3",
+     "data.split@S2-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "model.architecture@S2-T4",
+    "project_id": "chest-xray",
+    "item": "model.architecture",
+    "value": "vision transformer",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-21T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "metric.lead@S3-T4",
+    "project_id": "chest-xray",
+    "item": "metric.lead",
+    "value": "AUROC",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-23T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "data.split@S3": {
+    "question": "How are we splitting the X-ray images into training, validation and test sets?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1,S3-T4\nS1-T3 Researcher: data.split = by patient [superseded] | sources=S1-T3\nS2-T2 Agent: data.split = Hospital C held out for testing [superseded] | sources=S2-T2\nS2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2"
+   },
+   "data.split@S3-previous": {
+    "question": "Which way of splitting the X-ray images, if any, did we use before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1,S3-T4\nS1-T3 Researcher: data.split = by patient [superseded] | sources=S1-T3\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5\nS2-T2 Agent: data.split = Hospital C held out for testing [superseded] | sources=S2-T2\nS2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2\nS2-T4 Agent: model.architecture = vision transformer [proposed] | sources=S2-T4\nS3-T4 Agent: metric.lead = AUROC [proposed] | sources=S3-T4"
+   },
+   "metric.lead@S3": {
+    "question": "Which metric leads the results table?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1,S3-T4\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5\nS2-T3 Researcher: data.split = Hospital C held out for testing [active] | sources=S2-T3,S2-T2\nS3-T4 Agent: metric.lead = AUROC [proposed] | sources=S3-T4"
+   },
+   "model.architecture@S3": {
+    "question": "Which model architecture are we using for the X-ray classifier?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: model.architecture = ResNet-18 [active] | sources=S1-T1,S3-T4\nS1-T5 Researcher: metric.lead = AUROC [active] | sources=S1-T5\nS2-T4 Agent: model.architecture = vision transformer [proposed] | sources=S2-T4\nS3-T4 Agent: metric.lead = AUROC [proposed] | sources=S3-T4"
+   }
+  }
+ }
+}

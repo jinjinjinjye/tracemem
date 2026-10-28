@@ -1,0 +1,357 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1",
+   "S1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2",
+   "S1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "bus.departure@S1-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Quinn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cabin.access@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "cabin.access",
+    "value": "3 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "bus.departure@S1": {
+    "question": "What is the bus departure time?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2"
+   },
+   "cabin.access@S1": {
+    "question": "When can the group access the cabin?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1",
+   "S1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2",
+   "S1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4",
+   "S2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "bus.departure@S1-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Quinn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cabin.access@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "cabin.access",
+    "value": "3 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Quinn"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S2-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "8 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-07T11:00:00",
+    "supersedes": [],
+    "reason": "Everyone was struggling with seven."
+   }
+  ],
+  "shown": {
+   "bus.departure@S2": {
+    "question": "What is the bus departure time?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1"
+   },
+   "cabin.access@S2": {
+    "question": "When can the group access the cabin?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1",
+   "S1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2",
+   "S1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4",
+   "S2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "bus.departure@S1-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Quinn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cabin.access@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "cabin.access",
+    "value": "3 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Quinn"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S2-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "8 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-07T11:00:00",
+    "supersedes": [],
+    "reason": "Everyone was struggling with seven."
+   }
+  ],
+  "shown": {
+   "bus.departure@S3": {
+    "question": "What is the bus departure time?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1"
+   },
+   "cabin.access@S3": {
+    "question": "When can the group access the cabin?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1",
+   "S1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2",
+   "S1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4",
+   "S2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1,S4-T2"
+  ],
+  "records": [
+   {
+    "record_id": "bus.departure@S1-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Quinn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-04T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "7 am",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cabin.access@S1-T2",
+    "project_id": "camping-weekend",
+    "item": "cabin.access",
+    "value": "3 pm",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Quinn"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-04T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "bus.departure@S2-T1",
+    "project_id": "camping-weekend",
+    "item": "bus.departure",
+    "value": "8 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1",
+     "S4-T2"
+    ],
+    "speakers": [
+     "Rosa",
+     "Sam"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-07T11:00:00",
+    "supersedes": [],
+    "reason": "Everyone was struggling with seven."
+   }
+  ],
+  "shown": {
+   "bus.departure@S4": {
+    "question": "What is the bus departure time?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1,S4-T2"
+   },
+   "bus.departure@S4-previous": {
+    "question": "Which bus departure time, if any, did we have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1,S4-T2"
+   },
+   "cabin.access@S4": {
+    "question": "When can the group access the cabin?",
+    "kind": "current",
+    "lines": "S1-T1 Quinn: bus.departure = 7 am [proposed] | sources=S1-T1\nS1-T2 Rosa: bus.departure = 7 am [proposed] | sources=S1-T2\nS1-T2 Rosa: cabin.access = 3 pm [active] | sources=S1-T2,S2-T4\nS2-T1 Rosa: bus.departure = 8 am [active] | sources=S2-T1,S4-T2"
+   }
+  }
+ }
+}

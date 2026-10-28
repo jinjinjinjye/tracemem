@@ -1,0 +1,410 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Researcher: missing.handling = drop incomplete hourly records [active] | sources=S1-T1",
+   "S1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3",
+   "S1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5"
+  ],
+  "records": [
+   {
+    "record_id": "missing.handling@S1-T1",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "drop incomplete hourly records",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-18T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.resolution@S1-T3",
+    "project_id": "urban-temperature",
+    "item": "data.resolution",
+    "value": "hourly",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-18T10:02:00",
+    "supersedes": [],
+    "reason": "Daily averages will hide the afternoon pattern I'm interested in."
+   },
+   {
+    "record_id": "comparison.main@S1-T5",
+    "project_id": "urban-temperature",
+    "item": "comparison.main",
+    "value": "rooftop versus street-level sensors",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-18T10:04:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "comparison.main@S1": {
+    "question": "Which locations are we comparing in the main comparison?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: missing.handling = drop incomplete hourly records [active] | sources=S1-T1\nS1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5"
+   },
+   "data.resolution@S1": {
+    "question": "What time resolution are we using for the temperature measurements?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: missing.handling = drop incomplete hourly records [active] | sources=S1-T1\nS1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5"
+   },
+   "missing.handling@S1": {
+    "question": "How are we handling missing temperature data in the main analysis?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: missing.handling = drop incomplete hourly records [active] | sources=S1-T1\nS1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Researcher: missing.handling = drop incomplete hourly records [superseded] | sources=S1-T1",
+   "S1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3,S2-T5",
+   "S1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6",
+   "S2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2",
+   "S2-T3 Researcher: missing.handling = linear interpolation of short gaps [active] | sources=S2-T3,S2-T2,S2-T6",
+   "S2-T4 Agent: data.resolution = daily averages [proposed] | sources=S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "missing.handling@S1-T1",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "drop incomplete hourly records",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-18T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.resolution@S1-T3",
+    "project_id": "urban-temperature",
+    "item": "data.resolution",
+    "value": "hourly",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S2-T5"
+    ],
+    "speakers": [
+     "Researcher",
+     "Researcher"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-18T10:02:00",
+    "supersedes": [],
+    "reason": "Daily averages will hide the afternoon pattern I'm interested in."
+   },
+   {
+    "record_id": "comparison.main@S1-T5",
+    "project_id": "urban-temperature",
+    "item": "comparison.main",
+    "value": "rooftop versus street-level sensors",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S2-T6"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-18T10:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "missing.handling@S2-T2",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "linear interpolation of short gaps",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-20T11:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "missing.handling@S2-T3",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "linear interpolation of short gaps",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T2",
+     "S2-T6"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent",
+     "Agent"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-20T11:02:00",
+    "supersedes": [
+     "missing.handling@S1-T1",
+     "missing.handling@S2-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "data.resolution@S2-T4",
+    "project_id": "urban-temperature",
+    "item": "data.resolution",
+    "value": "daily averages",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-20T11:03:00",
+    "supersedes": [],
+    "reason": "to make the plots less crowded"
+   }
+  ],
+  "shown": {
+   "comparison.main@S2": {
+    "question": "Which locations are we comparing in the main comparison?",
+    "kind": "current",
+    "lines": "S1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3,S2-T5\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6\nS2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [active] | sources=S2-T3,S2-T2,S2-T6"
+   },
+   "data.resolution@S2": {
+    "question": "What time resolution are we using for the temperature measurements?",
+    "kind": "current",
+    "lines": "S1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3,S2-T5\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [active] | sources=S2-T3,S2-T2,S2-T6\nS2-T4 Agent: data.resolution = daily averages [proposed] | sources=S2-T4"
+   },
+   "missing.handling@S2": {
+    "question": "How are we handling missing temperature data in the main analysis?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: missing.handling = drop incomplete hourly records [superseded] | sources=S1-T1\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6\nS2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [active] | sources=S2-T3,S2-T2,S2-T6"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Researcher: missing.handling = drop incomplete hourly records [superseded] | sources=S1-T1",
+   "S1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3,S2-T5,S3-T6",
+   "S1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6,S3-T6",
+   "S2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2",
+   "S2-T3 Researcher: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T3,S2-T2,S2-T6",
+   "S2-T4 Agent: data.resolution = daily averages [proposed] | sources=S2-T4",
+   "S3-T2 Agent: missing.handling = interpolation of gaps up to one hour [proposed] | sources=S3-T2",
+   "S3-T3 Researcher: missing.handling = drop incomplete hourly records [active] | sources=S3-T3"
+  ],
+  "records": [
+   {
+    "record_id": "missing.handling@S1-T1",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "drop incomplete hourly records",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-18T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "data.resolution@S1-T3",
+    "project_id": "urban-temperature",
+    "item": "data.resolution",
+    "value": "hourly",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S2-T5",
+     "S3-T6"
+    ],
+    "speakers": [
+     "Researcher",
+     "Researcher",
+     "Agent"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-18T10:02:00",
+    "supersedes": [],
+    "reason": "Daily averages will hide the afternoon pattern I'm interested in."
+   },
+   {
+    "record_id": "comparison.main@S1-T5",
+    "project_id": "urban-temperature",
+    "item": "comparison.main",
+    "value": "rooftop versus street-level sensors",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S2-T6",
+     "S3-T6"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent",
+     "Agent"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-18T10:04:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "missing.handling@S2-T2",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "linear interpolation of short gaps",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-20T11:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "missing.handling@S2-T3",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "linear interpolation of short gaps",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T3",
+     "S2-T2",
+     "S2-T6"
+    ],
+    "speakers": [
+     "Researcher",
+     "Agent",
+     "Agent"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2026-10-20T11:02:00",
+    "supersedes": [
+     "missing.handling@S1-T1",
+     "missing.handling@S2-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "data.resolution@S2-T4",
+    "project_id": "urban-temperature",
+    "item": "data.resolution",
+    "value": "daily averages",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-10-20T11:03:00",
+    "supersedes": [],
+    "reason": "to make the plots less crowded"
+   },
+   {
+    "record_id": "missing.handling@S3-T2",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "interpolation of gaps up to one hour",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Agent"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-22T12:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "missing.handling@S3-T3",
+    "project_id": "urban-temperature",
+    "item": "missing.handling",
+    "value": "drop incomplete hourly records",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T3"
+    ],
+    "speakers": [
+     "Researcher"
+    ],
+    "created_turn": "S3-T3",
+    "created_at": "2026-10-22T12:02:00",
+    "supersedes": [
+     "missing.handling@S2-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "comparison.main@S3": {
+    "question": "Which locations are we comparing in the main comparison?",
+    "kind": "current",
+    "lines": "S1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6,S3-T6\nS2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T3,S2-T2,S2-T6\nS3-T2 Agent: missing.handling = interpolation of gaps up to one hour [proposed] | sources=S3-T2"
+   },
+   "data.resolution@S3": {
+    "question": "What time resolution are we using for the temperature measurements?",
+    "kind": "current",
+    "lines": "S1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3,S2-T5,S3-T6\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6,S3-T6\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T3,S2-T2,S2-T6\nS2-T4 Agent: data.resolution = daily averages [proposed] | sources=S2-T4"
+   },
+   "missing.handling@S3": {
+    "question": "How are we handling missing temperature data in the main analysis?",
+    "kind": "current",
+    "lines": "S1-T1 Researcher: missing.handling = drop incomplete hourly records [superseded] | sources=S1-T1\nS2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T3,S2-T2,S2-T6\nS3-T2 Agent: missing.handling = interpolation of gaps up to one hour [proposed] | sources=S3-T2"
+   },
+   "missing.handling@S3-previous": {
+    "question": "Which way of handling missing temperature data, if any, did we use before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Researcher: missing.handling = drop incomplete hourly records [superseded] | sources=S1-T1\nS1-T3 Researcher: data.resolution = hourly [active] | sources=S1-T3,S2-T5,S3-T6\nS1-T5 Researcher: comparison.main = rooftop versus street-level sensors [active] | sources=S1-T5,S2-T6,S3-T6\nS2-T2 Agent: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T2\nS2-T3 Researcher: missing.handling = linear interpolation of short gaps [superseded] | sources=S2-T3,S2-T2,S2-T6\nS2-T4 Agent: data.resolution = daily averages [proposed] | sources=S2-T4\nS3-T2 Agent: missing.handling = interpolation of gaps up to one hour [proposed] | sources=S3-T2\nS3-T3 Researcher: missing.handling = drop incomplete hourly records [active] | sources=S3-T3"
+   }
+  }
+ }
+}

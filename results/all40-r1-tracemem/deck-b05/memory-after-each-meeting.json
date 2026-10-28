@@ -1,0 +1,529 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1",
+   "S1-T2 Gita: registration.deadline = 10 November [proposed] | sources=S1-T2",
+   "S1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2",
+   "S1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4",
+   "S1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "registration.deadline@S1-T1",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Finn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "registration.deadline@S1-T2",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Gita"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.date@S1-T2",
+    "project_id": "football-tournament",
+    "item": "matches.date",
+    "value": "22 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Gita"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T4",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Iman"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T5",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Finn",
+     "Iman"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "matches.venue@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "matches.date@S1": {
+    "question": "When are the matches scheduled?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2\nS1-T2 Gita: registration.deadline = 10 November [proposed] | sources=S1-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4"
+   },
+   "matches.venue@S1": {
+    "question": "Where will the matches take place?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4"
+   },
+   "registration.deadline@S1": {
+    "question": "What is the current registration deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2\nS1-T2 Gita: registration.deadline = 10 November [proposed] | sources=S1-T2\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1",
+   "S1-T2 Gita: registration.deadline = 10 November [proposed] | sources=S1-T2",
+   "S1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2",
+   "S1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4",
+   "S1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "registration.deadline@S1-T1",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Finn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "registration.deadline@S1-T2",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Gita"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.date@S1-T2",
+    "project_id": "football-tournament",
+    "item": "matches.date",
+    "value": "22 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Gita"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T4",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Iman"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T5",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Finn",
+     "Iman"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "matches.venue@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "matches.date@S2": {
+    "question": "When are the matches scheduled?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2\nS1-T2 Gita: registration.deadline = 10 November [proposed] | sources=S1-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4"
+   },
+   "matches.venue@S2": {
+    "question": "Where will the matches take place?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4"
+   },
+   "registration.deadline@S2": {
+    "question": "What is the current registration deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [proposed] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2\nS1-T2 Gita: registration.deadline = 10 November [proposed] | sources=S1-T2\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1",
+   "S1-T2 Gita: registration.deadline = 10 November [superseded] | sources=S1-T2",
+   "S1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2",
+   "S1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4",
+   "S1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4",
+   "S3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "registration.deadline@S1-T1",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Finn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "registration.deadline@S1-T2",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Gita"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.date@S1-T2",
+    "project_id": "football-tournament",
+    "item": "matches.date",
+    "value": "22 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S3-T2"
+    ],
+    "speakers": [
+     "Gita",
+     "Finn"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T4",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Iman"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T5",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Finn",
+     "Iman"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "matches.venue@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "registration.deadline@S3-T2",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Finn",
+     "Finn",
+     "Gita"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-07T12:01:00",
+    "supersedes": [
+     "registration.deadline@S1-T1",
+     "registration.deadline@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "matches.date@S3": {
+    "question": "When are the matches scheduled?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   },
+   "matches.venue@S3": {
+    "question": "Where will the matches take place?",
+    "kind": "current",
+    "lines": "S1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   },
+   "registration.deadline@S3": {
+    "question": "What is the current registration deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2\nS1-T2 Gita: registration.deadline = 10 November [superseded] | sources=S1-T2\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1",
+   "S1-T2 Gita: registration.deadline = 10 November [superseded] | sources=S1-T2",
+   "S1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2",
+   "S1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4",
+   "S1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4",
+   "S3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "registration.deadline@S1-T1",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Finn"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "registration.deadline@S1-T2",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Gita"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.date@S1-T2",
+    "project_id": "football-tournament",
+    "item": "matches.date",
+    "value": "22 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S3-T2"
+    ],
+    "speakers": [
+     "Gita",
+     "Finn"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T4",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Iman"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-01T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "matches.venue@S1-T5",
+    "project_id": "football-tournament",
+    "item": "matches.venue",
+    "value": "East Field",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Finn",
+     "Iman"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-01T10:04:00",
+    "supersedes": [
+     "matches.venue@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "registration.deadline@S3-T2",
+    "project_id": "football-tournament",
+    "item": "registration.deadline",
+    "value": "10 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S1-T1",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Finn",
+     "Finn",
+     "Gita"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-07T12:01:00",
+    "supersedes": [
+     "registration.deadline@S1-T1",
+     "registration.deadline@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "matches.date@S4": {
+    "question": "When are the matches scheduled?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   },
+   "matches.venue@S4": {
+    "question": "Where will the matches take place?",
+    "kind": "current",
+    "lines": "S1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2\nS1-T4 Iman: matches.venue = East Field [superseded] | sources=S1-T4\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   },
+   "registration.deadline@S4": {
+    "question": "What is the current registration deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1\nS1-T2 Gita: matches.date = 22 November [active] | sources=S1-T2,S3-T2\nS1-T2 Gita: registration.deadline = 10 November [superseded] | sources=S1-T2\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   },
+   "registration.fee@S4": {
+    "question": "What is the registration fee?",
+    "kind": "current",
+    "lines": "S1-T1 Finn: registration.deadline = 10 November [superseded] | sources=S1-T1\nS1-T2 Gita: registration.deadline = 10 November [superseded] | sources=S1-T2\nS1-T5 Finn: matches.venue = East Field [active] | sources=S1-T5,S1-T4\nS3-T2 Finn: registration.deadline = 10 November [active] | sources=S3-T2,S1-T1,S1-T2"
+   }
+  }
+ }
+}

@@ -1,0 +1,314 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1",
+   "S1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1"
+  ],
+  "records": [
+   {
+    "record_id": "test.material@S1-T1",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nina"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-03-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "test.material@S1-T5",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Arun",
+     "Nina"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-03-03T10:04:00",
+    "supersedes": [
+     "test.material@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "eval.main_criterion@S1": {
+    "question": "What is the main evaluation criterion?",
+    "kind": "current",
+    "lines": "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1\nS1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1"
+   },
+   "test.material@S1": {
+    "question": "What material are we using for this round of testing?",
+    "kind": "current",
+    "lines": "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1\nS1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1",
+   "S1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1,S2-T2",
+   "S2-T1 Beth: test.material = public question-and-answer dataset [proposed] | sources=S2-T1",
+   "S2-T4 Beth: eval.main_criterion = factual accuracy [superseded] | sources=S2-T4",
+   "S2-T5 Nina: eval.main_criterion = factual accuracy [active] | sources=S2-T5,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "test.material@S1-T1",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nina"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-03-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "test.material@S1-T5",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Arun",
+     "Nina",
+     "Arun"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-03-03T10:04:00",
+    "supersedes": [
+     "test.material@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "test.material@S2-T1",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "public question-and-answer dataset",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Beth"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-03-05T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "eval.main_criterion@S2-T4",
+    "project_id": "revision-helper-test",
+    "item": "eval.main_criterion",
+    "value": "factual accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Beth"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-03-05T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "eval.main_criterion@S2-T5",
+    "project_id": "revision-helper-test",
+    "item": "eval.main_criterion",
+    "value": "factual accuracy",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Nina",
+     "Beth"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-03-05T11:04:00",
+    "supersedes": [
+     "eval.main_criterion@S2-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "eval.main_criterion@S2": {
+    "question": "What is the main evaluation criterion?",
+    "kind": "current",
+    "lines": "S1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1,S2-T2\nS2-T1 Beth: test.material = public question-and-answer dataset [proposed] | sources=S2-T1\nS2-T4 Beth: eval.main_criterion = factual accuracy [superseded] | sources=S2-T4\nS2-T5 Nina: eval.main_criterion = factual accuracy [active] | sources=S2-T5,S2-T4"
+   },
+   "test.material@S2": {
+    "question": "What material are we using for this round of testing?",
+    "kind": "current",
+    "lines": "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1\nS1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1,S2-T2\nS2-T1 Beth: test.material = public question-and-answer dataset [proposed] | sources=S2-T1\nS2-T4 Beth: eval.main_criterion = factual accuracy [superseded] | sources=S2-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1",
+   "S1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1,S2-T2",
+   "S2-T1 Beth: test.material = public question-and-answer dataset [proposed] | sources=S2-T1",
+   "S2-T4 Beth: eval.main_criterion = factual accuracy [superseded] | sources=S2-T4",
+   "S2-T5 Nina: eval.main_criterion = factual accuracy [active] | sources=S2-T5,S2-T4",
+   "S3-T1 Arun: test.material = cleaned-up lecture notes [proposed] | sources=S3-T1"
+  ],
+  "records": [
+   {
+    "record_id": "test.material@S1-T1",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nina"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-03-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "test.material@S1-T5",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T1",
+     "S2-T2"
+    ],
+    "speakers": [
+     "Arun",
+     "Nina",
+     "Arun"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-03-03T10:04:00",
+    "supersedes": [
+     "test.material@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "test.material@S2-T1",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "public question-and-answer dataset",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Beth"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-03-05T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "eval.main_criterion@S2-T4",
+    "project_id": "revision-helper-test",
+    "item": "eval.main_criterion",
+    "value": "factual accuracy",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Beth"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-03-05T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "eval.main_criterion@S2-T5",
+    "project_id": "revision-helper-test",
+    "item": "eval.main_criterion",
+    "value": "factual accuracy",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Nina",
+     "Beth"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-03-05T11:04:00",
+    "supersedes": [
+     "eval.main_criterion@S2-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "test.material@S3-T1",
+    "project_id": "revision-helper-test",
+    "item": "test.material",
+    "value": "cleaned-up lecture notes",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Arun"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-03-07T12:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "eval.main_criterion@S3": {
+    "question": "What is the main evaluation criterion?",
+    "kind": "current",
+    "lines": "S2-T1 Beth: test.material = public question-and-answer dataset [proposed] | sources=S2-T1\nS2-T4 Beth: eval.main_criterion = factual accuracy [superseded] | sources=S2-T4\nS2-T5 Nina: eval.main_criterion = factual accuracy [active] | sources=S2-T5,S2-T4\nS3-T1 Arun: test.material = cleaned-up lecture notes [proposed] | sources=S3-T1"
+   },
+   "test.material@S3": {
+    "question": "What material are we using for this round of testing?",
+    "kind": "current",
+    "lines": "S1-T1 Nina: test.material = cleaned-up lecture notes [superseded] | sources=S1-T1\nS1-T5 Arun: test.material = cleaned-up lecture notes [active] | sources=S1-T5,S1-T1,S2-T2\nS2-T1 Beth: test.material = public question-and-answer dataset [proposed] | sources=S2-T1\nS3-T1 Arun: test.material = cleaned-up lecture notes [proposed] | sources=S3-T1"
+   }
+  }
+ }
+}

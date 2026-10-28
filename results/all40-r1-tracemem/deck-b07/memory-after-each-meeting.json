@@ -1,0 +1,508 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1",
+   "S1-T2 Noah: deadline.craft_booth = 6 November [active] | sources=S1-T2",
+   "S1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4",
+   "S1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4",
+   "S1-T5 Noah: fee.food_booth = SGD 20 [active] | sources=S1-T5,S1-T4",
+   "S1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "deadline.food_booth@S1-T1",
+    "project_id": "school-fair-booths",
+    "item": "deadline.food_booth",
+    "value": "4 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "deadline.craft_booth@S1-T2",
+    "project_id": "school-fair-booths",
+    "item": "deadline.craft_booth",
+    "value": "6 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Noah"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": "Because we need more time to buy the materials."
+   },
+   {
+    "record_id": "fee.food_booth@S1-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "fee.craft_booth@S1-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.craft_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "fee.food_booth@S1-T5",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 20",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Noah",
+     "Mira"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-03T10:04:00",
+    "supersedes": [
+     "fee.food_booth@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "fee.craft_booth@S1-T5",
+    "project_id": "school-fair-booths",
+    "item": "fee.craft_booth",
+    "value": "SGD 20",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Noah",
+     "Mira"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-03T10:04:00",
+    "supersedes": [
+     "fee.craft_booth@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "deadline.craft_booth@S1": {
+    "question": "What is the craft-booth form deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1\nS1-T2 Noah: deadline.craft_booth = 6 November [active] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4"
+   },
+   "deadline.food_booth@S1": {
+    "question": "What is the food-booth form deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1\nS1-T2 Noah: deadline.craft_booth = 6 November [active] | sources=S1-T2\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.food_booth = SGD 20 [active] | sources=S1-T5,S1-T4"
+   },
+   "fee.craft_booth@S1": {
+    "question": "What is the fee per session for the craft booth?",
+    "kind": "current",
+    "lines": "S1-T2 Noah: deadline.craft_booth = 6 November [active] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4"
+   },
+   "fee.food_booth@S1": {
+    "question": "What is the fee per session for the food booth?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4\nS1-T5 Noah: fee.food_booth = SGD 20 [active] | sources=S1-T5,S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3",
+   "S1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2",
+   "S1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4",
+   "S1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4",
+   "S1-T5 Noah: fee.food_booth = SGD 20 [active] | sources=S1-T5,S1-T4",
+   "S1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4",
+   "S2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "deadline.food_booth@S1-T1",
+    "project_id": "school-fair-booths",
+    "item": "deadline.food_booth",
+    "value": "4 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Mira",
+     "Mira"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "deadline.craft_booth@S1-T2",
+    "project_id": "school-fair-booths",
+    "item": "deadline.craft_booth",
+    "value": "6 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Noah"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": "Because we need more time to buy the materials."
+   },
+   {
+    "record_id": "fee.food_booth@S1-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "fee.craft_booth@S1-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.craft_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "fee.food_booth@S1-T5",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 20",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Noah",
+     "Mira"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-03T10:04:00",
+    "supersedes": [
+     "fee.food_booth@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "fee.craft_booth@S1-T5",
+    "project_id": "school-fair-booths",
+    "item": "fee.craft_booth",
+    "value": "SGD 20",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Noah",
+     "Mira"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-03T10:04:00",
+    "supersedes": [
+     "fee.craft_booth@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "deadline.craft_booth@S2-T1",
+    "project_id": "school-fair-booths",
+    "item": "deadline.craft_booth",
+    "value": "9 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Noah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-06T11:00:00",
+    "supersedes": [
+     "deadline.craft_booth@S1-T2"
+    ],
+    "reason": "since a lot of items are still on the way"
+   }
+  ],
+  "shown": {
+   "deadline.craft_booth@S2": {
+    "question": "What is the craft-booth form deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+   },
+   "deadline.food_booth@S2": {
+    "question": "What is the food-booth form deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+   },
+   "fee.craft_booth@S2": {
+    "question": "What is the fee per session for the craft booth?",
+    "kind": "current",
+    "lines": "S1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+   },
+   "fee.food_booth@S2": {
+    "question": "What is the fee per session for the food booth?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4\nS1-T5 Noah: fee.food_booth = SGD 20 [active] | sources=S1-T5,S1-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3",
+   "S1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2",
+   "S1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4",
+   "S1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4",
+   "S1-T5 Noah: fee.food_booth = SGD 20 [superseded] | sources=S1-T5,S1-T4",
+   "S1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4",
+   "S2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1",
+   "S3-T4 Mira: fee.food_booth = SGD 30 [active] | sources=S3-T4"
+  ],
+  "records": [
+   {
+    "record_id": "deadline.food_booth@S1-T1",
+    "project_id": "school-fair-booths",
+    "item": "deadline.food_booth",
+    "value": "4 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Mira",
+     "Mira"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-03T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "deadline.craft_booth@S1-T2",
+    "project_id": "school-fair-booths",
+    "item": "deadline.craft_booth",
+    "value": "6 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Noah"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-03T10:01:00",
+    "supersedes": [],
+    "reason": "Because we need more time to buy the materials."
+   },
+   {
+    "record_id": "fee.food_booth@S1-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "fee.craft_booth@S1-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.craft_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-03T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "fee.food_booth@S1-T5",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 20",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Noah",
+     "Mira"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-03T10:04:00",
+    "supersedes": [
+     "fee.food_booth@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "fee.craft_booth@S1-T5",
+    "project_id": "school-fair-booths",
+    "item": "fee.craft_booth",
+    "value": "SGD 20",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Noah",
+     "Mira"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-03T10:04:00",
+    "supersedes": [
+     "fee.craft_booth@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "deadline.craft_booth@S2-T1",
+    "project_id": "school-fair-booths",
+    "item": "deadline.craft_booth",
+    "value": "9 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Noah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-06T11:00:00",
+    "supersedes": [
+     "deadline.craft_booth@S1-T2"
+    ],
+    "reason": "since a lot of items are still on the way"
+   },
+   {
+    "record_id": "fee.food_booth@S3-T4",
+    "project_id": "school-fair-booths",
+    "item": "fee.food_booth",
+    "value": "SGD 30",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Mira"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-09T12:03:00",
+    "supersedes": [
+     "fee.food_booth@S1-T5"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "deadline.craft_booth@S3": {
+    "question": "What is the craft-booth form deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+   },
+   "deadline.craft_booth@S3-previous": {
+    "question": "Which craft-booth form deadline, if any, did we have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4\nS1-T5 Noah: fee.food_booth = SGD 20 [superseded] | sources=S1-T5,S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1\nS3-T4 Mira: fee.food_booth = SGD 30 [active] | sources=S3-T4"
+   },
+   "deadline.food_booth@S3": {
+    "question": "What is the food-booth form deadline?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+   },
+   "fee.craft_booth@S3": {
+    "question": "What is the fee per session for the craft booth?",
+    "kind": "current",
+    "lines": "S1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1"
+   },
+   "fee.food_booth@S3": {
+    "question": "What is the fee per session for the food booth?",
+    "kind": "current",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.food_booth = SGD 20 [superseded] | sources=S1-T5,S1-T4\nS3-T4 Mira: fee.food_booth = SGD 30 [active] | sources=S3-T4"
+   },
+   "fee.food_booth@S3-previous": {
+    "question": "Which food-booth fee, if any, did we charge before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Mira: deadline.food_booth = 4 November [active] | sources=S1-T1,S2-T3\nS1-T2 Noah: deadline.craft_booth = 6 November [superseded] | sources=S1-T2\nS1-T4 Mira: fee.craft_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T4 Mira: fee.food_booth = SGD 20 [superseded] | sources=S1-T4\nS1-T5 Noah: fee.craft_booth = SGD 20 [active] | sources=S1-T5,S1-T4\nS1-T5 Noah: fee.food_booth = SGD 20 [superseded] | sources=S1-T5,S1-T4\nS2-T1 Noah: deadline.craft_booth = 9 November [active] | sources=S2-T1\nS3-T4 Mira: fee.food_booth = SGD 30 [active] | sources=S3-T4"
+   }
+  }
+ }
+}

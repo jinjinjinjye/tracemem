@@ -1,0 +1,468 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1",
+   "S1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2",
+   "S1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3",
+   "S1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3",
+   "S1-T4 Eli: trip.destination = Kyoto [active] | sources=S1-T4,S1-T3",
+   "S1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "trip.destination@S1-T1",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Japan",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T2",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Japan",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Eli"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T3",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Kyoto",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.budget@S1-T3",
+    "project_id": "family-holiday",
+    "item": "trip.budget",
+    "value": "SGD 1,200",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T4",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Kyoto",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Eli",
+     "Nora"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "trip.destination@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "trip.budget@S1-T4",
+    "project_id": "family-holiday",
+    "item": "trip.budget",
+    "value": "SGD 1,200",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Eli",
+     "Nora"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "trip.budget@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "trip.budget@S1": {
+    "question": "What budget have we set for the family holiday?",
+    "kind": "current",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3\nS1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3"
+   },
+   "trip.destination@S1": {
+    "question": "Which destination is currently agreed for the family holiday?",
+    "kind": "current",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3\nS1-T4 Eli: trip.destination = Kyoto [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1",
+   "S1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2",
+   "S1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3",
+   "S1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3",
+   "S1-T4 Eli: trip.destination = Kyoto [active] | sources=S1-T4,S1-T3",
+   "S1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3",
+   "S2-T1 Eli: trip.destination = Taipei [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "trip.destination@S1-T1",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Japan",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T2",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Japan",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Eli"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T3",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Kyoto",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.budget@S1-T3",
+    "project_id": "family-holiday",
+    "item": "trip.budget",
+    "value": "SGD 1,200",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T4",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Kyoto",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Eli",
+     "Nora"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "trip.destination@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "trip.budget@S1-T4",
+    "project_id": "family-holiday",
+    "item": "trip.budget",
+    "value": "SGD 1,200",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Eli",
+     "Nora"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "trip.budget@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S2-T1",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Taipei",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Eli"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-05T11:00:00",
+    "supersedes": [],
+    "reason": "earthquake recently in Tokyo"
+   }
+  ],
+  "shown": {
+   "trip.budget@S2": {
+    "question": "What budget have we set for the family holiday?",
+    "kind": "current",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3\nS1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3"
+   },
+   "trip.destination@S2": {
+    "question": "Which destination is currently agreed for the family holiday?",
+    "kind": "current",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3\nS2-T1 Eli: trip.destination = Taipei [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1",
+   "S1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2",
+   "S1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3",
+   "S1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3",
+   "S1-T4 Eli: trip.destination = Kyoto [superseded] | sources=S1-T4,S1-T3",
+   "S1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3",
+   "S2-T1 Eli: trip.destination = Taipei [superseded] | sources=S2-T1",
+   "S3-T4 Eli: trip.destination = Taipei [active] | sources=S3-T4,S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "trip.destination@S1-T1",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Japan",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T2",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Japan",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Eli"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T3",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Kyoto",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.budget@S1-T3",
+    "project_id": "family-holiday",
+    "item": "trip.budget",
+    "value": "SGD 1,200",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S1-T4",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Kyoto",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Eli",
+     "Nora"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "trip.destination@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "trip.budget@S1-T4",
+    "project_id": "family-holiday",
+    "item": "trip.budget",
+    "value": "SGD 1,200",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Eli",
+     "Nora"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "trip.budget@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "trip.destination@S2-T1",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Taipei",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Eli"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-05T11:00:00",
+    "supersedes": [],
+    "reason": "earthquake recently in Tokyo"
+   },
+   {
+    "record_id": "trip.destination@S3-T4",
+    "project_id": "family-holiday",
+    "item": "trip.destination",
+    "value": "Taipei",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T4",
+     "S2-T1"
+    ],
+    "speakers": [
+     "Eli",
+     "Eli"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-08T12:03:00",
+    "supersedes": [
+     "trip.destination@S1-T4",
+     "trip.destination@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "trip.budget@S3": {
+    "question": "What budget have we set for the family holiday?",
+    "kind": "current",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3\nS1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3"
+   },
+   "trip.destination@S3": {
+    "question": "Which destination is currently agreed for the family holiday?",
+    "kind": "current",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3\nS3-T4 Eli: trip.destination = Taipei [active] | sources=S3-T4,S2-T1"
+   },
+   "trip.destination@S3-previous": {
+    "question": "Which destination, if any, did we agree on for the family holiday before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Nora: trip.destination = Japan [proposed] | sources=S1-T1\nS1-T2 Eli: trip.destination = Japan [proposed] | sources=S1-T2\nS1-T3 Nora: trip.budget = SGD 1,200 [superseded] | sources=S1-T3\nS1-T3 Nora: trip.destination = Kyoto [superseded] | sources=S1-T3\nS1-T4 Eli: trip.budget = SGD 1,200 [active] | sources=S1-T4,S1-T3\nS1-T4 Eli: trip.destination = Kyoto [superseded] | sources=S1-T4,S1-T3\nS2-T1 Eli: trip.destination = Taipei [superseded] | sources=S2-T1\nS3-T4 Eli: trip.destination = Taipei [active] | sources=S3-T4,S2-T1"
+   }
+  }
+ }
+}

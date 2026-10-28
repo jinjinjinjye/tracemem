@@ -1,0 +1,568 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Lin: comparison.primary_temperature = 25°C [active] | sources=S1-T1",
+   "S1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2",
+   "S1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3",
+   "S1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3",
+   "S1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6",
+   "S1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6",
+   "S1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+  ],
+  "records": [
+   {
+    "record_id": "comparison.primary_temperature@S1-T1",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "25°C",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Lin"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "Both materials have complete records there."
+   },
+   {
+    "record_id": "outcome.main@S1-T2",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "initial capacity",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-19T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "outcome.main@S1-T3",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Noor"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [],
+    "reason": "That's the comparison we said we cared about."
+   },
+   {
+    "record_id": "outcome.main@S1-T4",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Alex",
+     "Noor"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-19T10:03:00",
+    "supersedes": [
+     "outcome.main@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "data.batch@S1-T5",
+    "project_id": "electrode-comparison",
+    "item": "data.batch",
+    "value": "batch B",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T6"
+    ],
+    "speakers": [
+     "Lin",
+     "Sam"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-19T10:04:00",
+    "supersedes": [],
+    "reason": "Batch A has too many missing files."
+   },
+   {
+    "record_id": "comparison.primary_temperature@S1-T6",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "25°C",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T6"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2026-10-19T10:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "outcome.main@S1-T6",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T6"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2026-10-19T10:05:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "comparison.primary_temperature@S1": {
+    "question": "Which temperature are we using for the primary comparison?",
+    "kind": "current",
+    "lines": "S1-T1 Lin: comparison.primary_temperature = 25°C [active] | sources=S1-T1\nS1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3\nS1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6"
+   },
+   "data.batch@S1": {
+    "question": "Which batch are we using for both materials?",
+    "kind": "current",
+    "lines": "S1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3\nS1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+   },
+   "outcome.main@S1": {
+    "question": "What is our main outcome measure?",
+    "kind": "current",
+    "lines": "S1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2\nS1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Lin: comparison.primary_temperature = 25°C [active] | sources=S1-T1",
+   "S1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2",
+   "S1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3",
+   "S1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6",
+   "S1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6",
+   "S1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6",
+   "S1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6",
+   "S2-T1 Sam: comparison.primary_temperature = 10°C [contested] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "comparison.primary_temperature@S1-T1",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "25°C",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Lin"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "Both materials have complete records there."
+   },
+   {
+    "record_id": "outcome.main@S1-T2",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "initial capacity",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-19T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "outcome.main@S1-T3",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Noor"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [],
+    "reason": "That's the comparison we said we cared about."
+   },
+   {
+    "record_id": "outcome.main@S1-T4",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S2-T6"
+    ],
+    "speakers": [
+     "Alex",
+     "Noor",
+     "Lin"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-19T10:03:00",
+    "supersedes": [
+     "outcome.main@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "data.batch@S1-T5",
+    "project_id": "electrode-comparison",
+    "item": "data.batch",
+    "value": "batch B",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T6"
+    ],
+    "speakers": [
+     "Lin",
+     "Sam"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-19T10:04:00",
+    "supersedes": [],
+    "reason": "Batch A has too many missing files."
+   },
+   {
+    "record_id": "comparison.primary_temperature@S1-T6",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "25°C",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T6"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2026-10-19T10:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "outcome.main@S1-T6",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T6"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2026-10-19T10:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "comparison.primary_temperature@S2-T1",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "10°C",
+    "status": "contested",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-21T11:00:00",
+    "supersedes": [
+     "comparison.primary_temperature@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "comparison.primary_temperature@S2": {
+    "question": "Which temperature are we using for the primary comparison?",
+    "kind": "current",
+    "lines": "S1-T1 Lin: comparison.primary_temperature = 25°C [active] | sources=S1-T1\nS1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2\nS1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6\nS2-T1 Sam: comparison.primary_temperature = 10°C [contested] | sources=S2-T1"
+   },
+   "data.batch@S2": {
+    "question": "Which batch are we using for both materials?",
+    "kind": "current",
+    "lines": "S1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6\nS1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+   },
+   "outcome.main@S2": {
+    "question": "What is our main outcome measure?",
+    "kind": "current",
+    "lines": "S1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2\nS1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Lin: comparison.primary_temperature = 25°C [superseded] | sources=S1-T1",
+   "S1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2",
+   "S1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3",
+   "S1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6,S3-T6",
+   "S1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6,S3-T6",
+   "S1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6",
+   "S1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6",
+   "S2-T1 Sam: comparison.primary_temperature = 10°C [superseded] | sources=S2-T1",
+   "S3-T2 Lin: comparison.primary_temperature = 10°C [active] | sources=S3-T2,S2-T1,S3-T6",
+   "S3-T2 Lin: comparison.secondary_temperature = 25°C [active] | sources=S3-T2"
+  ],
+  "records": [
+   {
+    "record_id": "comparison.primary_temperature@S1-T1",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "25°C",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Lin"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "Both materials have complete records there."
+   },
+   {
+    "record_id": "outcome.main@S1-T2",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "initial capacity",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-19T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "outcome.main@S1-T3",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Noor"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [],
+    "reason": "That's the comparison we said we cared about."
+   },
+   {
+    "record_id": "outcome.main@S1-T4",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S2-T6",
+     "S3-T6"
+    ],
+    "speakers": [
+     "Alex",
+     "Noor",
+     "Lin",
+     "Noor"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-19T10:03:00",
+    "supersedes": [
+     "outcome.main@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "data.batch@S1-T5",
+    "project_id": "electrode-comparison",
+    "item": "data.batch",
+    "value": "batch B",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T6",
+     "S3-T6"
+    ],
+    "speakers": [
+     "Lin",
+     "Sam",
+     "Noor"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-10-19T10:04:00",
+    "supersedes": [],
+    "reason": "Batch A has too many missing files."
+   },
+   {
+    "record_id": "comparison.primary_temperature@S1-T6",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "25°C",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T6"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2026-10-19T10:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "outcome.main@S1-T6",
+    "project_id": "electrode-comparison",
+    "item": "outcome.main",
+    "value": "capacity retention after 100 cycles",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T6"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2026-10-19T10:05:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "comparison.primary_temperature@S2-T1",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "10°C",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Sam"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-21T11:00:00",
+    "supersedes": [
+     "comparison.primary_temperature@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "comparison.primary_temperature@S3-T2",
+    "project_id": "electrode-comparison",
+    "item": "comparison.primary_temperature",
+    "value": "10°C",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S2-T1",
+     "S3-T6"
+    ],
+    "speakers": [
+     "Lin",
+     "Sam",
+     "Noor"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-23T12:01:00",
+    "supersedes": [
+     "comparison.primary_temperature@S1-T1",
+     "comparison.primary_temperature@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "comparison.secondary_temperature@S3-T2",
+    "project_id": "electrode-comparison",
+    "item": "comparison.secondary_temperature",
+    "value": "25°C",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2"
+    ],
+    "speakers": [
+     "Lin"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-10-23T12:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "comparison.primary_temperature@S3": {
+    "question": "Which temperature are we using for the primary comparison?",
+    "kind": "current",
+    "lines": "S1-T1 Lin: comparison.primary_temperature = 25°C [superseded] | sources=S1-T1\nS1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6\nS2-T1 Sam: comparison.primary_temperature = 10°C [superseded] | sources=S2-T1\nS3-T2 Lin: comparison.primary_temperature = 10°C [active] | sources=S3-T2,S2-T1,S3-T6"
+   },
+   "comparison.primary_temperature@S3-previous": {
+    "question": "Which temperature, if any, did we use for the primary comparison before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Lin: comparison.primary_temperature = 25°C [superseded] | sources=S1-T1\nS1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2\nS1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6,S3-T6\nS1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6,S3-T6\nS1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6\nS2-T1 Sam: comparison.primary_temperature = 10°C [superseded] | sources=S2-T1\nS3-T2 Lin: comparison.primary_temperature = 10°C [active] | sources=S3-T2,S2-T1,S3-T6\nS3-T2 Lin: comparison.secondary_temperature = 25°C [active] | sources=S3-T2"
+   },
+   "comparison.secondary_temperature@S3": {
+    "question": "Which temperature are we using for the secondary analysis?",
+    "kind": "current",
+    "lines": "S1-T6 Sam: comparison.primary_temperature = 25°C [proposed] | sources=S1-T6\nS2-T1 Sam: comparison.primary_temperature = 10°C [superseded] | sources=S2-T1\nS3-T2 Lin: comparison.primary_temperature = 10°C [active] | sources=S3-T2,S2-T1,S3-T6\nS3-T2 Lin: comparison.secondary_temperature = 25°C [active] | sources=S3-T2"
+   },
+   "data.batch@S3": {
+    "question": "Which batch are we using for both materials?",
+    "kind": "current",
+    "lines": "S1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6,S3-T6\nS1-T5 Lin: data.batch = batch B [active] | sources=S1-T5,S1-T6,S3-T6\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+   },
+   "outcome.main@S3": {
+    "question": "What is our main outcome measure?",
+    "kind": "current",
+    "lines": "S1-T2 Sam: outcome.main = initial capacity [proposed] | sources=S1-T2\nS1-T3 Noor: outcome.main = capacity retention after 100 cycles [superseded] | sources=S1-T3\nS1-T4 Alex: outcome.main = capacity retention after 100 cycles [active] | sources=S1-T4,S1-T3,S2-T6,S3-T6\nS1-T6 Sam: outcome.main = capacity retention after 100 cycles [proposed] | sources=S1-T6"
+   }
+  }
+ }
+}

@@ -1,0 +1,274 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T2 Maya: dinner.venue = Orchard Café [superseded] | sources=S1-T2",
+   "S1-T3 Leo: dinner.venue = Korean restaurant [proposed] | sources=S1-T3",
+   "S1-T6 Grace: dinner.venue = Orchard Café [active] | sources=S1-T6,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "dinner.venue@S1-T2",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Orchard Café",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-10-05T10:01:00",
+    "supersedes": [],
+    "reason": "I am craving Western food and something fancy."
+   },
+   {
+    "record_id": "dinner.venue@S1-T3",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Korean restaurant",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Leo"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2024-10-05T10:02:00",
+    "supersedes": [],
+    "reason": "Orchard Café might be a bit over budget"
+   },
+   {
+    "record_id": "dinner.venue@S1-T6",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Orchard Café",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T6",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Grace",
+     "Maya"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2024-10-05T10:05:00",
+    "supersedes": [
+     "dinner.venue@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "dinner.venue@S1": {
+    "question": "Which venue is currently confirmed for the team dinner?",
+    "kind": "current",
+    "lines": "S1-T2 Maya: dinner.venue = Orchard Café [superseded] | sources=S1-T2\nS1-T3 Leo: dinner.venue = Korean restaurant [proposed] | sources=S1-T3\nS1-T6 Grace: dinner.venue = Orchard Café [active] | sources=S1-T6,S1-T2"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T2 Maya: dinner.venue = Orchard Café [superseded] | sources=S1-T2",
+   "S1-T3 Leo: dinner.venue = Korean restaurant [proposed] | sources=S1-T3",
+   "S1-T6 Grace: dinner.venue = Orchard Café [active] | sources=S1-T6,S1-T2",
+   "S2-T1 Leo: dinner.venue = Harbour Café [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "dinner.venue@S1-T2",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Orchard Café",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-10-05T10:01:00",
+    "supersedes": [],
+    "reason": "I am craving Western food and something fancy."
+   },
+   {
+    "record_id": "dinner.venue@S1-T3",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Korean restaurant",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Leo"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2024-10-05T10:02:00",
+    "supersedes": [],
+    "reason": "Orchard Café might be a bit over budget"
+   },
+   {
+    "record_id": "dinner.venue@S1-T6",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Orchard Café",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T6",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Grace",
+     "Maya"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2024-10-05T10:05:00",
+    "supersedes": [
+     "dinner.venue@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "dinner.venue@S2-T1",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Harbour Café",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Leo"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2024-10-07T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "dinner.venue@S2": {
+    "question": "Which venue is currently confirmed for the team dinner?",
+    "kind": "current",
+    "lines": "S1-T2 Maya: dinner.venue = Orchard Café [superseded] | sources=S1-T2\nS1-T3 Leo: dinner.venue = Korean restaurant [proposed] | sources=S1-T3\nS1-T6 Grace: dinner.venue = Orchard Café [active] | sources=S1-T6,S1-T2\nS2-T1 Leo: dinner.venue = Harbour Café [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T2 Maya: dinner.venue = Orchard Café [superseded] | sources=S1-T2",
+   "S1-T3 Leo: dinner.venue = Korean restaurant [proposed] | sources=S1-T3",
+   "S1-T6 Grace: dinner.venue = Orchard Café [superseded] | sources=S1-T6,S1-T2",
+   "S2-T1 Leo: dinner.venue = Harbour Café [superseded] | sources=S2-T1",
+   "S3-T2 Leo: dinner.venue = Harbour Café [active] | sources=S3-T2,S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "dinner.venue@S1-T2",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Orchard Café",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-10-05T10:01:00",
+    "supersedes": [],
+    "reason": "I am craving Western food and something fancy."
+   },
+   {
+    "record_id": "dinner.venue@S1-T3",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Korean restaurant",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Leo"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2024-10-05T10:02:00",
+    "supersedes": [],
+    "reason": "Orchard Café might be a bit over budget"
+   },
+   {
+    "record_id": "dinner.venue@S1-T6",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Orchard Café",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T6",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Grace",
+     "Maya"
+    ],
+    "created_turn": "S1-T6",
+    "created_at": "2024-10-05T10:05:00",
+    "supersedes": [
+     "dinner.venue@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "dinner.venue@S2-T1",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Harbour Café",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Leo"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2024-10-07T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "dinner.venue@S3-T2",
+    "project_id": "team-dinner",
+    "item": "dinner.venue",
+    "value": "Harbour Café",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S2-T1"
+    ],
+    "speakers": [
+     "Leo",
+     "Leo"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2024-10-08T12:01:00",
+    "supersedes": [
+     "dinner.venue@S1-T6",
+     "dinner.venue@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "dinner.venue@S3": {
+    "question": "Which venue is currently confirmed for the team dinner?",
+    "kind": "current",
+    "lines": "S1-T3 Leo: dinner.venue = Korean restaurant [proposed] | sources=S1-T3\nS1-T6 Grace: dinner.venue = Orchard Café [superseded] | sources=S1-T6,S1-T2\nS2-T1 Leo: dinner.venue = Harbour Café [superseded] | sources=S2-T1\nS3-T2 Leo: dinner.venue = Harbour Café [active] | sources=S3-T2,S2-T1"
+   }
+  }
+ }
+}

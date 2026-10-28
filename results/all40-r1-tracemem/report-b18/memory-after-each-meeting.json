@@ -1,0 +1,414 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Maya: timeout.rescue = 120 seconds [active] | sources=S1-T1",
+   "S1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2",
+   "S1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2",
+   "S1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "timeout.rescue@S1-T1",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "120 seconds",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "We can't leave the simulator running forever."
+   },
+   {
+    "record_id": "timeout.mapping@S1-T2",
+    "project_id": "rescue-robot",
+    "item": "timeout.mapping",
+    "value": "60 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Joel"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-19T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "timeout.mapping@S1-T3",
+    "project_id": "rescue-robot",
+    "item": "timeout.mapping",
+    "value": "60 seconds",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Priya",
+     "Joel"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [
+     "timeout.mapping@S1-T2"
+    ],
+    "reason": "Different job, shorter run."
+   },
+   {
+    "record_id": "rescue.success@S1-T4",
+    "project_id": "rescue-robot",
+    "item": "rescue.success",
+    "value": "reach the target and return to the start",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-19T10:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "rescue.success@S1": {
+    "question": "What counts as a successful rescue?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [active] | sources=S1-T1\nS1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2\nS1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4"
+   },
+   "timeout.mapping@S1": {
+    "question": "What episode timeout are we using for mapping-only runs?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [active] | sources=S1-T1\nS1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2\nS1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4"
+   },
+   "timeout.rescue@S1": {
+    "question": "What episode timeout are we using for rescue runs?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [active] | sources=S1-T1\nS1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2\nS1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1",
+   "S1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2",
+   "S1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2,S2-T3",
+   "S1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4",
+   "S2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1",
+   "S2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "timeout.rescue@S1-T1",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "120 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "We can't leave the simulator running forever."
+   },
+   {
+    "record_id": "timeout.mapping@S1-T2",
+    "project_id": "rescue-robot",
+    "item": "timeout.mapping",
+    "value": "60 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Joel"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-19T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "timeout.mapping@S1-T3",
+    "project_id": "rescue-robot",
+    "item": "timeout.mapping",
+    "value": "60 seconds",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Priya",
+     "Joel",
+     "Priya"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [
+     "timeout.mapping@S1-T2"
+    ],
+    "reason": "Different job, shorter run."
+   },
+   {
+    "record_id": "rescue.success@S1-T4",
+    "project_id": "rescue-robot",
+    "item": "rescue.success",
+    "value": "reach the target and return to the start",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-19T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "timeout.rescue@S2-T1",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "180 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Joel"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-21T11:00:00",
+    "supersedes": [],
+    "reason": "The larger rescue maps are timing out while the robot is still moving."
+   },
+   {
+    "record_id": "timeout.rescue@S2-T2",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "180 seconds",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T1"
+    ],
+    "speakers": [
+     "Maya",
+     "Joel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-21T11:01:00",
+    "supersedes": [
+     "timeout.rescue@S1-T1",
+     "timeout.rescue@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "rescue.success@S2": {
+    "question": "What counts as a successful rescue?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1"
+   },
+   "timeout.mapping@S2": {
+    "question": "What episode timeout are we using for mapping-only runs?",
+    "kind": "current",
+    "lines": "S1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2\nS1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2,S2-T3\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1"
+   },
+   "timeout.rescue@S2": {
+    "question": "What episode timeout are we using for rescue runs?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1",
+   "S1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2",
+   "S1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2,S2-T3,S3-T3",
+   "S1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4,S3-T5",
+   "S2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1",
+   "S2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1,S3-T3",
+   "S3-T4 Joel: rescue.success = reaching the target counts as partial success [proposed] | sources=S3-T4"
+  ],
+  "records": [
+   {
+    "record_id": "timeout.rescue@S1-T1",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "120 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Maya"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-19T10:00:00",
+    "supersedes": [],
+    "reason": "We can't leave the simulator running forever."
+   },
+   {
+    "record_id": "timeout.mapping@S1-T2",
+    "project_id": "rescue-robot",
+    "item": "timeout.mapping",
+    "value": "60 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Joel"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-19T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "timeout.mapping@S1-T3",
+    "project_id": "rescue-robot",
+    "item": "timeout.mapping",
+    "value": "60 seconds",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2",
+     "S2-T3",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Priya",
+     "Joel",
+     "Priya",
+     "Maya"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-19T10:02:00",
+    "supersedes": [
+     "timeout.mapping@S1-T2"
+    ],
+    "reason": "Different job, shorter run."
+   },
+   {
+    "record_id": "rescue.success@S1-T4",
+    "project_id": "rescue-robot",
+    "item": "rescue.success",
+    "value": "reach the target and return to the start",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Maya",
+     "Priya"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-19T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "timeout.rescue@S2-T1",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "180 seconds",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Joel"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-10-21T11:00:00",
+    "supersedes": [],
+    "reason": "The larger rescue maps are timing out while the robot is still moving."
+   },
+   {
+    "record_id": "timeout.rescue@S2-T2",
+    "project_id": "rescue-robot",
+    "item": "timeout.rescue",
+    "value": "180 seconds",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T1",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Maya",
+     "Joel",
+     "Maya"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-21T11:01:00",
+    "supersedes": [
+     "timeout.rescue@S1-T1",
+     "timeout.rescue@S2-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "rescue.success@S3-T4",
+    "project_id": "rescue-robot",
+    "item": "rescue.success",
+    "value": "reaching the target counts as partial success",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T4"
+    ],
+    "speakers": [
+     "Joel"
+    ],
+    "created_turn": "S3-T4",
+    "created_at": "2026-10-23T12:03:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "rescue.success@S3": {
+    "question": "What counts as a successful rescue?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4,S3-T5\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS3-T4 Joel: rescue.success = reaching the target counts as partial success [proposed] | sources=S3-T4"
+   },
+   "timeout.mapping@S3": {
+    "question": "What episode timeout are we using for mapping-only runs?",
+    "kind": "current",
+    "lines": "S1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2\nS1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2,S2-T3,S3-T3\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1,S3-T3"
+   },
+   "timeout.rescue@S3": {
+    "question": "What episode timeout are we using for rescue runs?",
+    "kind": "current",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4,S3-T5\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1,S3-T3"
+   },
+   "timeout.rescue@S3-previous": {
+    "question": "Which rescue-run timeout, if any, did we use before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Maya: timeout.rescue = 120 seconds [superseded] | sources=S1-T1\nS1-T2 Joel: timeout.mapping = 60 seconds [superseded] | sources=S1-T2\nS1-T3 Priya: timeout.mapping = 60 seconds [active] | sources=S1-T3,S1-T2,S2-T3,S3-T3\nS1-T4 Maya: rescue.success = reach the target and return to the start [active] | sources=S1-T4,S3-T5\nS2-T1 Joel: timeout.rescue = 180 seconds [superseded] | sources=S2-T1\nS2-T2 Maya: timeout.rescue = 180 seconds [active] | sources=S2-T2,S2-T1,S3-T3\nS3-T4 Joel: rescue.success = reaching the target counts as partial success [proposed] | sources=S3-T4"
+   }
+  }
+ }
+}

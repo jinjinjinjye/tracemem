@@ -1,0 +1,392 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1",
+   "S1-T2 Raj: kettle.colour = cream [active] | sources=S1-T2,S1-T1,S1-T5",
+   "S1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3",
+   "S1-T4 Emma: kettle.fulfilment = store pickup [active] | sources=S1-T4,S1-T3,S1-T5"
+  ],
+  "records": [
+   {
+    "record_id": "kettle.colour@S1-T1",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "cream",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-05-11T10:00:00",
+    "supersedes": [],
+    "reason": "It would match the kitchen."
+   },
+   {
+    "record_id": "kettle.colour@S1-T2",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "cream",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Raj",
+     "Emma",
+     "Raj"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-05-11T10:01:00",
+    "supersedes": [
+     "kettle.colour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S1-T3",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "store pickup",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-05-11T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S1-T4",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "store pickup",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Emma",
+     "Luis",
+     "Raj"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-05-11T10:03:00",
+    "supersedes": [
+     "kettle.fulfilment@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "kettle.colour@S1": {
+    "question": "What colour kettle are we buying?",
+    "kind": "current",
+    "lines": "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1\nS1-T2 Raj: kettle.colour = cream [active] | sources=S1-T2,S1-T1,S1-T5\nS1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3\nS1-T4 Emma: kettle.fulfilment = store pickup [active] | sources=S1-T4,S1-T3,S1-T5"
+   },
+   "kettle.fulfilment@S1": {
+    "question": "How are we getting the kettle?",
+    "kind": "current",
+    "lines": "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1\nS1-T2 Raj: kettle.colour = cream [active] | sources=S1-T2,S1-T1,S1-T5\nS1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3\nS1-T4 Emma: kettle.fulfilment = store pickup [active] | sources=S1-T4,S1-T3,S1-T5"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1",
+   "S1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5",
+   "S1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3",
+   "S1-T4 Emma: kettle.fulfilment = store pickup [active] | sources=S1-T4,S1-T3,S1-T5",
+   "S2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5"
+  ],
+  "records": [
+   {
+    "record_id": "kettle.colour@S1-T1",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "cream",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-05-11T10:00:00",
+    "supersedes": [],
+    "reason": "It would match the kitchen."
+   },
+   {
+    "record_id": "kettle.colour@S1-T2",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "cream",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Raj",
+     "Emma",
+     "Raj"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-05-11T10:01:00",
+    "supersedes": [
+     "kettle.colour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S1-T3",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "store pickup",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-05-11T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S1-T4",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "store pickup",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Emma",
+     "Luis",
+     "Raj"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-05-11T10:03:00",
+    "supersedes": [
+     "kettle.fulfilment@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.colour@S2-T2",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "green",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T4",
+     "S2-T5"
+    ],
+    "speakers": [
+     "Emma",
+     "Luis",
+     "Raj"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-05-14T11:01:00",
+    "supersedes": [
+     "kettle.colour@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "kettle.colour@S2": {
+    "question": "What colour kettle are we buying?",
+    "kind": "current",
+    "lines": "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1\nS1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5\nS1-T4 Emma: kettle.fulfilment = store pickup [active] | sources=S1-T4,S1-T3,S1-T5\nS2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5"
+   },
+   "kettle.fulfilment@S2": {
+    "question": "How are we getting the kettle?",
+    "kind": "current",
+    "lines": "S1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5\nS1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3\nS1-T4 Emma: kettle.fulfilment = store pickup [active] | sources=S1-T4,S1-T3,S1-T5\nS2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1",
+   "S1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5",
+   "S1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3",
+   "S1-T4 Emma: kettle.fulfilment = store pickup [superseded] | sources=S1-T4,S1-T3,S1-T5",
+   "S2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5,S3-T5",
+   "S3-T2 Luis: kettle.fulfilment = home delivery [active] | sources=S3-T2,S3-T4,S3-T5"
+  ],
+  "records": [
+   {
+    "record_id": "kettle.colour@S1-T1",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "cream",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Emma"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-05-11T10:00:00",
+    "supersedes": [],
+    "reason": "It would match the kitchen."
+   },
+   {
+    "record_id": "kettle.colour@S1-T2",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "cream",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Raj",
+     "Emma",
+     "Raj"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-05-11T10:01:00",
+    "supersedes": [
+     "kettle.colour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S1-T3",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "store pickup",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-05-11T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S1-T4",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "store pickup",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Emma",
+     "Luis",
+     "Raj"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-05-11T10:03:00",
+    "supersedes": [
+     "kettle.fulfilment@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.colour@S2-T2",
+    "project_id": "shared-kettle",
+    "item": "kettle.colour",
+    "value": "green",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T4",
+     "S2-T5",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Emma",
+     "Luis",
+     "Raj",
+     "Raj"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-05-14T11:01:00",
+    "supersedes": [
+     "kettle.colour@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "kettle.fulfilment@S3-T2",
+    "project_id": "shared-kettle",
+    "item": "kettle.fulfilment",
+    "value": "home delivery",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S3-T4",
+     "S3-T5"
+    ],
+    "speakers": [
+     "Luis",
+     "Emma",
+     "Raj"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-05-16T12:01:00",
+    "supersedes": [
+     "kettle.fulfilment@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "kettle.colour@S3": {
+    "question": "What colour kettle are we buying?",
+    "kind": "current",
+    "lines": "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1\nS1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5\nS1-T4 Emma: kettle.fulfilment = store pickup [superseded] | sources=S1-T4,S1-T3,S1-T5\nS2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5,S3-T5"
+   },
+   "kettle.colour@S3-previous": {
+    "question": "Which kettle colour, if any, did we choose before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1\nS1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5\nS1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3\nS1-T4 Emma: kettle.fulfilment = store pickup [superseded] | sources=S1-T4,S1-T3,S1-T5\nS2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5,S3-T5\nS3-T2 Luis: kettle.fulfilment = home delivery [active] | sources=S3-T2,S3-T4,S3-T5"
+   },
+   "kettle.fulfilment@S3": {
+    "question": "How are we getting the kettle?",
+    "kind": "current",
+    "lines": "S1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3\nS1-T4 Emma: kettle.fulfilment = store pickup [superseded] | sources=S1-T4,S1-T3,S1-T5\nS2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5,S3-T5\nS3-T2 Luis: kettle.fulfilment = home delivery [active] | sources=S3-T2,S3-T4,S3-T5"
+   },
+   "kettle.fulfilment@S3-previous": {
+    "question": "Which way of getting the kettle, if any, did we choose before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Emma: kettle.colour = cream [superseded] | sources=S1-T1\nS1-T2 Raj: kettle.colour = cream [superseded] | sources=S1-T2,S1-T1,S1-T5\nS1-T3 Luis: kettle.fulfilment = store pickup [superseded] | sources=S1-T3\nS1-T4 Emma: kettle.fulfilment = store pickup [superseded] | sources=S1-T4,S1-T3,S1-T5\nS2-T2 Emma: kettle.colour = green [active] | sources=S2-T2,S2-T4,S2-T5,S3-T5\nS3-T2 Luis: kettle.fulfilment = home delivery [active] | sources=S3-T2,S3-T4,S3-T5"
+   }
+  }
+ }
+}

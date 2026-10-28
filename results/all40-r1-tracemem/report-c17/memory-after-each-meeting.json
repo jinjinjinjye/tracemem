@@ -1,0 +1,403 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Ewan: watering.monday = Ewan [active] | sources=S1-T1,S1-T4",
+   "S1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "watering.monday@S1-T1",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Ewan",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ewan",
+     "Vera"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-09-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.wednesday@S1-T2",
+    "project_id": "garden-watering",
+    "item": "watering.wednesday",
+    "value": "Malik",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Malik",
+     "Vera"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-09-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "watering.monday@S1": {
+    "question": "Who is responsible for Monday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [active] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4"
+   },
+   "watering.wednesday@S1": {
+    "question": "Who is responsible for Wednesday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [active] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4",
+   "S1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4",
+   "S2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2",
+   "S2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3"
+  ],
+  "records": [
+   {
+    "record_id": "watering.monday@S1-T1",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Ewan",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ewan",
+     "Vera"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-09-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.wednesday@S1-T2",
+    "project_id": "garden-watering",
+    "item": "watering.wednesday",
+    "value": "Malik",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Malik",
+     "Vera"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-09-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.monday@S2-T2",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Tessa",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Tessa"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2024-09-04T11:01:00",
+    "supersedes": [
+     "watering.monday@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "watering.monday@S2-T3",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Tessa",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ewan"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2024-09-04T11:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "watering.monday@S2": {
+    "question": "Who is responsible for Monday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4\nS2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3"
+   },
+   "watering.wednesday@S2": {
+    "question": "Who is responsible for Wednesday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4\nS2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4",
+   "S1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4",
+   "S2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2,S3-T3",
+   "S2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3"
+  ],
+  "records": [
+   {
+    "record_id": "watering.monday@S1-T1",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Ewan",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ewan",
+     "Vera"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-09-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.wednesday@S1-T2",
+    "project_id": "garden-watering",
+    "item": "watering.wednesday",
+    "value": "Malik",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Malik",
+     "Vera"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-09-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.monday@S2-T2",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Tessa",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Tessa",
+     "Ewan"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2024-09-04T11:01:00",
+    "supersedes": [
+     "watering.monday@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "watering.monday@S2-T3",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Tessa",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ewan"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2024-09-04T11:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "watering.monday@S3": {
+    "question": "Who is responsible for Monday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4\nS2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2,S3-T3\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3"
+   },
+   "watering.wednesday@S3": {
+    "question": "Who is responsible for Wednesday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [active] | sources=S1-T2,S1-T4\nS2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2,S3-T3\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4",
+   "S1-T2 Malik: watering.wednesday = Malik [superseded] | sources=S1-T2,S1-T4",
+   "S2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2,S3-T3",
+   "S2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3",
+   "S4-T2 Vera: watering.wednesday = Vera [superseded] | sources=S4-T2",
+   "S4-T3 Malik: watering.wednesday = Vera [active] | sources=S4-T3,S4-T2"
+  ],
+  "records": [
+   {
+    "record_id": "watering.monday@S1-T1",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Ewan",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Ewan",
+     "Vera"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2024-09-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.wednesday@S1-T2",
+    "project_id": "garden-watering",
+    "item": "watering.wednesday",
+    "value": "Malik",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Malik",
+     "Vera"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2024-09-02T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.monday@S2-T2",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Tessa",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Tessa",
+     "Ewan"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2024-09-04T11:01:00",
+    "supersedes": [
+     "watering.monday@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "watering.monday@S2-T3",
+    "project_id": "garden-watering",
+    "item": "watering.monday",
+    "value": "Tessa",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ewan"
+    ],
+    "created_turn": "S2-T3",
+    "created_at": "2024-09-04T11:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.wednesday@S4-T2",
+    "project_id": "garden-watering",
+    "item": "watering.wednesday",
+    "value": "Vera",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Vera"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2024-09-09T13:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "watering.wednesday@S4-T3",
+    "project_id": "garden-watering",
+    "item": "watering.wednesday",
+    "value": "Vera",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S4-T2"
+    ],
+    "speakers": [
+     "Malik",
+     "Vera"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2024-09-09T13:02:00",
+    "supersedes": [
+     "watering.wednesday@S1-T2",
+     "watering.wednesday@S4-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "watering.monday@S4": {
+    "question": "Who is responsible for Monday watering?",
+    "kind": "current",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3\nS4-T2 Vera: watering.wednesday = Vera [superseded] | sources=S4-T2\nS4-T3 Malik: watering.wednesday = Vera [active] | sources=S4-T3,S4-T2"
+   },
+   "watering.monday@S4-previous": {
+    "question": "Who, if anyone, was responsible for Monday watering before the current volunteer?",
+    "kind": "previous",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [superseded] | sources=S1-T2,S1-T4\nS2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2,S3-T3\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3\nS4-T2 Vera: watering.wednesday = Vera [superseded] | sources=S4-T2\nS4-T3 Malik: watering.wednesday = Vera [active] | sources=S4-T3,S4-T2"
+   },
+   "watering.wednesday@S4": {
+    "question": "Who is responsible for Wednesday watering?",
+    "kind": "current",
+    "lines": "S1-T2 Malik: watering.wednesday = Malik [superseded] | sources=S1-T2,S1-T4\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3\nS4-T2 Vera: watering.wednesday = Vera [superseded] | sources=S4-T2\nS4-T3 Malik: watering.wednesday = Vera [active] | sources=S4-T3,S4-T2"
+   },
+   "watering.wednesday@S4-previous": {
+    "question": "Who, if anyone, was responsible for Wednesday watering before the current volunteer?",
+    "kind": "previous",
+    "lines": "S1-T1 Ewan: watering.monday = Ewan [superseded] | sources=S1-T1,S1-T4\nS1-T2 Malik: watering.wednesday = Malik [superseded] | sources=S1-T2,S1-T4\nS2-T2 Tessa: watering.monday = Tessa [active] | sources=S2-T2,S3-T3\nS2-T3 Ewan: watering.monday = Tessa [proposed] | sources=S2-T3\nS4-T2 Vera: watering.wednesday = Vera [superseded] | sources=S4-T2\nS4-T3 Malik: watering.wednesday = Vera [active] | sources=S4-T3,S4-T2"
+   }
+  }
+ }
+}

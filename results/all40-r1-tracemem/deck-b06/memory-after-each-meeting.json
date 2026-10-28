@@ -1,0 +1,667 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1",
+   "S1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4",
+   "S1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3",
+   "S1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "recording.platform@S1-T1",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Jae"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S1-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Kira",
+     "Jae",
+     "Jae"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "recording.platform@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T3",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T4",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Jae",
+     "Luis"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "episode.topic@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "episode.topic@S1": {
+    "question": "What is the selected episode topic?",
+    "kind": "current",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3"
+   },
+   "recording.platform@S1": {
+    "question": "Which recording platform have we selected?",
+    "kind": "current",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1",
+   "S1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4",
+   "S1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3",
+   "S1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Kira: recording.platform = Zoom [proposed] | sources=S2-T2"
+  ],
+  "records": [
+   {
+    "record_id": "recording.platform@S1-T1",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Jae"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S1-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Kira",
+     "Jae",
+     "Jae"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "recording.platform@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T3",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T4",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Jae",
+     "Luis"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "episode.topic@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S2-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Kira"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-05T11:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "episode.topic@S2": {
+    "question": "What is the selected episode topic?",
+    "kind": "current",
+    "lines": "S1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS2-T2 Kira: recording.platform = Zoom [proposed] | sources=S2-T2"
+   },
+   "recording.platform@S2": {
+    "question": "Which recording platform have we selected?",
+    "kind": "current",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS2-T2 Kira: recording.platform = Zoom [proposed] | sources=S2-T2"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1",
+   "S1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4",
+   "S1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3",
+   "S1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Kira: recording.platform = Zoom [proposed] | sources=S2-T2"
+  ],
+  "records": [
+   {
+    "record_id": "recording.platform@S1-T1",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Jae"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S1-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Kira",
+     "Jae",
+     "Jae"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "recording.platform@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T3",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T4",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Jae",
+     "Luis"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "episode.topic@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S2-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Kira"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-05T11:01:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "episode.topic@S3": {
+    "question": "What is the selected episode topic?",
+    "kind": "current",
+    "lines": "S1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS2-T2 Kira: recording.platform = Zoom [proposed] | sources=S2-T2"
+   },
+   "recording.platform@S3": {
+    "question": "Which recording platform have we selected?",
+    "kind": "current",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [active] | sources=S1-T2,S1-T1,S1-T4\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS2-T2 Kira: recording.platform = Zoom [proposed] | sources=S2-T2"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1",
+   "S1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4",
+   "S1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3",
+   "S1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Kira: recording.platform = Zoom [superseded] | sources=S2-T2",
+   "S4-T2 Kira: recording.platform = Zoom [superseded] | sources=S4-T2",
+   "S4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+  ],
+  "records": [
+   {
+    "record_id": "recording.platform@S1-T1",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Jae"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S1-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Kira",
+     "Jae",
+     "Jae"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "recording.platform@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T3",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T4",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Jae",
+     "Luis"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "episode.topic@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S2-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Kira"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-05T11:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S4-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Kira"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2026-10-11T13:01:00",
+    "supersedes": [],
+    "reason": "a lot of people are recommending it"
+   },
+   {
+    "record_id": "recording.platform@S4-T3",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S2-T2",
+     "S4-T2"
+    ],
+    "speakers": [
+     "Luis",
+     "Kira",
+     "Kira"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-11T13:02:00",
+    "supersedes": [
+     "recording.platform@S1-T2",
+     "recording.platform@S2-T2",
+     "recording.platform@S4-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "episode.topic@S4": {
+    "question": "What is the selected episode topic?",
+    "kind": "current",
+    "lines": "S1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+   },
+   "recording.platform@S4": {
+    "question": "Which recording platform have we selected?",
+    "kind": "current",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4\nS4-T2 Kira: recording.platform = Zoom [superseded] | sources=S4-T2\nS4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1",
+   "S1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4",
+   "S1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3",
+   "S1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Kira: recording.platform = Zoom [superseded] | sources=S2-T2",
+   "S4-T2 Kira: recording.platform = Zoom [superseded] | sources=S4-T2",
+   "S4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+  ],
+  "records": [
+   {
+    "record_id": "recording.platform@S1-T1",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Jae"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S1-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Riverside",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Kira",
+     "Jae",
+     "Jae"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "recording.platform@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T3",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Luis"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "episode.topic@S1-T4",
+    "project_id": "podcast-episode",
+    "item": "episode.topic",
+    "value": "urban gardening",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Jae",
+     "Luis"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "episode.topic@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S2-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T2"
+    ],
+    "speakers": [
+     "Kira"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-05T11:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "recording.platform@S4-T2",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Kira"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2026-10-11T13:01:00",
+    "supersedes": [],
+    "reason": "a lot of people are recommending it"
+   },
+   {
+    "record_id": "recording.platform@S4-T3",
+    "project_id": "podcast-episode",
+    "item": "recording.platform",
+    "value": "Zoom",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S2-T2",
+     "S4-T2"
+    ],
+    "speakers": [
+     "Luis",
+     "Kira",
+     "Kira"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2026-10-11T13:02:00",
+    "supersedes": [
+     "recording.platform@S1-T2",
+     "recording.platform@S2-T2",
+     "recording.platform@S4-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "episode.topic@S5": {
+    "question": "What is the selected episode topic?",
+    "kind": "current",
+    "lines": "S1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+   },
+   "recording.platform@S5": {
+    "question": "Which recording platform have we selected?",
+    "kind": "current",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4\nS4-T2 Kira: recording.platform = Zoom [superseded] | sources=S4-T2\nS4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+   },
+   "recording.platform@S5-previous": {
+    "question": "Which recording platform, if any, did we use before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Jae: recording.platform = Riverside [superseded] | sources=S1-T1\nS1-T2 Kira: recording.platform = Riverside [superseded] | sources=S1-T2,S1-T1,S1-T4\nS1-T3 Luis: episode.topic = urban gardening [superseded] | sources=S1-T3\nS1-T4 Jae: episode.topic = urban gardening [active] | sources=S1-T4,S1-T3\nS2-T2 Kira: recording.platform = Zoom [superseded] | sources=S2-T2\nS4-T2 Kira: recording.platform = Zoom [superseded] | sources=S4-T2\nS4-T3 Luis: recording.platform = Zoom [active] | sources=S4-T3,S2-T2,S4-T2"
+   }
+  }
+ }
+}

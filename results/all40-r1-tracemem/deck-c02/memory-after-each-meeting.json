@@ -1,0 +1,226 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1"
+  ],
+  "records": [
+   {
+    "record_id": "update.topic@S1-T1",
+    "project_id": "neighbourhood-news",
+    "item": "update.topic",
+    "value": "hot weather",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nadia"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-09-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "update.format@S1": {
+    "question": "What format have we chosen for the update?",
+    "kind": "current",
+    "lines": "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1"
+   },
+   "update.topic@S1": {
+    "question": "What topic has the team settled on for the update?",
+    "kind": "current",
+    "lines": "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1",
+   "S2-T1 Priya: update.topic = rising rents [proposed] | sources=S2-T1",
+   "S2-T4 Priya: update.format = audio update [superseded] | sources=S2-T4",
+   "S2-T5 Nadia: update.format = audio update [active] | sources=S2-T5,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "update.topic@S1-T1",
+    "project_id": "neighbourhood-news",
+    "item": "update.topic",
+    "value": "hot weather",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nadia"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-09-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "update.topic@S2-T1",
+    "project_id": "neighbourhood-news",
+    "item": "update.topic",
+    "value": "rising rents",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Priya"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-09-02T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "update.format@S2-T4",
+    "project_id": "neighbourhood-news",
+    "item": "update.format",
+    "value": "audio update",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Priya"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-09-02T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "update.format@S2-T5",
+    "project_id": "neighbourhood-news",
+    "item": "update.format",
+    "value": "audio update",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Nadia",
+     "Priya"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-09-02T11:04:00",
+    "supersedes": [
+     "update.format@S2-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "update.format@S2": {
+    "question": "What format have we chosen for the update?",
+    "kind": "current",
+    "lines": "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1\nS2-T1 Priya: update.topic = rising rents [proposed] | sources=S2-T1\nS2-T4 Priya: update.format = audio update [superseded] | sources=S2-T4\nS2-T5 Nadia: update.format = audio update [active] | sources=S2-T5,S2-T4"
+   },
+   "update.topic@S2": {
+    "question": "What topic has the team settled on for the update?",
+    "kind": "current",
+    "lines": "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1\nS2-T1 Priya: update.topic = rising rents [proposed] | sources=S2-T1\nS2-T4 Priya: update.format = audio update [superseded] | sources=S2-T4\nS2-T5 Nadia: update.format = audio update [active] | sources=S2-T5,S2-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1",
+   "S2-T1 Priya: update.topic = rising rents [proposed] | sources=S2-T1",
+   "S2-T4 Priya: update.format = audio update [superseded] | sources=S2-T4",
+   "S2-T5 Nadia: update.format = audio update [active] | sources=S2-T5,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "update.topic@S1-T1",
+    "project_id": "neighbourhood-news",
+    "item": "update.topic",
+    "value": "hot weather",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nadia"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-09-01T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "update.topic@S2-T1",
+    "project_id": "neighbourhood-news",
+    "item": "update.topic",
+    "value": "rising rents",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Priya"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-09-02T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "update.format@S2-T4",
+    "project_id": "neighbourhood-news",
+    "item": "update.format",
+    "value": "audio update",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T4"
+    ],
+    "speakers": [
+     "Priya"
+    ],
+    "created_turn": "S2-T4",
+    "created_at": "2026-09-02T11:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "update.format@S2-T5",
+    "project_id": "neighbourhood-news",
+    "item": "update.format",
+    "value": "audio update",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T5",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Nadia",
+     "Priya"
+    ],
+    "created_turn": "S2-T5",
+    "created_at": "2026-09-02T11:04:00",
+    "supersedes": [
+     "update.format@S2-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "update.format@S3": {
+    "question": "What format have we chosen for the update?",
+    "kind": "current",
+    "lines": "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1\nS2-T1 Priya: update.topic = rising rents [proposed] | sources=S2-T1\nS2-T4 Priya: update.format = audio update [superseded] | sources=S2-T4\nS2-T5 Nadia: update.format = audio update [active] | sources=S2-T5,S2-T4"
+   },
+   "update.topic@S3": {
+    "question": "What topic has the team settled on for the update?",
+    "kind": "current",
+    "lines": "S1-T1 Nadia: update.topic = hot weather [active] | sources=S1-T1\nS2-T1 Priya: update.topic = rising rents [proposed] | sources=S2-T1\nS2-T4 Priya: update.format = audio update [superseded] | sources=S2-T4\nS2-T5 Nadia: update.format = audio update [active] | sources=S2-T5,S2-T4"
+   }
+  }
+ }
+}

@@ -1,0 +1,230 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2",
+   "S1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2",
+   "S1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "cleanup.meeting_point@S1-T2",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.meeting_point",
+    "value": "north entrance",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Moe"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cleanup.start_time@S1-T2",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.start_time",
+    "value": "8:30 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Moe"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cleanup.start_time@S1-T3",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.start_time",
+    "value": "8:30 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Nia",
+     "Moe"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [
+     "cleanup.start_time@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cleanup.meeting_point@S1": {
+    "question": "Where should participants meet for the beach cleanup?",
+    "kind": "current",
+    "lines": "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2\nS1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2\nS1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+   },
+   "cleanup.start_time@S1": {
+    "question": "What is the agreed start time for the beach cleanup?",
+    "kind": "current",
+    "lines": "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2\nS1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2\nS1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2",
+   "S1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2",
+   "S1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "cleanup.meeting_point@S1-T2",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.meeting_point",
+    "value": "north entrance",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Moe"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cleanup.start_time@S1-T2",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.start_time",
+    "value": "8:30 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Moe"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cleanup.start_time@S1-T3",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.start_time",
+    "value": "8:30 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Nia",
+     "Moe"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [
+     "cleanup.start_time@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cleanup.meeting_point@S2": {
+    "question": "Where should participants meet for the beach cleanup?",
+    "kind": "current",
+    "lines": "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2\nS1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2\nS1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+   },
+   "cleanup.start_time@S2": {
+    "question": "What is the agreed start time for the beach cleanup?",
+    "kind": "current",
+    "lines": "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2\nS1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2\nS1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2",
+   "S1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2",
+   "S1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+  ],
+  "records": [
+   {
+    "record_id": "cleanup.meeting_point@S1-T2",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.meeting_point",
+    "value": "north entrance",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Moe"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cleanup.start_time@S1-T2",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.start_time",
+    "value": "8:30 am",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2"
+    ],
+    "speakers": [
+     "Moe"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-01T10:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cleanup.start_time@S1-T3",
+    "project_id": "beach-cleanup",
+    "item": "cleanup.start_time",
+    "value": "8:30 am",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T2"
+    ],
+    "speakers": [
+     "Nia",
+     "Moe"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-01T10:02:00",
+    "supersedes": [
+     "cleanup.start_time@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cleanup.meeting_point@S3": {
+    "question": "Where should participants meet for the beach cleanup?",
+    "kind": "current",
+    "lines": "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2\nS1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2\nS1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+   },
+   "cleanup.start_time@S3": {
+    "question": "What is the agreed start time for the beach cleanup?",
+    "kind": "current",
+    "lines": "S1-T2 Moe: cleanup.meeting_point = north entrance [active] | sources=S1-T2\nS1-T2 Moe: cleanup.start_time = 8:30 am [superseded] | sources=S1-T2\nS1-T3 Nia: cleanup.start_time = 8:30 am [active] | sources=S1-T3,S1-T2"
+   }
+  }
+ }
+}

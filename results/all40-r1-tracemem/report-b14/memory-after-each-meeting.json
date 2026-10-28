@@ -1,0 +1,365 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1",
+   "S1-T2 Pavel: prints.size = A3 [active] | sources=S1-T2,S1-T1",
+   "S1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3",
+   "S1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "prints.size@S1-T1",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A3",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "prints.size@S1-T2",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A3",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Pavel",
+     "Ola"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "prints.size@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "exhibition.opening_date@S1-T3",
+    "project_id": "photo-exhibition",
+    "item": "exhibition.opening_date",
+    "value": "27 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "exhibition.opening_date@S1-T4",
+    "project_id": "photo-exhibition",
+    "item": "exhibition.opening_date",
+    "value": "27 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Pavel",
+     "Ola"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "exhibition.opening_date@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "exhibition.opening_date@S1": {
+    "question": "When does the exhibition open?",
+    "kind": "current",
+    "lines": "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1\nS1-T2 Pavel: prints.size = A3 [active] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3"
+   },
+   "prints.size@S1": {
+    "question": "What print size are we using for the exhibition?",
+    "kind": "current",
+    "lines": "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1\nS1-T2 Pavel: prints.size = A3 [active] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1",
+   "S1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1",
+   "S1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3",
+   "S1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Ola: prints.size = A2 [active] | sources=S2-T2,S2-T3"
+  ],
+  "records": [
+   {
+    "record_id": "prints.size@S1-T1",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A3",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "prints.size@S1-T2",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A3",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Pavel",
+     "Ola"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "prints.size@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "exhibition.opening_date@S1-T3",
+    "project_id": "photo-exhibition",
+    "item": "exhibition.opening_date",
+    "value": "27 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "exhibition.opening_date@S1-T4",
+    "project_id": "photo-exhibition",
+    "item": "exhibition.opening_date",
+    "value": "27 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Pavel",
+     "Ola"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "exhibition.opening_date@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "prints.size@S2-T2",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A2",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ola",
+     "Pavel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-05T11:01:00",
+    "supersedes": [
+     "prints.size@S1-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "exhibition.opening_date@S2": {
+    "question": "When does the exhibition open?",
+    "kind": "current",
+    "lines": "S1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3\nS2-T2 Ola: prints.size = A2 [active] | sources=S2-T2,S2-T3"
+   },
+   "prints.size@S2": {
+    "question": "What print size are we using for the exhibition?",
+    "kind": "current",
+    "lines": "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1\nS1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1",
+   "S1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1",
+   "S1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3",
+   "S1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3,S3-T3",
+   "S2-T2 Ola: prints.size = A2 [active] | sources=S2-T2,S2-T3",
+   "S3-T1 Ola: prints.size = A2 [proposed] | sources=S3-T1"
+  ],
+  "records": [
+   {
+    "record_id": "prints.size@S1-T1",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A3",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-10-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "prints.size@S1-T2",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A3",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Pavel",
+     "Ola"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2026-10-02T10:01:00",
+    "supersedes": [
+     "prints.size@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "exhibition.opening_date@S1-T3",
+    "project_id": "photo-exhibition",
+    "item": "exhibition.opening_date",
+    "value": "27 November",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-10-02T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "exhibition.opening_date@S1-T4",
+    "project_id": "photo-exhibition",
+    "item": "exhibition.opening_date",
+    "value": "27 November",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3",
+     "S3-T3"
+    ],
+    "speakers": [
+     "Pavel",
+     "Ola",
+     "Ola"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-10-02T10:03:00",
+    "supersedes": [
+     "exhibition.opening_date@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "prints.size@S2-T2",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A2",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T3"
+    ],
+    "speakers": [
+     "Ola",
+     "Pavel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-10-05T11:01:00",
+    "supersedes": [
+     "prints.size@S1-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "prints.size@S3-T1",
+    "project_id": "photo-exhibition",
+    "item": "prints.size",
+    "value": "A2",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S3-T1"
+    ],
+    "speakers": [
+     "Ola"
+    ],
+    "created_turn": "S3-T1",
+    "created_at": "2026-10-08T12:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "exhibition.opening_date@S3": {
+    "question": "When does the exhibition open?",
+    "kind": "current",
+    "lines": "S1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3,S3-T3\nS3-T1 Ola: prints.size = A2 [proposed] | sources=S3-T1"
+   },
+   "prints.size@S3": {
+    "question": "What print size are we using for the exhibition?",
+    "kind": "current",
+    "lines": "S1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3,S3-T3\nS3-T1 Ola: prints.size = A2 [proposed] | sources=S3-T1"
+   },
+   "prints.size@S3-previous": {
+    "question": "Which print size, if any, did we use for the exhibition before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Ola: prints.size = A3 [superseded] | sources=S1-T1\nS1-T2 Pavel: prints.size = A3 [superseded] | sources=S1-T2,S1-T1\nS1-T3 Ola: exhibition.opening_date = 27 November [superseded] | sources=S1-T3\nS1-T4 Pavel: exhibition.opening_date = 27 November [active] | sources=S1-T4,S1-T3,S3-T3\nS2-T2 Ola: prints.size = A2 [active] | sources=S2-T2,S2-T3\nS3-T1 Ola: prints.size = A2 [proposed] | sources=S3-T1"
+   }
+  }
+ }
+}

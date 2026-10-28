@@ -1,0 +1,476 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4",
+   "S1-T3 Yuki: pot.mint = green pot [active] | sources=S1-T3,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "pot.basil@S1-T1",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "terracotta pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Elena",
+     "Elena"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-03-14T10:00:00",
+    "supersedes": [],
+    "reason": "It has a drainage hole underneath."
+   },
+   {
+    "record_id": "pot.mint@S1-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "green pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Elena"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-03-14T10:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "pot.basil@S1": {
+    "question": "Which pot is assigned to the basil?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [active] | sources=S1-T3,S1-T4"
+   },
+   "pot.mint@S1": {
+    "question": "Which pot is assigned to the mint?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [active] | sources=S1-T3,S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4",
+   "S1-T3 Yuki: pot.mint = green pot [active] | sources=S1-T3,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "pot.basil@S1-T1",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "terracotta pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Elena",
+     "Elena"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-03-14T10:00:00",
+    "supersedes": [],
+    "reason": "It has a drainage hole underneath."
+   },
+   {
+    "record_id": "pot.mint@S1-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "green pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Elena"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-03-14T10:02:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "pot.basil@S2": {
+    "question": "Which pot is assigned to the basil?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [active] | sources=S1-T3,S1-T4"
+   },
+   "pot.mint@S2": {
+    "question": "Which pot is assigned to the mint?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [active] | sources=S1-T3,S1-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4",
+   "S1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4",
+   "S3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4"
+  ],
+  "records": [
+   {
+    "record_id": "pot.basil@S1-T1",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "terracotta pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Elena",
+     "Elena"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-03-14T10:00:00",
+    "supersedes": [],
+    "reason": "It has a drainage hole underneath."
+   },
+   {
+    "record_id": "pot.mint@S1-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "green pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Elena"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-03-14T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "pot.mint@S3-T2",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "white pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S3-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Marcus"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2025-03-20T12:01:00",
+    "supersedes": [
+     "pot.mint@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "pot.basil@S3": {
+    "question": "Which pot is assigned to the basil?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4"
+   },
+   "pot.mint@S3": {
+    "question": "Which pot is assigned to the mint?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [active] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4",
+   "S1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4",
+   "S3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4",
+   "S4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2",
+   "S4-T3 Yuki: pot.basil = cobalt-blue pot [active] | sources=S4-T3,S4-T2,S4-T4"
+  ],
+  "records": [
+   {
+    "record_id": "pot.basil@S1-T1",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "terracotta pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Elena",
+     "Elena"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-03-14T10:00:00",
+    "supersedes": [],
+    "reason": "It has a drainage hole underneath."
+   },
+   {
+    "record_id": "pot.mint@S1-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "green pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Elena"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-03-14T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "pot.mint@S3-T2",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "white pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S3-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Marcus"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2025-03-20T12:01:00",
+    "supersedes": [
+     "pot.mint@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "pot.basil@S4-T2",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "cobalt-blue pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Marcus"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-03-23T13:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "pot.basil@S4-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "cobalt-blue pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S4-T2",
+     "S4-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Marcus",
+     "Elena"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2025-03-23T13:02:00",
+    "supersedes": [
+     "pot.basil@S1-T1",
+     "pot.basil@S4-T2"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "pot.basil@S4": {
+    "question": "Which pot is assigned to the basil?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2\nS4-T3 Yuki: pot.basil = cobalt-blue pot [active] | sources=S4-T3,S4-T2,S4-T4"
+   },
+   "pot.mint@S4": {
+    "question": "Which pot is assigned to the mint?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4\nS4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4",
+   "S1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4",
+   "S3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4",
+   "S4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2",
+   "S4-T3 Yuki: pot.basil = cobalt-blue pot [active] | sources=S4-T3,S4-T2,S4-T4,S5-T3,S5-T4",
+   "S5-T1 Yuki: pot.mint = white pot [proposed] | sources=S5-T1"
+  ],
+  "records": [
+   {
+    "record_id": "pot.basil@S1-T1",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "terracotta pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Elena",
+     "Elena"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-03-14T10:00:00",
+    "supersedes": [],
+    "reason": "It has a drainage hole underneath."
+   },
+   {
+    "record_id": "pot.mint@S1-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "green pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Elena"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2025-03-14T10:02:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "pot.mint@S3-T2",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "white pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S3-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Marcus"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2025-03-20T12:01:00",
+    "supersedes": [
+     "pot.mint@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "pot.basil@S4-T2",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "cobalt-blue pot",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T2"
+    ],
+    "speakers": [
+     "Marcus"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-03-23T13:01:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "pot.basil@S4-T3",
+    "project_id": "balcony-herbs",
+    "item": "pot.basil",
+    "value": "cobalt-blue pot",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T3",
+     "S4-T2",
+     "S4-T4",
+     "S5-T3",
+     "S5-T4"
+    ],
+    "speakers": [
+     "Yuki",
+     "Marcus",
+     "Elena",
+     "Elena",
+     "Marcus"
+    ],
+    "created_turn": "S4-T3",
+    "created_at": "2025-03-23T13:02:00",
+    "supersedes": [
+     "pot.basil@S1-T1",
+     "pot.basil@S4-T2"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "pot.mint@S5-T1",
+    "project_id": "balcony-herbs",
+    "item": "pot.mint",
+    "value": "white pot",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S5-T1"
+    ],
+    "speakers": [
+     "Yuki"
+    ],
+    "created_turn": "S5-T1",
+    "created_at": "2025-03-26T14:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "pot.basil@S5": {
+    "question": "Which pot is assigned to the basil?",
+    "kind": "current",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4\nS4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2\nS4-T3 Yuki: pot.basil = cobalt-blue pot [active] | sources=S4-T3,S4-T2,S4-T4,S5-T3,S5-T4\nS5-T1 Yuki: pot.mint = white pot [proposed] | sources=S5-T1"
+   },
+   "pot.basil@S5-previous": {
+    "question": "Which pot, if any, did we use for the basil before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4\nS4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2\nS4-T3 Yuki: pot.basil = cobalt-blue pot [active] | sources=S4-T3,S4-T2,S4-T4,S5-T3,S5-T4\nS5-T1 Yuki: pot.mint = white pot [proposed] | sources=S5-T1"
+   },
+   "pot.mint@S5": {
+    "question": "Which pot is assigned to the mint?",
+    "kind": "current",
+    "lines": "S1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4\nS4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2\nS5-T1 Yuki: pot.mint = white pot [proposed] | sources=S5-T1"
+   },
+   "pot.mint@S5-previous": {
+    "question": "Which pot, if any, did we use for the mint before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Elena: pot.basil = terracotta pot [superseded] | sources=S1-T1,S1-T4\nS1-T3 Yuki: pot.mint = green pot [superseded] | sources=S1-T3,S1-T4\nS3-T2 Yuki: pot.mint = white pot [active] | sources=S3-T2,S3-T4\nS4-T2 Marcus: pot.basil = cobalt-blue pot [superseded] | sources=S4-T2\nS4-T3 Yuki: pot.basil = cobalt-blue pot [active] | sources=S4-T3,S4-T2,S4-T4,S5-T3,S5-T4\nS5-T1 Yuki: pot.mint = white pot [proposed] | sources=S5-T1"
+   }
+  }
+ }
+}

@@ -1,0 +1,114 @@
+# report-c12 ("A Birthday Surprise for Grandma"): TraceMem's memory at each meeting with questions
+
+Run 1 of 3 on Claude Haiku 5.5 at the final frozen settings (freeze-v1). For each meeting after which questions were asked: TraceMem's whole memory at that point, then, for each question, the lines the answering model was shown. A question about now was shown the 4 memory lines closest to it (all of them when memory held fewer). This scenario has no question about the past.
+
+How to read a line: `S1-T6 Grace: dinner.venue = Orchard Café [active] | sources=S1-T6,S1-T2` (from deck-b01, "Planning a team dinner") means the record was made at meeting 1, turn 6, by Grace; it says the dinner venue is Orchard Café; TraceMem holds it as the current decision; and it rests on turns S1-T6 (Grace: "Agreed. We should go for this promotion! Are the rest ok?") and S1-T2 (Maya: "How do you all think about Orchard Café."). The word in brackets is the record's status: `active` (the current decision), `proposed` (a suggestion nobody has decided on), `contested` (an open dispute against the current decision), `superseded` (replaced by a later decision) and `declined` (a dispute that lost).
+
+## After meeting 1 (S1): the whole memory (2 records)
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+```
+
+Shown for "What cake flavour has the family settled on?" (`cake.flavour@S1`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+```
+
+Shown for "What birthday-card format have we chosen?" (`card.format@S1`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+```
+
+## After meeting 2 (S2): the whole memory (3 records)
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+```
+
+Shown for "What cake flavour has the family settled on?" (`cake.flavour@S2`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+```
+
+## After meeting 3 (S3): the whole memory (3 records)
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+```
+
+Shown for "What cake flavour has the family settled on?" (`cake.flavour@S3`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+```
+
+## After meeting 4 (S4): the whole memory (5 records)
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+S4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1
+S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3
+```
+
+Shown for "What cake flavour has the family settled on?" (`cake.flavour@S4`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3
+```
+
+Shown for "What birthday-card format are we using?" (`card.format@S4`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+S4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1
+S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3
+```
+
+## After meeting 5 (S5): the whole memory (5 records)
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+S4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1
+S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3
+```
+
+Shown for "What cake flavour has the family settled on?" (`cake.flavour@S5`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3
+```
+
+Shown for "What birthday-card format are we using?" (`card.format@S5`, a question about now):
+
+```text
+S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1
+S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1
+S4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1
+S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3
+```

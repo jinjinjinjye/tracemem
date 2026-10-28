@@ -1,0 +1,438 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1",
+   "S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1"
+  ],
+  "records": [
+   {
+    "record_id": "cake.flavour@S1-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Hugo"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-06-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S1-T2",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora",
+     "Hugo"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-06-02T10:01:00",
+    "supersedes": [
+     "cake.flavour@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cake.flavour@S1": {
+    "question": "What cake flavour has the family settled on?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1"
+   },
+   "card.format@S1": {
+    "question": "What birthday-card format have we chosen?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1",
+   "S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1",
+   "S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "cake.flavour@S1-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Hugo"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-06-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S1-T2",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora",
+     "Hugo"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-06-02T10:01:00",
+    "supersedes": [
+     "cake.flavour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S2-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "chocolate",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-06-05T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cake.flavour@S2": {
+    "question": "What cake flavour has the family settled on?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1\nS2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1",
+   "S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1",
+   "S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "cake.flavour@S1-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Hugo"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-06-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S1-T2",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora",
+     "Hugo"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-06-02T10:01:00",
+    "supersedes": [
+     "cake.flavour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S2-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "chocolate",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-06-05T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cake.flavour@S3": {
+    "question": "What cake flavour has the family settled on?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1\nS2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1",
+   "S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1",
+   "S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1",
+   "S4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1",
+   "S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3"
+  ],
+  "records": [
+   {
+    "record_id": "cake.flavour@S1-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Hugo"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-06-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S1-T2",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora",
+     "Hugo"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-06-02T10:01:00",
+    "supersedes": [
+     "cake.flavour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S2-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "chocolate",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-06-05T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "card.format@S4-T1",
+    "project_id": "grandma-birthday",
+    "item": "card.format",
+    "value": "digital card",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Sanjay"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2025-06-10T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "card.format@S4-T2",
+    "project_id": "grandma-birthday",
+    "item": "card.format",
+    "value": "digital card",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T2",
+     "S4-T1",
+     "S4-T3"
+    ],
+    "speakers": [
+     "Hugo",
+     "Sanjay",
+     "Nora"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-06-10T13:01:00",
+    "supersedes": [
+     "card.format@S4-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cake.flavour@S4": {
+    "question": "What cake flavour has the family settled on?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1\nS2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1\nS4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3"
+   },
+   "card.format@S4": {
+    "question": "What birthday-card format are we using?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1\nS4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1\nS4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1",
+   "S1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1",
+   "S2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1",
+   "S4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1",
+   "S4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3"
+  ],
+  "records": [
+   {
+    "record_id": "cake.flavour@S1-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1"
+    ],
+    "speakers": [
+     "Hugo"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2025-06-02T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S1-T2",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "lemon",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T2",
+     "S1-T1"
+    ],
+    "speakers": [
+     "Nora",
+     "Hugo"
+    ],
+    "created_turn": "S1-T2",
+    "created_at": "2025-06-02T10:01:00",
+    "supersedes": [
+     "cake.flavour@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "cake.flavour@S2-T1",
+    "project_id": "grandma-birthday",
+    "item": "cake.flavour",
+    "value": "chocolate",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Nora"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2025-06-05T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "card.format@S4-T1",
+    "project_id": "grandma-birthday",
+    "item": "card.format",
+    "value": "digital card",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Sanjay"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2025-06-10T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "card.format@S4-T2",
+    "project_id": "grandma-birthday",
+    "item": "card.format",
+    "value": "digital card",
+    "status": "active",
+    "source_turn_ids": [
+     "S4-T2",
+     "S4-T1",
+     "S4-T3"
+    ],
+    "speakers": [
+     "Hugo",
+     "Sanjay",
+     "Nora"
+    ],
+    "created_turn": "S4-T2",
+    "created_at": "2025-06-10T13:01:00",
+    "supersedes": [
+     "card.format@S4-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "cake.flavour@S5": {
+    "question": "What cake flavour has the family settled on?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS1-T2 Nora: cake.flavour = lemon [active] | sources=S1-T2,S1-T1\nS2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1\nS4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3"
+   },
+   "card.format@S5": {
+    "question": "What birthday-card format are we using?",
+    "kind": "current",
+    "lines": "S1-T1 Hugo: cake.flavour = lemon [superseded] | sources=S1-T1\nS2-T1 Nora: cake.flavour = chocolate [proposed] | sources=S2-T1\nS4-T1 Sanjay: card.format = digital card [superseded] | sources=S4-T1\nS4-T2 Hugo: card.format = digital card [active] | sources=S4-T2,S4-T1,S4-T3"
+   }
+  }
+ }
+}

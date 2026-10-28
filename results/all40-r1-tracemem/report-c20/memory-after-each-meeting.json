@@ -1,0 +1,565 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Sienna: tote.fabric = lightweight cotton [active] | sources=S1-T1,S1-T4",
+   "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3",
+   "S1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3"
+  ],
+  "records": [
+   {
+    "record_id": "tote.fabric@S1-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "lightweight cotton",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Sienna",
+     "Sienna"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-02-05T10:00:00",
+    "supersedes": [],
+    "reason": "It should be easy for everyone to sew."
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T3",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-02-05T10:02:00",
+    "supersedes": [],
+    "reason": "without showing every little mark"
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T4",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Sienna",
+     "Rosa"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-02-05T10:03:00",
+    "supersedes": [
+     "tote.handle_colour@S1-T3"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "tote.fabric@S1": {
+    "question": "What fabric are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [active] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3"
+   },
+   "tote.handle_colour@S1": {
+    "question": "What colour handles are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [active] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4",
+   "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3",
+   "S1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "tote.fabric@S1-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "lightweight cotton",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Sienna",
+     "Sienna"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-02-05T10:00:00",
+    "supersedes": [],
+    "reason": "It should be easy for everyone to sew."
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T3",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-02-05T10:02:00",
+    "supersedes": [],
+    "reason": "without showing every little mark"
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T4",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Sienna",
+     "Rosa"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-02-05T10:03:00",
+    "supersedes": [
+     "tote.handle_colour@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "tote.fabric@S2-T2",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "canvas",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T3",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Sienna",
+     "Pavel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-02-08T11:01:00",
+    "supersedes": [
+     "tote.fabric@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "tote.fabric@S2": {
+    "question": "What fabric are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4"
+   },
+   "tote.handle_colour@S2": {
+    "question": "What colour handles are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4",
+   "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3",
+   "S1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4"
+  ],
+  "records": [
+   {
+    "record_id": "tote.fabric@S1-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "lightweight cotton",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Sienna",
+     "Sienna"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-02-05T10:00:00",
+    "supersedes": [],
+    "reason": "It should be easy for everyone to sew."
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T3",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-02-05T10:02:00",
+    "supersedes": [],
+    "reason": "without showing every little mark"
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T4",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Sienna",
+     "Rosa"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-02-05T10:03:00",
+    "supersedes": [
+     "tote.handle_colour@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "tote.fabric@S2-T2",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "canvas",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T3",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Sienna",
+     "Pavel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-02-08T11:01:00",
+    "supersedes": [
+     "tote.fabric@S1-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "tote.fabric@S3": {
+    "question": "What fabric are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4"
+   },
+   "tote.handle_colour@S3": {
+    "question": "What colour handles are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4"
+   }
+  }
+ },
+ "S4": {
+  "memory_lines": [
+   "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4",
+   "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3",
+   "S1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4",
+   "S4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1",
+   "S4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+  ],
+  "records": [
+   {
+    "record_id": "tote.fabric@S1-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "lightweight cotton",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Sienna",
+     "Sienna"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-02-05T10:00:00",
+    "supersedes": [],
+    "reason": "It should be easy for everyone to sew."
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T3",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-02-05T10:02:00",
+    "supersedes": [],
+    "reason": "without showing every little mark"
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T4",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Sienna",
+     "Rosa"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-02-05T10:03:00",
+    "supersedes": [
+     "tote.handle_colour@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "tote.fabric@S2-T2",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "canvas",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T3",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Sienna",
+     "Pavel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-02-08T11:01:00",
+    "supersedes": [
+     "tote.fabric@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "tote.fabric@S4-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "canvas",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Sienna"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-02-14T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "tote.handle_colour@S4-T1",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Sienna"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-02-14T13:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "tote.fabric@S4": {
+    "question": "What fabric are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4\nS4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1\nS4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+   },
+   "tote.handle_colour@S4": {
+    "question": "What colour handles are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1\nS4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+   }
+  }
+ },
+ "S5": {
+  "memory_lines": [
+   "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4",
+   "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3",
+   "S1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3",
+   "S2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4",
+   "S4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1",
+   "S4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+  ],
+  "records": [
+   {
+    "record_id": "tote.fabric@S1-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "lightweight cotton",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Sienna",
+     "Sienna"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-02-05T10:00:00",
+    "supersedes": [],
+    "reason": "It should be easy for everyone to sew."
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T3",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T3"
+    ],
+    "speakers": [
+     "Rosa"
+    ],
+    "created_turn": "S1-T3",
+    "created_at": "2026-02-05T10:02:00",
+    "supersedes": [],
+    "reason": "without showing every little mark"
+   },
+   {
+    "record_id": "tote.handle_colour@S1-T4",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T4",
+     "S1-T3"
+    ],
+    "speakers": [
+     "Sienna",
+     "Rosa"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-02-05T10:03:00",
+    "supersedes": [
+     "tote.handle_colour@S1-T3"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "tote.fabric@S2-T2",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "canvas",
+    "status": "active",
+    "source_turn_ids": [
+     "S2-T2",
+     "S2-T3",
+     "S2-T4"
+    ],
+    "speakers": [
+     "Rosa",
+     "Sienna",
+     "Pavel"
+    ],
+    "created_turn": "S2-T2",
+    "created_at": "2026-02-08T11:01:00",
+    "supersedes": [
+     "tote.fabric@S1-T1"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "tote.fabric@S4-T1",
+    "project_id": "tote-bags",
+    "item": "tote.fabric",
+    "value": "canvas",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Sienna"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-02-14T13:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "tote.handle_colour@S4-T1",
+    "project_id": "tote-bags",
+    "item": "tote.handle_colour",
+    "value": "navy blue",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S4-T1"
+    ],
+    "speakers": [
+     "Sienna"
+    ],
+    "created_turn": "S4-T1",
+    "created_at": "2026-02-14T13:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "tote.fabric@S5": {
+    "question": "What fabric are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4\nS4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1\nS4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+   },
+   "tote.fabric@S5-previous": {
+    "question": "Which fabric, if any, did we use for the tote bags before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Sienna: tote.fabric = lightweight cotton [superseded] | sources=S1-T1,S1-T4\nS1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS2-T2 Rosa: tote.fabric = canvas [active] | sources=S2-T2,S2-T3,S2-T4\nS4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1\nS4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+   },
+   "tote.handle_colour@S5": {
+    "question": "What colour handles are we using for the tote bags?",
+    "kind": "current",
+    "lines": "S1-T3 Rosa: tote.handle_colour = navy blue [superseded] | sources=S1-T3\nS1-T4 Sienna: tote.handle_colour = navy blue [active] | sources=S1-T4,S1-T3\nS4-T1 Sienna: tote.fabric = canvas [proposed] | sources=S4-T1\nS4-T1 Sienna: tote.handle_colour = navy blue [proposed] | sources=S4-T1"
+   }
+  }
+ }
+}

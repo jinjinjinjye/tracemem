@@ -1,0 +1,304 @@
+{
+ "S1": {
+  "memory_lines": [
+   "S1-T1 Zoe: project.topic = metro accessibility [active] | sources=S1-T1,S1-T5",
+   "S1-T4 Omar: project.format = poster [superseded] | sources=S1-T4",
+   "S1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4"
+  ],
+  "records": [
+   {
+    "record_id": "project.topic@S1-T1",
+    "project_id": "class-project",
+    "item": "project.topic",
+    "value": "metro accessibility",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5"
+    ],
+    "speakers": [
+     "Zoe",
+     "Zoe"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-04-06T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.format@S1-T4",
+    "project_id": "class-project",
+    "item": "project.format",
+    "value": "poster",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Omar"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-04-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.format@S1-T5",
+    "project_id": "class-project",
+    "item": "project.format",
+    "value": "poster",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Zoe",
+     "Omar"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-04-06T10:04:00",
+    "supersedes": [
+     "project.format@S1-T4"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "project.format@S1": {
+    "question": "What presentation format are we using?",
+    "kind": "current",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [active] | sources=S1-T1,S1-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4"
+   },
+   "project.topic@S1": {
+    "question": "What is the confirmed project topic?",
+    "kind": "current",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [active] | sources=S1-T1,S1-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4"
+   }
+  }
+ },
+ "S2": {
+  "memory_lines": [
+   "S1-T1 Zoe: project.topic = metro accessibility [active] | sources=S1-T1,S1-T5,S2-T5",
+   "S1-T4 Omar: project.format = poster [superseded] | sources=S1-T4",
+   "S1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4",
+   "S2-T1 Hannah: project.topic = canteen food waste [proposed] | sources=S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "project.topic@S1-T1",
+    "project_id": "class-project",
+    "item": "project.topic",
+    "value": "metro accessibility",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5",
+     "S2-T5"
+    ],
+    "speakers": [
+     "Zoe",
+     "Zoe",
+     "Zoe"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-04-06T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.format@S1-T4",
+    "project_id": "class-project",
+    "item": "project.format",
+    "value": "poster",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Omar"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-04-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.format@S1-T5",
+    "project_id": "class-project",
+    "item": "project.format",
+    "value": "poster",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Zoe",
+     "Omar"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-04-06T10:04:00",
+    "supersedes": [
+     "project.format@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "project.topic@S2-T1",
+    "project_id": "class-project",
+    "item": "project.topic",
+    "value": "canteen food waste",
+    "status": "proposed",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Hannah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-04-08T11:00:00",
+    "supersedes": [],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "project.format@S2": {
+    "question": "What presentation format are we using?",
+    "kind": "current",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [active] | sources=S1-T1,S1-T5,S2-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4\nS2-T1 Hannah: project.topic = canteen food waste [proposed] | sources=S2-T1"
+   },
+   "project.topic@S2": {
+    "question": "What is the confirmed project topic?",
+    "kind": "current",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [active] | sources=S1-T1,S1-T5,S2-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4\nS2-T1 Hannah: project.topic = canteen food waste [proposed] | sources=S2-T1"
+   }
+  }
+ },
+ "S3": {
+  "memory_lines": [
+   "S1-T1 Zoe: project.topic = metro accessibility [superseded] | sources=S1-T1,S1-T5,S2-T5",
+   "S1-T4 Omar: project.format = poster [superseded] | sources=S1-T4",
+   "S1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4",
+   "S2-T1 Hannah: project.topic = canteen food waste [superseded] | sources=S2-T1",
+   "S3-T2 Zoe: project.topic = canteen food waste [active] | sources=S3-T2,S2-T1"
+  ],
+  "records": [
+   {
+    "record_id": "project.topic@S1-T1",
+    "project_id": "class-project",
+    "item": "project.topic",
+    "value": "metro accessibility",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T1",
+     "S1-T5",
+     "S2-T5"
+    ],
+    "speakers": [
+     "Zoe",
+     "Zoe",
+     "Zoe"
+    ],
+    "created_turn": "S1-T1",
+    "created_at": "2026-04-06T10:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.format@S1-T4",
+    "project_id": "class-project",
+    "item": "project.format",
+    "value": "poster",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S1-T4"
+    ],
+    "speakers": [
+     "Omar"
+    ],
+    "created_turn": "S1-T4",
+    "created_at": "2026-04-06T10:03:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.format@S1-T5",
+    "project_id": "class-project",
+    "item": "project.format",
+    "value": "poster",
+    "status": "active",
+    "source_turn_ids": [
+     "S1-T5",
+     "S1-T4"
+    ],
+    "speakers": [
+     "Zoe",
+     "Omar"
+    ],
+    "created_turn": "S1-T5",
+    "created_at": "2026-04-06T10:04:00",
+    "supersedes": [
+     "project.format@S1-T4"
+    ],
+    "reason": null
+   },
+   {
+    "record_id": "project.topic@S2-T1",
+    "project_id": "class-project",
+    "item": "project.topic",
+    "value": "canteen food waste",
+    "status": "superseded",
+    "source_turn_ids": [
+     "S2-T1"
+    ],
+    "speakers": [
+     "Hannah"
+    ],
+    "created_turn": "S2-T1",
+    "created_at": "2026-04-08T11:00:00",
+    "supersedes": [],
+    "reason": null
+   },
+   {
+    "record_id": "project.topic@S3-T2",
+    "project_id": "class-project",
+    "item": "project.topic",
+    "value": "canteen food waste",
+    "status": "active",
+    "source_turn_ids": [
+     "S3-T2",
+     "S2-T1"
+    ],
+    "speakers": [
+     "Zoe",
+     "Hannah"
+    ],
+    "created_turn": "S3-T2",
+    "created_at": "2026-04-10T12:01:00",
+    "supersedes": [
+     "project.topic@S1-T1",
+     "project.topic@S2-T1"
+    ],
+    "reason": null
+   }
+  ],
+  "shown": {
+   "project.format@S3": {
+    "question": "What presentation format are we using?",
+    "kind": "current",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [superseded] | sources=S1-T1,S1-T5,S2-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4\nS3-T2 Zoe: project.topic = canteen food waste [active] | sources=S3-T2,S2-T1"
+   },
+   "project.topic@S3": {
+    "question": "What is the confirmed project topic?",
+    "kind": "current",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [superseded] | sources=S1-T1,S1-T5,S2-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS2-T1 Hannah: project.topic = canteen food waste [superseded] | sources=S2-T1\nS3-T2 Zoe: project.topic = canteen food waste [active] | sources=S3-T2,S2-T1"
+   },
+   "project.topic@S3-previous": {
+    "question": "Which project topic, if any, did we have before the current one?",
+    "kind": "previous",
+    "lines": "S1-T1 Zoe: project.topic = metro accessibility [superseded] | sources=S1-T1,S1-T5,S2-T5\nS1-T4 Omar: project.format = poster [superseded] | sources=S1-T4\nS1-T5 Zoe: project.format = poster [active] | sources=S1-T5,S1-T4\nS2-T1 Hannah: project.topic = canteen food waste [superseded] | sources=S2-T1\nS3-T2 Zoe: project.topic = canteen food waste [active] | sources=S3-T2,S2-T1"
+   }
+  }
+ }
+}
